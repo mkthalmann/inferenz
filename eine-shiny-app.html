@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Eine Shiny App | Tutorium zur Inferenzstatistik</title>
+  <meta name="description" content="Eine Shiny App | Tutorium zur Inferenzstatistik" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Eine Shiny App | Tutorium zur Inferenzstatistik" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="mkthalmann/mkthalmann.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Eine Shiny App | Tutorium zur Inferenzstatistik" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="gifs-in-r.html"/>
+<link rel="next" href="extrasitzung.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
+<script async defer src="https://hypothes.is/embed.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Tutorium zur Inferenzstatistik</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorbemerkungen</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#open-review"><i class="fa fa-check"></i>Open Review</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html"><i class="fa fa-check"></i>Sitzung 1</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#allgemeines"><i class="fa fa-check"></i>Allgemeines</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#ein-paar-worte-zum-tutorium"><i class="fa fa-check"></i>Ein paar Worte zum Tutorium</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#r-ein-kurzer-überblick"><i class="fa fa-check"></i>R: Ein kurzer Überblick</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#ein-beispielplot"><i class="fa fa-check"></i>Ein Beispielplot</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#installation"><i class="fa fa-check"></i>Installation</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#tada"><i class="fa fa-check"></i>Tada!</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#hilfestellung"><i class="fa fa-check"></i>Hilfestellung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#mehr-hilfe"><i class="fa fa-check"></i>Mehr Hilfe</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#allgemeines-1"><i class="fa fa-check"></i>Allgemeines</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#was-kann-man-mit-r-alles-anstellen"><i class="fa fa-check"></i>Was kann man mit R alles anstellen?</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#skripte"><i class="fa fa-check"></i>Skripte</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#skripte-1"><i class="fa fa-check"></i>Skripte</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#übung-1"><i class="fa fa-check"></i>Übung 1</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#r-als-taschenrechner"><i class="fa fa-check"></i>R als Taschenrechner</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#mathematische-funktionen-in-r"><i class="fa fa-check"></i>Mathematische Funktionen in R</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#übung-ii"><i class="fa fa-check"></i>Übung II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#lösungen-ii"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#logische-operatoren"><i class="fa fa-check"></i>Logische Operatoren</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#beispiele-logische-operatoren"><i class="fa fa-check"></i>Beispiele: Logische Operatoren</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#r-ist-objektorientiert"><i class="fa fa-check"></i>R ist objektorientiert</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#beispiele"><i class="fa fa-check"></i>Beispiele</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#mehr-zu-objekten"><i class="fa fa-check"></i>Mehr zu Objekten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#datentypen-in-r"><i class="fa fa-check"></i>Datentypen in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#rstudio-optionen"><i class="fa fa-check"></i>RStudio-Optionen</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#optionen-die-das-leben-erleichtern"><i class="fa fa-check"></i>Optionen, die das Leben erleichtern</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#das-wars"><i class="fa fa-check"></i>Das war’s!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html"><i class="fa fa-check"></i>Sitzung 2</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#wiederholung"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#das-wichtigste-vom-letzten-mal"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#code-vom-letzten-mal"><i class="fa fa-check"></i>Code vom letzten Mal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#vektoren"><i class="fa fa-check"></i>Vektoren</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#moment-mal"><i class="fa fa-check"></i>Moment mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#vektoren-1"><i class="fa fa-check"></i>Vektoren</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#subsetting"><i class="fa fa-check"></i>Subsetting</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#dimensionen-von-vektoren"><i class="fa fa-check"></i>Dimensionen von Vektoren</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#nochmal-subsetting"><i class="fa fa-check"></i>Nochmal Subsetting</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#übungen"><i class="fa fa-check"></i>Übungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#lösungen"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#lösungen-1"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#lösungen-2"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#heads-und-tails"><i class="fa fa-check"></i>Heads und Tails</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#listen"><i class="fa fa-check"></i>Listen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#subsetting-von-listen"><i class="fa fa-check"></i>Subsetting von Listen</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#zwei-dimensionale-objekte"><i class="fa fa-check"></i>Zwei-Dimensionale Objekte</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#über-vekoten-hinaus"><i class="fa fa-check"></i>Über Vekoten hinaus</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#die-dimensionen-von-tabellen"><i class="fa fa-check"></i>Die Dimensionen von Tabellen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#subsetting-von-matritzen"><i class="fa fa-check"></i>Subsetting von Matritzen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#datenblätter"><i class="fa fa-check"></i>Datenblätter</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#subsetting-von-datenblättern"><i class="fa fa-check"></i>Subsetting von Datenblättern</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#datenblätter-erweitern"><i class="fa fa-check"></i>Datenblätter erweitern</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#übungen-ii"><i class="fa fa-check"></i>Übungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#lösungen-ii-1"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#lösungen-ii-2"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#tüdelü"><i class="fa fa-check"></i>Tüdelü</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html"><i class="fa fa-check"></i>Sitzung 3</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#wiederholung-1"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#das-wichtigste-vom-letzten-mal-1"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#das-wichtigste-vom-letzten-mal-2"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#das-wichtigste-vom-letzten-mal-3"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#mehr-zu-datenblättern"><i class="fa fa-check"></i>Mehr zu Datenblättern</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#spalten-umbenennen"><i class="fa fa-check"></i>Spalten umbenennen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#mehr-subsetting"><i class="fa fa-check"></i>Mehr Subsetting</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#noch-mehr-subsetting"><i class="fa fa-check"></i>Noch mehr Subsetting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#daten-exportieren"><i class="fa fa-check"></i>Daten exportieren</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#workspace"><i class="fa fa-check"></i>Workspace</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#workspace-verändern"><i class="fa fa-check"></i>Workspace verändern</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#workspace-verändern-1"><i class="fa fa-check"></i>Workspace verändern</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#write.csvwrite.table"><i class="fa fa-check"></i>write.csv/write.table</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#übersicht"><i class="fa fa-check"></i>Übersicht</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#datenblatt-speichern"><i class="fa fa-check"></i>Datenblatt speichern</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#daten-einlesen"><i class="fa fa-check"></i>Daten einlesen</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#interlude-dateiformate"><i class="fa fa-check"></i>Interlude: Dateiformate</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#read.table"><i class="fa fa-check"></i>read.table()</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#ein-beispiel"><i class="fa fa-check"></i>Ein Beispiel</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#vorsicht"><i class="fa fa-check"></i>Vorsicht</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#übungen-1"><i class="fa fa-check"></i>Übungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#lösungen-3"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#lösungen-4"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#lösungen-5"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#lösungen-6"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#lösungen-7"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#daten-einlesen-mit-gui"><i class="fa fa-check"></i>Daten einlesen mit GUI</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#und-tschüss"><i class="fa fa-check"></i>Und Tschüss</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html"><i class="fa fa-check"></i>Sitzung 4</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#wiederholung-2"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#das-wichtigste-vom-letzten-mal-4"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#übung"><i class="fa fa-check"></i>Übung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#übung-2"><i class="fa fa-check"></i>Übung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-1"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-2"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-3"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-4"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-5"><i class="fa fa-check"></i>Lösung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#tabellenüberblick"><i class="fa fa-check"></i>Tabellenüberblick</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#struktur"><i class="fa fa-check"></i>Struktur</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#überblick-über-zahlen"><i class="fa fa-check"></i>überblick über Zahlen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#häufigkeiten"><i class="fa fa-check"></i>Häufigkeiten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#relative-häufigkeiten"><i class="fa fa-check"></i>Relative Häufigkeiten</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#erste-statistische-berechnungen"><i class="fa fa-check"></i>Erste statistische Berechnungen</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#maße-der-zentralen-tendenz"><i class="fa fa-check"></i>Maße der zentralen Tendenz</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#meme-my-stats"><i class="fa fa-check"></i>Meme My Stats</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#maße-der-streuung"><i class="fa fa-check"></i>Maße der Streuung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#übung-3"><i class="fa fa-check"></i>Übung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-6"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-7"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-8"><i class="fa fa-check"></i>Lösung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#nur-kurz-plots"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#ein-plot-zum-abschluss"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#ein-plot-zum-abschluss-1"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#session-no-longer-in-session"><i class="fa fa-check"></i>session no longer in session</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html"><i class="fa fa-check"></i>Sitzung 5</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#wiederholung-3"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#das-wichtigste-vom-letzten-mal-5"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#das-wichtigste-vom-letzten-mal-6"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#das-wichtigste-vom-letzten-mal-7"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#das-wichtigste-vom-letzten-mal-8"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#tabellen-miteinander-verbinden"><i class="fa fa-check"></i>Tabellen miteinander verbinden</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#verbinden-von-zwei-tabellen"><i class="fa fa-check"></i>Verbinden von zwei Tabellen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#übung-4"><i class="fa fa-check"></i>Übung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#lösung-9"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#lösung-10"><i class="fa fa-check"></i>Lösung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#fehlende-werte"><i class="fa fa-check"></i>Fehlende Werte</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nas"><i class="fa fa-check"></i>NAs</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nas-finden"><i class="fa fa-check"></i>NAs finden</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#alle-zeilen-mit-nas"><i class="fa fa-check"></i>alle Zeilen mit NAs</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#prozent-na"><i class="fa fa-check"></i>Prozent NA</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nas-überspringen"><i class="fa fa-check"></i>NAs überspringen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nas-entfernen"><i class="fa fa-check"></i>NAs entfernen</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#faktoren"><i class="fa fa-check"></i>Faktoren</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#vektoren-mit-faktorstufen"><i class="fa fa-check"></i>Vektoren mit Faktorstufen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#plots"><i class="fa fa-check"></i>Plots</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#level-bleiben-erhalten"><i class="fa fa-check"></i>Level bleiben erhalten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#konvertierungen"><i class="fa fa-check"></i>Konvertierungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#summary"><i class="fa fa-check"></i>summary()</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#fakoren-in-eingelesenen-daten"><i class="fa fa-check"></i>Fakoren in eingelesenen Daten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#übungen-ii-1"><i class="fa fa-check"></i>Übungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#lösungen-ii-3"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#lösungen-ii-4"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#lösungen-ii-5"><i class="fa fa-check"></i>Lösungen II</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nur-kurz-plots-1"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#ein-plot-zum-abschluss-2"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#ein-plot-zum-abschluss-3"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#friday-noon-fever"><i class="fa fa-check"></i>Friday Noon Fever</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html"><i class="fa fa-check"></i>Sitzung 6</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#wiederholung-4"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#das-wichtigste-vom-letzten-mal-9"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#pakete-und-mehr-statistik"><i class="fa fa-check"></i>Pakete und mehr Statistik</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#viel-tipparbeit"><i class="fa fa-check"></i>Viel Tipparbeit</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#wenig-tipparbeit-mit-paketen"><i class="fa fa-check"></i>Wenig Tipparbeit (mit Paketen)</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#pakete-installieren"><i class="fa fa-check"></i>Pakete installieren</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#interlude-mein-skiptanfang"><i class="fa fa-check"></i>Interlude: Mein Skiptanfang</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#describeby"><i class="fa fa-check"></i>describeBy()</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#describeby-1"><i class="fa fa-check"></i>describeBy()</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#describeby-2"><i class="fa fa-check"></i>describeBy()</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#eigene-funktionen-schreiben"><i class="fa fa-check"></i>Eigene Funktionen schreiben</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#standardfehler-funktion"><i class="fa fa-check"></i>Standardfehler-Funktion</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#mehr-beispiele"><i class="fa fa-check"></i>Mehr Beispiele</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#übungen-2"><i class="fa fa-check"></i>Übungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-8"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-9"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-10"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-11"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-12"><i class="fa fa-check"></i>Lösungen</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#tabellen-transponieren"><i class="fa fa-check"></i>Tabellen transponieren</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#reshape2"><i class="fa fa-check"></i>reshape2</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#von-wide-zu-long"><i class="fa fa-check"></i>Von Wide zu Long</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#von-wide-zu-long-1"><i class="fa fa-check"></i>Von Wide zu Long</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#von-long-zu-wide"><i class="fa fa-check"></i>Von Long zu Wide</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#übungen-ii-2"><i class="fa fa-check"></i>Übungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-ii-6"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-ii-7"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-13"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-14"><i class="fa fa-check"></i>Lösungen</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#nur-kurz-plots-2"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#ein-plot-zum-abschluss-4"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#ein-plot-zum-abschluss-5"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#ein-plot-zum-abschluss-6"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#fck-die-uni"><i class="fa fa-check"></i>F*ck die Uni</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html"><i class="fa fa-check"></i>Sitzung 7</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#wiederholung-5"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#das-wichtigste-vom-letzten-mal-10"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#das-wichtigste-vom-letzten-mal-11"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#fehlertypen"><i class="fa fa-check"></i>Fehlertypen</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#fehlertypen-erinnerungshilfe"><i class="fa fa-check"></i>Fehlertypen: Erinnerungshilfe</a></li>
+</ul></li>
+<li><a href="sitzung-7.html#chi2-test"><span class="math inline">\(\chi^2\)</span>-Test</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#daten"><i class="fa fa-check"></i>Daten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#daten-1"><i class="fa fa-check"></i>Daten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#häufigkeitstabelle"><i class="fa fa-check"></i>Häufigkeitstabelle</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#relative-häufigkeiten-1"><i class="fa fa-check"></i>Relative Häufigkeiten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#grafische-übersicht"><i class="fa fa-check"></i>Grafische Übersicht</a></li>
+<li><a href="sitzung-7.html#chi2-berechnen"><span class="math inline">\(\chi^2\)</span> berechnen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#p-werte"><i class="fa fa-check"></i>P-Werte</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#p-werte-1"><i class="fa fa-check"></i>P-Werte</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#übungen-3"><i class="fa fa-check"></i>Übungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-15"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-16"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-17"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#übungen-ii-3"><i class="fa fa-check"></i>Übungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-ii-8"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#zur-erinnerung-droplevels"><i class="fa fa-check"></i>Zur Erinnerung: droplevels</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-ii-9"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-ii-10"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-ii-11"><i class="fa fa-check"></i>Lösungen II</a></li>
+</ul></li>
+<li><a href="sitzung-7.html#t-test"><span class="math inline">\(t\)</span>-test</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#zwei-arten"><i class="fa fa-check"></i>Zwei Arten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#interlude-warum-normalverteilung"><i class="fa fa-check"></i>Interlude: Warum Normalverteilung?</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#interlude-warum-varianzhomogenitäthomoskedastizität"><i class="fa fa-check"></i>Interlude: Warum Varianzhomogenität/Homoskedastizität?</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#übung-iii"><i class="fa fa-check"></i>Übung III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-iii"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-iii-1"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-iii-2"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-iii-3"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-iii-4"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#übung-iv"><i class="fa fa-check"></i>Übung IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösung-iv"><i class="fa fa-check"></i>Lösung IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#übung-v"><i class="fa fa-check"></i>Übung V</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-v"><i class="fa fa-check"></i>Lösungen V</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-v-1"><i class="fa fa-check"></i>Lösungen V</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-v-2"><i class="fa fa-check"></i>Lösungen V</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#alternative-less"><i class="fa fa-check"></i>alternative = less</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#übungen-vi"><i class="fa fa-check"></i>Übungen VI</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-vi"><i class="fa fa-check"></i>Lösungen VI</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-vi-1"><i class="fa fa-check"></i>Lösungen VI</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#nur-kurz-plots-3"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#ein-plot-zum-abschluss-7"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#ein-plot-zum-abschluss-8"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#fck-die-uni-1"><i class="fa fa-check"></i>F*ck die Uni</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html"><i class="fa fa-check"></i>Sitzung 8</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#wiederholung-6"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#das-wichtigste-vom-letzten-mal-12"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#base-r-anova"><i class="fa fa-check"></i>Base R: ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#meme-my-stats-1"><i class="fa fa-check"></i>Meme My Stats</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#einleitendes"><i class="fa fa-check"></i>Einleitendes</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#interlude-between-und-within"><i class="fa fa-check"></i>Interlude: between und within</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#interlude-between-und-within-1"><i class="fa fa-check"></i>Interlude: between und within</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#aov"><i class="fa fa-check"></i>aov()</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#aov-1"><i class="fa fa-check"></i>aov()</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#übungen-ii-4"><i class="fa fa-check"></i>Übungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-ii-12"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#übungen-iii"><i class="fa fa-check"></i>Übungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iii-5"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iii-6"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iii-7"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iii-8"><i class="fa fa-check"></i>Lösungen III</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#alternative-anova-befehle"><i class="fa fa-check"></i>Alternative ANOVA-Befehle</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#afex-anova"><i class="fa fa-check"></i>afex-ANOVA</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#ez-anova"><i class="fa fa-check"></i>ez-ANOVA</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#übungen-iv"><i class="fa fa-check"></i>Übungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv"><i class="fa fa-check"></i>Lösungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-1"><i class="fa fa-check"></i>Lösungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-2"><i class="fa fa-check"></i>Lösungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#faktoren-erstellen"><i class="fa fa-check"></i>Faktoren erstellen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-3"><i class="fa fa-check"></i>Lösungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-4"><i class="fa fa-check"></i>Lösungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-5"><i class="fa fa-check"></i>Lösungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-6"><i class="fa fa-check"></i>Lösungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-7"><i class="fa fa-check"></i>Lösungen IV</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#nur-kurz-plots-4"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#ein-plot-zum-abschluss-9"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#ein-plot-zum-abschluss-10"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#zum-nachdenken"><i class="fa fa-check"></i>Zum Nachdenken</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#der-glühwein-ruft"><i class="fa fa-check"></i>Der Glühwein ruft</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html"><i class="fa fa-check"></i>Sitzung 9</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#experimentanalyse"><i class="fa fa-check"></i>Experimentanalyse</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#der-plan"><i class="fa fa-check"></i>Der Plan</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#einführung-ins-experiment"><i class="fa fa-check"></i>Einführung ins Experiment</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#einführung-ins-experiment-1"><i class="fa fa-check"></i>Einführung ins Experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#daten-einlesen-und-aufbereiten"><i class="fa fa-check"></i>Daten einlesen und aufbereiten</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#daten-einlesen-und-überblick-verschaffen"><i class="fa fa-check"></i>Daten einlesen und Überblick verschaffen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#überblick-ii"><i class="fa fa-check"></i>Überblick II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#was-ist-zu-tun"><i class="fa fa-check"></i>Was ist zu tun?</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#leere-und-überflüssige-spalten-entfernen"><i class="fa fa-check"></i>Leere und überflüssige Spalten entfernen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#leere-und-überflüssige-spalten-entfernen-1"><i class="fa fa-check"></i>Leere und überflüssige Spalten entfernen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#faktor"><i class="fa fa-check"></i>Faktor </a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#übung-5"><i class="fa fa-check"></i>Übung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-11"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#faktor-1"><i class="fa fa-check"></i>Faktor </a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#übung-ii-1"><i class="fa fa-check"></i>Übung II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-ii"><i class="fa fa-check"></i>Lösung II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#faktor-2"><i class="fa fa-check"></i>Faktor </a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-iii"><i class="fa fa-check"></i>Lösung III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#letzte-schritte"><i class="fa fa-check"></i>Letzte Schritte</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-iv-1"><i class="fa fa-check"></i>Lösung IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-iv-2"><i class="fa fa-check"></i>Lösung IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#optionale-kür"><i class="fa fa-check"></i>(Optionale Kür)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#deskriptive-statistik"><i class="fa fa-check"></i>Deskriptive Statistik</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#describedescribeby"><i class="fa fa-check"></i>describe()/describeBy()</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösungen-v-3"><i class="fa fa-check"></i>Lösungen V</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#plots-1"><i class="fa fa-check"></i>Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#plan"><i class="fa fa-check"></i>Plan</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#boxplot"><i class="fa fa-check"></i>Boxplot</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#boxplot-ii"><i class="fa fa-check"></i>Boxplot II</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#inferenzstatistik"><i class="fa fa-check"></i>Inferenzstatistik</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#für-einen-test-entscheiden"><i class="fa fa-check"></i>Für einen Test entscheiden</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-12"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-13"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-14"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-15"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#für-ausführlichere-wiedergabe-der-anova"><i class="fa fa-check"></i>Für ausführlichere Wiedergabe der ANOVA</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#exkurs-sphärizitätskorrekturen"><i class="fa fa-check"></i>Exkurs: Sphärizitätskorrekturen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#sphärizität-in-der-afex-anova"><i class="fa fa-check"></i>Sphärizität in der afex-ANOVA</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#vergleich-beider-ergebnisse"><i class="fa fa-check"></i>Vergleich beider Ergebnisse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste"><i class="fa fa-check"></i>Kontraste</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste-kodieren-aber-wie"><i class="fa fa-check"></i>Kontraste kodieren, aber wie?</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#übung-6"><i class="fa fa-check"></i>Übung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-16"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste-berechnen"><i class="fa fa-check"></i>Kontraste berechnen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#zum-selbst-ausprobieren"><i class="fa fa-check"></i>Zum selbst Ausprobieren</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#ergebnisse-des-großen-paarvergleichs"><i class="fa fa-check"></i>Ergebnisse des großen Paarvergleichs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#nochmal-plots"><i class="fa fa-check"></i>Nochmal Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#by-subject"><i class="fa fa-check"></i>by subject</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#by-subject-1"><i class="fa fa-check"></i>by subject</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#by-item"><i class="fa fa-check"></i>by item</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#by-item-1"><i class="fa fa-check"></i>by item</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#off-to-the-rave"><i class="fa fa-check"></i>Off to the rave</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i>ggplot2</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beispiele-1"><i class="fa fa-check"></i>Beispiele</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beispiel-1"><i class="fa fa-check"></i>Beispiel 1</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beispiel-2"><i class="fa fa-check"></i>Beispiel 2</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beispiel-3"><i class="fa fa-check"></i>Beispiel 3</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#einfache-plots"><i class="fa fa-check"></i>Einfache Plots</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#daten-für-den-basisplot"><i class="fa fa-check"></i>Daten für den Basisplot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#ggplot"><i class="fa fa-check"></i>ggplot()</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#ggplot-1"><i class="fa fa-check"></i>ggplot()</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#geometrien"><i class="fa fa-check"></i>Geometrien</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#geometrien-1"><i class="fa fa-check"></i>Geometrien</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#geometrien-2"><i class="fa fa-check"></i>Geometrien</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#geometrien-3"><i class="fa fa-check"></i>Geometrien</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#geometrien-4"><i class="fa fa-check"></i>Geometrien</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#geometrien-5"><i class="fa fa-check"></i>Geometrien</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#geometrien-6"><i class="fa fa-check"></i>Geometrien</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mehr-spalten"><i class="fa fa-check"></i>Mehr Spalten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mehr-spalten-1"><i class="fa fa-check"></i>Mehr Spalten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mehr-spalten-2"><i class="fa fa-check"></i>Mehr Spalten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mehr-spalten-3"><i class="fa fa-check"></i>Mehr Spalten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mehr-spalten-4"><i class="fa fa-check"></i>Mehr Spalten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#häufigkeiten-1"><i class="fa fa-check"></i>Häufigkeiten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#häufigkeiten-2"><i class="fa fa-check"></i>Häufigkeiten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#häufigkeiten-diskret"><i class="fa fa-check"></i>Häufigkeiten diskret</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#prozente"><i class="fa fa-check"></i>Prozente</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#prozente-mit-label"><i class="fa fa-check"></i>Prozente mit Label</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#häufigkeiten-3"><i class="fa fa-check"></i>Häufigkeiten</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-erweitern"><i class="fa fa-check"></i>Plots erweitern</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beschriftungen"><i class="fa fa-check"></i>Beschriftungen</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beschriftungen-1"><i class="fa fa-check"></i>Beschriftungen</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beschriftungen-2"><i class="fa fa-check"></i>Beschriftungen</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beschriftungen-3"><i class="fa fa-check"></i>Beschriftungen</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beschriftungen-4"><i class="fa fa-check"></i>Beschriftungen</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#achsen-beschränken"><i class="fa fa-check"></i>Achsen beschränken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#achsen-beschränken-1"><i class="fa fa-check"></i>Achsen beschränken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#achsen-beschränken-2"><i class="fa fa-check"></i>Achsen beschränken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#achsen-beschränken-3"><i class="fa fa-check"></i>Achsen beschränken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#achsen-beschränken-4"><i class="fa fa-check"></i>Achsen beschränken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#facetten"><i class="fa fa-check"></i>Facetten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#facetten-1"><i class="fa fa-check"></i>Facetten</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-verschönern"><i class="fa fa-check"></i>Plots verschönern</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#daten-für-den-basisplot-1"><i class="fa fa-check"></i>Daten für den Basisplot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#basisplot"><i class="fa fa-check"></i>Basisplot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#möglichkeit-1"><i class="fa fa-check"></i>Möglichkeit 1</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#cleanup-in-action"><i class="fa fa-check"></i>cleanup in action</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#möglichkeit-2"><i class="fa fa-check"></i>Möglichkeit 2</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#theme_pubr"><i class="fa fa-check"></i>theme_pubr()</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#clean_theme"><i class="fa fa-check"></i>clean_theme()</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#theme_pubr-clean_theme"><i class="fa fa-check"></i>theme_pubr() + clean_theme()</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#ggthemes"><i class="fa fa-check"></i>ggthemes</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#schriftarten"><i class="fa fa-check"></i>Schriftarten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#legende-verändern"><i class="fa fa-check"></i>Legende verändern</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#achsenbeschriftung"><i class="fa fa-check"></i>Achsenbeschriftung</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#farbreferenz"><i class="fa fa-check"></i>Farbreferenz</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#scico"><i class="fa fa-check"></i>scico</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#palettenvorschau"><i class="fa fa-check"></i>Palettenvorschau</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#scico-in-action"><i class="fa fa-check"></i>scico in action</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plot-speichern"><i class="fa fa-check"></i>Plot speichern</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-speichern"><i class="fa fa-check"></i>Plots speichern</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-verbinden"><i class="fa fa-check"></i>Plots verbinden</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mehrere-plots-verbinden"><i class="fa fa-check"></i>Mehrere Plots verbinden</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#nrowncol"><i class="fa fa-check"></i>nrow/ncol</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#stat_summary"><i class="fa fa-check"></i>stat_summary()</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#line-plot"><i class="fa fa-check"></i>Line Plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#line-plot-1"><i class="fa fa-check"></i>Line Plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#line-plot-2"><i class="fa fa-check"></i>Line Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#fehlerbalken"><i class="fa fa-check"></i>Fehlerbalken</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#fehlerbalken-1"><i class="fa fa-check"></i>Fehlerbalken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#andere-fehlerbalken"><i class="fa fa-check"></i>Andere Fehlerbalken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#standardfehler-vs-standardabweichung"><i class="fa fa-check"></i>Standardfehler vs Standardabweichung</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#andere-fehlerbalken-1"><i class="fa fa-check"></i>Andere Fehlerbalken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#standardfehler-vs-95-konfidenzintervall"><i class="fa fa-check"></i>Standardfehler vs 95% Konfidenzintervall</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#diagnostische-plots"><i class="fa fa-check"></i>Diagnostische Plots</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#diagnostikfunktion"><i class="fa fa-check"></i>Diagnostikfunktion</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-2"><i class="fa fa-check"></i>Plots</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#alternative-base-r"><i class="fa fa-check"></i>Alternative: Base R</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#weitere-alternative"><i class="fa fa-check"></i>Weitere Alternative</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#ganz-simpel-residuenhistogramm"><i class="fa fa-check"></i>Ganz simpel: Residuenhistogramm</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#normalverteilung"><i class="fa fa-check"></i>Normalverteilung</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#normalverteilung-daten"><i class="fa fa-check"></i>Normalverteilung: Daten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#shapiro.test"><i class="fa fa-check"></i>shapiro.test</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#normalverteilung-daten-1"><i class="fa fa-check"></i>Normalverteilung: Daten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#normalplots"><i class="fa fa-check"></i>Normalplots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#boxplot-verbessern"><i class="fa fa-check"></i>Boxplot verbessern</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mittelwerte-in-boxplots"><i class="fa fa-check"></i>Mittelwerte in Boxplots</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mittelwerte-in-boxplots-1"><i class="fa fa-check"></i>Mittelwerte in Boxplots</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mittelwerte-in-boxplots-2"><i class="fa fa-check"></i>Mittelwerte in Boxplots</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#tufte-boxplots"><i class="fa fa-check"></i>Tufte-Boxplots</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#tufte-boxplots-1"><i class="fa fa-check"></i>Tufte-Boxplots</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#übung-7"><i class="fa fa-check"></i>Übung</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#lösung-17"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#übung-ii-2"><i class="fa fa-check"></i>Übung II</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#lösung-ii-1"><i class="fa fa-check"></i>Lösung II</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#bonus-pimp-my-boxplot"><i class="fa fa-check"></i>Bonus: Pimp My Boxplot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#paper-die-ihr-lesen-solltet"><i class="fa fa-check"></i>Paper, die ihr lesen solltet:</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#arbeitsstreik"><i class="fa fa-check"></i>Arbeitsstreik</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html"><i class="fa fa-check"></i>Gifs in R</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#normalverteilung-1"><i class="fa fa-check"></i>Normalverteilung</a></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#p-wert-verteilung"><i class="fa fa-check"></i>P-Wert-Verteilung</a></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#korrelation"><i class="fa fa-check"></i>Korrelation</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#correlation-between-random-deviates-from-normal-distribution-across-four-sample-sizes"><i class="fa fa-check"></i>Correlation between random deviates from normal distribution across four sample sizes</a></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#correlation-between-x-and-y-variables-that-have-a-true-correlation"><i class="fa fa-check"></i>Correlation between X and Y variables that have a true correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#würfel"><i class="fa fa-check"></i>Würfel</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#daten-2"><i class="fa fa-check"></i>Daten</a></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#plots-3"><i class="fa fa-check"></i>Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#zeitverlauf"><i class="fa fa-check"></i>Zeitverlauf</a></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#central-limit-theorem"><i class="fa fa-check"></i>Central Limit Theorem</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#daten-3"><i class="fa fa-check"></i>Daten</a></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#plots-4"><i class="fa fa-check"></i>Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#interaktive-plots"><i class="fa fa-check"></i>Interaktive Plots</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#economics"><i class="fa fa-check"></i>economics</a></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#diamonds"><i class="fa fa-check"></i>diamonds</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="eine-shiny-app.html"><a href="eine-shiny-app.html"><i class="fa fa-check"></i>Eine Shiny App</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html"><i class="fa fa-check"></i>Extrasitzung</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#einfach-textdateien-speichern"><i class="fa fa-check"></i>Einfach Textdateien speichern</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#daten-4"><i class="fa fa-check"></i>Daten</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#sink"><i class="fa fa-check"></i>sink</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#funktionen-aus-dem-tidyverse"><i class="fa fa-check"></i>Funktionen aus dem tidyverse</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#tidyverse"><i class="fa fa-check"></i>Tidyverse</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#funktionen-die-man-kennen-sollte"><i class="fa fa-check"></i>Funktionen, die man kennen sollte</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#pipe"><i class="fa fa-check"></i>Pipe %&gt;%</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#beispiele-2"><i class="fa fa-check"></i>Beispiele</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#weitere-beispiele"><i class="fa fa-check"></i>Weitere Beispiele</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#vorkommen-zählen"><i class="fa fa-check"></i>Vorkommen zählen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#zählen-und-sortieren"><i class="fa fa-check"></i>Zählen und Sortieren</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#sortieren-und-spalten-auswählen"><i class="fa fa-check"></i>Sortieren und Spalten auswählen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#gruppieren-und-rechnen"><i class="fa fa-check"></i>Gruppieren und rechnen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#gruppieren-berechnen-filtern"><i class="fa fa-check"></i>Gruppieren, berechnen, filtern</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#gruppenkorrelationen-plotten"><i class="fa fa-check"></i>Gruppenkorrelationen plotten</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#filtern-und-plotten"><i class="fa fa-check"></i>Filtern und plotten</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#ein-tutorial"><i class="fa fa-check"></i>Ein Tutorial</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#for-loops"><i class="fa fa-check"></i>For-Loops</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#loops"><i class="fa fa-check"></i>Loops</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#loops-1"><i class="fa fa-check"></i>Loops</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#übung-8"><i class="fa fa-check"></i>Übung</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#lösungen-18"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#lösungen-19"><i class="fa fa-check"></i>Lösungen</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#funktionen-die-das-coden-erleichtern"><i class="fa fa-check"></i>Funktionen, die das Coden erleichtern</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#daten-5"><i class="fa fa-check"></i>Daten</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#by"><i class="fa fa-check"></i>by()</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#with"><i class="fa fa-check"></i>with()</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#with-1"><i class="fa fa-check"></i>with()</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#with-2"><i class="fa fa-check"></i>with()</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#attach"><i class="fa fa-check"></i>attach()</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#apply-familie"><i class="fa fa-check"></i>apply()-Familie</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#apply-familie-1"><i class="fa fa-check"></i>apply()-Familie</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#unterschied-by-und-tapply"><i class="fa fa-check"></i>Unterschied by() und tapply()</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#janitor-paket"><i class="fa fa-check"></i>Janitor-Paket</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#installieren-und-laden"><i class="fa fa-check"></i>Installieren und laden</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#bessere-häufigkeitstabellen"><i class="fa fa-check"></i>Bessere Häufigkeitstabellen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#bessere-häufigkeitstabellen-1"><i class="fa fa-check"></i>Bessere Häufigkeitstabellen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#leere-zeilen-und-spalten-entfernen"><i class="fa fa-check"></i>Leere Zeilen und Spalten entfernen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#spalten-mit-konstanten-werten-entfernen"><i class="fa fa-check"></i>Spalten mit konstanten Werten entfernen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#clean_names"><i class="fa fa-check"></i>clean_names()</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#bildverarbeitung-und--bearbeitung-in-r"><i class="fa fa-check"></i>Bildverarbeitung (und -bearbeitung) in R</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#magick"><i class="fa fa-check"></i>magick</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#popularity-contest"><i class="fa fa-check"></i>Popularity Contest</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#die-populärsten-pakete"><i class="fa fa-check"></i>Die populärsten Pakete</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#die-populärsten-pakete-1"><i class="fa fa-check"></i>Die populärsten Pakete</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#fin"><i class="fa fa-check"></i>fin</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#anhang-die-wichtigsten-funktionen"><i class="fa fa-check"></i>Anhang: Die wichtigsten Funktionen</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#allgemein"><i class="fa fa-check"></i>Allgemein</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#mathe"><i class="fa fa-check"></i>Mathe</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#statistik"><i class="fa fa-check"></i>Statistik</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="mailto:maik.thalmann@googlemail.com" target="blank">maik.thalmann@googlemail.com</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tutorium zur Inferenzstatistik</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+
+<div class = rmdreview>
+This book is in <b><a href="open.html#open">Open Review</a></b>. I want your feedback to make the book better for you and other readers. To add your annotation, <span style="background-color: #3297FD; color: white">select some text</span> and then click the <i class="h-icon-annotate"></i> on the pop-up menu. To see the annotations of others, click the <i class="h-icon-chevron-left"></i> in the upper right hand corner of the page <i class="fa fa-arrow-circle-right  fa-rotate-315" aria-hidden="true"></i>
+</div>
+<div id="eine-shiny-app" class="section level1">
+<h1>Eine Shiny App</h1>
+<p>Zum Ausprobieren einfach den Code in ein neues Skript kopieren, erforderliche Pakete installieren und in RStudio auf <code>Run App</code> klicken – mehr Infos gibts <a href="https://shiny.rstudio.com">hier</a>.</p>
+<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb781-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
+<a class="sourceLine" id="cb781-2" data-line-number="2"><span class="kw">library</span>(shinythemes)</a>
+<a class="sourceLine" id="cb781-3" data-line-number="3"><span class="kw">library</span>(psych)</a>
+<a class="sourceLine" id="cb781-4" data-line-number="4"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb781-5" data-line-number="5"><span class="kw">library</span>(ggridges) <span class="co"># geom_density_ridges</span></a>
+<a class="sourceLine" id="cb781-6" data-line-number="6"><span class="kw">library</span>(ggthemes)</a>
+<a class="sourceLine" id="cb781-7" data-line-number="7"><span class="kw">library</span>(ggpubr) <span class="co"># theme_pubr(margin = F) + labs_pubr()</span></a>
+<a class="sourceLine" id="cb781-8" data-line-number="8"><span class="kw">library</span>(plotly) <span class="co"># for plots with zoom functions and much more</span></a>
+<a class="sourceLine" id="cb781-9" data-line-number="9"><span class="kw">library</span>(reshape2) <span class="co"># for melting and casting data frames</span></a>
+<a class="sourceLine" id="cb781-10" data-line-number="10"><span class="kw">library</span>(DT) <span class="co"># for better tables</span></a>
+<a class="sourceLine" id="cb781-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb781-12" data-line-number="12"><span class="co"># plot theme variations</span></a>
+<a class="sourceLine" id="cb781-13" data-line-number="13">economist =<span class="st"> </span><span class="kw">theme_economist</span>() <span class="co"># requires library(ggthemes)</span></a>
+<a class="sourceLine" id="cb781-14" data-line-number="14">grey =<span class="st"> </span><span class="kw">theme_grey</span>() <span class="co"># requires library(ggthemes)</span></a>
+<a class="sourceLine" id="cb781-15" data-line-number="15">pubr =<span class="st"> </span><span class="kw">theme_pubr</span>(<span class="dt">margin =</span> F) <span class="op">+</span><span class="st"> </span><span class="kw">labs_pubr</span>() <span class="co"># requires library(pubr)</span></a>
+<a class="sourceLine" id="cb781-16" data-line-number="16">clean =<span class="st"> </span><span class="kw">theme_tufte</span>() <span class="op">+</span><span class="st"> </span><span class="kw">labs_pubr</span>() <span class="op">+</span><span class="st"> </span><span class="kw">clean_theme</span>() <span class="co"># requires library(pubr) and library(ggthemes)</span></a>
+<a class="sourceLine" id="cb781-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb781-18" data-line-number="18"><span class="co">## %######################################################%##</span></a>
+<a class="sourceLine" id="cb781-19" data-line-number="19"><span class="co">####         Data Set for Central Limit Theorem         ####</span></a>
+<a class="sourceLine" id="cb781-20" data-line-number="20"><span class="co">## %######################################################%##</span></a>
+<a class="sourceLine" id="cb781-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb781-22" data-line-number="22"><span class="co"># generate 5000 values from an exponential distribution</span></a>
+<a class="sourceLine" id="cb781-23" data-line-number="23"><span class="co"># with rate parameter=0.2</span></a>
+<a class="sourceLine" id="cb781-24" data-line-number="24">exp_data =<span class="st"> </span><span class="kw">rexp</span>(<span class="dt">n =</span> <span class="dv">5000</span>, <span class="dt">rate =</span> <span class="fl">0.2</span>)</a>
+<a class="sourceLine" id="cb781-25" data-line-number="25"><span class="co"># find mean of 5 values from an exponential distribution (repeat 5000 times)</span></a>
+<a class="sourceLine" id="cb781-26" data-line-number="26">exp_<span class="dv">5</span> =<span class="st"> </span><span class="kw">array</span>(<span class="ot">NA</span>, <span class="dt">dim =</span> <span class="dv">5000</span>)</a>
+<a class="sourceLine" id="cb781-27" data-line-number="27"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5000</span>) {</a>
+<a class="sourceLine" id="cb781-28" data-line-number="28">  exp_<span class="dv">5</span>[i] =<span class="st"> </span><span class="kw">mean</span>(<span class="kw">rexp</span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">rate =</span> <span class="fl">0.2</span>))</a>
+<a class="sourceLine" id="cb781-29" data-line-number="29">}</a>
+<a class="sourceLine" id="cb781-30" data-line-number="30"><span class="co"># find mean of 50 values from an exponential distribution (repeat 5000 times)</span></a>
+<a class="sourceLine" id="cb781-31" data-line-number="31">exp_<span class="dv">50</span> =<span class="st"> </span><span class="kw">array</span>(<span class="ot">NA</span>, <span class="dt">dim =</span> <span class="dv">5000</span>)</a>
+<a class="sourceLine" id="cb781-32" data-line-number="32"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5000</span>) {</a>
+<a class="sourceLine" id="cb781-33" data-line-number="33">  exp_<span class="dv">50</span>[i] =<span class="st"> </span><span class="kw">mean</span>(<span class="kw">rexp</span>(<span class="dt">n =</span> <span class="dv">50</span>, <span class="dt">rate =</span> <span class="fl">0.2</span>))</a>
+<a class="sourceLine" id="cb781-34" data-line-number="34">}</a>
+<a class="sourceLine" id="cb781-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb781-36" data-line-number="36"><span class="co"># generate data frame</span></a>
+<a class="sourceLine" id="cb781-37" data-line-number="37">d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(exp_data, exp_<span class="dv">5</span>, exp_<span class="dv">50</span>)</a>
+<a class="sourceLine" id="cb781-38" data-line-number="38"><span class="co"># rename columns to make them nicer in the plot&#39;s legend</span></a>
+<a class="sourceLine" id="cb781-39" data-line-number="39"><span class="kw">names</span>(d) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;N = 1&quot;</span>, <span class="st">&quot;N = 5&quot;</span>, <span class="st">&quot;N = 50&quot;</span>)</a>
+<a class="sourceLine" id="cb781-40" data-line-number="40"><span class="co"># melt data so just one variable can be called to represent the three columns</span></a>
+<a class="sourceLine" id="cb781-41" data-line-number="41">d &lt;-<span class="st"> </span><span class="kw">melt</span>(d)</a>
+<a class="sourceLine" id="cb781-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb781-43" data-line-number="43"></a>
+<a class="sourceLine" id="cb781-44" data-line-number="44"><span class="co">## %######################################################%##</span></a>
+<a class="sourceLine" id="cb781-45" data-line-number="45"><span class="co">####                     Shiny App                      ####</span></a>
+<a class="sourceLine" id="cb781-46" data-line-number="46"><span class="co">## %######################################################%##</span></a>
+<a class="sourceLine" id="cb781-47" data-line-number="47"></a>
+<a class="sourceLine" id="cb781-48" data-line-number="48"><span class="co"># Define UI for random distribution app ----</span></a>
+<a class="sourceLine" id="cb781-49" data-line-number="49">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
+<a class="sourceLine" id="cb781-50" data-line-number="50">  <span class="co"># change the theme</span></a>
+<a class="sourceLine" id="cb781-51" data-line-number="51">  <span class="co"># to quickly check which one you like, add shinythemes::themeSelector() instead of shinytheme(&quot;paper&quot;) # others: &quot;superhero&quot;</span></a>
+<a class="sourceLine" id="cb781-52" data-line-number="52">  <span class="dt">theme =</span> <span class="kw">shinytheme</span>(<span class="st">&quot;lumen&quot;</span>),</a>
+<a class="sourceLine" id="cb781-53" data-line-number="53"></a>
+<a class="sourceLine" id="cb781-54" data-line-number="54">  <span class="co"># App title ----</span></a>
+<a class="sourceLine" id="cb781-55" data-line-number="55">  <span class="kw">titlePanel</span>(<span class="st">&quot;Normal? Distributions&quot;</span>),</a>
+<a class="sourceLine" id="cb781-56" data-line-number="56"></a>
+<a class="sourceLine" id="cb781-57" data-line-number="57">  <span class="co"># Sidebar layout with input and output definitions ----</span></a>
+<a class="sourceLine" id="cb781-58" data-line-number="58">  <span class="kw">sidebarLayout</span>(</a>
+<a class="sourceLine" id="cb781-59" data-line-number="59"></a>
+<a class="sourceLine" id="cb781-60" data-line-number="60">    <span class="co"># Sidebar panel for inputs ----</span></a>
+<a class="sourceLine" id="cb781-61" data-line-number="61">    <span class="kw">sidebarPanel</span>(</a>
+<a class="sourceLine" id="cb781-62" data-line-number="62">      <span class="co"># br() element to introduce extra vertical spacing ----</span></a>
+<a class="sourceLine" id="cb781-63" data-line-number="63"></a>
+<a class="sourceLine" id="cb781-64" data-line-number="64">      <span class="co"># conditional panel to enable/disable certain features only when they are (not) applicable depending on the numerical value of the tabs</span></a>
+<a class="sourceLine" id="cb781-65" data-line-number="65">      <span class="kw">conditionalPanel</span>(<span class="dt">condition =</span> <span class="st">&quot;input.tabs&lt;=2&quot;</span>,</a>
+<a class="sourceLine" id="cb781-66" data-line-number="66">        <span class="co"># Input: slider for the number of observations to generate ----</span></a>
+<a class="sourceLine" id="cb781-67" data-line-number="67">        <span class="kw">numericInput</span>(<span class="st">&quot;n&quot;</span>,</a>
+<a class="sourceLine" id="cb781-68" data-line-number="68">          <span class="st">&quot;Number of Observations:&quot;</span>,</a>
+<a class="sourceLine" id="cb781-69" data-line-number="69">          <span class="dt">value =</span> <span class="dv">500</span>,</a>
+<a class="sourceLine" id="cb781-70" data-line-number="70">          <span class="dt">min =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb781-71" data-line-number="71">          <span class="dt">max =</span> <span class="dv">12000</span>),</a>
+<a class="sourceLine" id="cb781-72" data-line-number="72">        <span class="co"># Input: radio button for categorical selection,</span></a>
+<a class="sourceLine" id="cb781-73" data-line-number="73">        <span class="co"># alternative: selectInput</span></a>
+<a class="sourceLine" id="cb781-74" data-line-number="74">        <span class="kw">radioButtons</span>(<span class="st">&quot;dist&quot;</span>,</a>
+<a class="sourceLine" id="cb781-75" data-line-number="75">          <span class="st">&quot;Distribution&quot;</span>,</a>
+<a class="sourceLine" id="cb781-76" data-line-number="76">          <span class="kw">c</span>(<span class="st">&quot;Normal&quot;</span> =<span class="st"> &quot;rnorm&quot;</span>,</a>
+<a class="sourceLine" id="cb781-77" data-line-number="77">            <span class="st">&quot;Exponential&quot;</span> =<span class="st"> &quot;rexp&quot;</span>,</a>
+<a class="sourceLine" id="cb781-78" data-line-number="78">            <span class="st">&quot;Beta&quot;</span> =<span class="st"> &quot;rbeta&quot;</span></a>
+<a class="sourceLine" id="cb781-79" data-line-number="79">            <span class="co"># &quot;LogNormal&quot; = &quot;rlnorm&quot;</span></a>
+<a class="sourceLine" id="cb781-80" data-line-number="80">        ), <span class="dt">inline =</span> T),</a>
+<a class="sourceLine" id="cb781-81" data-line-number="81">        <span class="co"># checkbox to indicate whether a</span></a>
+<a class="sourceLine" id="cb781-82" data-line-number="82">        <span class="co"># transformation is to be applied</span></a>
+<a class="sourceLine" id="cb781-83" data-line-number="83">        <span class="kw">selectInput</span>(<span class="st">&quot;z&quot;</span>,</a>
+<a class="sourceLine" id="cb781-84" data-line-number="84">          <span class="st">&quot;Transformation:&quot;</span>,</a>
+<a class="sourceLine" id="cb781-85" data-line-number="85">          <span class="kw">c</span>(<span class="st">&quot;None&quot;</span> =<span class="st"> &quot;none&quot;</span>,</a>
+<a class="sourceLine" id="cb781-86" data-line-number="86">            <span class="st">&quot;z (mean = 0, sd = 1)&quot;</span> =<span class="st"> &quot;scale&quot;</span>,</a>
+<a class="sourceLine" id="cb781-87" data-line-number="87">            <span class="st">&quot;Logarithm&quot;</span> =<span class="st"> &quot;log&quot;</span>,</a>
+<a class="sourceLine" id="cb781-88" data-line-number="88">            <span class="st">&quot;Square Root&quot;</span> =<span class="st"> &quot;sqrt&quot;</span>)</a>
+<a class="sourceLine" id="cb781-89" data-line-number="89">        ),</a>
+<a class="sourceLine" id="cb781-90" data-line-number="90"></a>
+<a class="sourceLine" id="cb781-91" data-line-number="91">        <span class="co"># conditional sidebar elements depending</span></a>
+<a class="sourceLine" id="cb781-92" data-line-number="92">        <span class="co"># on the choice of distribution</span></a>
+<a class="sourceLine" id="cb781-93" data-line-number="93">        <span class="kw">uiOutput</span>(<span class="st">&quot;slidermean&quot;</span>),</a>
+<a class="sourceLine" id="cb781-94" data-line-number="94">        <span class="kw">uiOutput</span>(<span class="st">&quot;slidersd&quot;</span>),</a>
+<a class="sourceLine" id="cb781-95" data-line-number="95">        <span class="kw">uiOutput</span>(<span class="st">&quot;sliderrate&quot;</span>),</a>
+<a class="sourceLine" id="cb781-96" data-line-number="96">        <span class="kw">uiOutput</span>(<span class="st">&quot;slidershape1&quot;</span>),</a>
+<a class="sourceLine" id="cb781-97" data-line-number="97">        <span class="kw">uiOutput</span>(<span class="st">&quot;slidershape2&quot;</span>)</a>
+<a class="sourceLine" id="cb781-98" data-line-number="98">      ),</a>
+<a class="sourceLine" id="cb781-99" data-line-number="99">      <span class="co"># conditional panel to enable/disable certain features only when they are (not) applicable depending on the numerical value of the tabs</span></a>
+<a class="sourceLine" id="cb781-100" data-line-number="100">      <span class="kw">conditionalPanel</span>(<span class="dt">condition =</span> <span class="st">&quot;input.tabs&lt;=3&amp;input.tabs!=1&quot;</span>,</a>
+<a class="sourceLine" id="cb781-101" data-line-number="101">        <span class="kw">sliderInput</span>(<span class="st">&quot;bin&quot;</span>,</a>
+<a class="sourceLine" id="cb781-102" data-line-number="102">          <span class="st">&quot;Bar Width/Point Size:&quot;</span>,</a>
+<a class="sourceLine" id="cb781-103" data-line-number="103">          <span class="dt">value =</span> <span class="fl">1.55</span>,</a>
+<a class="sourceLine" id="cb781-104" data-line-number="104">          <span class="dt">min =</span> <span class="fl">.01</span>,</a>
+<a class="sourceLine" id="cb781-105" data-line-number="105">          <span class="dt">max =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb781-106" data-line-number="106"></a>
+<a class="sourceLine" id="cb781-107" data-line-number="107">        <span class="kw">sliderInput</span>(<span class="st">&quot;alpha&quot;</span>,</a>
+<a class="sourceLine" id="cb781-108" data-line-number="108">          <span class="st">&quot;Opacity&quot;</span>,</a>
+<a class="sourceLine" id="cb781-109" data-line-number="109">          <span class="dt">value =</span> <span class="fl">.6</span>,</a>
+<a class="sourceLine" id="cb781-110" data-line-number="110">          <span class="dt">min =</span> <span class="fl">.1</span>,</a>
+<a class="sourceLine" id="cb781-111" data-line-number="111">          <span class="dt">max =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb781-112" data-line-number="112">        <span class="co"># Input: radio</span></a>
+<a class="sourceLine" id="cb781-113" data-line-number="113">        <span class="co"># button for</span></a>
+<a class="sourceLine" id="cb781-114" data-line-number="114">        <span class="co"># categorical</span></a>
+<a class="sourceLine" id="cb781-115" data-line-number="115">        <span class="co"># selection,</span></a>
+<a class="sourceLine" id="cb781-116" data-line-number="116">        <span class="co"># alternative:</span></a>
+<a class="sourceLine" id="cb781-117" data-line-number="117">        <span class="co"># selectInput</span></a>
+<a class="sourceLine" id="cb781-118" data-line-number="118">        <span class="co"># ----</span></a>
+<a class="sourceLine" id="cb781-119" data-line-number="119">        <span class="kw">radioButtons</span>(<span class="st">&quot;col&quot;</span>,</a>
+<a class="sourceLine" id="cb781-120" data-line-number="120">          <span class="st">&quot;Color:&quot;</span>,</a>
+<a class="sourceLine" id="cb781-121" data-line-number="121">          <span class="kw">c</span>(<span class="st">&quot;Pink&quot;</span> =<span class="st"> &quot;deeppink1&quot;</span>,</a>
+<a class="sourceLine" id="cb781-122" data-line-number="122">            <span class="st">&quot;Black&quot;</span> =<span class="st"> &quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb781-123" data-line-number="123">            <span class="st">&quot;Blue&quot;</span> =<span class="st"> &quot;navyblue&quot;</span>,</a>
+<a class="sourceLine" id="cb781-124" data-line-number="124">            <span class="st">&quot;Green&quot;</span> =<span class="st"> &quot;darkolivegreen&quot;</span>,</a>
+<a class="sourceLine" id="cb781-125" data-line-number="125">            <span class="st">&quot;Magenta&quot;</span> =<span class="st"> &quot;darkmagenta&quot;</span>),</a>
+<a class="sourceLine" id="cb781-126" data-line-number="126">          <span class="dt">inline =</span> T</a>
+<a class="sourceLine" id="cb781-127" data-line-number="127">        ),</a>
+<a class="sourceLine" id="cb781-128" data-line-number="128">        <span class="co"># drop down list</span></a>
+<a class="sourceLine" id="cb781-129" data-line-number="129">        <span class="kw">selectInput</span>(<span class="st">&quot;theme&quot;</span>,</a>
+<a class="sourceLine" id="cb781-130" data-line-number="130">          <span class="st">&quot;Theme:&quot;</span>,</a>
+<a class="sourceLine" id="cb781-131" data-line-number="131">          <span class="kw">c</span>(<span class="st">&quot;Publication&quot;</span> =<span class="st"> &quot;pubr&quot;</span>,</a>
+<a class="sourceLine" id="cb781-132" data-line-number="132">            <span class="st">&quot;Economist&quot;</span> =<span class="st"> &quot;economist&quot;</span>,</a>
+<a class="sourceLine" id="cb781-133" data-line-number="133">            <span class="st">&quot;Grey&quot;</span> =<span class="st"> &quot;grey&quot;</span>,</a>
+<a class="sourceLine" id="cb781-134" data-line-number="134">            <span class="st">&quot;Clean&quot;</span> =<span class="st"> &quot;clean&quot;</span>)</a>
+<a class="sourceLine" id="cb781-135" data-line-number="135">        )</a>
+<a class="sourceLine" id="cb781-136" data-line-number="136">      ),</a>
+<a class="sourceLine" id="cb781-137" data-line-number="137"></a>
+<a class="sourceLine" id="cb781-138" data-line-number="138">      <span class="co"># adjust width of side panel</span></a>
+<a class="sourceLine" id="cb781-139" data-line-number="139">      <span class="dt">width =</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb781-140" data-line-number="140"></a>
+<a class="sourceLine" id="cb781-141" data-line-number="141">    ),</a>
+<a class="sourceLine" id="cb781-142" data-line-number="142"></a>
+<a class="sourceLine" id="cb781-143" data-line-number="143">    <span class="co"># Main panel for displaying outputs ----</span></a>
+<a class="sourceLine" id="cb781-144" data-line-number="144">    <span class="kw">mainPanel</span>(</a>
+<a class="sourceLine" id="cb781-145" data-line-number="145"></a>
+<a class="sourceLine" id="cb781-146" data-line-number="146">      <span class="co"># Output: Tabset w/ plots, summary, and table ----</span></a>
+<a class="sourceLine" id="cb781-147" data-line-number="147">      <span class="co"># id is used to refer back to the individual panels for the</span></a>
+<a class="sourceLine" id="cb781-148" data-line-number="148">      <span class="co"># condiditional side bar elements depending on the value</span></a>
+<a class="sourceLine" id="cb781-149" data-line-number="149">      <span class="kw">tabsetPanel</span>(<span class="dt">id =</span> <span class="st">&quot;tabs&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;tabs&quot;</span>,</a>
+<a class="sourceLine" id="cb781-150" data-line-number="150">        <span class="co"># histogram with mean, uses ncount</span></a>
+<a class="sourceLine" id="cb781-151" data-line-number="151">        <span class="kw">tabPanel</span>(<span class="st">&quot;nCount Plot&quot;</span>, <span class="dt">value =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb781-152" data-line-number="152">          <span class="kw">plotlyOutput</span>(<span class="st">&quot;plot1&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>),</a>
+<a class="sourceLine" id="cb781-153" data-line-number="153">          <span class="kw">fluidRow</span>(</a>
+<a class="sourceLine" id="cb781-154" data-line-number="154">            <span class="kw">column</span>(<span class="dv">9</span>, <span class="dt">offset =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb781-155" data-line-number="155">              <span class="kw">h6</span>(<span class="st">&quot;Test&quot;</span>)</a>
+<a class="sourceLine" id="cb781-156" data-line-number="156">            )</a>
+<a class="sourceLine" id="cb781-157" data-line-number="157">          )</a>
+<a class="sourceLine" id="cb781-158" data-line-number="158">        ),</a>
+<a class="sourceLine" id="cb781-159" data-line-number="159">        <span class="co"># histogram with mean, +/- sd and t-significant areas</span></a>
+<a class="sourceLine" id="cb781-160" data-line-number="160">        <span class="co"># uses density statistic</span></a>
+<a class="sourceLine" id="cb781-161" data-line-number="161">        <span class="kw">tabPanel</span>(<span class="st">&quot;Density Plot&quot;</span>, <span class="dt">value =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb781-162" data-line-number="162">          <span class="kw">plotlyOutput</span>(<span class="st">&quot;plot2&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</a>
+<a class="sourceLine" id="cb781-163" data-line-number="163">        <span class="co"># qq plot</span></a>
+<a class="sourceLine" id="cb781-164" data-line-number="164">        <span class="kw">tabPanel</span>(<span class="st">&quot;QQ Plot&quot;</span>, <span class="dt">value =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb781-165" data-line-number="165">          <span class="kw">plotlyOutput</span>(<span class="st">&quot;plot3&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</a>
+<a class="sourceLine" id="cb781-166" data-line-number="166">        <span class="co"># boxplot with underlayed individual data points</span></a>
+<a class="sourceLine" id="cb781-167" data-line-number="167">        <span class="kw">tabPanel</span>(<span class="st">&quot;Boxplot&quot;</span>, <span class="dt">value =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb781-168" data-line-number="168">          <span class="kw">plotlyOutput</span>(<span class="st">&quot;plot4&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</a>
+<a class="sourceLine" id="cb781-169" data-line-number="169">        <span class="co"># descriptive stats of generated data set</span></a>
+<a class="sourceLine" id="cb781-170" data-line-number="170">        <span class="kw">tabPanel</span>(<span class="st">&quot;Descriptive Stats&quot;</span>, <span class="dt">value =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb781-171" data-line-number="171">          <span class="kw">fluidRow</span>(</a>
+<a class="sourceLine" id="cb781-172" data-line-number="172">            <span class="kw">h3</span>(<span class="st">&quot;Describe&quot;</span>),</a>
+<a class="sourceLine" id="cb781-173" data-line-number="173">            <span class="kw">dataTableOutput</span>(<span class="st">&quot;table&quot;</span>),</a>
+<a class="sourceLine" id="cb781-174" data-line-number="174">            <span class="kw">h3</span>(<span class="st">&quot;Head&quot;</span>),</a>
+<a class="sourceLine" id="cb781-175" data-line-number="175">            <span class="kw">dataTableOutput</span>(<span class="st">&quot;table4&quot;</span>)</a>
+<a class="sourceLine" id="cb781-176" data-line-number="176">          )</a>
+<a class="sourceLine" id="cb781-177" data-line-number="177">        ),</a>
+<a class="sourceLine" id="cb781-178" data-line-number="178">        <span class="co"># plot illustrating the cental limit</span></a>
+<a class="sourceLine" id="cb781-179" data-line-number="179">        <span class="co"># theorem with exponential distribution</span></a>
+<a class="sourceLine" id="cb781-180" data-line-number="180">        <span class="kw">tabPanel</span>(<span class="st">&quot;CLT1&quot;</span>, <span class="dt">value =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb781-181" data-line-number="181">          <span class="kw">plotOutput</span>(<span class="st">&quot;plot5&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</a>
+<a class="sourceLine" id="cb781-182" data-line-number="182">        <span class="co"># classical plots with</span></a>
+<a class="sourceLine" id="cb781-183" data-line-number="183">        <span class="co"># means, sd error and</span></a>
+<a class="sourceLine" id="cb781-184" data-line-number="184">        <span class="co"># lines conntecting the means</span></a>
+<a class="sourceLine" id="cb781-185" data-line-number="185">        <span class="kw">tabPanel</span>(<span class="st">&quot;CLT2&quot;</span>, <span class="dt">value =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb781-186" data-line-number="186">          <span class="kw">plotOutput</span>(<span class="st">&quot;plot6&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</a>
+<a class="sourceLine" id="cb781-187" data-line-number="187">        <span class="co"># descriptive stats of exponential data</span></a>
+<a class="sourceLine" id="cb781-188" data-line-number="188">        <span class="kw">tabPanel</span>(<span class="st">&quot;CLT Data&quot;</span>, <span class="dt">value =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb781-189" data-line-number="189">          <span class="co"># multiple outputs in one panel via fluidRow</span></a>
+<a class="sourceLine" id="cb781-190" data-line-number="190">          <span class="kw">fluidRow</span>(</a>
+<a class="sourceLine" id="cb781-191" data-line-number="191">            <span class="co"># Title element</span></a>
+<a class="sourceLine" id="cb781-192" data-line-number="192">            <span class="kw">h3</span>(<span class="st">&quot;DescribeBy&quot;</span>),</a>
+<a class="sourceLine" id="cb781-193" data-line-number="193">            <span class="kw">dataTableOutput</span>(<span class="st">&quot;table2&quot;</span>),</a>
+<a class="sourceLine" id="cb781-194" data-line-number="194">            <span class="kw">h3</span>(<span class="st">&quot;Head&quot;</span>),</a>
+<a class="sourceLine" id="cb781-195" data-line-number="195">            <span class="kw">dataTableOutput</span>(<span class="st">&quot;table3&quot;</span>)</a>
+<a class="sourceLine" id="cb781-196" data-line-number="196">        ))</a>
+<a class="sourceLine" id="cb781-197" data-line-number="197"></a>
+<a class="sourceLine" id="cb781-198" data-line-number="198">      ),</a>
+<a class="sourceLine" id="cb781-199" data-line-number="199">      <span class="co"># adjust width of main panel</span></a>
+<a class="sourceLine" id="cb781-200" data-line-number="200">      <span class="dt">width =</span> <span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb781-201" data-line-number="201">  )</a>
+<a class="sourceLine" id="cb781-202" data-line-number="202">)</a>
+<a class="sourceLine" id="cb781-203" data-line-number="203"></a>
+<a class="sourceLine" id="cb781-204" data-line-number="204"><span class="co"># Define server logic for random distribution app ----</span></a>
+<a class="sourceLine" id="cb781-205" data-line-number="205">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
+<a class="sourceLine" id="cb781-206" data-line-number="206"></a>
+<a class="sourceLine" id="cb781-207" data-line-number="207">  <span class="co"># Reactive expression to generate the requested data set according to n, mean and sd ----</span></a>
+<a class="sourceLine" id="cb781-208" data-line-number="208">  <span class="co"># This is called whenever the inputs change. The output functions</span></a>
+<a class="sourceLine" id="cb781-209" data-line-number="209">  <span class="co"># defined below then use the value computed from this expression</span></a>
+<a class="sourceLine" id="cb781-210" data-line-number="210"></a>
+<a class="sourceLine" id="cb781-211" data-line-number="211">  <span class="co"># generates the same dataset for all the manipulatable plots and tables</span></a>
+<a class="sourceLine" id="cb781-212" data-line-number="212">  <span class="co"># this allows the user to jump from numeric representations to</span></a>
+<a class="sourceLine" id="cb781-213" data-line-number="213">  <span class="co"># different types of visualization</span></a>
+<a class="sourceLine" id="cb781-214" data-line-number="214">  x &lt;-<span class="st"> </span><span class="kw">reactive</span>({</a>
+<a class="sourceLine" id="cb781-215" data-line-number="215">    <span class="co"># react to the checkbox for z-transformation:</span></a>
+<a class="sourceLine" id="cb781-216" data-line-number="216">    <span class="co"># if FALSE, do the usual</span></a>
+<a class="sourceLine" id="cb781-217" data-line-number="217">    <span class="cf">if</span> (input<span class="op">$</span>z <span class="op">==</span><span class="st"> &quot;none&quot;</span>) {</a>
+<a class="sourceLine" id="cb781-218" data-line-number="218">      <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rnorm&quot;</span>)</a>
+<a class="sourceLine" id="cb781-219" data-line-number="219">        {x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(input<span class="op">$</span>n, <span class="dt">mean =</span> input<span class="op">$</span>mean, <span class="dt">sd =</span> input<span class="op">$</span>sd)}</a>
+<a class="sourceLine" id="cb781-220" data-line-number="220">      <span class="co"># else if(input$dist == &quot;rlnorm&quot;)</span></a>
+<a class="sourceLine" id="cb781-221" data-line-number="221">      <span class="co"># {x &lt;- rlnorm(input$n, meanlog = input$mean, sdlog=input$sd)}</span></a>
+<a class="sourceLine" id="cb781-222" data-line-number="222">      <span class="cf">else</span> <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rexp&quot;</span>) {</a>
+<a class="sourceLine" id="cb781-223" data-line-number="223">        x &lt;-<span class="st"> </span><span class="kw">rexp</span>(input<span class="op">$</span>n, <span class="dt">rate =</span> input<span class="op">$</span>rate)</a>
+<a class="sourceLine" id="cb781-224" data-line-number="224">      }</a>
+<a class="sourceLine" id="cb781-225" data-line-number="225">      <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb781-226" data-line-number="226">        x &lt;-<span class="st"> </span><span class="kw">rbeta</span>(input<span class="op">$</span>n, input<span class="op">$</span>shape1, input<span class="op">$</span>shape2)</a>
+<a class="sourceLine" id="cb781-227" data-line-number="227">      }</a>
+<a class="sourceLine" id="cb781-228" data-line-number="228">    }</a>
+<a class="sourceLine" id="cb781-229" data-line-number="229">    <span class="co"># if TRUE, apply the transformation specified by the input</span></a>
+<a class="sourceLine" id="cb781-230" data-line-number="230">    <span class="co"># either scale, log or sqrt</span></a>
+<a class="sourceLine" id="cb781-231" data-line-number="231">    <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb781-232" data-line-number="232">      <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rnorm&quot;</span>)</a>
+<a class="sourceLine" id="cb781-233" data-line-number="233">        {x &lt;-<span class="st"> </span><span class="kw">get</span>(input<span class="op">$</span>z)(<span class="kw">rnorm</span>(input<span class="op">$</span>n, <span class="dt">mean =</span> input<span class="op">$</span>mean,</a>
+<a class="sourceLine" id="cb781-234" data-line-number="234">          <span class="dt">sd =</span> input<span class="op">$</span>sd))}</a>
+<a class="sourceLine" id="cb781-235" data-line-number="235">      <span class="co"># else if(input$dist == &quot;rlnorm&quot;)</span></a>
+<a class="sourceLine" id="cb781-236" data-line-number="236">      <span class="co"># {x &lt;- rlnorm(input$n, meanlog = input$mean, sdlog=input$sd)}</span></a>
+<a class="sourceLine" id="cb781-237" data-line-number="237">      <span class="cf">else</span> <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rexp&quot;</span>) {</a>
+<a class="sourceLine" id="cb781-238" data-line-number="238">        x &lt;-<span class="st"> </span><span class="kw">get</span>(input<span class="op">$</span>z)(<span class="kw">rexp</span>(input<span class="op">$</span>n, <span class="dt">rate =</span> input<span class="op">$</span>rate))</a>
+<a class="sourceLine" id="cb781-239" data-line-number="239">      }</a>
+<a class="sourceLine" id="cb781-240" data-line-number="240">      <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb781-241" data-line-number="241">        x &lt;-<span class="st"> </span><span class="kw">get</span>(input<span class="op">$</span>z)(<span class="kw">rbeta</span>(input<span class="op">$</span>n, input<span class="op">$</span>shape1, input<span class="op">$</span>shape2))</a>
+<a class="sourceLine" id="cb781-242" data-line-number="242">      }</a>
+<a class="sourceLine" id="cb781-243" data-line-number="243">    }</a>
+<a class="sourceLine" id="cb781-244" data-line-number="244"></a>
+<a class="sourceLine" id="cb781-245" data-line-number="245">  })</a>
+<a class="sourceLine" id="cb781-246" data-line-number="246"></a>
+<a class="sourceLine" id="cb781-247" data-line-number="247">  <span class="co"># Generate a plot of the data ----</span></a>
+<a class="sourceLine" id="cb781-248" data-line-number="248">  <span class="co"># Also uses the inputs to build the plot label. Note that the</span></a>
+<a class="sourceLine" id="cb781-249" data-line-number="249">  <span class="co"># dependencies on the inputs and the data reactive expression are</span></a>
+<a class="sourceLine" id="cb781-250" data-line-number="250">  <span class="co"># both tracked, and all expressions are called in the sequence</span></a>
+<a class="sourceLine" id="cb781-251" data-line-number="251">  <span class="co"># implied by the dependency graph.</span></a>
+<a class="sourceLine" id="cb781-252" data-line-number="252"></a>
+<a class="sourceLine" id="cb781-253" data-line-number="253">  <span class="co"># histogram with mean</span></a>
+<a class="sourceLine" id="cb781-254" data-line-number="254">  <span class="co"># uses ncount statistic</span></a>
+<a class="sourceLine" id="cb781-255" data-line-number="255">  output<span class="op">$</span>plot1 &lt;-<span class="st"> </span><span class="kw">renderPlotly</span>({</a>
+<a class="sourceLine" id="cb781-256" data-line-number="256">    <span class="co">#  dist &lt;- input$dist</span></a>
+<a class="sourceLine" id="cb781-257" data-line-number="257">    <span class="co"># compute descriptive stats, will use skew and kurtosis later</span></a>
+<a class="sourceLine" id="cb781-258" data-line-number="258">    s &lt;-<span class="st"> </span><span class="kw">describe</span>(<span class="kw">x</span>())</a>
+<a class="sourceLine" id="cb781-259" data-line-number="259">    <span class="co"># extract mean and sd</span></a>
+<a class="sourceLine" id="cb781-260" data-line-number="260">    mean &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">3</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-261" data-line-number="261">    sd &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">4</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-262" data-line-number="262">    <span class="co"># extract skew</span></a>
+<a class="sourceLine" id="cb781-263" data-line-number="263">    skew &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">11</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-264" data-line-number="264">    <span class="co"># extract kurtosis</span></a>
+<a class="sourceLine" id="cb781-265" data-line-number="265">    kurtosis &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">12</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-266" data-line-number="266">    <span class="co"># add kolmogorov-smirnov normality test</span></a>
+<a class="sourceLine" id="cb781-267" data-line-number="267">    <span class="co"># mean and sd have the same values as in the sampling distribution</span></a>
+<a class="sourceLine" id="cb781-268" data-line-number="268">    ks &lt;-<span class="st"> </span><span class="kw">ks.test</span>(<span class="kw">x</span>(), <span class="st">&quot;pnorm&quot;</span>, <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()), <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>()))</a>
+<a class="sourceLine" id="cb781-269" data-line-number="269">    ksp &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">as.data.frame</span>(ks[<span class="dv">2</span>])[<span class="dv">1</span>, <span class="dv">1</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-270" data-line-number="270">    text &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot; Mean: &quot;</span>, mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Std. Dev: &quot;</span>,</a>
+<a class="sourceLine" id="cb781-271" data-line-number="271">      sd, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Skew: &quot;</span>, skew, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kurtosis: &quot;</span>, kurtosis,</a>
+<a class="sourceLine" id="cb781-272" data-line-number="272">      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kolmogorov-Smirnov p: &quot;</span>, ksp)</a>
+<a class="sourceLine" id="cb781-273" data-line-number="273">    <span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="kw">x</span>()) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-274" data-line-number="274"><span class="st">      </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..ncount..), <span class="dt">binwidth =</span> input<span class="op">$</span>bin,</a>
+<a class="sourceLine" id="cb781-275" data-line-number="275">        <span class="dt">fill =</span> input<span class="op">$</span>col, <span class="dt">alpha =</span> input<span class="op">$</span>alpha) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-276" data-line-number="276"><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="kw">paste</span>(<span class="st">&quot;Number of Observations: &quot;</span>, input<span class="op">$</span>n), <span class="dt">y =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-277" data-line-number="277"><span class="st">      </span><span class="co">#  annotate(&quot;text&quot;, -Inf, Inf, label = text, size=4.5, hjust = 0, vjust=1) +</span></a>
+<a class="sourceLine" id="cb781-278" data-line-number="278"><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-279" data-line-number="279"><span class="st">      </span><span class="co"># scale_x_continuous(limits =  c(input$mean-(5*input$sd), input$mean+(5*input$sd))) +</span></a>
+<a class="sourceLine" id="cb781-280" data-line-number="280"><span class="st">      </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(<span class="kw">x</span>(), <span class="dt">na.rm =</span> T)),</a>
+<a class="sourceLine" id="cb781-281" data-line-number="281">        <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb781-282" data-line-number="282">  })</a>
+<a class="sourceLine" id="cb781-283" data-line-number="283"></a>
+<a class="sourceLine" id="cb781-284" data-line-number="284">  <span class="co"># histogram with mean, +/- sd and t-significant areas</span></a>
+<a class="sourceLine" id="cb781-285" data-line-number="285">  <span class="co"># uses density statistic</span></a>
+<a class="sourceLine" id="cb781-286" data-line-number="286">  output<span class="op">$</span>plot2 &lt;-<span class="st"> </span><span class="kw">renderPlotly</span>({</a>
+<a class="sourceLine" id="cb781-287" data-line-number="287">    <span class="co">#  dist &lt;- input$dist</span></a>
+<a class="sourceLine" id="cb781-288" data-line-number="288">    <span class="co"># compute descriptive stats, will use skew and kurtosis later</span></a>
+<a class="sourceLine" id="cb781-289" data-line-number="289">    s &lt;-<span class="st"> </span><span class="kw">describe</span>(<span class="kw">x</span>())</a>
+<a class="sourceLine" id="cb781-290" data-line-number="290">    <span class="co"># extract mean and sd</span></a>
+<a class="sourceLine" id="cb781-291" data-line-number="291">    mean &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">3</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-292" data-line-number="292">    sd &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">4</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-293" data-line-number="293">    <span class="co"># extract skew</span></a>
+<a class="sourceLine" id="cb781-294" data-line-number="294">    skew &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">11</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-295" data-line-number="295">    <span class="co"># extract kurtosis</span></a>
+<a class="sourceLine" id="cb781-296" data-line-number="296">    kurtosis &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">12</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-297" data-line-number="297">    <span class="co"># add kolmogorov-smirnov normality test</span></a>
+<a class="sourceLine" id="cb781-298" data-line-number="298">    <span class="co"># mean and sd have the same values as in the sampling distribution</span></a>
+<a class="sourceLine" id="cb781-299" data-line-number="299">    ks &lt;-<span class="st"> </span><span class="kw">ks.test</span>(<span class="kw">x</span>(), <span class="st">&quot;pnorm&quot;</span>, <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</a>
+<a class="sourceLine" id="cb781-300" data-line-number="300">      <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>()))</a>
+<a class="sourceLine" id="cb781-301" data-line-number="301">    ksp &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">as.data.frame</span>(ks[<span class="dv">2</span>])[<span class="dv">1</span>, <span class="dv">1</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-302" data-line-number="302">    text &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot; Mean: &quot;</span>, mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Std. Dev: &quot;</span>,</a>
+<a class="sourceLine" id="cb781-303" data-line-number="303">      sd, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Skew: &quot;</span>, skew, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kurtosis: &quot;</span>, kurtosis,</a>
+<a class="sourceLine" id="cb781-304" data-line-number="304">      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kolmogorov-Smirnov p: &quot;</span>, ksp)</a>
+<a class="sourceLine" id="cb781-305" data-line-number="305"></a>
+<a class="sourceLine" id="cb781-306" data-line-number="306">    <span class="co"># thresholds for shaded areas;</span></a>
+<a class="sourceLine" id="cb781-307" data-line-number="307">    <span class="co"># modelled after two-tailed</span></a>
+<a class="sourceLine" id="cb781-308" data-line-number="308">    <span class="co"># t-distribution</span></a>
+<a class="sourceLine" id="cb781-309" data-line-number="309">    thresholdup &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="kw">x</span>(), <span class="dt">prob =</span> <span class="fl">0.975</span>)[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb781-310" data-line-number="310">    thresholddown &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="kw">x</span>(), <span class="dt">prob =</span> <span class="fl">0.025</span>)[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb781-311" data-line-number="311"></a>
+<a class="sourceLine" id="cb781-312" data-line-number="312">    <span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="kw">x</span>()) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-313" data-line-number="313"><span class="st">      </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">binwidth =</span> input<span class="op">$</span>bin, <span class="dt">fill =</span> input<span class="op">$</span>col, <span class="dt">alpha =</span> input<span class="op">$</span>alpha) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-314" data-line-number="314"><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
+<a class="sourceLine" id="cb781-315" data-line-number="315">        <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()), <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</a>
+<a class="sourceLine" id="cb781-316" data-line-number="316">        <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="kw">mean</span>(<span class="kw">x</span>()), <span class="kw">mean</span>(<span class="kw">x</span>()) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(<span class="kw">x</span>())),</a>
+<a class="sourceLine" id="cb781-317" data-line-number="317">        <span class="dt">geom =</span> <span class="st">&quot;area&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;transparent&quot;</span>,</a>
+<a class="sourceLine" id="cb781-318" data-line-number="318">        <span class="dt">size =</span> <span class="fl">.7</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-319" data-line-number="319"><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</a>
+<a class="sourceLine" id="cb781-320" data-line-number="320">        <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</a>
+<a class="sourceLine" id="cb781-321" data-line-number="321">      <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="kw">mean</span>(<span class="kw">x</span>()) <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(<span class="kw">x</span>()), <span class="kw">mean</span>(<span class="kw">x</span>())), <span class="dt">geom =</span> <span class="st">&quot;area&quot;</span>,</a>
+<a class="sourceLine" id="cb781-322" data-line-number="322">      <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;transparent&quot;</span>, <span class="dt">size =</span> <span class="fl">.7</span>,</a>
+<a class="sourceLine" id="cb781-323" data-line-number="323">      <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-324" data-line-number="324"><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</a>
+<a class="sourceLine" id="cb781-325" data-line-number="325">        <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</a>
+<a class="sourceLine" id="cb781-326" data-line-number="326">      <span class="dt">xlim =</span> <span class="kw">c</span>(thresholdup, <span class="kw">max</span>(<span class="kw">x</span>())), <span class="dt">geom =</span> <span class="st">&quot;area&quot;</span>,</a>
+<a class="sourceLine" id="cb781-327" data-line-number="327">      <span class="dt">fill =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-328" data-line-number="328"><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</a>
+<a class="sourceLine" id="cb781-329" data-line-number="329">        <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</a>
+<a class="sourceLine" id="cb781-330" data-line-number="330">      <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="kw">min</span>(<span class="kw">x</span>()), thresholddown), <span class="dt">geom =</span> <span class="st">&quot;area&quot;</span>,</a>
+<a class="sourceLine" id="cb781-331" data-line-number="331">      <span class="dt">fill =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-332" data-line-number="332"><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</a>
+<a class="sourceLine" id="cb781-333" data-line-number="333">        <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</a>
+<a class="sourceLine" id="cb781-334" data-line-number="334">      <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">.7</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-335" data-line-number="335"><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="kw">paste</span>(<span class="st">&quot;Number of Observations: &quot;</span>, input<span class="op">$</span>n), <span class="dt">y =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-336" data-line-number="336"><span class="st">      </span><span class="co"># annotate(&quot;text&quot;, -Inf, Inf, label = text, size=4.5, hjust = 0, vjust=1) +</span></a>
+<a class="sourceLine" id="cb781-337" data-line-number="337"><span class="st">      </span><span class="co"># scale_x_continuous(limits = c(input$mean-(5*input$sd), input$mean+(5*input$sd))) +</span></a>
+<a class="sourceLine" id="cb781-338" data-line-number="338"><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme)</a>
+<a class="sourceLine" id="cb781-339" data-line-number="339">  })</a>
+<a class="sourceLine" id="cb781-340" data-line-number="340"></a>
+<a class="sourceLine" id="cb781-341" data-line-number="341"></a>
+<a class="sourceLine" id="cb781-342" data-line-number="342">  <span class="co"># qq plot</span></a>
+<a class="sourceLine" id="cb781-343" data-line-number="343">  output<span class="op">$</span>plot3 &lt;-<span class="st"> </span><span class="kw">renderPlotly</span>({</a>
+<a class="sourceLine" id="cb781-344" data-line-number="344">    <span class="co"># compute descriptive stats, will use skew and kurtosis later</span></a>
+<a class="sourceLine" id="cb781-345" data-line-number="345">    s &lt;-<span class="st"> </span><span class="kw">describe</span>(<span class="kw">x</span>())</a>
+<a class="sourceLine" id="cb781-346" data-line-number="346">    <span class="co"># extract mean and sd</span></a>
+<a class="sourceLine" id="cb781-347" data-line-number="347">    mean &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">3</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-348" data-line-number="348">    sd &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">4</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-349" data-line-number="349">    <span class="co"># extract skew</span></a>
+<a class="sourceLine" id="cb781-350" data-line-number="350">    skew &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">11</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-351" data-line-number="351">    <span class="co"># extract kurtosis</span></a>
+<a class="sourceLine" id="cb781-352" data-line-number="352">    kurtosis &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">12</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-353" data-line-number="353">    <span class="co"># add kolmogorov-smirnov normality test</span></a>
+<a class="sourceLine" id="cb781-354" data-line-number="354">    <span class="co"># mean and sd have the same values as in the sampling distribution</span></a>
+<a class="sourceLine" id="cb781-355" data-line-number="355">    ks &lt;-<span class="st"> </span><span class="kw">ks.test</span>(<span class="kw">x</span>(), <span class="st">&quot;pnorm&quot;</span>, <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()), <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>()))</a>
+<a class="sourceLine" id="cb781-356" data-line-number="356">    ksp &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">as.data.frame</span>(ks[<span class="dv">2</span>])[<span class="dv">1</span>, <span class="dv">1</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-357" data-line-number="357">    text &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot; Mean: &quot;</span>, mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Std. Dev: &quot;</span>, sd, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Skew: &quot;</span>,</a>
+<a class="sourceLine" id="cb781-358" data-line-number="358">      skew, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kurtosis: &quot;</span>, kurtosis,</a>
+<a class="sourceLine" id="cb781-359" data-line-number="359">      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kolmogorov-Smirnov p: &quot;</span>, ksp)</a>
+<a class="sourceLine" id="cb781-360" data-line-number="360">    <span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">sample =</span> <span class="kw">x</span>()) <span class="op">+</span><span class="st"> </span><span class="kw">geom_qq</span>(<span class="dt">size =</span> input<span class="op">$</span>bin,</a>
+<a class="sourceLine" id="cb781-361" data-line-number="361">      <span class="dt">color =</span> input<span class="op">$</span>col,</a>
+<a class="sourceLine" id="cb781-362" data-line-number="362">      <span class="dt">alpha =</span> input<span class="op">$</span>alpha) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-363" data-line-number="363"><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</a>
+<a class="sourceLine" id="cb781-364" data-line-number="364">        <span class="dt">slope =</span> <span class="kw">sd</span>(<span class="kw">x</span>()), <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb781-365" data-line-number="365">        <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.8</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-366" data-line-number="366"><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>) <span class="co"># + annotate(&quot;text&quot;, -Inf, Inf, label = text, size=4.5, hjust = 0, vjust=1)</span></a>
+<a class="sourceLine" id="cb781-367" data-line-number="367">  })</a>
+<a class="sourceLine" id="cb781-368" data-line-number="368"></a>
+<a class="sourceLine" id="cb781-369" data-line-number="369"></a>
+<a class="sourceLine" id="cb781-370" data-line-number="370">  <span class="co"># boxplot with underlayed individual data points</span></a>
+<a class="sourceLine" id="cb781-371" data-line-number="371">  output<span class="op">$</span>plot4 &lt;-<span class="st"> </span><span class="kw">renderPlotly</span>({</a>
+<a class="sourceLine" id="cb781-372" data-line-number="372">    <span class="co"># compute descriptive stats, will use skew and kurtosis later</span></a>
+<a class="sourceLine" id="cb781-373" data-line-number="373">    s &lt;-<span class="st"> </span>psych<span class="op">::</span><span class="kw">describe</span>(<span class="kw">x</span>())</a>
+<a class="sourceLine" id="cb781-374" data-line-number="374">    <span class="co"># extract mean and sd</span></a>
+<a class="sourceLine" id="cb781-375" data-line-number="375">    mean &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">3</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-376" data-line-number="376">    sd &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">4</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-377" data-line-number="377">    <span class="co"># extract skew</span></a>
+<a class="sourceLine" id="cb781-378" data-line-number="378">    skew &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">11</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-379" data-line-number="379">    <span class="co"># extract kurtosis</span></a>
+<a class="sourceLine" id="cb781-380" data-line-number="380">    kurtosis &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">12</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-381" data-line-number="381">    <span class="co"># add kolmogorov-smirnov normality test</span></a>
+<a class="sourceLine" id="cb781-382" data-line-number="382">    <span class="co"># mean and sd have the same values as in the sampling distribution</span></a>
+<a class="sourceLine" id="cb781-383" data-line-number="383">    ks &lt;-<span class="st"> </span><span class="kw">ks.test</span>(<span class="kw">x</span>(), <span class="st">&quot;pnorm&quot;</span>, <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()), <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>()))</a>
+<a class="sourceLine" id="cb781-384" data-line-number="384">    ksp &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">as.data.frame</span>(ks[<span class="dv">2</span>])[<span class="dv">1</span>, <span class="dv">1</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb781-385" data-line-number="385">    text &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot; Mean: &quot;</span>, mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Std. Dev: &quot;</span>, sd,</a>
+<a class="sourceLine" id="cb781-386" data-line-number="386">      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Skew: &quot;</span>, skew, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kurtosis: &quot;</span>, kurtosis,</a>
+<a class="sourceLine" id="cb781-387" data-line-number="387">      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kolmogorov-Smirnov p: &quot;</span>, ksp)</a>
+<a class="sourceLine" id="cb781-388" data-line-number="388">    <span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">x</span>()) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-389" data-line-number="389"><span class="st">      </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">0</span>), <span class="dt">color =</span> input<span class="op">$</span>col, <span class="dt">alpha =</span> input<span class="op">$</span>alpha <span class="op">/</span><span class="st"> </span><span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb781-390" data-line-number="390">        <span class="dt">size =</span> input<span class="op">$</span>bin, <span class="dt">width =</span> <span class="fl">0.37</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-391" data-line-number="391"><span class="st">      </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.shape =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">.7</span>,</a>
+<a class="sourceLine" id="cb781-392" data-line-number="392">        <span class="dt">outlier.color =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-393" data-line-number="393"><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-394" data-line-number="394"><span class="st">      </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb781-395" data-line-number="395">        <span class="dt">axis.ticks.x =</span> <span class="kw">element_blank</span>()) <span class="co"># + annotate(&quot;text&quot;, -Inf, Inf, label = text, size=4.5, hjust = 0, vjust=1)</span></a>
+<a class="sourceLine" id="cb781-396" data-line-number="396">  })</a>
+<a class="sourceLine" id="cb781-397" data-line-number="397"></a>
+<a class="sourceLine" id="cb781-398" data-line-number="398"></a>
+<a class="sourceLine" id="cb781-399" data-line-number="399">  <span class="co"># describe function including IQR and quantiles</span></a>
+<a class="sourceLine" id="cb781-400" data-line-number="400">  output<span class="op">$</span>table &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>({</a>
+<a class="sourceLine" id="cb781-401" data-line-number="401">    <span class="co"># describe the data, including IQR and Quantiles, requires library(psych)</span></a>
+<a class="sourceLine" id="cb781-402" data-line-number="402">    statrandom &lt;-<span class="st"> </span><span class="kw">describe</span>(<span class="kw">x</span>(), <span class="dt">IQR =</span> T, <span class="dt">quant =</span> <span class="kw">c</span>(.<span class="dv">25</span>, <span class="fl">.75</span>))</a>
+<a class="sourceLine" id="cb781-403" data-line-number="403">    <span class="co"># rename the columns</span></a>
+<a class="sourceLine" id="cb781-404" data-line-number="404">    <span class="kw">names</span>(statrandom) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Row&quot;</span>, <span class="st">&quot;Observations&quot;</span>, <span class="st">&quot;Mean&quot;</span>,</a>
+<a class="sourceLine" id="cb781-405" data-line-number="405">      <span class="st">&quot;Standard Deviation&quot;</span>, <span class="st">&quot;Median&quot;</span>, <span class="st">&quot;Trimmed&quot;</span>,</a>
+<a class="sourceLine" id="cb781-406" data-line-number="406">      <span class="st">&quot;MAD&quot;</span>, <span class="st">&quot;Min&quot;</span>, <span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Range&quot;</span>, <span class="st">&quot;Skew&quot;</span>, <span class="st">&quot;Kurtosis&quot;</span>,</a>
+<a class="sourceLine" id="cb781-407" data-line-number="407">      <span class="st">&quot;Standard Error&quot;</span>, <span class="st">&quot;IQR&quot;</span>, <span class="st">&quot;Q 0.25&quot;</span>, <span class="st">&quot;Q 0.75&quot;</span>)</a>
+<a class="sourceLine" id="cb781-408" data-line-number="408">    <span class="co"># to reduce the number of digits, embedd in print command</span></a>
+<a class="sourceLine" id="cb781-409" data-line-number="409">    <span class="kw">print</span>(statrandom[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(statrandom)], <span class="dt">digits =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb781-410" data-line-number="410">    <span class="co"># do not display the uninformative row names</span></a>
+<a class="sourceLine" id="cb781-411" data-line-number="411">  }, <span class="dt">rownames =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb781-412" data-line-number="412"></a>
+<a class="sourceLine" id="cb781-413" data-line-number="413">  <span class="co"># plots detailing the central limit</span></a>
+<a class="sourceLine" id="cb781-414" data-line-number="414">  <span class="co"># theorem by drawing from exponential</span></a>
+<a class="sourceLine" id="cb781-415" data-line-number="415">  <span class="co"># distribution with increasing number</span></a>
+<a class="sourceLine" id="cb781-416" data-line-number="416">  <span class="co"># of means, see above</span></a>
+<a class="sourceLine" id="cb781-417" data-line-number="417">  output<span class="op">$</span>plot5 &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</a>
+<a class="sourceLine" id="cb781-418" data-line-number="418">    <span class="co"># newer version, requires library(ggridges)</span></a>
+<a class="sourceLine" id="cb781-419" data-line-number="419">    <span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">x =</span> value, <span class="dt">y =</span> variable)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-420" data-line-number="420"><span class="st">      </span><span class="kw">geom_density_ridges</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> variable, <span class="dt">color =</span> variable),</a>
+<a class="sourceLine" id="cb781-421" data-line-number="421">        <span class="dt">scale =</span> input<span class="op">$</span>bin, <span class="dt">alpha =</span> input<span class="op">$</span>alpha) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-422" data-line-number="422"><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">15</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-423" data-line-number="423"><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Mean of n = 1, 5 and 50 Data Points from Exponential Distribution taken 5000 times&quot;</span>,</a>
+<a class="sourceLine" id="cb781-424" data-line-number="424">        <span class="dt">y =</span> <span class="st">&quot;&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>,</a>
+<a class="sourceLine" id="cb781-425" data-line-number="425">        <span class="dt">color =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-426" data-line-number="426"><span class="st">      </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;deeppink1&quot;</span>, <span class="st">&quot;darkmagenta&quot;</span>, <span class="st">&quot;navyblue&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-427" data-line-number="427"><span class="st">      </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;deeppink1&quot;</span>, <span class="st">&quot;darkmagenta&quot;</span>, <span class="st">&quot;navyblue&quot;</span>))</a>
+<a class="sourceLine" id="cb781-428" data-line-number="428">  })</a>
+<a class="sourceLine" id="cb781-429" data-line-number="429"></a>
+<a class="sourceLine" id="cb781-430" data-line-number="430"></a>
+<a class="sourceLine" id="cb781-431" data-line-number="431">  <span class="co"># classical plots with means, sd error and lines conntecting them</span></a>
+<a class="sourceLine" id="cb781-432" data-line-number="432">  output<span class="op">$</span>plot6 &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</a>
+<a class="sourceLine" id="cb781-433" data-line-number="433">    <span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">x =</span> variable, <span class="dt">y =</span> value, <span class="dt">color =</span> variable,</a>
+<a class="sourceLine" id="cb781-434" data-line-number="434">      <span class="dt">shape =</span> variable, <span class="dt">group =</span> variable)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-435" data-line-number="435"><span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">group =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb781-436" data-line-number="436">        <span class="dt">color =</span> input<span class="op">$</span>col) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-437" data-line-number="437"><span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">size =</span> input<span class="op">$</span>bin) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-438" data-line-number="438"><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;deeppink1&quot;</span>,</a>
+<a class="sourceLine" id="cb781-439" data-line-number="439">        <span class="st">&quot;darkmagenta&quot;</span>,</a>
+<a class="sourceLine" id="cb781-440" data-line-number="440">        <span class="st">&quot;navyblue&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-441" data-line-number="441"><span class="st">      </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;deeppink1&quot;</span>, <span class="st">&quot;darkmagenta&quot;</span>, <span class="st">&quot;navyblue&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-442" data-line-number="442"><span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>,</a>
+<a class="sourceLine" id="cb781-443" data-line-number="443">        <span class="dt">width =</span> input<span class="op">$</span>bin <span class="op">/</span><span class="st"> </span><span class="dv">10</span>, <span class="dt">color =</span> input<span class="op">$</span>col) <span class="op">+</span></a>
+<a class="sourceLine" id="cb781-444" data-line-number="444"><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Mean of n = 1, 5 and 50 Data Points from Exponential Distribution taken 5000 times&quot;</span>,</a>
+<a class="sourceLine" id="cb781-445" data-line-number="445">        <span class="dt">y =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb781-446" data-line-number="446">        <span class="dt">fill =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>,</a>
+<a class="sourceLine" id="cb781-447" data-line-number="447">        <span class="dt">color =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>,</a>
+<a class="sourceLine" id="cb781-448" data-line-number="448">        <span class="dt">shape =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>,</a>
+<a class="sourceLine" id="cb781-449" data-line-number="449">        <span class="dt">group =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>)</a>
+<a class="sourceLine" id="cb781-450" data-line-number="450">  })</a>
+<a class="sourceLine" id="cb781-451" data-line-number="451"></a>
+<a class="sourceLine" id="cb781-452" data-line-number="452"></a>
+<a class="sourceLine" id="cb781-453" data-line-number="453">  <span class="co"># describe CLT data by factor levels</span></a>
+<a class="sourceLine" id="cb781-454" data-line-number="454">  output<span class="op">$</span>table2 &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>({</a>
+<a class="sourceLine" id="cb781-455" data-line-number="455">    <span class="co"># describe the data, requires library(psych)</span></a>
+<a class="sourceLine" id="cb781-456" data-line-number="456">    stat &lt;-<span class="st"> </span><span class="kw">describeBy</span>(d<span class="op">$</span>value, d<span class="op">$</span>variable, <span class="dt">mat =</span> T, <span class="dt">digits =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb781-457" data-line-number="457">    <span class="co"># rename the columns</span></a>
+<a class="sourceLine" id="cb781-458" data-line-number="458">    <span class="kw">names</span>(stat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Row&quot;</span>, <span class="st">&quot;Group&quot;</span>, <span class="st">&quot;Vars&quot;</span>, <span class="st">&quot;Observations&quot;</span>, <span class="st">&quot;Mean&quot;</span>,</a>
+<a class="sourceLine" id="cb781-459" data-line-number="459">      <span class="st">&quot;Standard Deviation&quot;</span>, <span class="st">&quot;Median&quot;</span>, <span class="st">&quot;Trimmed&quot;</span>, <span class="st">&quot;MAD&quot;</span>,</a>
+<a class="sourceLine" id="cb781-460" data-line-number="460">      <span class="st">&quot;Min&quot;</span>, <span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Range&quot;</span>, <span class="st">&quot;Skew&quot;</span>, <span class="st">&quot;Kurtosis&quot;</span>,</a>
+<a class="sourceLine" id="cb781-461" data-line-number="461">      <span class="st">&quot;Standard Error&quot;</span>)</a>
+<a class="sourceLine" id="cb781-462" data-line-number="462">    stat[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(stat)]</a>
+<a class="sourceLine" id="cb781-463" data-line-number="463">    <span class="co"># do not display the uninformative row names</span></a>
+<a class="sourceLine" id="cb781-464" data-line-number="464">  }, <span class="dt">rownames =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb781-465" data-line-number="465"></a>
+<a class="sourceLine" id="cb781-466" data-line-number="466">  <span class="co"># show CLT data</span></a>
+<a class="sourceLine" id="cb781-467" data-line-number="467">  output<span class="op">$</span>table3 &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>({</a>
+<a class="sourceLine" id="cb781-468" data-line-number="468">    <span class="co"># format function to display less decimal numbers</span></a>
+<a class="sourceLine" id="cb781-469" data-line-number="469">    <span class="kw">format</span>(<span class="kw">head</span>(d, <span class="dt">n =</span> <span class="kw">length</span>(d<span class="op">$</span>variable)), <span class="dt">digits =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb781-470" data-line-number="470">    <span class="co"># do not display the uninformative row names</span></a>
+<a class="sourceLine" id="cb781-471" data-line-number="471">  }, <span class="dt">rownames =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb781-472" data-line-number="472"></a>
+<a class="sourceLine" id="cb781-473" data-line-number="473">  <span class="co"># show dynamic data</span></a>
+<a class="sourceLine" id="cb781-474" data-line-number="474">  output<span class="op">$</span>table4 &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>({</a>
+<a class="sourceLine" id="cb781-475" data-line-number="475">    <span class="co"># format function to display less decimal numbers</span></a>
+<a class="sourceLine" id="cb781-476" data-line-number="476">    data &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">x</span>())</a>
+<a class="sourceLine" id="cb781-477" data-line-number="477">    <span class="kw">names</span>(data) &lt;-<span class="st"> &quot;Data&quot;</span></a>
+<a class="sourceLine" id="cb781-478" data-line-number="478">    <span class="kw">format</span>(<span class="kw">head</span>(data, <span class="dt">n =</span> input<span class="op">$</span>n), <span class="dt">digits =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb781-479" data-line-number="479">    <span class="co"># do not display the uninformative row names</span></a>
+<a class="sourceLine" id="cb781-480" data-line-number="480">  }, <span class="dt">rownames =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb781-481" data-line-number="481"></a>
+<a class="sourceLine" id="cb781-482" data-line-number="482">  <span class="co"># CONditionally apparent UI elements ----</span></a>
+<a class="sourceLine" id="cb781-483" data-line-number="483">  output<span class="op">$</span>slidermean &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</a>
+<a class="sourceLine" id="cb781-484" data-line-number="484">    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rnorm&quot;</span>, <span class="st">&quot;rlnorm&quot;</span>)) {</a>
+<a class="sourceLine" id="cb781-485" data-line-number="485">      <span class="kw">sliderInput</span>(<span class="st">&quot;mean&quot;</span>,</a>
+<a class="sourceLine" id="cb781-486" data-line-number="486">        <span class="st">&quot;Mean&quot;</span>,</a>
+<a class="sourceLine" id="cb781-487" data-line-number="487">        <span class="dt">value =</span> <span class="dv">150</span>,</a>
+<a class="sourceLine" id="cb781-488" data-line-number="488">        <span class="dt">min =</span> <span class="dv">125</span>,</a>
+<a class="sourceLine" id="cb781-489" data-line-number="489">        <span class="dt">max =</span> <span class="dv">175</span>)</a>
+<a class="sourceLine" id="cb781-490" data-line-number="490">    }</a>
+<a class="sourceLine" id="cb781-491" data-line-number="491">  })</a>
+<a class="sourceLine" id="cb781-492" data-line-number="492"></a>
+<a class="sourceLine" id="cb781-493" data-line-number="493">  output<span class="op">$</span>slidersd &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</a>
+<a class="sourceLine" id="cb781-494" data-line-number="494">    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rnorm&quot;</span>, <span class="st">&quot;rlnorm&quot;</span>)) {</a>
+<a class="sourceLine" id="cb781-495" data-line-number="495">      <span class="kw">sliderInput</span>(<span class="st">&quot;sd&quot;</span>,</a>
+<a class="sourceLine" id="cb781-496" data-line-number="496">        <span class="st">&quot;SD&quot;</span>,</a>
+<a class="sourceLine" id="cb781-497" data-line-number="497">        <span class="dt">value =</span> <span class="dv">15</span>,</a>
+<a class="sourceLine" id="cb781-498" data-line-number="498">        <span class="dt">min =</span> <span class="fl">0.1</span>,</a>
+<a class="sourceLine" id="cb781-499" data-line-number="499">        <span class="dt">max =</span> <span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb781-500" data-line-number="500">    }</a>
+<a class="sourceLine" id="cb781-501" data-line-number="501">  })</a>
+<a class="sourceLine" id="cb781-502" data-line-number="502"></a>
+<a class="sourceLine" id="cb781-503" data-line-number="503">  output<span class="op">$</span>sliderrate &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</a>
+<a class="sourceLine" id="cb781-504" data-line-number="504">    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rexp&quot;</span>) {</a>
+<a class="sourceLine" id="cb781-505" data-line-number="505">      <span class="kw">sliderInput</span>(<span class="st">&quot;rate&quot;</span>,</a>
+<a class="sourceLine" id="cb781-506" data-line-number="506">        <span class="st">&quot;Rate&quot;</span>,</a>
+<a class="sourceLine" id="cb781-507" data-line-number="507">        <span class="dt">value =</span> <span class="fl">0.2</span>,</a>
+<a class="sourceLine" id="cb781-508" data-line-number="508">        <span class="dt">min =</span> <span class="fl">0.01</span>,</a>
+<a class="sourceLine" id="cb781-509" data-line-number="509">        <span class="dt">max =</span> <span class="fl">0.9</span>)</a>
+<a class="sourceLine" id="cb781-510" data-line-number="510">    }</a>
+<a class="sourceLine" id="cb781-511" data-line-number="511">  })</a>
+<a class="sourceLine" id="cb781-512" data-line-number="512"></a>
+<a class="sourceLine" id="cb781-513" data-line-number="513">  output<span class="op">$</span>slidershape1 &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</a>
+<a class="sourceLine" id="cb781-514" data-line-number="514">    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rbeta&quot;</span>) {</a>
+<a class="sourceLine" id="cb781-515" data-line-number="515">      <span class="kw">sliderInput</span>(<span class="st">&quot;shape1&quot;</span>,</a>
+<a class="sourceLine" id="cb781-516" data-line-number="516">        <span class="st">&quot;Shape 1&quot;</span>,</a>
+<a class="sourceLine" id="cb781-517" data-line-number="517">        <span class="dt">value =</span> <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb781-518" data-line-number="518">        <span class="dt">min =</span> <span class="fl">0.01</span>,</a>
+<a class="sourceLine" id="cb781-519" data-line-number="519">        <span class="dt">max =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb781-520" data-line-number="520">    }</a>
+<a class="sourceLine" id="cb781-521" data-line-number="521">  })</a>
+<a class="sourceLine" id="cb781-522" data-line-number="522"></a>
+<a class="sourceLine" id="cb781-523" data-line-number="523">  output<span class="op">$</span>slidershape2 &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</a>
+<a class="sourceLine" id="cb781-524" data-line-number="524">    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rbeta&quot;</span>) {</a>
+<a class="sourceLine" id="cb781-525" data-line-number="525">      <span class="kw">sliderInput</span>(<span class="st">&quot;shape2&quot;</span>,</a>
+<a class="sourceLine" id="cb781-526" data-line-number="526">        <span class="st">&quot;Shape 2&quot;</span>,</a>
+<a class="sourceLine" id="cb781-527" data-line-number="527">        <span class="dt">value =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb781-528" data-line-number="528">        <span class="dt">min =</span> <span class="fl">0.01</span>,</a>
+<a class="sourceLine" id="cb781-529" data-line-number="529">        <span class="dt">max =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb781-530" data-line-number="530">    }</a>
+<a class="sourceLine" id="cb781-531" data-line-number="531">  })</a>
+<a class="sourceLine" id="cb781-532" data-line-number="532"></a>
+<a class="sourceLine" id="cb781-533" data-line-number="533">  <span class="co"># </span><span class="re">END</span><span class="co"> OF: server &lt;- function(input, output) {</span></a>
+<a class="sourceLine" id="cb781-534" data-line-number="534">}</a>
+<a class="sourceLine" id="cb781-535" data-line-number="535"></a>
+<a class="sourceLine" id="cb781-536" data-line-number="536"><span class="co"># Create Shiny app ----</span></a>
+<a class="sourceLine" id="cb781-537" data-line-number="537"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="gifs-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="extrasitzung.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["inference.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
