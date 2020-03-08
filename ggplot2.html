@@ -13,7 +13,7 @@
   
   
   
-  <meta name="github-repo" content="mkthalmann/mkthalmann.github.io" />
+  <meta name="github-repo" content="https://github.com/mkthalmann/inferenz" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="ggplot2 | Tutorium zur Inferenzstatistik" />
@@ -1170,7 +1170,7 @@ Ohne “path” wird die Datei Arbeitsverzeichnis (<code>getwd</code>) gespeiche
 <p>Standardfehler vs Standardabweichung</p>
 <div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb719-1" data-line-number="1">p1 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>,</a>
 <a class="sourceLine" id="cb719-2" data-line-number="2">  <span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">linetype =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb719-3" data-line-number="3">p2 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_sdl, <span class="dt">fun.args =</span> <span class="kw">list</span>(<span class="dt">mult =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb719-3" data-line-number="3">p2 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_sdl,</a>
 <a class="sourceLine" id="cb719-4" data-line-number="4">  <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">width =</span> <span class="fl">0.25</span>,</a>
 <a class="sourceLine" id="cb719-5" data-line-number="5">  <span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">linetype =</span> <span class="dv">1</span>)</a></code></pre></div>
 </div>
@@ -1443,7 +1443,7 @@ Ohne “path” wird die Datei Arbeitsverzeichnis (<code>getwd</code>) gespeiche
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
+"github": true,
 "facebook": false,
 "twitter": false,
 "linkedin": false,
