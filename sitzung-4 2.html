@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Sitzung 4 | Tutorium zur Inferenzstatistik</title>
+  <meta name="description" content="Sitzung 4 | Tutorium zur Inferenzstatistik" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Sitzung 4 | Tutorium zur Inferenzstatistik" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="mkthalmann" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Sitzung 4 | Tutorium zur Inferenzstatistik" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sitzung-3.html"/>
+<link rel="next" href="sitzung-5.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
+<script async defer src="https://hypothes.is/embed.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Tutorium zur Inferenzstatistik</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorbemerkungen</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#open-review"><i class="fa fa-check"></i>Open Review</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html"><i class="fa fa-check"></i>Sitzung 1</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#allgemeines"><i class="fa fa-check"></i>Allgemeines</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#ein-paar-worte-zum-tutorium"><i class="fa fa-check"></i>Ein paar Worte zum Tutorium</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#r-ein-kurzer-überblick"><i class="fa fa-check"></i>R: Ein kurzer Überblick</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#ein-beispielplot"><i class="fa fa-check"></i>Ein Beispielplot</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#installation"><i class="fa fa-check"></i>Installation</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#tada"><i class="fa fa-check"></i>Tada!</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#hilfestellung"><i class="fa fa-check"></i>Hilfestellung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#mehr-hilfe"><i class="fa fa-check"></i>Mehr Hilfe</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#allgemeines-1"><i class="fa fa-check"></i>Allgemeines</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#was-kann-man-mit-r-alles-anstellen"><i class="fa fa-check"></i>Was kann man mit R alles anstellen?</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#skripte"><i class="fa fa-check"></i>Skripte</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#skripte-1"><i class="fa fa-check"></i>Skripte</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#übung-1"><i class="fa fa-check"></i>Übung 1</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#r-als-taschenrechner"><i class="fa fa-check"></i>R als Taschenrechner</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#mathematische-funktionen-in-r"><i class="fa fa-check"></i>Mathematische Funktionen in R</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#übung-ii"><i class="fa fa-check"></i>Übung II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#lösungen-ii"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#logische-operatoren"><i class="fa fa-check"></i>Logische Operatoren</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#beispiele-logische-operatoren"><i class="fa fa-check"></i>Beispiele: Logische Operatoren</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#r-ist-objektorientiert"><i class="fa fa-check"></i>R ist objektorientiert</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#beispiele"><i class="fa fa-check"></i>Beispiele</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#mehr-zu-objekten"><i class="fa fa-check"></i>Mehr zu Objekten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#datentypen-in-r"><i class="fa fa-check"></i>Datentypen in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#rstudio-optionen"><i class="fa fa-check"></i>RStudio-Optionen</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#optionen-die-das-leben-erleichtern"><i class="fa fa-check"></i>Optionen, die das Leben erleichtern</a></li>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#das-wars"><i class="fa fa-check"></i>Das war’s!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html"><i class="fa fa-check"></i>Sitzung 2</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#wiederholung"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#das-wichtigste-vom-letzten-mal"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#code-vom-letzten-mal"><i class="fa fa-check"></i>Code vom letzten Mal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#vektoren"><i class="fa fa-check"></i>Vektoren</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#moment-mal"><i class="fa fa-check"></i>Moment mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#vektoren-1"><i class="fa fa-check"></i>Vektoren</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#subsetting"><i class="fa fa-check"></i>Subsetting</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#dimensionen-von-vektoren"><i class="fa fa-check"></i>Dimensionen von Vektoren</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#nochmal-subsetting"><i class="fa fa-check"></i>Nochmal Subsetting</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#übungen"><i class="fa fa-check"></i>Übungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#lösungen"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#lösungen-1"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#lösungen-2"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#heads-und-tails"><i class="fa fa-check"></i>Heads und Tails</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#listen"><i class="fa fa-check"></i>Listen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#subsetting-von-listen"><i class="fa fa-check"></i>Subsetting von Listen</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#zwei-dimensionale-objekte"><i class="fa fa-check"></i>Zwei-Dimensionale Objekte</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#über-vekoten-hinaus"><i class="fa fa-check"></i>Über Vekoten hinaus</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#die-dimensionen-von-tabellen"><i class="fa fa-check"></i>Die Dimensionen von Tabellen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#subsetting-von-matritzen"><i class="fa fa-check"></i>Subsetting von Matritzen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#datenblätter"><i class="fa fa-check"></i>Datenblätter</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#subsetting-von-datenblättern"><i class="fa fa-check"></i>Subsetting von Datenblättern</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#datenblätter-erweitern"><i class="fa fa-check"></i>Datenblätter erweitern</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#übungen-ii"><i class="fa fa-check"></i>Übungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#lösungen-ii-1"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#lösungen-ii-2"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#tüdelü"><i class="fa fa-check"></i>Tüdelü</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html"><i class="fa fa-check"></i>Sitzung 3</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#wiederholung-1"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#das-wichtigste-vom-letzten-mal-1"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#das-wichtigste-vom-letzten-mal-2"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#das-wichtigste-vom-letzten-mal-3"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#mehr-zu-datenblättern"><i class="fa fa-check"></i>Mehr zu Datenblättern</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#spalten-umbenennen"><i class="fa fa-check"></i>Spalten umbenennen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#mehr-subsetting"><i class="fa fa-check"></i>Mehr Subsetting</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#noch-mehr-subsetting"><i class="fa fa-check"></i>Noch mehr Subsetting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#daten-exportieren"><i class="fa fa-check"></i>Daten exportieren</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#workspace"><i class="fa fa-check"></i>Workspace</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#workspace-verändern"><i class="fa fa-check"></i>Workspace verändern</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#workspace-verändern-1"><i class="fa fa-check"></i>Workspace verändern</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#write.csvwrite.table"><i class="fa fa-check"></i>write.csv/write.table</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#übersicht"><i class="fa fa-check"></i>Übersicht</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#datenblatt-speichern"><i class="fa fa-check"></i>Datenblatt speichern</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#daten-einlesen"><i class="fa fa-check"></i>Daten einlesen</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#interlude-dateiformate"><i class="fa fa-check"></i>Interlude: Dateiformate</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#read.table"><i class="fa fa-check"></i>read.table()</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#ein-beispiel"><i class="fa fa-check"></i>Ein Beispiel</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#vorsicht"><i class="fa fa-check"></i>Vorsicht</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#übungen-1"><i class="fa fa-check"></i>Übungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#lösungen-3"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#lösungen-4"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#lösungen-5"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#lösungen-6"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#lösungen-7"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#daten-einlesen-mit-gui"><i class="fa fa-check"></i>Daten einlesen mit GUI</a></li>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#und-tschüss"><i class="fa fa-check"></i>Und Tschüss</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html"><i class="fa fa-check"></i>Sitzung 4</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#wiederholung-2"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#das-wichtigste-vom-letzten-mal-4"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#übung"><i class="fa fa-check"></i>Übung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#übung-2"><i class="fa fa-check"></i>Übung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-1"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-2"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-3"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-4"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-5"><i class="fa fa-check"></i>Lösung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#tabellenüberblick"><i class="fa fa-check"></i>Tabellenüberblick</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#struktur"><i class="fa fa-check"></i>Struktur</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#überblick-über-zahlen"><i class="fa fa-check"></i>überblick über Zahlen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#häufigkeiten"><i class="fa fa-check"></i>Häufigkeiten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#relative-häufigkeiten"><i class="fa fa-check"></i>Relative Häufigkeiten</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#erste-statistische-berechnungen"><i class="fa fa-check"></i>Erste statistische Berechnungen</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#maße-der-zentralen-tendenz"><i class="fa fa-check"></i>Maße der zentralen Tendenz</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#meme-my-stats"><i class="fa fa-check"></i>Meme My Stats</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#maße-der-streuung"><i class="fa fa-check"></i>Maße der Streuung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#übung-3"><i class="fa fa-check"></i>Übung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-6"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-7"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-8"><i class="fa fa-check"></i>Lösung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#nur-kurz-plots"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#ein-plot-zum-abschluss"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#ein-plot-zum-abschluss-1"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#session-no-longer-in-session"><i class="fa fa-check"></i>session no longer in session</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html"><i class="fa fa-check"></i>Sitzung 5</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#wiederholung-3"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#das-wichtigste-vom-letzten-mal-5"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#das-wichtigste-vom-letzten-mal-6"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#das-wichtigste-vom-letzten-mal-7"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#das-wichtigste-vom-letzten-mal-8"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#tabellen-miteinander-verbinden"><i class="fa fa-check"></i>Tabellen miteinander verbinden</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#verbinden-von-zwei-tabellen"><i class="fa fa-check"></i>Verbinden von zwei Tabellen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#übung-4"><i class="fa fa-check"></i>Übung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#lösung-9"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#lösung-10"><i class="fa fa-check"></i>Lösung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#fehlende-werte"><i class="fa fa-check"></i>Fehlende Werte</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nas"><i class="fa fa-check"></i>NAs</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nas-finden"><i class="fa fa-check"></i>NAs finden</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#alle-zeilen-mit-nas"><i class="fa fa-check"></i>alle Zeilen mit NAs</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#prozent-na"><i class="fa fa-check"></i>Prozent NA</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nas-überspringen"><i class="fa fa-check"></i>NAs überspringen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nas-entfernen"><i class="fa fa-check"></i>NAs entfernen</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#faktoren"><i class="fa fa-check"></i>Faktoren</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#vektoren-mit-faktorstufen"><i class="fa fa-check"></i>Vektoren mit Faktorstufen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#plots"><i class="fa fa-check"></i>Plots</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#level-bleiben-erhalten"><i class="fa fa-check"></i>Level bleiben erhalten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#konvertierungen"><i class="fa fa-check"></i>Konvertierungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#summary"><i class="fa fa-check"></i>summary()</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#fakoren-in-eingelesenen-daten"><i class="fa fa-check"></i>Fakoren in eingelesenen Daten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#übungen-ii-1"><i class="fa fa-check"></i>Übungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#lösungen-ii-3"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#lösungen-ii-4"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#lösungen-ii-5"><i class="fa fa-check"></i>Lösungen II</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nur-kurz-plots-1"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#ein-plot-zum-abschluss-2"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#ein-plot-zum-abschluss-3"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#friday-noon-fever"><i class="fa fa-check"></i>Friday Noon Fever</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html"><i class="fa fa-check"></i>Sitzung 6</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#wiederholung-4"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#das-wichtigste-vom-letzten-mal-9"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#pakete-und-mehr-statistik"><i class="fa fa-check"></i>Pakete und mehr Statistik</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#viel-tipparbeit"><i class="fa fa-check"></i>Viel Tipparbeit</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#wenig-tipparbeit-mit-paketen"><i class="fa fa-check"></i>Wenig Tipparbeit (mit Paketen)</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#pakete-installieren"><i class="fa fa-check"></i>Pakete installieren</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#interlude-mein-skiptanfang"><i class="fa fa-check"></i>Interlude: Mein Skiptanfang</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#describeby"><i class="fa fa-check"></i>describeBy()</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#describeby-1"><i class="fa fa-check"></i>describeBy()</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#describeby-2"><i class="fa fa-check"></i>describeBy()</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#eigene-funktionen-schreiben"><i class="fa fa-check"></i>Eigene Funktionen schreiben</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#standardfehler-funktion"><i class="fa fa-check"></i>Standardfehler-Funktion</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#mehr-beispiele"><i class="fa fa-check"></i>Mehr Beispiele</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#übungen-2"><i class="fa fa-check"></i>Übungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-8"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-9"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-10"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-11"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-12"><i class="fa fa-check"></i>Lösungen</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#tabellen-transponieren"><i class="fa fa-check"></i>Tabellen transponieren</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#reshape2"><i class="fa fa-check"></i>reshape2</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#von-wide-zu-long"><i class="fa fa-check"></i>Von Wide zu Long</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#von-wide-zu-long-1"><i class="fa fa-check"></i>Von Wide zu Long</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#von-long-zu-wide"><i class="fa fa-check"></i>Von Long zu Wide</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#übungen-ii-2"><i class="fa fa-check"></i>Übungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-ii-6"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-ii-7"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-13"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-14"><i class="fa fa-check"></i>Lösungen</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#nur-kurz-plots-2"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#ein-plot-zum-abschluss-4"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#ein-plot-zum-abschluss-5"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#ein-plot-zum-abschluss-6"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#fck-die-uni"><i class="fa fa-check"></i>F*ck die Uni</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html"><i class="fa fa-check"></i>Sitzung 7</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#wiederholung-5"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#das-wichtigste-vom-letzten-mal-10"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#das-wichtigste-vom-letzten-mal-11"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#fehlertypen"><i class="fa fa-check"></i>Fehlertypen</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#fehlertypen-erinnerungshilfe"><i class="fa fa-check"></i>Fehlertypen: Erinnerungshilfe</a></li>
+</ul></li>
+<li><a href="sitzung-7.html#chi2-test"><span class="math inline">\(\chi^2\)</span>-Test</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#daten"><i class="fa fa-check"></i>Daten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#daten-1"><i class="fa fa-check"></i>Daten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#häufigkeitstabelle"><i class="fa fa-check"></i>Häufigkeitstabelle</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#relative-häufigkeiten-1"><i class="fa fa-check"></i>Relative Häufigkeiten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#grafische-übersicht"><i class="fa fa-check"></i>Grafische Übersicht</a></li>
+<li><a href="sitzung-7.html#chi2-berechnen"><span class="math inline">\(\chi^2\)</span> berechnen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#p-werte"><i class="fa fa-check"></i>P-Werte</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#p-werte-1"><i class="fa fa-check"></i>P-Werte</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#übungen-3"><i class="fa fa-check"></i>Übungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-15"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-16"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-17"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#übungen-ii-3"><i class="fa fa-check"></i>Übungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-ii-8"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#zur-erinnerung-droplevels"><i class="fa fa-check"></i>Zur Erinnerung: droplevels</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-ii-9"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-ii-10"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-ii-11"><i class="fa fa-check"></i>Lösungen II</a></li>
+</ul></li>
+<li><a href="sitzung-7.html#t-test"><span class="math inline">\(t\)</span>-test</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#zwei-arten"><i class="fa fa-check"></i>Zwei Arten</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#interlude-warum-normalverteilung"><i class="fa fa-check"></i>Interlude: Warum Normalverteilung?</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#interlude-warum-varianzhomogenitäthomoskedastizität"><i class="fa fa-check"></i>Interlude: Warum Varianzhomogenität/Homoskedastizität?</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#übung-iii"><i class="fa fa-check"></i>Übung III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-iii"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-iii-1"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-iii-2"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-iii-3"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-iii-4"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#übung-iv"><i class="fa fa-check"></i>Übung IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösung-iv"><i class="fa fa-check"></i>Lösung IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#übung-v"><i class="fa fa-check"></i>Übung V</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-v"><i class="fa fa-check"></i>Lösungen V</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-v-1"><i class="fa fa-check"></i>Lösungen V</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-v-2"><i class="fa fa-check"></i>Lösungen V</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#alternative-less"><i class="fa fa-check"></i>alternative = less</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#übungen-vi"><i class="fa fa-check"></i>Übungen VI</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-vi"><i class="fa fa-check"></i>Lösungen VI</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-vi-1"><i class="fa fa-check"></i>Lösungen VI</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#nur-kurz-plots-3"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#ein-plot-zum-abschluss-7"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#ein-plot-zum-abschluss-8"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#fck-die-uni-1"><i class="fa fa-check"></i>F*ck die Uni</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html"><i class="fa fa-check"></i>Sitzung 8</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#wiederholung-6"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#das-wichtigste-vom-letzten-mal-12"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#base-r-anova"><i class="fa fa-check"></i>Base R: ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#meme-my-stats-1"><i class="fa fa-check"></i>Meme My Stats</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#einleitendes"><i class="fa fa-check"></i>Einleitendes</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#interlude-between-und-within"><i class="fa fa-check"></i>Interlude: between und within</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#interlude-between-und-within-1"><i class="fa fa-check"></i>Interlude: between und within</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#aov"><i class="fa fa-check"></i>aov()</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#aov-1"><i class="fa fa-check"></i>aov()</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#übungen-ii-4"><i class="fa fa-check"></i>Übungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-ii-12"><i class="fa fa-check"></i>Lösungen II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#übungen-iii"><i class="fa fa-check"></i>Übungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iii-5"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iii-6"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iii-7"><i class="fa fa-check"></i>Lösungen III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iii-8"><i class="fa fa-check"></i>Lösungen III</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#alternative-anova-befehle"><i class="fa fa-check"></i>Alternative ANOVA-Befehle</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#afex-anova"><i class="fa fa-check"></i>afex-ANOVA</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#ez-anova"><i class="fa fa-check"></i>ez-ANOVA</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#übungen-iv"><i class="fa fa-check"></i>Übungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv"><i class="fa fa-check"></i>Lösungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-1"><i class="fa fa-check"></i>Lösungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-2"><i class="fa fa-check"></i>Lösungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#faktoren-erstellen"><i class="fa fa-check"></i>Faktoren erstellen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-3"><i class="fa fa-check"></i>Lösungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-4"><i class="fa fa-check"></i>Lösungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-5"><i class="fa fa-check"></i>Lösungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-6"><i class="fa fa-check"></i>Lösungen IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-7"><i class="fa fa-check"></i>Lösungen IV</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#nur-kurz-plots-4"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#ein-plot-zum-abschluss-9"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#ein-plot-zum-abschluss-10"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#zum-nachdenken"><i class="fa fa-check"></i>Zum Nachdenken</a></li>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#der-glühwein-ruft"><i class="fa fa-check"></i>Der Glühwein ruft</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html"><i class="fa fa-check"></i>Sitzung 9</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#experimentanalyse"><i class="fa fa-check"></i>Experimentanalyse</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#der-plan"><i class="fa fa-check"></i>Der Plan</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#einführung-ins-experiment"><i class="fa fa-check"></i>Einführung ins Experiment</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#einführung-ins-experiment-1"><i class="fa fa-check"></i>Einführung ins Experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#daten-einlesen-und-aufbereiten"><i class="fa fa-check"></i>Daten einlesen und aufbereiten</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#daten-einlesen-und-überblick-verschaffen"><i class="fa fa-check"></i>Daten einlesen und Überblick verschaffen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#überblick-ii"><i class="fa fa-check"></i>Überblick II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#was-ist-zu-tun"><i class="fa fa-check"></i>Was ist zu tun?</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#leere-und-überflüssige-spalten-entfernen"><i class="fa fa-check"></i>Leere und überflüssige Spalten entfernen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#leere-und-überflüssige-spalten-entfernen-1"><i class="fa fa-check"></i>Leere und überflüssige Spalten entfernen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#faktor"><i class="fa fa-check"></i>Faktor </a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#übung-5"><i class="fa fa-check"></i>Übung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-11"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#faktor-1"><i class="fa fa-check"></i>Faktor </a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#übung-ii-1"><i class="fa fa-check"></i>Übung II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-ii"><i class="fa fa-check"></i>Lösung II</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#faktor-2"><i class="fa fa-check"></i>Faktor </a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-iii"><i class="fa fa-check"></i>Lösung III</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#letzte-schritte"><i class="fa fa-check"></i>Letzte Schritte</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-iv-1"><i class="fa fa-check"></i>Lösung IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-iv-2"><i class="fa fa-check"></i>Lösung IV</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#optionale-kür"><i class="fa fa-check"></i>(Optionale Kür)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#deskriptive-statistik"><i class="fa fa-check"></i>Deskriptive Statistik</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#describedescribeby"><i class="fa fa-check"></i>describe()/describeBy()</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösungen-v-3"><i class="fa fa-check"></i>Lösungen V</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#plots-1"><i class="fa fa-check"></i>Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#plan"><i class="fa fa-check"></i>Plan</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#boxplot"><i class="fa fa-check"></i>Boxplot</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#boxplot-ii"><i class="fa fa-check"></i>Boxplot II</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#inferenzstatistik"><i class="fa fa-check"></i>Inferenzstatistik</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#für-einen-test-entscheiden"><i class="fa fa-check"></i>Für einen Test entscheiden</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-12"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-13"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-14"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-15"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#für-ausführlichere-wiedergabe-der-anova"><i class="fa fa-check"></i>Für ausführlichere Wiedergabe der ANOVA</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#exkurs-sphärizitätskorrekturen"><i class="fa fa-check"></i>Exkurs: Sphärizitätskorrekturen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#sphärizität-in-der-afex-anova"><i class="fa fa-check"></i>Sphärizität in der afex-ANOVA</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#vergleich-beider-ergebnisse"><i class="fa fa-check"></i>Vergleich beider Ergebnisse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste"><i class="fa fa-check"></i>Kontraste</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste-kodieren-aber-wie"><i class="fa fa-check"></i>Kontraste kodieren, aber wie?</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#übung-6"><i class="fa fa-check"></i>Übung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-16"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste-berechnen"><i class="fa fa-check"></i>Kontraste berechnen</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#zum-selbst-ausprobieren"><i class="fa fa-check"></i>Zum selbst Ausprobieren</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#ergebnisse-des-großen-paarvergleichs"><i class="fa fa-check"></i>Ergebnisse des großen Paarvergleichs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#nochmal-plots"><i class="fa fa-check"></i>Nochmal Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#by-subject"><i class="fa fa-check"></i>by subject</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#by-subject-1"><i class="fa fa-check"></i>by subject</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#by-item"><i class="fa fa-check"></i>by item</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#by-item-1"><i class="fa fa-check"></i>by item</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#off-to-the-rave"><i class="fa fa-check"></i>Off to the rave</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i>ggplot2</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#warum-plots"><i class="fa fa-check"></i>Warum Plots?</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#scheinbar-gleiche-daten"><i class="fa fa-check"></i>Scheinbar gleiche Daten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#aber"><i class="fa fa-check"></i>Aber!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beispiele-1"><i class="fa fa-check"></i>Beispiele</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beispiel-1"><i class="fa fa-check"></i>Beispiel 1</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beispiel-2"><i class="fa fa-check"></i>Beispiel 2</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beispiel-3"><i class="fa fa-check"></i>Beispiel 3</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#einfache-plots"><i class="fa fa-check"></i>Einfache Plots</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#daten-für-den-basisplot"><i class="fa fa-check"></i>Daten für den Basisplot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#ggplot"><i class="fa fa-check"></i>ggplot()</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#ggplot-1"><i class="fa fa-check"></i>ggplot()</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#geometrien"><i class="fa fa-check"></i>Geometrien</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#geometrien-1"><i class="fa fa-check"></i>Geometrien</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#geometrien-2"><i class="fa fa-check"></i>Geometrien</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#geometrien-3"><i class="fa fa-check"></i>Geometrien</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#geometrien-4"><i class="fa fa-check"></i>Geometrien</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#geometrien-5"><i class="fa fa-check"></i>Geometrien</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#geometrien-6"><i class="fa fa-check"></i>Geometrien</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mehr-spalten"><i class="fa fa-check"></i>Mehr Spalten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mehr-spalten-1"><i class="fa fa-check"></i>Mehr Spalten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mehr-spalten-2"><i class="fa fa-check"></i>Mehr Spalten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mehr-spalten-3"><i class="fa fa-check"></i>Mehr Spalten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mehr-spalten-4"><i class="fa fa-check"></i>Mehr Spalten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#häufigkeiten-1"><i class="fa fa-check"></i>Häufigkeiten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#häufigkeiten-2"><i class="fa fa-check"></i>Häufigkeiten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#häufigkeiten-diskret"><i class="fa fa-check"></i>Häufigkeiten diskret</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#prozente"><i class="fa fa-check"></i>Prozente</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#prozente-mit-label"><i class="fa fa-check"></i>Prozente mit Label</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#häufigkeiten-3"><i class="fa fa-check"></i>Häufigkeiten</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-erweitern"><i class="fa fa-check"></i>Plots erweitern</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beschriftungen"><i class="fa fa-check"></i>Beschriftungen</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beschriftungen-1"><i class="fa fa-check"></i>Beschriftungen</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beschriftungen-2"><i class="fa fa-check"></i>Beschriftungen</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beschriftungen-3"><i class="fa fa-check"></i>Beschriftungen</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beschriftungen-4"><i class="fa fa-check"></i>Beschriftungen</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#achsen-beschränken"><i class="fa fa-check"></i>Achsen beschränken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#achsen-beschränken-1"><i class="fa fa-check"></i>Achsen beschränken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#achsen-beschränken-2"><i class="fa fa-check"></i>Achsen beschränken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#achsen-beschränken-3"><i class="fa fa-check"></i>Achsen beschränken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#achsen-beschränken-4"><i class="fa fa-check"></i>Achsen beschränken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#facetten"><i class="fa fa-check"></i>Facetten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#facetten-1"><i class="fa fa-check"></i>Facetten</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-verschönern"><i class="fa fa-check"></i>Plots verschönern</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#daten-für-den-basisplot-1"><i class="fa fa-check"></i>Daten für den Basisplot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#basisplot"><i class="fa fa-check"></i>Basisplot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#möglichkeit-1"><i class="fa fa-check"></i>Möglichkeit 1</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#cleanup-in-action"><i class="fa fa-check"></i>cleanup in action</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#möglichkeit-2"><i class="fa fa-check"></i>Möglichkeit 2</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#theme_pubr"><i class="fa fa-check"></i>theme_pubr()</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#clean_theme"><i class="fa fa-check"></i>clean_theme()</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#theme_pubr-clean_theme"><i class="fa fa-check"></i>theme_pubr() + clean_theme()</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#ggthemes"><i class="fa fa-check"></i>ggthemes</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#schriftarten"><i class="fa fa-check"></i>Schriftarten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#legende-verändern"><i class="fa fa-check"></i>Legende verändern</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#achsenbeschriftung"><i class="fa fa-check"></i>Achsenbeschriftung</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#farbreferenz"><i class="fa fa-check"></i>Farbreferenz</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#scico"><i class="fa fa-check"></i>scico</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#palettenvorschau"><i class="fa fa-check"></i>Palettenvorschau</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#scico-in-action"><i class="fa fa-check"></i>scico in action</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plot-speichern"><i class="fa fa-check"></i>Plot speichern</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-speichern"><i class="fa fa-check"></i>Plots speichern</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-verbinden"><i class="fa fa-check"></i>Plots verbinden</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mehrere-plots-verbinden"><i class="fa fa-check"></i>Mehrere Plots verbinden</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#nrowncol"><i class="fa fa-check"></i>nrow/ncol</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#stat_summary"><i class="fa fa-check"></i>stat_summary()</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#line-plot"><i class="fa fa-check"></i>Line Plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#line-plot-1"><i class="fa fa-check"></i>Line Plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#line-plot-2"><i class="fa fa-check"></i>Line Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#fehlerbalken"><i class="fa fa-check"></i>Fehlerbalken</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#fehlerbalken-1"><i class="fa fa-check"></i>Fehlerbalken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#andere-fehlerbalken"><i class="fa fa-check"></i>Andere Fehlerbalken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#standardfehler-vs-standardabweichung"><i class="fa fa-check"></i>Standardfehler vs Standardabweichung</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#andere-fehlerbalken-1"><i class="fa fa-check"></i>Andere Fehlerbalken</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#standardfehler-vs-95-konfidenzintervall"><i class="fa fa-check"></i>Standardfehler vs 95% Konfidenzintervall</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#diagnostische-plots"><i class="fa fa-check"></i>Diagnostische Plots</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#diagnostikfunktion"><i class="fa fa-check"></i>Diagnostikfunktion</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-2"><i class="fa fa-check"></i>Plots</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#alternative-base-r"><i class="fa fa-check"></i>Alternative: Base R</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#weitere-alternative"><i class="fa fa-check"></i>Weitere Alternative</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#ganz-simpel-residuenhistogramm"><i class="fa fa-check"></i>Ganz simpel: Residuenhistogramm</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#normalverteilung"><i class="fa fa-check"></i>Normalverteilung</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#normalverteilung-daten"><i class="fa fa-check"></i>Normalverteilung: Daten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#shapiro.test"><i class="fa fa-check"></i>shapiro.test</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#normalverteilung-daten-1"><i class="fa fa-check"></i>Normalverteilung: Daten</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#normalplots"><i class="fa fa-check"></i>Normalplots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#boxplot-verbessern"><i class="fa fa-check"></i>Boxplot verbessern</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mittelwerte-in-boxplots"><i class="fa fa-check"></i>Mittelwerte in Boxplots</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mittelwerte-in-boxplots-1"><i class="fa fa-check"></i>Mittelwerte in Boxplots</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mittelwerte-in-boxplots-2"><i class="fa fa-check"></i>Mittelwerte in Boxplots</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#tufte-boxplots"><i class="fa fa-check"></i>Tufte-Boxplots</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#tufte-boxplots-1"><i class="fa fa-check"></i>Tufte-Boxplots</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#übung-7"><i class="fa fa-check"></i>Übung</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#lösung-17"><i class="fa fa-check"></i>Lösung</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#übung-ii-2"><i class="fa fa-check"></i>Übung II</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#lösung-ii-1"><i class="fa fa-check"></i>Lösung II</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#bonus-pimp-my-boxplot"><i class="fa fa-check"></i>Bonus: Pimp My Boxplot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#paper-die-ihr-lesen-solltet"><i class="fa fa-check"></i>Paper, die ihr lesen solltet:</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#arbeitsstreik"><i class="fa fa-check"></i>Arbeitsstreik</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html"><i class="fa fa-check"></i>Gifs in R</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#normalverteilung-1"><i class="fa fa-check"></i>Normalverteilung</a></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#p-wert-verteilung"><i class="fa fa-check"></i>P-Wert-Verteilung</a></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#korrelation"><i class="fa fa-check"></i>Korrelation</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#correlation-between-random-deviates-from-normal-distribution-across-four-sample-sizes"><i class="fa fa-check"></i>Correlation between random deviates from normal distribution across four sample sizes</a></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#correlation-between-x-and-y-variables-that-have-a-true-correlation"><i class="fa fa-check"></i>Correlation between X and Y variables that have a true correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#würfel"><i class="fa fa-check"></i>Würfel</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#daten-2"><i class="fa fa-check"></i>Daten</a></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#plots-3"><i class="fa fa-check"></i>Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#zeitverlauf"><i class="fa fa-check"></i>Zeitverlauf</a></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#central-limit-theorem"><i class="fa fa-check"></i>Central Limit Theorem</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#daten-3"><i class="fa fa-check"></i>Daten</a></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#plots-4"><i class="fa fa-check"></i>Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#interaktive-plots"><i class="fa fa-check"></i>Interaktive Plots</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#economics"><i class="fa fa-check"></i>economics</a></li>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#diamonds"><i class="fa fa-check"></i>diamonds</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="eine-shiny-app.html"><a href="eine-shiny-app.html"><i class="fa fa-check"></i>Eine Shiny App</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html"><i class="fa fa-check"></i>Extrasitzung</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#einfach-textdateien-speichern"><i class="fa fa-check"></i>Einfach Textdateien speichern</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#daten-4"><i class="fa fa-check"></i>Daten</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#sink"><i class="fa fa-check"></i>sink</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#funktionen-aus-dem-tidyverse"><i class="fa fa-check"></i>Funktionen aus dem tidyverse</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#tidyverse"><i class="fa fa-check"></i>Tidyverse</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#funktionen-die-man-kennen-sollte"><i class="fa fa-check"></i>Funktionen, die man kennen sollte</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#pipe"><i class="fa fa-check"></i>Pipe %&gt;%</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#beispiele-2"><i class="fa fa-check"></i>Beispiele</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#weitere-beispiele"><i class="fa fa-check"></i>Weitere Beispiele</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#vorkommen-zählen"><i class="fa fa-check"></i>Vorkommen zählen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#zählen-und-sortieren"><i class="fa fa-check"></i>Zählen und Sortieren</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#sortieren-und-spalten-auswählen"><i class="fa fa-check"></i>Sortieren und Spalten auswählen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#gruppieren-und-rechnen"><i class="fa fa-check"></i>Gruppieren und rechnen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#gruppieren-berechnen-filtern"><i class="fa fa-check"></i>Gruppieren, berechnen, filtern</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#gruppenkorrelationen-plotten"><i class="fa fa-check"></i>Gruppenkorrelationen plotten</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#filtern-und-plotten"><i class="fa fa-check"></i>Filtern und plotten</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#ein-tutorial"><i class="fa fa-check"></i>Ein Tutorial</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#for-loops"><i class="fa fa-check"></i>For-Loops</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#loops"><i class="fa fa-check"></i>Loops</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#loops-1"><i class="fa fa-check"></i>Loops</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#übung-8"><i class="fa fa-check"></i>Übung</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#lösungen-18"><i class="fa fa-check"></i>Lösungen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#lösungen-19"><i class="fa fa-check"></i>Lösungen</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#funktionen-die-das-coden-erleichtern"><i class="fa fa-check"></i>Funktionen, die das Coden erleichtern</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#daten-5"><i class="fa fa-check"></i>Daten</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#by"><i class="fa fa-check"></i>by()</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#with"><i class="fa fa-check"></i>with()</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#with-1"><i class="fa fa-check"></i>with()</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#with-2"><i class="fa fa-check"></i>with()</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#attach"><i class="fa fa-check"></i>attach()</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#apply-familie"><i class="fa fa-check"></i>apply()-Familie</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#apply-familie-1"><i class="fa fa-check"></i>apply()-Familie</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#unterschied-by-und-tapply"><i class="fa fa-check"></i>Unterschied by() und tapply()</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#janitor-paket"><i class="fa fa-check"></i>Janitor-Paket</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#installieren-und-laden"><i class="fa fa-check"></i>Installieren und laden</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#bessere-häufigkeitstabellen"><i class="fa fa-check"></i>Bessere Häufigkeitstabellen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#bessere-häufigkeitstabellen-1"><i class="fa fa-check"></i>Bessere Häufigkeitstabellen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#leere-zeilen-und-spalten-entfernen"><i class="fa fa-check"></i>Leere Zeilen und Spalten entfernen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#spalten-mit-konstanten-werten-entfernen"><i class="fa fa-check"></i>Spalten mit konstanten Werten entfernen</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#clean_names"><i class="fa fa-check"></i>clean_names()</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#bildverarbeitung-und--bearbeitung-in-r"><i class="fa fa-check"></i>Bildverarbeitung (und -bearbeitung) in R</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#magick"><i class="fa fa-check"></i>magick</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#popularity-contest"><i class="fa fa-check"></i>Popularity Contest</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#die-populärsten-pakete"><i class="fa fa-check"></i>Die populärsten Pakete</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#die-populärsten-pakete-1"><i class="fa fa-check"></i>Die populärsten Pakete</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#fin"><i class="fa fa-check"></i>fin</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#anhang-die-wichtigsten-funktionen"><i class="fa fa-check"></i>Anhang: Die wichtigsten Funktionen</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#allgemein"><i class="fa fa-check"></i>Allgemein</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#mathe"><i class="fa fa-check"></i>Mathe</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#statistik"><i class="fa fa-check"></i>Statistik</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="mailto:maik.thalmann@googlemail.com" target="blank">maik.thalmann@googlemail.com</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tutorium zur Inferenzstatistik</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+
+<div class = rmdreview>
+This book is in <b><a href="open.html#open">Open Review</a></b>. I want your feedback to make the book better for you and other readers. To add your annotation, <span style="background-color: #3297FD; color: white">select some text</span> and then click the <i class="h-icon-annotate"></i> on the pop-up menu. To see the annotations of others, click the <i class="h-icon-chevron-left"></i> in the upper right hand corner of the page <i class="fa fa-arrow-circle-right  fa-rotate-315" aria-hidden="true"></i>
+</div>
+<div id="sitzung-4" class="section level1">
+<h1>Sitzung 4</h1>
+<div id="wiederholung-2" class="section level2">
+<h2>Wiederholung</h2>
+<div id="das-wichtigste-vom-letzten-mal-4" class="section level3">
+<h3>Das Wichtigste vom letzten Mal</h3>
+<ul>
+<li>Wir haben verschiedene Methoden besprochen, nur Teile einer Tabelle zu verwenden (“Subsetting”)</li>
+<li>Was bedeuten die unteren Befehle?</li>
+</ul>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1">d[<span class="dv">2</span><span class="op">:</span><span class="dv">5</span>, ]</a>
+<a class="sourceLine" id="cb250-2" data-line-number="2">d[d<span class="op">$</span>wert <span class="op">==</span><span class="st"> </span><span class="dv">14</span> <span class="op">|</span><span class="st"> </span>d<span class="op">$</span>wert <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>, ]</a>
+<a class="sourceLine" id="cb250-3" data-line-number="3">d[d<span class="op">$</span>blub <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;bla&quot;</span>, <span class="st">&quot;bli&quot;</span>), ]</a></code></pre></div>
+<ul>
+<li>Wir können Daten in R einlesen und aus R exportieren und so auf dem Computer speichern:</li>
+</ul>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="kw">read.csv</span>()</a>
+<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="kw">read.table</span>()</a>
+<a class="sourceLine" id="cb251-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb251-4" data-line-number="4"><span class="kw">write.csv</span>()</a>
+<a class="sourceLine" id="cb251-5" data-line-number="5"><span class="kw">write.table</span>()</a></code></pre></div>
+</div>
+</div>
+<div id="übung" class="section level2">
+<h2>Übung</h2>
+<div id="übung-2" class="section level3">
+<h3>Übung</h3>
+<ol style="list-style-type: decimal">
+<li>Lest die Datei “workwithme.csv” als Objekt d ein und lasst euch die ersten 10 Zeilen anzeigen</li>
+<li>Erstellt eine neue Spalte mit dem Namen “sum”, die die Zeilensumme der Spalten “aldi”, “lidl” und “penny” enthält</li>
+<li>Erstellt eine neue Spalte “sumrank”: Wenn in der “sum”-Spalte ein Wert steht, der größer als 140 ist, dann enthält sie den Wert “high”, von 140 bis 125 “medium” und darunter “low”</li>
+<li>Erstellt eine Spalte, die den Mittelwert der Werte aus den Spalten “aldi”, “lidl” und “penny” enthält</li>
+<li>Erstellt eine Spalte, die den Monat des Jahres enthält. Benutzt dafür die <code>substring</code>-Funktion</li>
+<li>Benennt die Spalten um</li>
+<li>Speichert das Datenblatt als csv-Datei auf eurem Computer, benutzt die folgenden Parameter: Spaltentrenner = |, keine Anführungszeichen um Text, keine Zeilennamen. Benutzt die Hilfefunktion, um die relevanten Argumente der <code>write.csv</code>-Funktion herauszufinden</li>
+</ol>
+</div>
+<div id="lösung" class="section level3">
+<h3>Lösung</h3>
+<ol style="list-style-type: decimal">
+<li>Lest die Datei “workwithme.csv” als Objekt d ein und lasst euch die ersten 10 Zeilen anzeigen</li>
+</ol>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;docs/data/tut4/workwithme.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="kw">head</span>(d, <span class="dv">10</span>) <span class="co"># alternative: d[1:10,]</span></a></code></pre></div>
+<pre><code>##          time     aldi     lidl    penny   source     coeff
+## 1  2018-01-01 49.41064 42.10573 44.69301 indirect 2.0289111
+## 2  2018-01-02 51.51267 38.47846 55.16647 indirect 0.8333160
+## 3  2018-01-03 44.75134 39.28813 46.71183   direct 2.1071974
+## 4  2018-01-04 45.09636 42.36057 54.62832 indirect 2.1303495
+## 5  2018-01-05 52.19682 36.08796 49.56332 indirect 0.7593176
+## 6  2018-01-06 48.85863 39.54701 44.47574   direct 1.4346635
+## 7  2018-01-07 44.31124 42.58359 49.07205  unknown 1.7395597
+## 8  2018-01-08 49.72772 38.21966 37.36114  unknown 0.4596969
+## 9  2018-01-09 49.90116 40.69519 64.80204 indirect 0.6560386
+## 10 2018-01-10 51.66494 38.04120 68.73857 indirect 1.1486464</code></pre>
+</div>
+<div id="lösung-1" class="section level3">
+<h3>Lösung</h3>
+<ol start="2" style="list-style-type: decimal">
+<li>Erstellt eine neue Spalte mit dem Namen “sum”, die die Zeilensumme der Spalten “aldi”, “lidl” und “penny” enthält</li>
+</ol>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1">d<span class="op">$</span>sum &lt;-<span class="st"> </span>d<span class="op">$</span>aldi <span class="op">+</span><span class="st"> </span>d<span class="op">$</span>lidl <span class="op">+</span><span class="st"> </span>d<span class="op">$</span>penny</a>
+<a class="sourceLine" id="cb254-2" data-line-number="2"><span class="kw">head</span>(d)</a></code></pre></div>
+<pre><code>##         time     aldi     lidl    penny   source     coeff      sum
+## 1 2018-01-01 49.41064 42.10573 44.69301 indirect 2.0289111 136.2094
+## 2 2018-01-02 51.51267 38.47846 55.16647 indirect 0.8333160 145.1576
+## 3 2018-01-03 44.75134 39.28813 46.71183   direct 2.1071974 130.7513
+## 4 2018-01-04 45.09636 42.36057 54.62832 indirect 2.1303495 142.0853
+## 5 2018-01-05 52.19682 36.08796 49.56332 indirect 0.7593176 137.8481
+## 6 2018-01-06 48.85863 39.54701 44.47574   direct 1.4346635 132.8814</code></pre>
+</div>
+<div id="lösung-2" class="section level3">
+<h3>Lösung</h3>
+<ol start="3" style="list-style-type: decimal">
+<li>Erstellt eine neue Spalte “sumrank”: Wenn in der “sum”-Spalte ein Wert ist, der größer als 140 ist, dann enthält sie den Wert “high”, von 140 bis 125 “medium” und darunter “low”</li>
+</ol>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1">d<span class="op">$</span>sumrank[d<span class="op">$</span>sum <span class="op">&gt;</span><span class="st"> </span><span class="dv">140</span>] &lt;-<span class="st"> &quot;high&quot;</span></a>
+<a class="sourceLine" id="cb256-2" data-line-number="2">d<span class="op">$</span>sumrank[d<span class="op">$</span>sum <span class="op">&lt;=</span><span class="st"> </span><span class="dv">140</span>] &lt;-<span class="st"> &quot;medium&quot;</span></a>
+<a class="sourceLine" id="cb256-3" data-line-number="3">d<span class="op">$</span>sumrank[d<span class="op">$</span>sum <span class="op">&lt;=</span><span class="st"> </span><span class="dv">125</span>] &lt;-<span class="st"> &quot;low&quot;</span></a>
+<a class="sourceLine" id="cb256-4" data-line-number="4"><span class="kw">head</span>(d[, <span class="dv">7</span><span class="op">:</span><span class="dv">8</span>])</a></code></pre></div>
+<pre><code>##        sum sumrank
+## 1 136.2094  medium
+## 2 145.1576    high
+## 3 130.7513  medium
+## 4 142.0853    high
+## 5 137.8481  medium
+## 6 132.8814  medium</code></pre>
+</div>
+<div id="lösung-3" class="section level3">
+<h3>Lösung</h3>
+<ol start="4" style="list-style-type: decimal">
+<li>Erstellt eine Spalte, die den Mittelwert der Werte aus den Spalten “aldi”, “lidl” und “penny” enthält</li>
+</ol>
+<p><span class="math display">\[\bar{x}= {\frac {1}{n}}\sum _{i=1}^{n}a_{i}={\frac {a_{1}+a_{2}+\cdots +a_{n}}{n}}\]</span></p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1">d<span class="op">$</span>compmean &lt;-<span class="st"> </span>(d<span class="op">$</span>aldi <span class="op">+</span><span class="st"> </span>d<span class="op">$</span>lidl <span class="op">+</span><span class="st"> </span>d<span class="op">$</span>penny) <span class="op">/</span><span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb258-2" data-line-number="2"><span class="kw">head</span>(d[, <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)])</a></code></pre></div>
+<pre><code>##       aldi     lidl    penny      sum sumrank compmean
+## 1 49.41064 42.10573 44.69301 136.2094  medium 45.40313
+## 2 51.51267 38.47846 55.16647 145.1576    high 48.38587
+## 3 44.75134 39.28813 46.71183 130.7513  medium 43.58377
+## 4 45.09636 42.36057 54.62832 142.0853    high 47.36175
+## 5 52.19682 36.08796 49.56332 137.8481  medium 45.94937
+## 6 48.85863 39.54701 44.47574 132.8814  medium 44.29379</code></pre>
+</div>
+<div id="lösung-4" class="section level3">
+<h3>Lösung</h3>
+<ol start="5" style="list-style-type: decimal">
+<li>Erstellt eine Spalte, die den Monat des Jahres enthält. Benutzt dafür die <code>substring</code>-Funktion</li>
+</ol>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1">d<span class="op">$</span>month &lt;-<span class="st"> </span><span class="kw">substring</span>(d<span class="op">$</span>time, <span class="dv">6</span>, <span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb260-2" data-line-number="2"><span class="kw">head</span>(d[, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">10</span>)])</a></code></pre></div>
+<pre><code>##         time     aldi     lidl    penny      sum month
+## 1 2018-01-01 49.41064 42.10573 44.69301 136.2094    01
+## 2 2018-01-02 51.51267 38.47846 55.16647 145.1576    01
+## 3 2018-01-03 44.75134 39.28813 46.71183 130.7513    01
+## 4 2018-01-04 45.09636 42.36057 54.62832 142.0853    01
+## 5 2018-01-05 52.19682 36.08796 49.56332 137.8481    01
+## 6 2018-01-06 48.85863 39.54701 44.47574 132.8814    01</code></pre>
+</div>
+<div id="lösung-5" class="section level3">
+<h3>Lösung</h3>
+<ol start="6" style="list-style-type: decimal">
+<li>Benennt die Spalten um</li>
+</ol>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1"><span class="kw">names</span>(d) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;markt1&quot;</span>, <span class="st">&quot;markt2&quot;</span>, <span class="st">&quot;markt3&quot;</span>, <span class="st">&quot;origin&quot;</span>, <span class="st">&quot;coef&quot;</span>, <span class="st">&quot;all&quot;</span>, <span class="st">&quot;level&quot;</span>, <span class="st">&quot;marktmean&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;coefmed&quot;</span>, <span class="st">&quot;quarter&quot;</span>)</a></code></pre></div>
+<ol start="7" style="list-style-type: decimal">
+<li>Speichert das Datenblatt als csv-Datei auf eurem Computer, benutzt die folgenden Parameter: Spaltentrenner = |, keine Anführungszeichen um Text, keine Zeilennamen.</li>
+</ol>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1"><span class="kw">write.csv</span>(d, <span class="st">&quot;supermarktBS.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;|&quot;</span>, <span class="dt">row.names =</span> F, <span class="dt">quote =</span> F)</a></code></pre></div>
+</div>
+</div>
+<div id="tabellenüberblick" class="section level2">
+<h2>Tabellenüberblick</h2>
+<div id="struktur" class="section level3">
+<h3>Struktur</h3>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1"><span class="kw">dim</span>(d) <span class="co"># alternativ: nrow(d), ncol(d)</span></a></code></pre></div>
+<pre><code>## [1] 365  10</code></pre>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1"><span class="kw">str</span>(d)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    365 obs. of  10 variables:
+##  $ time    : Factor w/ 365 levels &quot;2018-01-01&quot;,&quot;2018-01-02&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+##  $ aldi    : num  49.4 51.5 44.8 45.1 52.2 ...
+##  $ lidl    : num  42.1 38.5 39.3 42.4 36.1 ...
+##  $ penny   : num  44.7 55.2 46.7 54.6 49.6 ...
+##  $ source  : Factor w/ 3 levels &quot;direct&quot;,&quot;indirect&quot;,..: 2 2 1 2 2 1 3 3 2 2 ...
+##  $ coeff   : num  2.029 0.833 2.107 2.13 0.759 ...
+##  $ sum     : num  136 145 131 142 138 ...
+##  $ sumrank : chr  &quot;medium&quot; &quot;high&quot; &quot;medium&quot; &quot;high&quot; ...
+##  $ compmean: num  45.4 48.4 43.6 47.4 45.9 ...
+##  $ month   : chr  &quot;01&quot; &quot;01&quot; &quot;01&quot; &quot;01&quot; ...</code></pre>
+</div>
+<div id="überblick-über-zahlen" class="section level3">
+<h3>überblick über Zahlen</h3>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1"><span class="kw">summary</span>(d)</a></code></pre></div>
+<pre><code>##          time          aldi            lidl           penny      
+##  2018-01-01:  1   Min.   :35.02   Min.   :33.93   Min.   :20.21  
+##  2018-01-02:  1   1st Qu.:46.57   1st Qu.:38.70   1st Qu.:38.29  
+##  2018-01-03:  1   Median :49.74   Median :40.04   Median :45.88  
+##  2018-01-04:  1   Mean   :49.80   Mean   :40.10   Mean   :45.49  
+##  2018-01-05:  1   3rd Qu.:52.78   3rd Qu.:41.33   3rd Qu.:51.93  
+##  2018-01-06:  1   Max.   :63.52   Max.   :47.83   Max.   :81.56  
+##  (Other)   :359                                                  
+##       source        coeff              sum          sumrank         
+##  direct  :106   Min.   :-0.4144   Min.   :103.3   Length:365        
+##  indirect:210   1st Qu.: 0.6830   1st Qu.:127.4   Class :character  
+##  unknown : 49   Median : 0.9468   Median :135.4   Mode  :character  
+##                 Mean   : 0.9746   Mean   :135.4                     
+##                 3rd Qu.: 1.2882   3rd Qu.:142.7                     
+##                 Max.   : 2.1701   Max.   :171.2                     
+##                                                                     
+##     compmean        month          
+##  Min.   :34.44   Length:365        
+##  1st Qu.:42.48   Class :character  
+##  Median :45.15   Mode  :character  
+##  Mean   :45.13                     
+##  3rd Qu.:47.56                     
+##  Max.   :57.07                     
+## </code></pre>
+</div>
+<div id="häufigkeiten" class="section level3">
+<h3>Häufigkeiten</h3>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1"><span class="kw">table</span>(d<span class="op">$</span>sumrank)</a></code></pre></div>
+<pre><code>## 
+##   high    low medium 
+##    122     65    178</code></pre>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1"><span class="co"># verteilungen von summenwerten auf monate abgebildet</span></a>
+<a class="sourceLine" id="cb272-2" data-line-number="2">overview &lt;-<span class="st"> </span><span class="kw">table</span>(d<span class="op">$</span>sumrank, d<span class="op">$</span>month)</a>
+<a class="sourceLine" id="cb272-3" data-line-number="3">overview</a></code></pre></div>
+<pre><code>##         
+##          01 02 03 04 05 06 07 08 09 10 11 12
+##   high    7 11 10 10 10  7 14 10 15 12  9  7
+##   low     6  8  7  2  5  7  2  4  4  7  6  7
+##   medium 18  9 14 18 16 16 15 17 11 12 15 17</code></pre>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1">(overview2 &lt;-<span class="st"> </span><span class="kw">addmargins</span>(overview))</a></code></pre></div>
+<pre><code>##         
+##           01  02  03  04  05  06  07  08  09  10  11  12 Sum
+##   high     7  11  10  10  10   7  14  10  15  12   9   7 122
+##   low      6   8   7   2   5   7   2   4   4   7   6   7  65
+##   medium  18   9  14  18  16  16  15  17  11  12  15  17 178
+##   Sum     31  28  31  30  31  30  31  31  30  31  30  31 365</code></pre>
+</div>
+<div id="relative-häufigkeiten" class="section level3">
+<h3>Relative Häufigkeiten</h3>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1">overview3 &lt;-<span class="st"> </span><span class="kw">prop.table</span>(overview) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb276-2" data-line-number="2">overview3</a></code></pre></div>
+<pre><code>##         
+##                 01        02        03        04        05        06        07
+##   high   1.9178082 3.0136986 2.7397260 2.7397260 2.7397260 1.9178082 3.8356164
+##   low    1.6438356 2.1917808 1.9178082 0.5479452 1.3698630 1.9178082 0.5479452
+##   medium 4.9315068 2.4657534 3.8356164 4.9315068 4.3835616 4.3835616 4.1095890
+##         
+##                 08        09        10        11        12
+##   high   2.7397260 4.1095890 3.2876712 2.4657534 1.9178082
+##   low    1.0958904 1.0958904 1.9178082 1.6438356 1.9178082
+##   medium 4.6575342 3.0136986 3.2876712 4.1095890 4.6575342</code></pre>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(overview) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<pre><code>##         
+##            01   02   03   04   05   06   07   08   09   10   11   12
+##   high   1.92 3.01 2.74 2.74 2.74 1.92 3.84 2.74 4.11 3.29 2.47 1.92
+##   low    1.64 2.19 1.92 0.55 1.37 1.92 0.55 1.10 1.10 1.92 1.64 1.92
+##   medium 4.93 2.47 3.84 4.93 4.38 4.38 4.11 4.66 3.01 3.29 4.11 4.66</code></pre>
+</div>
+</div>
+<div id="erste-statistische-berechnungen" class="section level2">
+<h2>Erste statistische Berechnungen</h2>
+<div id="maße-der-zentralen-tendenz" class="section level3">
+<h3>Maße der zentralen Tendenz</h3>
+<p>Die wichtigsten statistischen Operationen sind als Funktionen in R enthalten. So auch das arithmetische Mittel und der Median</p>
+<p><span class="math display">\[\bar{x}= {\frac {1}{n}}\sum _{i=1}^{n}a_{i}={\frac {a_{1}+a_{2}+\cdots +a_{n}}{n}}\]</span></p>
+<p><span class="math display">\[\tilde{x}=\begin{cases}
+        x_{\frac{n+1}{2}}&amp;n\text{ odd}\\ 
+        \frac{1}{2}\left(x_{\frac{n}{2}} + x_{\frac{n}{2} + 1}\right)&amp;n \text{ even}\\
+    \end{cases}\]</span></p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1">sample &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb280-2" data-line-number="2"><span class="kw">mean</span>(sample)</a></code></pre></div>
+<pre><code>## [1] 3.571429</code></pre>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1"><span class="kw">median</span>(sample)</a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+</div>
+<div id="meme-my-stats" class="section level3">
+<h3>Meme My Stats</h3>
+<p><img src="docs/media/meanoutliermedian.jpg" /></p>
+</div>
+<div id="maße-der-streuung" class="section level3">
+<h3>Maße der Streuung</h3>
+<p>Gleiches gilt für die Streuungsmaße Standardabweichung und Median der absoluten Abweichung</p>
+<p><span class="math display">\[s= \sqrt{s^2} = {\sqrt{\frac {\sum _{i=1}^{n}(x_{i}-{\overline {x}})^{2}}{n-1}}}\]</span></p>
+<p><span class="math display">\[MAD = median|x_i - \tilde{x}|\]</span></p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1">sample &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb284-2" data-line-number="2"><span class="kw">sd</span>(sample)</a></code></pre></div>
+<pre><code>## [1] 2.992053</code></pre>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1"><span class="kw">mad</span>(sample, <span class="dt">constant =</span> <span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+</div>
+<div id="übung-3" class="section level3">
+<h3>Übung</h3>
+<ol style="list-style-type: decimal">
+<li>Gibt es Werte in der “lidl”-Spalte, die mehr als 2 Standardabweichungen vom Mittelwert abweichen?</li>
+<li>Erstellt eine Tabelle mit relativen Häufigkeiten für “source” abgebildet auf “sumrank”</li>
+<li>Legt eine neue Spalte “coeffmedian” an, die den Median der Spalte “coeff” enthält</li>
+<li>Legt eine neue Spalte an, die Informationen über das Jahresquartal enthält. Um die Monate (01, 02, 03, …) in Zahlen (1, 2, 3, …) umzuwandeln, könnt ihr <code>as.numeric</code> verwenden.</li>
+</ol>
+</div>
+<div id="lösung-6" class="section level3">
+<h3>Lösung</h3>
+<ol style="list-style-type: decimal">
+<li>Gibt es Werte in der “lidl”-Spalte, die mehr als 2 Standardabweichungen vom Mittelwert abweichen?</li>
+</ol>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1">d<span class="op">$</span>lidl[d<span class="op">$</span>lidl <span class="op">&gt;=</span><span class="st"> </span><span class="kw">mean</span>(d<span class="op">$</span>lidl) <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(d<span class="op">$</span>lidl) <span class="op">|</span></a>
+<a class="sourceLine" id="cb288-2" data-line-number="2"><span class="st">  </span>d<span class="op">$</span>lidl <span class="op">&lt;=</span><span class="st"> </span><span class="kw">mean</span>(d<span class="op">$</span>lidl) <span class="op">-</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(d<span class="op">$</span>lidl)]</a></code></pre></div>
+<pre><code>##  [1] 44.35339 35.54213 44.55232 35.88545 35.28163 46.54198 44.44375 35.81564
+##  [9] 33.93010 44.88954 44.88695 35.88933 44.45852 35.95163 44.34326 44.81850
+## [17] 45.40808 47.83175 35.70551 35.95866 35.74292</code></pre>
+</div>
+<div id="lösung-7" class="section level3">
+<h3>Lösung</h3>
+<ol start="2" style="list-style-type: decimal">
+<li>Erstellt eine Tabelle mit relativen Häufigkeiten für “source” abgebildet auf “sumrank”</li>
+</ol>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1">tab &lt;-<span class="st"> </span><span class="kw">table</span>(d<span class="op">$</span>source, d<span class="op">$</span>sumrank)</a>
+<a class="sourceLine" id="cb290-2" data-line-number="2">(perctab &lt;-<span class="st"> </span><span class="kw">prop.table</span>(tab) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>)</a></code></pre></div>
+<pre><code>##           
+##                 high       low    medium
+##   direct   11.506849  4.383562 13.150685
+##   indirect 16.164384 10.684932 30.684932
+##   unknown   5.753425  2.739726  4.931507</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Legt eine neue Spalte “coeffmedian” an, die den Median der Spalte “coeff” enthält</li>
+</ol>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1">d<span class="op">$</span>coeffmedian &lt;-<span class="st"> </span><span class="kw">median</span>(d<span class="op">$</span>coeff)</a>
+<a class="sourceLine" id="cb292-2" data-line-number="2"><span class="kw">tail</span>(d[, <span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">11</span>)])</a></code></pre></div>
+<pre><code>##         coeff coeffmedian
+## 360 1.3716517   0.9467506
+## 361 0.1725648   0.9467506
+## 362 0.9713443   0.9467506
+## 363 0.8421736   0.9467506
+## 364 0.6721796   0.9467506
+## 365 1.2695549   0.9467506</code></pre>
+</div>
+<div id="lösung-8" class="section level3">
+<h3>Lösung</h3>
+<ol start="4" style="list-style-type: decimal">
+<li>Legt eine neue Spalte an, die Informationen über das Jahresquartal enthält. Um die Monate (01, 02, 03, …) in Zahlen (1, 2, 3, …) umzuwandeln, könnt ihr <code>as.numeric</code> verwenden.</li>
+</ol>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1">q &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb294-2" data-line-number="2">d<span class="op">$</span>quarter[<span class="kw">as.numeric</span>(d<span class="op">$</span>month) <span class="op">%in%</span><span class="st"> </span>q] &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb294-3" data-line-number="3">d<span class="op">$</span>quarter[<span class="kw">as.numeric</span>(d<span class="op">$</span>month) <span class="op">%in%</span><span class="st"> </span>(q <span class="op">+</span><span class="st"> </span><span class="dv">3</span>)] &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb294-4" data-line-number="4">d<span class="op">$</span>quarter[<span class="kw">as.numeric</span>(d<span class="op">$</span>month) <span class="op">%in%</span><span class="st"> </span>(q <span class="op">+</span><span class="st"> </span><span class="dv">6</span>)] &lt;-<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb294-5" data-line-number="5">d<span class="op">$</span>quarter[<span class="kw">as.numeric</span>(d<span class="op">$</span>month) <span class="op">%in%</span><span class="st"> </span>(q <span class="op">+</span><span class="st"> </span><span class="dv">9</span>)] &lt;-<span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb294-6" data-line-number="6"><span class="co"># head(d[,c(10,length(d))], 3)</span></a>
+<a class="sourceLine" id="cb294-7" data-line-number="7"><span class="co"># tail(d[,c(10,length(d))], 3)</span></a>
+<a class="sourceLine" id="cb294-8" data-line-number="8"><span class="kw">table</span>(d<span class="op">$</span>quarter)</a></code></pre></div>
+<pre><code>## 
+##  1  2  3  4 
+## 90 91 92 92</code></pre>
+</div>
+</div>
+<div id="nur-kurz-plots" class="section level2">
+<h2>Nur Kurz: Plots</h2>
+<div id="ein-plot-zum-abschluss" class="section level3">
+<h3>Ein Plot zum Abschluss</h3>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1">d<span class="op">$</span>time &lt;-<span class="st"> </span><span class="kw">as.ts</span>(d<span class="op">$</span>time) <span class="co"># convert to time series</span></a>
+<a class="sourceLine" id="cb296-2" data-line-number="2"><span class="kw">plot</span>(d<span class="op">$</span>time, d<span class="op">$</span>compmean, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</a>
+<a class="sourceLine" id="cb296-3" data-line-number="3">  <span class="dt">xlab =</span> <span class="st">&quot;Tag&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;CompMean&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Line Plot&quot;</span>)</a></code></pre></div>
+<p><img src="inference_files/figure-html/lines-1.png" width="75%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ein-plot-zum-abschluss-1" class="section level3">
+<h3>Ein Plot zum Abschluss</h3>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb297-2" data-line-number="2">d<span class="op">$</span>time &lt;-<span class="st"> </span><span class="kw">as.ts</span>(d<span class="op">$</span>time) <span class="co"># convert to time series</span></a>
+<a class="sourceLine" id="cb297-3" data-line-number="3"><span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> compmean)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb297-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb297-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Tag&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;CompMean&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Line Plot&quot;</span>)</a></code></pre></div>
+<p><img src="inference_files/figure-html/gglines-1.png" width="75%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="session-no-longer-in-session" class="section level3">
+<h3>session no longer in session</h3>
+<p>Schönes Wochenende!</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sitzung-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sitzung-5.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["inference.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
