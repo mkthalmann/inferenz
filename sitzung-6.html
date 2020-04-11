@@ -59,25 +59,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -86,9 +87,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -137,14 +138,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Tutorium zur Inferenzstatistik</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorbemerkungen</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#open-review"><i class="fa fa-check"></i>Open Review</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorbemerkungen</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#open-review"><i class="fa fa-check"></i>Open Review</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html"><i class="fa fa-check"></i>Sitzung 1</a><ul>
-<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#allgemeines"><i class="fa fa-check"></i>Allgemeines</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html"><i class="fa fa-check"></i>Sitzung 1</a>
+<ul>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#allgemeines"><i class="fa fa-check"></i>Allgemeines</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#ein-paar-worte-zum-tutorium"><i class="fa fa-check"></i>Ein paar Worte zum Tutorium</a></li>
 <li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#r-ein-kurzer-überblick"><i class="fa fa-check"></i>R: Ein kurzer Überblick</a></li>
 <li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#ein-beispielplot"><i class="fa fa-check"></i>Ein Beispielplot</a></li>
@@ -154,7 +159,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#mehr-hilfe"><i class="fa fa-check"></i>Mehr Hilfe</a></li>
 <li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#allgemeines-1"><i class="fa fa-check"></i>Allgemeines</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#was-kann-man-mit-r-alles-anstellen"><i class="fa fa-check"></i>Was kann man mit R alles anstellen?</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#was-kann-man-mit-r-alles-anstellen"><i class="fa fa-check"></i>Was kann man mit R alles anstellen?</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#skripte"><i class="fa fa-check"></i>Skripte</a></li>
 <li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#skripte-1"><i class="fa fa-check"></i>Skripte</a></li>
 <li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#übung-1"><i class="fa fa-check"></i>Übung 1</a></li>
@@ -169,17 +175,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#mehr-zu-objekten"><i class="fa fa-check"></i>Mehr zu Objekten</a></li>
 <li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#datentypen-in-r"><i class="fa fa-check"></i>Datentypen in R</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#rstudio-optionen"><i class="fa fa-check"></i>RStudio-Optionen</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#rstudio-optionen"><i class="fa fa-check"></i>RStudio-Optionen</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#optionen-die-das-leben-erleichtern"><i class="fa fa-check"></i>Optionen, die das Leben erleichtern</a></li>
 <li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html#das-wars"><i class="fa fa-check"></i>Das war’s!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html"><i class="fa fa-check"></i>Sitzung 2</a><ul>
-<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#wiederholung"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html"><i class="fa fa-check"></i>Sitzung 2</a>
+<ul>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#wiederholung"><i class="fa fa-check"></i>Wiederholung</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#das-wichtigste-vom-letzten-mal"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
 <li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#code-vom-letzten-mal"><i class="fa fa-check"></i>Code vom letzten Mal</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#vektoren"><i class="fa fa-check"></i>Vektoren</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#vektoren"><i class="fa fa-check"></i>Vektoren</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#moment-mal"><i class="fa fa-check"></i>Moment mal</a></li>
 <li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#vektoren-1"><i class="fa fa-check"></i>Vektoren</a></li>
 <li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#subsetting"><i class="fa fa-check"></i>Subsetting</a></li>
@@ -193,7 +203,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#listen"><i class="fa fa-check"></i>Listen</a></li>
 <li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#subsetting-von-listen"><i class="fa fa-check"></i>Subsetting von Listen</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#zwei-dimensionale-objekte"><i class="fa fa-check"></i>Zwei-Dimensionale Objekte</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#zwei-dimensionale-objekte"><i class="fa fa-check"></i>Zwei-Dimensionale Objekte</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#über-vekoten-hinaus"><i class="fa fa-check"></i>Über Vekoten hinaus</a></li>
 <li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#die-dimensionen-von-tabellen"><i class="fa fa-check"></i>Die Dimensionen von Tabellen</a></li>
 <li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#subsetting-von-matritzen"><i class="fa fa-check"></i>Subsetting von Matritzen</a></li>
@@ -206,18 +217,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-2.html"><a href="sitzung-2.html#tüdelü"><i class="fa fa-check"></i>Tüdelü</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html"><i class="fa fa-check"></i>Sitzung 3</a><ul>
-<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#wiederholung-1"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html"><i class="fa fa-check"></i>Sitzung 3</a>
+<ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#wiederholung-1"><i class="fa fa-check"></i>Wiederholung</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#das-wichtigste-vom-letzten-mal-1"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#das-wichtigste-vom-letzten-mal-2"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#das-wichtigste-vom-letzten-mal-3"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#mehr-zu-datenblättern"><i class="fa fa-check"></i>Mehr zu Datenblättern</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#mehr-zu-datenblättern"><i class="fa fa-check"></i>Mehr zu Datenblättern</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#spalten-umbenennen"><i class="fa fa-check"></i>Spalten umbenennen</a></li>
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#mehr-subsetting"><i class="fa fa-check"></i>Mehr Subsetting</a></li>
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#noch-mehr-subsetting"><i class="fa fa-check"></i>Noch mehr Subsetting</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#daten-exportieren"><i class="fa fa-check"></i>Daten exportieren</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#daten-exportieren"><i class="fa fa-check"></i>Daten exportieren</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#workspace"><i class="fa fa-check"></i>Workspace</a></li>
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#workspace-verändern"><i class="fa fa-check"></i>Workspace verändern</a></li>
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#workspace-verändern-1"><i class="fa fa-check"></i>Workspace verändern</a></li>
@@ -225,7 +240,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#übersicht"><i class="fa fa-check"></i>Übersicht</a></li>
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#datenblatt-speichern"><i class="fa fa-check"></i>Datenblatt speichern</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#daten-einlesen"><i class="fa fa-check"></i>Daten einlesen</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#daten-einlesen"><i class="fa fa-check"></i>Daten einlesen</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#interlude-dateiformate"><i class="fa fa-check"></i>Interlude: Dateiformate</a></li>
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#read.table"><i class="fa fa-check"></i>read.table()</a></li>
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#ein-beispiel"><i class="fa fa-check"></i>Ein Beispiel</a></li>
@@ -240,11 +256,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-3.html"><a href="sitzung-3.html#und-tschüss"><i class="fa fa-check"></i>Und Tschüss</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html"><i class="fa fa-check"></i>Sitzung 4</a><ul>
-<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#wiederholung-2"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html"><i class="fa fa-check"></i>Sitzung 4</a>
+<ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#wiederholung-2"><i class="fa fa-check"></i>Wiederholung</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#das-wichtigste-vom-letzten-mal-4"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#übung"><i class="fa fa-check"></i>Übung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#übung"><i class="fa fa-check"></i>Übung</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#übung-2"><i class="fa fa-check"></i>Übung</a></li>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung"><i class="fa fa-check"></i>Lösung</a></li>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-1"><i class="fa fa-check"></i>Lösung</a></li>
@@ -253,13 +272,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-4"><i class="fa fa-check"></i>Lösung</a></li>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-5"><i class="fa fa-check"></i>Lösung</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#tabellenüberblick"><i class="fa fa-check"></i>Tabellenüberblick</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#tabellenüberblick"><i class="fa fa-check"></i>Tabellenüberblick</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#struktur"><i class="fa fa-check"></i>Struktur</a></li>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#überblick-über-zahlen"><i class="fa fa-check"></i>überblick über Zahlen</a></li>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#häufigkeiten"><i class="fa fa-check"></i>Häufigkeiten</a></li>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#relative-häufigkeiten"><i class="fa fa-check"></i>Relative Häufigkeiten</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#erste-statistische-berechnungen"><i class="fa fa-check"></i>Erste statistische Berechnungen</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#erste-statistische-berechnungen"><i class="fa fa-check"></i>Erste statistische Berechnungen</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#maße-der-zentralen-tendenz"><i class="fa fa-check"></i>Maße der zentralen Tendenz</a></li>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#meme-my-stats"><i class="fa fa-check"></i>Meme My Stats</a></li>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#maße-der-streuung"><i class="fa fa-check"></i>Maße der Streuung</a></li>
@@ -268,26 +289,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-7"><i class="fa fa-check"></i>Lösung</a></li>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#lösung-8"><i class="fa fa-check"></i>Lösung</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#nur-kurz-plots"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#nur-kurz-plots"><i class="fa fa-check"></i>Nur Kurz: Plots</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#ein-plot-zum-abschluss"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#ein-plot-zum-abschluss-1"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
 <li class="chapter" data-level="" data-path="sitzung-4.html"><a href="sitzung-4.html#session-no-longer-in-session"><i class="fa fa-check"></i>session no longer in session</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html"><i class="fa fa-check"></i>Sitzung 5</a><ul>
-<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#wiederholung-3"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html"><i class="fa fa-check"></i>Sitzung 5</a>
+<ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#wiederholung-3"><i class="fa fa-check"></i>Wiederholung</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#das-wichtigste-vom-letzten-mal-5"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#das-wichtigste-vom-letzten-mal-6"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#das-wichtigste-vom-letzten-mal-7"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#das-wichtigste-vom-letzten-mal-8"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#tabellen-miteinander-verbinden"><i class="fa fa-check"></i>Tabellen miteinander verbinden</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#tabellen-miteinander-verbinden"><i class="fa fa-check"></i>Tabellen miteinander verbinden</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#verbinden-von-zwei-tabellen"><i class="fa fa-check"></i>Verbinden von zwei Tabellen</a></li>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#übung-4"><i class="fa fa-check"></i>Übung</a></li>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#lösung-9"><i class="fa fa-check"></i>Lösung</a></li>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#lösung-10"><i class="fa fa-check"></i>Lösung</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#fehlende-werte"><i class="fa fa-check"></i>Fehlende Werte</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#fehlende-werte"><i class="fa fa-check"></i>Fehlende Werte</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nas"><i class="fa fa-check"></i>NAs</a></li>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nas-finden"><i class="fa fa-check"></i>NAs finden</a></li>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#alle-zeilen-mit-nas"><i class="fa fa-check"></i>alle Zeilen mit NAs</a></li>
@@ -295,7 +321,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nas-überspringen"><i class="fa fa-check"></i>NAs überspringen</a></li>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nas-entfernen"><i class="fa fa-check"></i>NAs entfernen</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#faktoren"><i class="fa fa-check"></i>Faktoren</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#faktoren"><i class="fa fa-check"></i>Faktoren</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#vektoren-mit-faktorstufen"><i class="fa fa-check"></i>Vektoren mit Faktorstufen</a></li>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#plots"><i class="fa fa-check"></i>Plots</a></li>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#level-bleiben-erhalten"><i class="fa fa-check"></i>Level bleiben erhalten</a></li>
@@ -307,17 +334,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#lösungen-ii-4"><i class="fa fa-check"></i>Lösungen II</a></li>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#lösungen-ii-5"><i class="fa fa-check"></i>Lösungen II</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nur-kurz-plots-1"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#nur-kurz-plots-1"><i class="fa fa-check"></i>Nur Kurz: Plots</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#ein-plot-zum-abschluss-2"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#ein-plot-zum-abschluss-3"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
 <li class="chapter" data-level="" data-path="sitzung-5.html"><a href="sitzung-5.html#friday-noon-fever"><i class="fa fa-check"></i>Friday Noon Fever</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html"><i class="fa fa-check"></i>Sitzung 6</a><ul>
-<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#wiederholung-4"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html"><i class="fa fa-check"></i>Sitzung 6</a>
+<ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#wiederholung-4"><i class="fa fa-check"></i>Wiederholung</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#das-wichtigste-vom-letzten-mal-9"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#pakete-und-mehr-statistik"><i class="fa fa-check"></i>Pakete und mehr Statistik</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#pakete-und-mehr-statistik"><i class="fa fa-check"></i>Pakete und mehr Statistik</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#viel-tipparbeit"><i class="fa fa-check"></i>Viel Tipparbeit</a></li>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#wenig-tipparbeit-mit-paketen"><i class="fa fa-check"></i>Wenig Tipparbeit (mit Paketen)</a></li>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#pakete-installieren"><i class="fa fa-check"></i>Pakete installieren</a></li>
@@ -326,7 +357,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#describeby-1"><i class="fa fa-check"></i>describeBy()</a></li>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#describeby-2"><i class="fa fa-check"></i>describeBy()</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#eigene-funktionen-schreiben"><i class="fa fa-check"></i>Eigene Funktionen schreiben</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#eigene-funktionen-schreiben"><i class="fa fa-check"></i>Eigene Funktionen schreiben</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#standardfehler-funktion"><i class="fa fa-check"></i>Standardfehler-Funktion</a></li>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#mehr-beispiele"><i class="fa fa-check"></i>Mehr Beispiele</a></li>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#übungen-2"><i class="fa fa-check"></i>Übungen</a></li>
@@ -336,7 +368,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-11"><i class="fa fa-check"></i>Lösungen</a></li>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-12"><i class="fa fa-check"></i>Lösungen</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#tabellen-transponieren"><i class="fa fa-check"></i>Tabellen transponieren</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#tabellen-transponieren"><i class="fa fa-check"></i>Tabellen transponieren</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#reshape2"><i class="fa fa-check"></i>reshape2</a></li>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#von-wide-zu-long"><i class="fa fa-check"></i>Von Wide zu Long</a></li>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#von-wide-zu-long-1"><i class="fa fa-check"></i>Von Wide zu Long</a></li>
@@ -347,22 +380,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-13"><i class="fa fa-check"></i>Lösungen</a></li>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#lösungen-14"><i class="fa fa-check"></i>Lösungen</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#nur-kurz-plots-2"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#nur-kurz-plots-2"><i class="fa fa-check"></i>Nur Kurz: Plots</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#ein-plot-zum-abschluss-4"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#ein-plot-zum-abschluss-5"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#ein-plot-zum-abschluss-6"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
 <li class="chapter" data-level="" data-path="sitzung-6.html"><a href="sitzung-6.html#fck-die-uni"><i class="fa fa-check"></i>F*ck die Uni</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html"><i class="fa fa-check"></i>Sitzung 7</a><ul>
-<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#wiederholung-5"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html"><i class="fa fa-check"></i>Sitzung 7</a>
+<ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#wiederholung-5"><i class="fa fa-check"></i>Wiederholung</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#das-wichtigste-vom-letzten-mal-10"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#das-wichtigste-vom-letzten-mal-11"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#fehlertypen"><i class="fa fa-check"></i>Fehlertypen</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#fehlertypen"><i class="fa fa-check"></i>Fehlertypen</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#fehlertypen-erinnerungshilfe"><i class="fa fa-check"></i>Fehlertypen: Erinnerungshilfe</a></li>
 </ul></li>
-<li><a href="sitzung-7.html#chi2-test"><span class="math inline">\(\chi^2\)</span>-Test</a><ul>
+<li><a href="sitzung-7.html#chi2-test"><span class="math inline">\(\chi^2\)</span>-Test</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#daten"><i class="fa fa-check"></i>Daten</a></li>
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#daten-1"><i class="fa fa-check"></i>Daten</a></li>
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#häufigkeitstabelle"><i class="fa fa-check"></i>Häufigkeitstabelle</a></li>
@@ -382,7 +420,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-ii-10"><i class="fa fa-check"></i>Lösungen II</a></li>
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-ii-11"><i class="fa fa-check"></i>Lösungen II</a></li>
 </ul></li>
-<li><a href="sitzung-7.html#t-test"><span class="math inline">\(t\)</span>-test</a><ul>
+<li><a href="sitzung-7.html#t-test"><span class="math inline">\(t\)</span>-test</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#zwei-arten"><i class="fa fa-check"></i>Zwei Arten</a></li>
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#interlude-warum-normalverteilung"><i class="fa fa-check"></i>Interlude: Warum Normalverteilung?</a></li>
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#interlude-warum-varianzhomogenitäthomoskedastizität"><i class="fa fa-check"></i>Interlude: Warum Varianzhomogenität/Homoskedastizität?</a></li>
@@ -403,17 +442,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-vi"><i class="fa fa-check"></i>Lösungen VI</a></li>
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#lösungen-vi-1"><i class="fa fa-check"></i>Lösungen VI</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#nur-kurz-plots-3"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#nur-kurz-plots-3"><i class="fa fa-check"></i>Nur Kurz: Plots</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#ein-plot-zum-abschluss-7"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#ein-plot-zum-abschluss-8"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
 <li class="chapter" data-level="" data-path="sitzung-7.html"><a href="sitzung-7.html#fck-die-uni-1"><i class="fa fa-check"></i>F*ck die Uni</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html"><i class="fa fa-check"></i>Sitzung 8</a><ul>
-<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#wiederholung-6"><i class="fa fa-check"></i>Wiederholung</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html"><i class="fa fa-check"></i>Sitzung 8</a>
+<ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#wiederholung-6"><i class="fa fa-check"></i>Wiederholung</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#das-wichtigste-vom-letzten-mal-12"><i class="fa fa-check"></i>Das Wichtigste vom letzten Mal</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#base-r-anova"><i class="fa fa-check"></i>Base R: ANOVA</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#base-r-anova"><i class="fa fa-check"></i>Base R: ANOVA</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#meme-my-stats-1"><i class="fa fa-check"></i>Meme My Stats</a></li>
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#einleitendes"><i class="fa fa-check"></i>Einleitendes</a></li>
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#interlude-between-und-within"><i class="fa fa-check"></i>Interlude: between und within</a></li>
@@ -428,7 +471,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iii-7"><i class="fa fa-check"></i>Lösungen III</a></li>
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iii-8"><i class="fa fa-check"></i>Lösungen III</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#alternative-anova-befehle"><i class="fa fa-check"></i>Alternative ANOVA-Befehle</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#alternative-anova-befehle"><i class="fa fa-check"></i>Alternative ANOVA-Befehle</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#afex-anova"><i class="fa fa-check"></i>afex-ANOVA</a></li>
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#ez-anova"><i class="fa fa-check"></i>ez-ANOVA</a></li>
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#übungen-iv"><i class="fa fa-check"></i>Übungen IV</a></li>
@@ -442,20 +486,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-6"><i class="fa fa-check"></i>Lösungen IV</a></li>
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#lösungen-iv-7"><i class="fa fa-check"></i>Lösungen IV</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#nur-kurz-plots-4"><i class="fa fa-check"></i>Nur Kurz: Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#nur-kurz-plots-4"><i class="fa fa-check"></i>Nur Kurz: Plots</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#ein-plot-zum-abschluss-9"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#ein-plot-zum-abschluss-10"><i class="fa fa-check"></i>Ein Plot zum Abschluss</a></li>
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#zum-nachdenken"><i class="fa fa-check"></i>Zum Nachdenken</a></li>
 <li class="chapter" data-level="" data-path="sitzung-8.html"><a href="sitzung-8.html#der-glühwein-ruft"><i class="fa fa-check"></i>Der Glühwein ruft</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html"><i class="fa fa-check"></i>Sitzung 9</a><ul>
-<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#experimentanalyse"><i class="fa fa-check"></i>Experimentanalyse</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html"><i class="fa fa-check"></i>Sitzung 9</a>
+<ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#experimentanalyse"><i class="fa fa-check"></i>Experimentanalyse</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#der-plan"><i class="fa fa-check"></i>Der Plan</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#einführung-ins-experiment"><i class="fa fa-check"></i>Einführung ins Experiment</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#einführung-ins-experiment-1"><i class="fa fa-check"></i>Einführung ins Experiment</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#daten-einlesen-und-aufbereiten"><i class="fa fa-check"></i>Daten einlesen und aufbereiten</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#daten-einlesen-und-aufbereiten"><i class="fa fa-check"></i>Daten einlesen und aufbereiten</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#daten-einlesen-und-überblick-verschaffen"><i class="fa fa-check"></i>Daten einlesen und Überblick verschaffen</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#überblick-ii"><i class="fa fa-check"></i>Überblick II</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#was-ist-zu-tun"><i class="fa fa-check"></i>Was ist zu tun?</a></li>
@@ -474,16 +522,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-iv-2"><i class="fa fa-check"></i>Lösung IV</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#optionale-kür"><i class="fa fa-check"></i>(Optionale Kür)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#deskriptive-statistik"><i class="fa fa-check"></i>Deskriptive Statistik</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#deskriptive-statistik"><i class="fa fa-check"></i>Deskriptive Statistik</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#describedescribeby"><i class="fa fa-check"></i>describe()/describeBy()</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösungen-v-3"><i class="fa fa-check"></i>Lösungen V</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#plots-1"><i class="fa fa-check"></i>Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#plots-1"><i class="fa fa-check"></i>Plots</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#plan"><i class="fa fa-check"></i>Plan</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#boxplot"><i class="fa fa-check"></i>Boxplot</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#boxplot-ii"><i class="fa fa-check"></i>Boxplot II</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#inferenzstatistik"><i class="fa fa-check"></i>Inferenzstatistik</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#inferenzstatistik"><i class="fa fa-check"></i>Inferenzstatistik</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#für-einen-test-entscheiden"><i class="fa fa-check"></i>Für einen Test entscheiden</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-12"><i class="fa fa-check"></i>Lösung</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-13"><i class="fa fa-check"></i>Lösung</a></li>
@@ -494,7 +545,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#sphärizität-in-der-afex-anova"><i class="fa fa-check"></i>Sphärizität in der afex-ANOVA</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#vergleich-beider-ergebnisse"><i class="fa fa-check"></i>Vergleich beider Ergebnisse</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste"><i class="fa fa-check"></i>Kontraste</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste"><i class="fa fa-check"></i>Kontraste</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste-kodieren-aber-wie"><i class="fa fa-check"></i>Kontraste kodieren, aber wie?</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#übung-6"><i class="fa fa-check"></i>Übung</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-16"><i class="fa fa-check"></i>Lösung</a></li>
@@ -502,7 +554,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#zum-selbst-ausprobieren"><i class="fa fa-check"></i>Zum selbst Ausprobieren</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#ergebnisse-des-großen-paarvergleichs"><i class="fa fa-check"></i>Ergebnisse des großen Paarvergleichs</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#nochmal-plots"><i class="fa fa-check"></i>Nochmal Plots</a><ul>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#nochmal-plots"><i class="fa fa-check"></i>Nochmal Plots</a>
+<ul>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#by-subject"><i class="fa fa-check"></i>by subject</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#by-subject-1"><i class="fa fa-check"></i>by subject</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#by-item"><i class="fa fa-check"></i>by item</a></li>
@@ -510,17 +563,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#off-to-the-rave"><i class="fa fa-check"></i>Off to the rave</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i>ggplot2</a><ul>
-<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#warum-plots-anscombes-quartett"><i class="fa fa-check"></i>Warum Plots: Anscombes Quartett</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i>ggplot2</a>
+<ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#warum-plots-anscombes-quartett"><i class="fa fa-check"></i>Warum Plots: Anscombes Quartett</a>
+<ul>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#scheinbar-gleiche-daten"><i class="fa fa-check"></i>Scheinbar gleiche Daten</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#aber"><i class="fa fa-check"></i>Aber!</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beispiele-1"><i class="fa fa-check"></i>Beispiele</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beispiele-1"><i class="fa fa-check"></i>Beispiele</a>
+<ul>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beispiel-1"><i class="fa fa-check"></i>Beispiel 1</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beispiel-2"><i class="fa fa-check"></i>Beispiel 2</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beispiel-3"><i class="fa fa-check"></i>Beispiel 3</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#einfache-plots"><i class="fa fa-check"></i>Einfache Plots</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#einfache-plots"><i class="fa fa-check"></i>Einfache Plots</a>
+<ul>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#daten-für-den-basisplot"><i class="fa fa-check"></i>Daten für den Basisplot</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#ggplot"><i class="fa fa-check"></i>ggplot()</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#ggplot-1"><i class="fa fa-check"></i>ggplot()</a></li>
@@ -543,7 +600,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#prozente-mit-label"><i class="fa fa-check"></i>Prozente mit Label</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#häufigkeiten-3"><i class="fa fa-check"></i>Häufigkeiten</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-erweitern"><i class="fa fa-check"></i>Plots erweitern</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-erweitern"><i class="fa fa-check"></i>Plots erweitern</a>
+<ul>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beschriftungen"><i class="fa fa-check"></i>Beschriftungen</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beschriftungen-1"><i class="fa fa-check"></i>Beschriftungen</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#beschriftungen-2"><i class="fa fa-check"></i>Beschriftungen</a></li>
@@ -557,7 +615,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#facetten"><i class="fa fa-check"></i>Facetten</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#facetten-1"><i class="fa fa-check"></i>Facetten</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-verschönern"><i class="fa fa-check"></i>Plots verschönern</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-verschönern"><i class="fa fa-check"></i>Plots verschönern</a>
+<ul>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#daten-für-den-basisplot-1"><i class="fa fa-check"></i>Daten für den Basisplot</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#basisplot"><i class="fa fa-check"></i>Basisplot</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#möglichkeit-1"><i class="fa fa-check"></i>Möglichkeit 1</a></li>
@@ -575,39 +634,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#palettenvorschau"><i class="fa fa-check"></i>Palettenvorschau</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#scico-in-action"><i class="fa fa-check"></i>scico in action</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plot-speichern"><i class="fa fa-check"></i>Plot speichern</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plot-speichern"><i class="fa fa-check"></i>Plot speichern</a>
+<ul>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-speichern"><i class="fa fa-check"></i>Plots speichern</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-verbinden"><i class="fa fa-check"></i>Plots verbinden</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-verbinden"><i class="fa fa-check"></i>Plots verbinden</a>
+<ul>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mehrere-plots-verbinden"><i class="fa fa-check"></i>Mehrere Plots verbinden</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#nrowncol"><i class="fa fa-check"></i>nrow/ncol</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#stat_summary"><i class="fa fa-check"></i>stat_summary()</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#stat_summary"><i class="fa fa-check"></i>stat_summary()</a>
+<ul>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#line-plot"><i class="fa fa-check"></i>Line Plot</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#line-plot-1"><i class="fa fa-check"></i>Line Plot</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#line-plot-2"><i class="fa fa-check"></i>Line Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#fehlerbalken"><i class="fa fa-check"></i>Fehlerbalken</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#fehlerbalken"><i class="fa fa-check"></i>Fehlerbalken</a>
+<ul>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#fehlerbalken-1"><i class="fa fa-check"></i>Fehlerbalken</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#andere-fehlerbalken"><i class="fa fa-check"></i>Andere Fehlerbalken</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#standardfehler-vs-standardabweichung"><i class="fa fa-check"></i>Standardfehler vs Standardabweichung</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#andere-fehlerbalken-1"><i class="fa fa-check"></i>Andere Fehlerbalken</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#standardfehler-vs-95-konfidenzintervall"><i class="fa fa-check"></i>Standardfehler vs 95% Konfidenzintervall</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#diagnostische-plots"><i class="fa fa-check"></i>Diagnostische Plots</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#diagnostische-plots"><i class="fa fa-check"></i>Diagnostische Plots</a>
+<ul>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#diagnostikfunktion"><i class="fa fa-check"></i>Diagnostikfunktion</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plots-2"><i class="fa fa-check"></i>Plots</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#alternative-base-r"><i class="fa fa-check"></i>Alternative: Base R</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#weitere-alternative"><i class="fa fa-check"></i>Weitere Alternative</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#ganz-simpel-residuenhistogramm"><i class="fa fa-check"></i>Ganz simpel: Residuenhistogramm</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#normalverteilung"><i class="fa fa-check"></i>Normalverteilung</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#normalverteilung"><i class="fa fa-check"></i>Normalverteilung</a>
+<ul>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#normalverteilung-daten"><i class="fa fa-check"></i>Normalverteilung: Daten</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#shapiro.test"><i class="fa fa-check"></i>shapiro.test</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#normalverteilung-daten-1"><i class="fa fa-check"></i>Normalverteilung: Daten</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#normalplots"><i class="fa fa-check"></i>Normalplots</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#boxplot-verbessern"><i class="fa fa-check"></i>Boxplot verbessern</a><ul>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#boxplot-verbessern"><i class="fa fa-check"></i>Boxplot verbessern</a>
+<ul>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mittelwerte-in-boxplots"><i class="fa fa-check"></i>Mittelwerte in Boxplots</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mittelwerte-in-boxplots-1"><i class="fa fa-check"></i>Mittelwerte in Boxplots</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#mittelwerte-in-boxplots-2"><i class="fa fa-check"></i>Mittelwerte in Boxplots</a></li>
@@ -622,34 +688,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#arbeitsstreik"><i class="fa fa-check"></i>Arbeitsstreik</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html"><i class="fa fa-check"></i>Gifs in R</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html"><i class="fa fa-check"></i>Gifs in R</a>
+<ul>
 <li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#normalverteilung-1"><i class="fa fa-check"></i>Normalverteilung</a></li>
 <li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#p-wert-verteilung"><i class="fa fa-check"></i>P-Wert-Verteilung</a></li>
-<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#korrelation"><i class="fa fa-check"></i>Korrelation</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#korrelation"><i class="fa fa-check"></i>Korrelation</a>
+<ul>
 <li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#correlation-between-random-deviates-from-normal-distribution-across-four-sample-sizes"><i class="fa fa-check"></i>Correlation between random deviates from normal distribution across four sample sizes</a></li>
 <li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#correlation-between-x-and-y-variables-that-have-a-true-correlation"><i class="fa fa-check"></i>Correlation between X and Y variables that have a true correlation</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#würfel"><i class="fa fa-check"></i>Würfel</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#würfel"><i class="fa fa-check"></i>Würfel</a>
+<ul>
 <li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#daten-2"><i class="fa fa-check"></i>Daten</a></li>
 <li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#plots-3"><i class="fa fa-check"></i>Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#zeitverlauf"><i class="fa fa-check"></i>Zeitverlauf</a></li>
-<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#central-limit-theorem"><i class="fa fa-check"></i>Central Limit Theorem</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#central-limit-theorem"><i class="fa fa-check"></i>Central Limit Theorem</a>
+<ul>
 <li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#daten-3"><i class="fa fa-check"></i>Daten</a></li>
 <li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#plots-4"><i class="fa fa-check"></i>Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#interaktive-plots"><i class="fa fa-check"></i>Interaktive Plots</a><ul>
+<li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#interaktive-plots"><i class="fa fa-check"></i>Interaktive Plots</a>
+<ul>
 <li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#economics"><i class="fa fa-check"></i>economics</a></li>
 <li class="chapter" data-level="" data-path="gifs-in-r.html"><a href="gifs-in-r.html#diamonds"><i class="fa fa-check"></i>diamonds</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="eine-shiny-app.html"><a href="eine-shiny-app.html"><i class="fa fa-check"></i>Eine Shiny App</a></li>
-<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html"><i class="fa fa-check"></i>Extrasitzung</a><ul>
-<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#einfach-textdateien-speichern"><i class="fa fa-check"></i>Einfach Textdateien speichern</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html"><i class="fa fa-check"></i>Extrasitzung</a>
+<ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#einfach-textdateien-speichern"><i class="fa fa-check"></i>Einfach Textdateien speichern</a>
+<ul>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#daten-4"><i class="fa fa-check"></i>Daten</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#sink"><i class="fa fa-check"></i>sink</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#funktionen-aus-dem-tidyverse"><i class="fa fa-check"></i>Funktionen aus dem tidyverse</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#funktionen-aus-dem-tidyverse"><i class="fa fa-check"></i>Funktionen aus dem tidyverse</a>
+<ul>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#tidyverse"><i class="fa fa-check"></i>Tidyverse</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#funktionen-die-man-kennen-sollte"><i class="fa fa-check"></i>Funktionen, die man kennen sollte</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#pipe"><i class="fa fa-check"></i>Pipe %&gt;%</a></li>
@@ -664,14 +738,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#filtern-und-plotten"><i class="fa fa-check"></i>Filtern und plotten</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#ein-tutorial"><i class="fa fa-check"></i>Ein Tutorial</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#for-loops"><i class="fa fa-check"></i>For-Loops</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#for-loops"><i class="fa fa-check"></i>For-Loops</a>
+<ul>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#loops"><i class="fa fa-check"></i>Loops</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#loops-1"><i class="fa fa-check"></i>Loops</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#übung-8"><i class="fa fa-check"></i>Übung</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#lösungen-18"><i class="fa fa-check"></i>Lösungen</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#lösungen-19"><i class="fa fa-check"></i>Lösungen</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#funktionen-die-das-coden-erleichtern"><i class="fa fa-check"></i>Funktionen, die das Coden erleichtern</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#funktionen-die-das-coden-erleichtern"><i class="fa fa-check"></i>Funktionen, die das Coden erleichtern</a>
+<ul>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#daten-5"><i class="fa fa-check"></i>Daten</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#by"><i class="fa fa-check"></i>by()</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#with"><i class="fa fa-check"></i>with()</a></li>
@@ -682,7 +758,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#apply-familie-1"><i class="fa fa-check"></i>apply()-Familie</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#unterschied-by-und-tapply"><i class="fa fa-check"></i>Unterschied by() und tapply()</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#janitor-paket"><i class="fa fa-check"></i>Janitor-Paket</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#janitor-paket"><i class="fa fa-check"></i>Janitor-Paket</a>
+<ul>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#installieren-und-laden"><i class="fa fa-check"></i>Installieren und laden</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#bessere-häufigkeitstabellen"><i class="fa fa-check"></i>Bessere Häufigkeitstabellen</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#bessere-häufigkeitstabellen-1"><i class="fa fa-check"></i>Bessere Häufigkeitstabellen</a></li>
@@ -690,15 +767,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#spalten-mit-konstanten-werten-entfernen"><i class="fa fa-check"></i>Spalten mit konstanten Werten entfernen</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#clean_names"><i class="fa fa-check"></i>clean_names()</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#bildverarbeitung-und--bearbeitung-in-r"><i class="fa fa-check"></i>Bildverarbeitung (und -bearbeitung) in R</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#bildverarbeitung-und--bearbeitung-in-r"><i class="fa fa-check"></i>Bildverarbeitung (und -bearbeitung) in R</a>
+<ul>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#magick"><i class="fa fa-check"></i>magick</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#popularity-contest"><i class="fa fa-check"></i>Popularity Contest</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#popularity-contest"><i class="fa fa-check"></i>Popularity Contest</a>
+<ul>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#die-populärsten-pakete"><i class="fa fa-check"></i>Die populärsten Pakete</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#die-populärsten-pakete-1"><i class="fa fa-check"></i>Die populärsten Pakete</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#fin"><i class="fa fa-check"></i>fin</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#anhang-die-wichtigsten-funktionen"><i class="fa fa-check"></i>Anhang: Die wichtigsten Funktionen</a><ul>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#anhang-die-wichtigsten-funktionen"><i class="fa fa-check"></i>Anhang: Die wichtigsten Funktionen</a>
+<ul>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#allgemein"><i class="fa fa-check"></i>Allgemein</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#mathe"><i class="fa fa-check"></i>Mathe</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#statistik"><i class="fa fa-check"></i>Statistik</a></li>
@@ -728,6 +808,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class = rmdreview>
 This book is in <b><a href="open.html#open">Open Review</a></b>. I want your feedback to make the book better for you and other readers. To add your annotation, <span style="background-color: #3297FD; color: white">select some text</span> and then click the <i class="h-icon-annotate"></i> on the pop-up menu. To see the annotations of others, click the <i class="h-icon-chevron-left"></i> in the upper right hand corner of the page <i class="fa fa-arrow-circle-right  fa-rotate-315" aria-hidden="true"></i>
 </div>
+
 <div id="sitzung-6" class="section level1">
 <h1>Sitzung 6</h1>
 <div id="wiederholung-4" class="section level2">
@@ -735,19 +816,19 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <div id="das-wichtigste-vom-letzten-mal-9" class="section level3">
 <h3>Das Wichtigste vom letzten Mal</h3>
 <p>Tabellen verknüpfen</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" data-line-number="1"><span class="kw">cbind</span>()</a>
-<a class="sourceLine" id="cb383-2" data-line-number="2"><span class="kw">rbind</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="sitzung-6.html#cb383-1"></a><span class="kw">cbind</span>()</span>
+<span id="cb383-2"><a href="sitzung-6.html#cb383-2"></a><span class="kw">rbind</span>()</span></code></pre></div>
 <p>Faktoren und NAs</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="ot">NA</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb384-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">factor</span>(a)</a>
-<a class="sourceLine" id="cb384-3" data-line-number="3">b</a></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="sitzung-6.html#cb384-1"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="ot">NA</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">4</span>)</span>
+<span id="cb384-2"><a href="sitzung-6.html#cb384-2"></a>b &lt;-<span class="st"> </span><span class="kw">factor</span>(a)</span>
+<span id="cb384-3"><a href="sitzung-6.html#cb384-3"></a>b</span></code></pre></div>
 <pre><code>##  [1] 1    2    3    4    5    4    3    5    &lt;NA&gt; 4    2    1    2    3    3   
 ## [16] 6    4   
 ## Levels: 1 2 3 4 5 6</code></pre>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" data-line-number="1"><span class="kw">anyNA</span>(b)</a></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="sitzung-6.html#cb386-1"></a><span class="kw">anyNA</span>(b)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" data-line-number="1">b &lt;-<span class="st"> </span><span class="kw">na.omit</span>(b)</a>
-<a class="sourceLine" id="cb388-2" data-line-number="2"><span class="kw">length</span>(b) <span class="op">==</span><span class="st"> </span><span class="kw">length</span>(a) <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="sitzung-6.html#cb388-1"></a>b &lt;-<span class="st"> </span><span class="kw">na.omit</span>(b)</span>
+<span id="cb388-2"><a href="sitzung-6.html#cb388-2"></a><span class="kw">length</span>(b) <span class="op">==</span><span class="st"> </span><span class="kw">length</span>(a) <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 </div>
@@ -755,36 +836,36 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <h2>Pakete und mehr Statistik</h2>
 <div id="viel-tipparbeit" class="section level3">
 <h3>Viel Tipparbeit</h3>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1"><span class="kw">length</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="sitzung-6.html#cb390-1"></a><span class="kw">length</span>(a)</span></code></pre></div>
 <pre><code>## [1] 16</code></pre>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1"><span class="kw">mean</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="sitzung-6.html#cb392-1"></a><span class="kw">mean</span>(a)</span></code></pre></div>
 <pre><code>## [1] 3.25</code></pre>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" data-line-number="1"><span class="kw">sd</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="sitzung-6.html#cb394-1"></a><span class="kw">sd</span>(a)</span></code></pre></div>
 <pre><code>## [1] 1.437591</code></pre>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" data-line-number="1"><span class="kw">median</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="sitzung-6.html#cb396-1"></a><span class="kw">median</span>(a)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" data-line-number="1"><span class="kw">mad</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="sitzung-6.html#cb398-1"></a><span class="kw">mad</span>(a)</span></code></pre></div>
 <pre><code>## [1] 1.4826</code></pre>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" data-line-number="1"><span class="kw">min</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="sitzung-6.html#cb400-1"></a><span class="kw">min</span>(a)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" data-line-number="1"><span class="kw">max</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="sitzung-6.html#cb402-1"></a><span class="kw">max</span>(a)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" data-line-number="1"><span class="kw">range</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="sitzung-6.html#cb404-1"></a><span class="kw">range</span>(a)</span></code></pre></div>
 <pre><code>## [1] 1 6</code></pre>
 </div>
 <div id="wenig-tipparbeit-mit-paketen" class="section level3">
 <h3>Wenig Tipparbeit (mit Paketen)</h3>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" data-line-number="1"><span class="kw">describe</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="sitzung-6.html#cb406-1"></a><span class="kw">describe</span>(a)</span></code></pre></div>
 <pre><code>##    vars  n mean   sd median trimmed  mad min max range skew kurtosis   se
 ## X1    1 16 3.25 1.44      3    3.21 1.48   1   6     5 0.09    -1.01 0.36</code></pre>
 </div>
 <div id="pakete-installieren" class="section level3">
 <h3>Pakete installieren</h3>
 <p>Pakete installieren (muss nur einmal gemacht werden):</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;psych&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="sitzung-6.html#cb408-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;psych&quot;</span>)</span></code></pre></div>
 <p>Pakete einbinden, damit die darin enthaltenen Funktionen verwendet werden können (muss in jeder neuen R-Session gemacht werden; am besten an den Anfang des Skripts schreiben)</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" data-line-number="1"><span class="kw">library</span>(psych)</a></code></pre></div>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" data-line-number="1"><span class="kw">describe</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="sitzung-6.html#cb409-1"></a><span class="kw">library</span>(psych)</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="sitzung-6.html#cb410-1"></a><span class="kw">describe</span>(a)</span></code></pre></div>
 <pre><code>##    vars  n mean   sd median trimmed  mad min max range skew kurtosis   se
 ## X1    1 16 3.25 1.44      3    3.21 1.48   1   6     5 0.09    -1.01 0.36</code></pre>
 </div>
@@ -792,33 +873,33 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <h3>Interlude: Mein Skiptanfang</h3>
 <p>Meine Skipte fangen in der Regel so an wie unten.</p>
 <p>Einige der Pakete werdet ihr im Laufe dieses Semesters kennenlernen; andere sind für euch entweder nicht wichtig, oder die enthaltenen Funktionen übersteigen den (statistischen) Seminarstoff.</p>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" data-line-number="1"><span class="co">### %#################################################################################%</span><span class="al">###</span></a>
-<a class="sourceLine" id="cb412-2" data-line-number="2"><span class="co">#                                                          #</span></a>
-<a class="sourceLine" id="cb412-3" data-line-number="3"><span class="co">######                     &lt;&lt;Titel&gt;&gt;                      ######</span></a>
-<a class="sourceLine" id="cb412-4" data-line-number="4"><span class="co">#                                                          #</span></a>
-<a class="sourceLine" id="cb412-5" data-line-number="5"><span class="co">### %#################################################################################%</span><span class="al">###</span></a>
-<a class="sourceLine" id="cb412-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb412-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb412-8" data-line-number="8"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>()) <span class="co"># empty environment</span></a>
-<a class="sourceLine" id="cb412-9" data-line-number="9"><span class="kw">options</span>(<span class="dt">scipen =</span> <span class="dv">999</span>) <span class="co"># no scientific number notation</span></a>
-<a class="sourceLine" id="cb412-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb412-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb412-12" data-line-number="12"><span class="kw">library</span>(ez)</a>
-<a class="sourceLine" id="cb412-13" data-line-number="13"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb412-14" data-line-number="14"><span class="kw">library</span>(psych) <span class="co"># describeBy</span></a>
-<a class="sourceLine" id="cb412-15" data-line-number="15"><span class="kw">library</span>(gridExtra) <span class="co"># grid.arrange for plots</span></a>
-<a class="sourceLine" id="cb412-16" data-line-number="16"><span class="kw">library</span>(ggpubr) <span class="co"># theme_pubr(margin = F) + labs_pubr()</span></a>
-<a class="sourceLine" id="cb412-17" data-line-number="17"><span class="kw">library</span>(data.table)</a>
-<a class="sourceLine" id="cb412-18" data-line-number="18"><span class="kw">library</span>(ordinal) <span class="co"># used for the glmm</span></a>
-<a class="sourceLine" id="cb412-19" data-line-number="19"><span class="kw">library</span>(lme4)</a>
-<a class="sourceLine" id="cb412-20" data-line-number="20"><span class="kw">library</span>(ggthemes)</a>
-<a class="sourceLine" id="cb412-21" data-line-number="21"><span class="kw">library</span>(tikzDevice) <span class="co"># ggplot-latex</span></a>
-<a class="sourceLine" id="cb412-22" data-line-number="22"><span class="kw">library</span>(xtable) <span class="co"># table-latex</span></a></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="sitzung-6.html#cb412-1"></a><span class="co">### %#################################################################################%</span><span class="al">###</span></span>
+<span id="cb412-2"><a href="sitzung-6.html#cb412-2"></a><span class="co">#                                                          #</span></span>
+<span id="cb412-3"><a href="sitzung-6.html#cb412-3"></a><span class="co">######                     &lt;&lt;Titel&gt;&gt;                      ######</span></span>
+<span id="cb412-4"><a href="sitzung-6.html#cb412-4"></a><span class="co">#                                                          #</span></span>
+<span id="cb412-5"><a href="sitzung-6.html#cb412-5"></a><span class="co">### %#################################################################################%</span><span class="al">###</span></span>
+<span id="cb412-6"><a href="sitzung-6.html#cb412-6"></a></span>
+<span id="cb412-7"><a href="sitzung-6.html#cb412-7"></a></span>
+<span id="cb412-8"><a href="sitzung-6.html#cb412-8"></a><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>()) <span class="co"># empty environment</span></span>
+<span id="cb412-9"><a href="sitzung-6.html#cb412-9"></a><span class="kw">options</span>(<span class="dt">scipen =</span> <span class="dv">999</span>) <span class="co"># no scientific number notation</span></span>
+<span id="cb412-10"><a href="sitzung-6.html#cb412-10"></a></span>
+<span id="cb412-11"><a href="sitzung-6.html#cb412-11"></a></span>
+<span id="cb412-12"><a href="sitzung-6.html#cb412-12"></a><span class="kw">library</span>(ez)</span>
+<span id="cb412-13"><a href="sitzung-6.html#cb412-13"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb412-14"><a href="sitzung-6.html#cb412-14"></a><span class="kw">library</span>(psych) <span class="co"># describeBy</span></span>
+<span id="cb412-15"><a href="sitzung-6.html#cb412-15"></a><span class="kw">library</span>(gridExtra) <span class="co"># grid.arrange for plots</span></span>
+<span id="cb412-16"><a href="sitzung-6.html#cb412-16"></a><span class="kw">library</span>(ggpubr) <span class="co"># theme_pubr(margin = F) + labs_pubr()</span></span>
+<span id="cb412-17"><a href="sitzung-6.html#cb412-17"></a><span class="kw">library</span>(data.table)</span>
+<span id="cb412-18"><a href="sitzung-6.html#cb412-18"></a><span class="kw">library</span>(ordinal) <span class="co"># used for the glmm</span></span>
+<span id="cb412-19"><a href="sitzung-6.html#cb412-19"></a><span class="kw">library</span>(lme4)</span>
+<span id="cb412-20"><a href="sitzung-6.html#cb412-20"></a><span class="kw">library</span>(ggthemes)</span>
+<span id="cb412-21"><a href="sitzung-6.html#cb412-21"></a><span class="kw">library</span>(tikzDevice) <span class="co"># ggplot-latex</span></span>
+<span id="cb412-22"><a href="sitzung-6.html#cb412-22"></a><span class="kw">library</span>(xtable) <span class="co"># table-latex</span></span></code></pre></div>
 </div>
 <div id="describeby" class="section level3">
 <h3>describeBy()</h3>
 <p>Gibt die wichtigsten deskriptiv-statistischen Berechnungen (in unserem Fall idR für eine abhängige Variable) wieder. Da man es jedoch oft mit Experimenten zu tun hat, in denen mindestens zwei Bedingungen einer unanhängigen Variable Einfluss auf die Messung nehmen, gibt es außerdem <code>describeBy</code></p>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" data-line-number="1"><span class="kw">describeBy</span>(diamonds<span class="op">$</span>price, diamonds<span class="op">$</span>cut)</a></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="sitzung-6.html#cb413-1"></a><span class="kw">describeBy</span>(diamonds<span class="op">$</span>price, diamonds<span class="op">$</span>cut)</span></code></pre></div>
 <pre><code>## 
 ##  Descriptive statistics by group 
 ## group: Fair
@@ -858,7 +939,7 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <li>Anzahl der Nachkommastellen bestimmten: digits = Zahl</li>
 <li>Ouput der Funktion als Matrix: mat = TRUE</li>
 </ul>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" data-line-number="1"><span class="kw">describeBy</span>(diamonds<span class="op">$</span>price, diamonds<span class="op">$</span>cut, <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">mat =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="sitzung-6.html#cb415-1"></a><span class="kw">describeBy</span>(diamonds<span class="op">$</span>price, diamonds<span class="op">$</span>cut, <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">mat =</span> T)</span></code></pre></div>
 <pre><code>##     item    group1 vars     n    mean      sd median trimmed     mad min   max
 ## X11    1      Fair    1  1610 4358.76 3560.39 3282.0 3695.65 2183.13 337 18574
 ## X12    2      Good    1  4906 3928.86 3681.59 3050.5 3251.51 2853.26 327 18788
@@ -875,8 +956,8 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <div id="describeby-2" class="section level3">
 <h3>describeBy()</h3>
 <p>Falls mehr als nur ein Faktor mit einbezogen werden sollen, muss das zweite Argument der Funktion eine <code>list</code> sein, die sämtliche dieser Faktoren enthält</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" data-line-number="1"><span class="kw">describeBy</span>(diamonds<span class="op">$</span>price, <span class="kw">list</span>(diamonds<span class="op">$</span>cut, diamonds<span class="op">$</span>color),</a>
-<a class="sourceLine" id="cb417-2" data-line-number="2">  <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">mat =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="sitzung-6.html#cb417-1"></a><span class="kw">describeBy</span>(diamonds<span class="op">$</span>price, <span class="kw">list</span>(diamonds<span class="op">$</span>cut, diamonds<span class="op">$</span>color),</span>
+<span id="cb417-2"><a href="sitzung-6.html#cb417-2"></a>  <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">mat =</span> T)</span></code></pre></div>
 <pre><code>##      item    group1 group2 vars    n    mean      sd median trimmed     mad min
 ## X11     1      Fair      D    1  163 4291.06 3286.11 3730.0 3703.96 2043.02 536
 ## X12     2      Good      D    1  662 3405.38 3175.15 2728.5 2859.30 2674.61 361
@@ -959,37 +1040,37 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <p><code>name &lt;- function(argument){Berechnung}</code></p>
 <p>Hier ein Beispiel für den Standardfehler des Stichprobenmittelwerts:</p>
 <p><span class="math display">\[s_{\bar{x}} = \frac{s}{\sqrt{n}}\]</span></p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" data-line-number="1">std.error &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb419-2" data-line-number="2">  <span class="kw">sd</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(x))</a>
-<a class="sourceLine" id="cb419-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb419-4" data-line-number="4">sample &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb419-5" data-line-number="5"><span class="kw">std.error</span>(sample) <span class="op">==</span><span class="st"> </span><span class="kw">sd</span>(sample) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(sample))</a></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="sitzung-6.html#cb419-1"></a>std.error &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb419-2"><a href="sitzung-6.html#cb419-2"></a>  <span class="kw">sd</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(x))</span>
+<span id="cb419-3"><a href="sitzung-6.html#cb419-3"></a>}</span>
+<span id="cb419-4"><a href="sitzung-6.html#cb419-4"></a>sample &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">9</span>)</span>
+<span id="cb419-5"><a href="sitzung-6.html#cb419-5"></a><span class="kw">std.error</span>(sample) <span class="op">==</span><span class="st"> </span><span class="kw">sd</span>(sample) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(sample))</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" data-line-number="1"><span class="kw">std.error</span>(sample)</a></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="sitzung-6.html#cb421-1"></a><span class="kw">std.error</span>(sample)</span></code></pre></div>
 <pre><code>## [1] 1.13089</code></pre>
 </div>
 <div id="mehr-beispiele" class="section level3">
 <h3>Mehr Beispiele</h3>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" data-line-number="1"><span class="co"># celsius nach kelvin konvertieren</span></a>
-<a class="sourceLine" id="cb423-2" data-line-number="2">celsius.kelvin &lt;-<span class="st"> </span><span class="cf">function</span>(temp) {</a>
-<a class="sourceLine" id="cb423-3" data-line-number="3">  temp <span class="op">+</span><span class="st"> </span><span class="fl">273.15</span></a>
-<a class="sourceLine" id="cb423-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb423-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb423-6" data-line-number="6"><span class="co"># fahrenheit nach kelvin konvertieren</span></a>
-<a class="sourceLine" id="cb423-7" data-line-number="7">fahrenheit.celsius &lt;-<span class="st"> </span><span class="cf">function</span>(temp) {</a>
-<a class="sourceLine" id="cb423-8" data-line-number="8">  (temp <span class="op">-</span><span class="st"> </span><span class="dv">32</span>) <span class="op">*</span><span class="st"> </span><span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span></a>
-<a class="sourceLine" id="cb423-9" data-line-number="9">}</a>
-<a class="sourceLine" id="cb423-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb423-11" data-line-number="11"><span class="co"># celsius nach fahrenheit konvertieren</span></a>
-<a class="sourceLine" id="cb423-12" data-line-number="12">celsius.fahrenheit &lt;-<span class="st"> </span><span class="cf">function</span>(temp) {</a>
-<a class="sourceLine" id="cb423-13" data-line-number="13">  temp <span class="op">*</span><span class="st"> </span><span class="dv">9</span> <span class="op">/</span><span class="st"> </span><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">32</span></a>
-<a class="sourceLine" id="cb423-14" data-line-number="14">}</a>
-<a class="sourceLine" id="cb423-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb423-16" data-line-number="16"><span class="kw">celsius.kelvin</span>(<span class="dv">36</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="sitzung-6.html#cb423-1"></a><span class="co"># celsius nach kelvin konvertieren</span></span>
+<span id="cb423-2"><a href="sitzung-6.html#cb423-2"></a>celsius.kelvin &lt;-<span class="st"> </span><span class="cf">function</span>(temp) {</span>
+<span id="cb423-3"><a href="sitzung-6.html#cb423-3"></a>  temp <span class="op">+</span><span class="st"> </span><span class="fl">273.15</span></span>
+<span id="cb423-4"><a href="sitzung-6.html#cb423-4"></a>}</span>
+<span id="cb423-5"><a href="sitzung-6.html#cb423-5"></a></span>
+<span id="cb423-6"><a href="sitzung-6.html#cb423-6"></a><span class="co"># fahrenheit nach kelvin konvertieren</span></span>
+<span id="cb423-7"><a href="sitzung-6.html#cb423-7"></a>fahrenheit.celsius &lt;-<span class="st"> </span><span class="cf">function</span>(temp) {</span>
+<span id="cb423-8"><a href="sitzung-6.html#cb423-8"></a>  (temp <span class="op">-</span><span class="st"> </span><span class="dv">32</span>) <span class="op">*</span><span class="st"> </span><span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span></span>
+<span id="cb423-9"><a href="sitzung-6.html#cb423-9"></a>}</span>
+<span id="cb423-10"><a href="sitzung-6.html#cb423-10"></a></span>
+<span id="cb423-11"><a href="sitzung-6.html#cb423-11"></a><span class="co"># celsius nach fahrenheit konvertieren</span></span>
+<span id="cb423-12"><a href="sitzung-6.html#cb423-12"></a>celsius.fahrenheit &lt;-<span class="st"> </span><span class="cf">function</span>(temp) {</span>
+<span id="cb423-13"><a href="sitzung-6.html#cb423-13"></a>  temp <span class="op">*</span><span class="st"> </span><span class="dv">9</span> <span class="op">/</span><span class="st"> </span><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">32</span></span>
+<span id="cb423-14"><a href="sitzung-6.html#cb423-14"></a>}</span>
+<span id="cb423-15"><a href="sitzung-6.html#cb423-15"></a></span>
+<span id="cb423-16"><a href="sitzung-6.html#cb423-16"></a><span class="kw">celsius.kelvin</span>(<span class="dv">36</span>)</span></code></pre></div>
 <pre><code>## [1] 309.15</code></pre>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" data-line-number="1"><span class="kw">fahrenheit.celsius</span>(<span class="fl">96.8</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="sitzung-6.html#cb425-1"></a><span class="kw">fahrenheit.celsius</span>(<span class="fl">96.8</span>)</span></code></pre></div>
 <pre><code>## [1] 36</code></pre>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" data-line-number="1"><span class="kw">celsius.fahrenheit</span>(<span class="dv">36</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="sitzung-6.html#cb427-1"></a><span class="kw">celsius.fahrenheit</span>(<span class="dv">36</span>)</span></code></pre></div>
 <pre><code>## [1] 96.8</code></pre>
 </div>
 <div id="übungen-2" class="section level3">
@@ -1010,15 +1091,15 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <ol style="list-style-type: decimal">
 <li>Schreibt eine funktion, die aus einer gegebenen Zahl ihr Quadrat berechnet</li>
 </ol>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" data-line-number="1">my.square &lt;-<span class="st"> </span><span class="cf">function</span>(n) {</a>
-<a class="sourceLine" id="cb429-2" data-line-number="2">  n <span class="op">*</span><span class="st"> </span>n</a>
-<a class="sourceLine" id="cb429-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb429-4" data-line-number="4">my.squaretwo &lt;-<span class="st"> </span><span class="cf">function</span>(n) {</a>
-<a class="sourceLine" id="cb429-5" data-line-number="5">  n<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb429-6" data-line-number="6">}</a>
-<a class="sourceLine" id="cb429-7" data-line-number="7"><span class="kw">my.square</span>(<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="sitzung-6.html#cb429-1"></a>my.square &lt;-<span class="st"> </span><span class="cf">function</span>(n) {</span>
+<span id="cb429-2"><a href="sitzung-6.html#cb429-2"></a>  n <span class="op">*</span><span class="st"> </span>n</span>
+<span id="cb429-3"><a href="sitzung-6.html#cb429-3"></a>}</span>
+<span id="cb429-4"><a href="sitzung-6.html#cb429-4"></a>my.squaretwo &lt;-<span class="st"> </span><span class="cf">function</span>(n) {</span>
+<span id="cb429-5"><a href="sitzung-6.html#cb429-5"></a>  n<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb429-6"><a href="sitzung-6.html#cb429-6"></a>}</span>
+<span id="cb429-7"><a href="sitzung-6.html#cb429-7"></a><span class="kw">my.square</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] 100</code></pre>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" data-line-number="1"><span class="kw">my.squaretwo</span>(<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="sitzung-6.html#cb431-1"></a><span class="kw">my.squaretwo</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] 100</code></pre>
 </div>
 <div id="lösungen-9" class="section level3">
@@ -1026,16 +1107,16 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <ol start="2" style="list-style-type: decimal">
 <li>Schreibt eine Funktion, die den <code>describeBy</code>-Befehl auf ihre Argumente anwendet und die Matrix als data frame ausgibt</li>
 </ol>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb433-1" data-line-number="1">describeByDF &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
-<a class="sourceLine" id="cb433-2" data-line-number="2">  d &lt;-<span class="st"> </span><span class="kw">describeBy</span>(x, y, <span class="dt">mat =</span> T)</a>
-<a class="sourceLine" id="cb433-3" data-line-number="3">  d &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)</a>
-<a class="sourceLine" id="cb433-4" data-line-number="4">  d</a>
-<a class="sourceLine" id="cb433-5" data-line-number="5">}</a>
-<a class="sourceLine" id="cb433-6" data-line-number="6">descrip &lt;-<span class="st"> </span><span class="kw">describeByDF</span>(diamonds<span class="op">$</span>price,</a>
-<a class="sourceLine" id="cb433-7" data-line-number="7">  <span class="kw">list</span>(diamonds<span class="op">$</span>cut, diamonds<span class="op">$</span>color))</a>
-<a class="sourceLine" id="cb433-8" data-line-number="8"><span class="kw">is.data.frame</span>(descrip)</a></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="sitzung-6.html#cb433-1"></a>describeByDF &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</span>
+<span id="cb433-2"><a href="sitzung-6.html#cb433-2"></a>  d &lt;-<span class="st"> </span><span class="kw">describeBy</span>(x, y, <span class="dt">mat =</span> T)</span>
+<span id="cb433-3"><a href="sitzung-6.html#cb433-3"></a>  d &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)</span>
+<span id="cb433-4"><a href="sitzung-6.html#cb433-4"></a>  d</span>
+<span id="cb433-5"><a href="sitzung-6.html#cb433-5"></a>}</span>
+<span id="cb433-6"><a href="sitzung-6.html#cb433-6"></a>descrip &lt;-<span class="st"> </span><span class="kw">describeByDF</span>(diamonds<span class="op">$</span>price,</span>
+<span id="cb433-7"><a href="sitzung-6.html#cb433-7"></a>  <span class="kw">list</span>(diamonds<span class="op">$</span>cut, diamonds<span class="op">$</span>color))</span>
+<span id="cb433-8"><a href="sitzung-6.html#cb433-8"></a><span class="kw">is.data.frame</span>(descrip)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" data-line-number="1"><span class="kw">head</span>(descrip)</a></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="sitzung-6.html#cb435-1"></a><span class="kw">head</span>(descrip)</span></code></pre></div>
 <pre><code>##     item    group1 group2 vars    n     mean       sd median  trimmed      mad
 ## X11    1      Fair      D    1  163 4291.061 3286.114 3730.0 3703.962 2043.023
 ## X12    2      Good      D    1  662 3405.382 3175.149 2728.5 2859.296 2674.610
@@ -1056,12 +1137,12 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <ol start="3" style="list-style-type: decimal">
 <li>Schreibt eine Funktion, die den Mittelwert ihres Arguments berechnet (ohne <code>mean</code>!)</li>
 </ol>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" data-line-number="1">mein.mittelwert &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb437-2" data-line-number="2">  <span class="kw">sum</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)</a>
-<a class="sourceLine" id="cb437-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb437-4" data-line-number="4"><span class="kw">mein.mittelwert</span>(sample) <span class="op">==</span><span class="st"> </span><span class="kw">mean</span>(sample)</a></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="sitzung-6.html#cb437-1"></a>mein.mittelwert &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb437-2"><a href="sitzung-6.html#cb437-2"></a>  <span class="kw">sum</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)</span>
+<span id="cb437-3"><a href="sitzung-6.html#cb437-3"></a>}</span>
+<span id="cb437-4"><a href="sitzung-6.html#cb437-4"></a><span class="kw">mein.mittelwert</span>(sample) <span class="op">==</span><span class="st"> </span><span class="kw">mean</span>(sample)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" data-line-number="1"><span class="kw">mein.mittelwert</span>(sample)</a></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="sitzung-6.html#cb439-1"></a><span class="kw">mein.mittelwert</span>(sample)</span></code></pre></div>
 <pre><code>## [1] 3.571429</code></pre>
 </div>
 <div id="lösungen-11" class="section level3">
@@ -1069,19 +1150,19 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <ol start="4" style="list-style-type: decimal">
 <li>Schreibt eine Funktion, die das erste und das letzte Element eines Vektors ausgibt</li>
 </ol>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" data-line-number="1">sample</a></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="sitzung-6.html#cb441-1"></a>sample</span></code></pre></div>
 <pre><code>## [1] 1 1 2 2 4 6 9</code></pre>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" data-line-number="1">my.ends &lt;-<span class="st"> </span><span class="cf">function</span>(vector) {</a>
-<a class="sourceLine" id="cb443-2" data-line-number="2">  answer &lt;-<span class="st"> </span><span class="kw">c</span>(vector[<span class="dv">1</span>], vector[<span class="kw">length</span>(vector)])</a>
-<a class="sourceLine" id="cb443-3" data-line-number="3">  answer</a>
-<a class="sourceLine" id="cb443-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb443-5" data-line-number="5">my.ends2 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb443-6" data-line-number="6">  <span class="kw">c</span>(<span class="kw">head</span>(x, <span class="dv">1</span>), <span class="kw">tail</span>(x, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb443-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb443-8" data-line-number="8">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">15</span></a>
-<a class="sourceLine" id="cb443-9" data-line-number="9"><span class="kw">my.ends2</span>(sample)</a></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="sitzung-6.html#cb443-1"></a>my.ends &lt;-<span class="st"> </span><span class="cf">function</span>(vector) {</span>
+<span id="cb443-2"><a href="sitzung-6.html#cb443-2"></a>  answer &lt;-<span class="st"> </span><span class="kw">c</span>(vector[<span class="dv">1</span>], vector[<span class="kw">length</span>(vector)])</span>
+<span id="cb443-3"><a href="sitzung-6.html#cb443-3"></a>  answer</span>
+<span id="cb443-4"><a href="sitzung-6.html#cb443-4"></a>}</span>
+<span id="cb443-5"><a href="sitzung-6.html#cb443-5"></a>my.ends2 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb443-6"><a href="sitzung-6.html#cb443-6"></a>  <span class="kw">c</span>(<span class="kw">head</span>(x, <span class="dv">1</span>), <span class="kw">tail</span>(x, <span class="dv">1</span>))</span>
+<span id="cb443-7"><a href="sitzung-6.html#cb443-7"></a>}</span>
+<span id="cb443-8"><a href="sitzung-6.html#cb443-8"></a>a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">15</span></span>
+<span id="cb443-9"><a href="sitzung-6.html#cb443-9"></a><span class="kw">my.ends2</span>(sample)</span></code></pre></div>
 <pre><code>## [1] 1 9</code></pre>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" data-line-number="1"><span class="kw">my.ends</span>(sample)</a></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="sitzung-6.html#cb445-1"></a><span class="kw">my.ends</span>(sample)</span></code></pre></div>
 <pre><code>## [1] 1 9</code></pre>
 </div>
 <div id="lösungen-12" class="section level3">
@@ -1089,23 +1170,23 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <ol start="5" style="list-style-type: decimal">
 <li>Schreibt eine Funktion, die den Mittelwert, die Standardabweichung und den Median eines Vektors berechnet und als Vektor ausgibt.</li>
 </ol>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" data-line-number="1">my.desc &lt;-<span class="st"> </span><span class="cf">function</span>(vector) {</a>
-<a class="sourceLine" id="cb447-2" data-line-number="2">  mean &lt;-<span class="st"> </span><span class="kw">mean</span>(vector)</a>
-<a class="sourceLine" id="cb447-3" data-line-number="3">  sd &lt;-<span class="st"> </span><span class="kw">sd</span>(vector)</a>
-<a class="sourceLine" id="cb447-4" data-line-number="4">  median &lt;-<span class="st"> </span><span class="kw">median</span>(vector)</a>
-<a class="sourceLine" id="cb447-5" data-line-number="5">  desc &lt;-<span class="st"> </span><span class="kw">c</span>(mean, sd, median)</a>
-<a class="sourceLine" id="cb447-6" data-line-number="6">  desc</a>
-<a class="sourceLine" id="cb447-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb447-8" data-line-number="8"><span class="kw">my.desc</span>(sample)</a></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="sitzung-6.html#cb447-1"></a>my.desc &lt;-<span class="st"> </span><span class="cf">function</span>(vector) {</span>
+<span id="cb447-2"><a href="sitzung-6.html#cb447-2"></a>  mean &lt;-<span class="st"> </span><span class="kw">mean</span>(vector)</span>
+<span id="cb447-3"><a href="sitzung-6.html#cb447-3"></a>  sd &lt;-<span class="st"> </span><span class="kw">sd</span>(vector)</span>
+<span id="cb447-4"><a href="sitzung-6.html#cb447-4"></a>  median &lt;-<span class="st"> </span><span class="kw">median</span>(vector)</span>
+<span id="cb447-5"><a href="sitzung-6.html#cb447-5"></a>  desc &lt;-<span class="st"> </span><span class="kw">c</span>(mean, sd, median)</span>
+<span id="cb447-6"><a href="sitzung-6.html#cb447-6"></a>  desc</span>
+<span id="cb447-7"><a href="sitzung-6.html#cb447-7"></a>}</span>
+<span id="cb447-8"><a href="sitzung-6.html#cb447-8"></a><span class="kw">my.desc</span>(sample)</span></code></pre></div>
 <pre><code>## [1] 3.571429 2.992053 2.000000</code></pre>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" data-line-number="1">standard &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(sample), <span class="kw">sd</span>(sample), <span class="kw">median</span>(sample))</a>
-<a class="sourceLine" id="cb449-2" data-line-number="2"><span class="kw">my.desc</span>(sample) <span class="op">==</span><span class="st"> </span>standard</a></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="sitzung-6.html#cb449-1"></a>standard &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(sample), <span class="kw">sd</span>(sample), <span class="kw">median</span>(sample))</span>
+<span id="cb449-2"><a href="sitzung-6.html#cb449-2"></a><span class="kw">my.desc</span>(sample) <span class="op">==</span><span class="st"> </span>standard</span></code></pre></div>
 <pre><code>## [1] TRUE TRUE TRUE</code></pre>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" data-line-number="1">my.desc2 &lt;-<span class="st"> </span><span class="cf">function</span>(vector) {</a>
-<a class="sourceLine" id="cb451-2" data-line-number="2">  a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(vector), <span class="kw">sd</span>(vector), <span class="kw">median</span>(vector))</a>
-<a class="sourceLine" id="cb451-3" data-line-number="3">  a</a>
-<a class="sourceLine" id="cb451-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb451-5" data-line-number="5"><span class="kw">my.desc2</span>(sample) <span class="op">==</span><span class="st"> </span><span class="kw">my.desc</span>(sample)</a></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="sitzung-6.html#cb451-1"></a>my.desc2 &lt;-<span class="st"> </span><span class="cf">function</span>(vector) {</span>
+<span id="cb451-2"><a href="sitzung-6.html#cb451-2"></a>  a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(vector), <span class="kw">sd</span>(vector), <span class="kw">median</span>(vector))</span>
+<span id="cb451-3"><a href="sitzung-6.html#cb451-3"></a>  a</span>
+<span id="cb451-4"><a href="sitzung-6.html#cb451-4"></a>}</span>
+<span id="cb451-5"><a href="sitzung-6.html#cb451-5"></a><span class="kw">my.desc2</span>(sample) <span class="op">==</span><span class="st"> </span><span class="kw">my.desc</span>(sample)</span></code></pre></div>
 <pre><code>## [1] TRUE TRUE TRUE</code></pre>
 </div>
 </div>
@@ -1113,16 +1194,16 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <h2>Tabellen transponieren</h2>
 <div id="reshape2" class="section level3">
 <h3>reshape2</h3>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;reshape2&quot;</span>)</a>
-<a class="sourceLine" id="cb453-2" data-line-number="2"><span class="kw">library</span>(reshape2)</a></code></pre></div>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" data-line-number="1"><span class="kw">melt</span>() <span class="co"># wide zu long</span></a>
-<a class="sourceLine" id="cb454-2" data-line-number="2"><span class="kw">cast</span>() <span class="co"># long zu wide</span></a></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="sitzung-6.html#cb453-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;reshape2&quot;</span>)</span>
+<span id="cb453-2"><a href="sitzung-6.html#cb453-2"></a><span class="kw">library</span>(reshape2)</span></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="sitzung-6.html#cb454-1"></a><span class="kw">melt</span>() <span class="co"># wide zu long</span></span>
+<span id="cb454-2"><a href="sitzung-6.html#cb454-2"></a><span class="kw">cast</span>() <span class="co"># long zu wide</span></span></code></pre></div>
 </div>
 <div id="von-wide-zu-long" class="section level3">
 <h3>Von Wide zu Long</h3>
 <p>Einlesen der Datei</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" data-line-number="1">br &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;docs/data/tut6/Briefe.csv&quot;</span>, <span class="dt">header =</span> T, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</a>
-<a class="sourceLine" id="cb455-2" data-line-number="2"><span class="kw">head</span>(br)</a></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="sitzung-6.html#cb455-1"></a>br &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;docs/data/tut6/Briefe.csv&quot;</span>, <span class="dt">header =</span> T, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb455-2"><a href="sitzung-6.html#cb455-2"></a><span class="kw">head</span>(br)</span></code></pre></div>
 <pre><code>##                              Filename Segment  WC   WPS Sixltr Pronoun   I  We
 ## 1 m-Rollet_Alexander-BR-1844_1906.txt       1 500 19.23   32.4     4.0 0.0 0.4
 ## 2 m-Rollet_Alexander-BR-1844_1906.txt       2 500 18.52   32.8     7.6 3.6 0.6
@@ -1141,8 +1222,8 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <div id="von-wide-zu-long-1" class="section level3">
 <h3>Von Wide zu Long</h3>
 <p>Transponieren der Tabelle ins Long-Format:</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" data-line-number="1">brlong &lt;-<span class="st"> </span><span class="kw">melt</span>(br, <span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;Filename&quot;</span>, <span class="st">&quot;Segment&quot;</span>))</a>
-<a class="sourceLine" id="cb457-2" data-line-number="2"><span class="kw">head</span>(brlong, <span class="dv">15</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="sitzung-6.html#cb457-1"></a>brlong &lt;-<span class="st"> </span><span class="kw">melt</span>(br, <span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;Filename&quot;</span>, <span class="st">&quot;Segment&quot;</span>))</span>
+<span id="cb457-2"><a href="sitzung-6.html#cb457-2"></a><span class="kw">head</span>(brlong, <span class="dv">15</span>)</span></code></pre></div>
 <pre><code>##                               Filename Segment variable value
 ## 1  m-Rollet_Alexander-BR-1844_1906.txt       1       WC   500
 ## 2  m-Rollet_Alexander-BR-1844_1906.txt       2       WC   500
@@ -1162,9 +1243,9 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 </div>
 <div id="von-long-zu-wide" class="section level3">
 <h3>Von Long zu Wide</h3>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" data-line-number="1">brwide &lt;-<span class="st"> </span><span class="kw">dcast</span>(brlong, Filename <span class="op">+</span><span class="st"> </span>Segment <span class="op">~</span><span class="st"> </span>variable,</a>
-<a class="sourceLine" id="cb459-2" data-line-number="2">  <span class="dt">value.var =</span> <span class="st">&quot;value&quot;</span>)</a>
-<a class="sourceLine" id="cb459-3" data-line-number="3"><span class="kw">head</span>(brwide)</a></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="sitzung-6.html#cb459-1"></a>brwide &lt;-<span class="st"> </span><span class="kw">dcast</span>(brlong, Filename <span class="op">+</span><span class="st"> </span>Segment <span class="op">~</span><span class="st"> </span>variable,</span>
+<span id="cb459-2"><a href="sitzung-6.html#cb459-2"></a>  <span class="dt">value.var =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb459-3"><a href="sitzung-6.html#cb459-3"></a><span class="kw">head</span>(brwide)</span></code></pre></div>
 <pre><code>##                             Filename Segment  WC   WPS Sixltr Pronoun   I  We
 ## 1 f-Bachmann_Ingeborg-BR-1948_61.txt       1 500 13.16   14.6    16.2 6.8 0.6
 ## 2 f-Bachmann_Ingeborg-BR-1948_61.txt       2 500 17.86   14.4    18.8 8.4 0.6
@@ -1194,8 +1275,8 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <ol style="list-style-type: decimal">
 <li>Lest die Datei “implicated_lies.csv” ein</li>
 </ol>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" data-line-number="1">dlies &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;docs/data/tut6/implicated_lies.csv&quot;</span>, <span class="dt">header =</span> T)</a>
-<a class="sourceLine" id="cb461-2" data-line-number="2"><span class="kw">head</span>(dlies)</a></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="sitzung-6.html#cb461-1"></a>dlies &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;docs/data/tut6/implicated_lies.csv&quot;</span>, <span class="dt">header =</span> T)</span>
+<span id="cb461-2"><a href="sitzung-6.html#cb461-2"></a><span class="kw">head</span>(dlies)</span></code></pre></div>
 <pre><code>##                           id age stage af1 af2 af3 af4 af5 af6 aw1 aw2 aw3 aw4
 ## 1 0kcc8m19m6e46i2ojjomvjre91  53 adult   1   1   1   1   1   1   5   5   5   5
 ## 2 4fg5ka3ppabgnnfd1k65ei6ar5  25 adult   1   1   1   1   1   1   5   5   5   5
@@ -1223,13 +1304,13 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <ol start="2" style="list-style-type: decimal">
 <li>Entscheidet, ob die Datensortierung long oder wide ist und transponiert die Daten ins jeweils andere Format</li>
 </ol>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb463-1" data-line-number="1">dlieslong &lt;-<span class="st"> </span><span class="kw">melt</span>(dlies, <span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;stage&quot;</span>, <span class="st">&quot;age&quot;</span>),</a>
-<a class="sourceLine" id="cb463-2" data-line-number="2">  <span class="dt">value.name =</span> <span class="st">&quot;judgment&quot;</span>, <span class="dt">variable.name =</span> <span class="st">&quot;item&quot;</span>)</a>
-<a class="sourceLine" id="cb463-3" data-line-number="3"><span class="co"># sorting: dlieslong sorted first by the id column and then,</span></a>
-<a class="sourceLine" id="cb463-4" data-line-number="4"><span class="co"># provided id stays constant, by item</span></a>
-<a class="sourceLine" id="cb463-5" data-line-number="5">dlieslong &lt;-<span class="st"> </span>dlieslong[<span class="kw">order</span>(dlieslong<span class="op">$</span>id, dlieslong<span class="op">$</span>item), ]</a>
-<a class="sourceLine" id="cb463-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb463-7" data-line-number="7"><span class="kw">head</span>(dlieslong, <span class="dv">8</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="sitzung-6.html#cb463-1"></a>dlieslong &lt;-<span class="st"> </span><span class="kw">melt</span>(dlies, <span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;stage&quot;</span>, <span class="st">&quot;age&quot;</span>),</span>
+<span id="cb463-2"><a href="sitzung-6.html#cb463-2"></a>  <span class="dt">value.name =</span> <span class="st">&quot;judgment&quot;</span>, <span class="dt">variable.name =</span> <span class="st">&quot;item&quot;</span>)</span>
+<span id="cb463-3"><a href="sitzung-6.html#cb463-3"></a><span class="co"># sorting: dlieslong sorted first by the id column and then,</span></span>
+<span id="cb463-4"><a href="sitzung-6.html#cb463-4"></a><span class="co"># provided id stays constant, by item</span></span>
+<span id="cb463-5"><a href="sitzung-6.html#cb463-5"></a>dlieslong &lt;-<span class="st"> </span>dlieslong[<span class="kw">order</span>(dlieslong<span class="op">$</span>id, dlieslong<span class="op">$</span>item), ]</span>
+<span id="cb463-6"><a href="sitzung-6.html#cb463-6"></a></span>
+<span id="cb463-7"><a href="sitzung-6.html#cb463-7"></a><span class="kw">head</span>(dlieslong, <span class="dv">8</span>)</span></code></pre></div>
 <pre><code>##                             id stage age item judgment
 ## 21  02dfkhe0rsj9q8abs2skfci9h0 adult  31  af1        1
 ## 123 02dfkhe0rsj9q8abs2skfci9h0 adult  31  af2        1
@@ -1245,15 +1326,15 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <ol start="3" style="list-style-type: decimal">
 <li>Speichert die Daten auf eurem Computer ab</li>
 </ol>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb465-1" data-line-number="1"><span class="kw">write.csv</span>(dlieslong, <span class="dt">file =</span> <span class="st">&quot;implicated_lies_long.csv&quot;</span>,</a>
-<a class="sourceLine" id="cb465-2" data-line-number="2">  <span class="dt">row.names =</span> F, <span class="dt">quote =</span> F, <span class="dt">na =</span> <span class="st">&quot;keine Angabe&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="sitzung-6.html#cb465-1"></a><span class="kw">write.csv</span>(dlieslong, <span class="dt">file =</span> <span class="st">&quot;implicated_lies_long.csv&quot;</span>,</span>
+<span id="cb465-2"><a href="sitzung-6.html#cb465-2"></a>  <span class="dt">row.names =</span> F, <span class="dt">quote =</span> F, <span class="dt">na =</span> <span class="st">&quot;keine Angabe&quot;</span>)</span></code></pre></div>
 </div>
 <div id="lösungen-14" class="section level3">
 <h3>Lösungen</h3>
 <ol start="4" style="list-style-type: decimal">
 <li>Benutzt <code>describeBy</code>, um statistische Berechnungen für jedes Item separat zu bekommen</li>
 </ol>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb466-1" data-line-number="1"><span class="kw">describeBy</span>(dlieslong<span class="op">$</span>judgment, dlieslong<span class="op">$</span>item, <span class="dt">mat =</span> T, <span class="dt">digits =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="sitzung-6.html#cb466-1"></a><span class="kw">describeBy</span>(dlieslong<span class="op">$</span>judgment, dlieslong<span class="op">$</span>item, <span class="dt">mat =</span> T, <span class="dt">digits =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##      item group1 vars   n mean  sd median trimmed mad min max range skew
 ## X11     1    af1    1 101  2.0 1.5      1     1.7 0.0   1   5     4  1.3
 ## X12     2    af2    1 100  1.2 0.8      1     1.0 0.0   1   5     4  4.4
@@ -1334,22 +1415,22 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <h2>Nur Kurz: Plots</h2>
 <div id="ein-plot-zum-abschluss-4" class="section level3">
 <h3>Ein Plot zum Abschluss</h3>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb468-1" data-line-number="1"><span class="co"># boxplot der letzten vier spalten in briefe.csv</span></a>
-<a class="sourceLine" id="cb468-2" data-line-number="2">p1 &lt;-<span class="st"> </span><span class="kw">boxplot</span>(br[, <span class="dv">7</span><span class="op">:</span><span class="kw">length</span>(br)], <span class="dt">main =</span> <span class="st">&quot;Briefdatensatz&quot;</span>,</a>
-<a class="sourceLine" id="cb468-3" data-line-number="3">  <span class="dt">xlab =</span> <span class="st">&quot;Spaltenname&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Wert&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="sitzung-6.html#cb468-1"></a><span class="co"># boxplot der letzten vier spalten in briefe.csv</span></span>
+<span id="cb468-2"><a href="sitzung-6.html#cb468-2"></a>p1 &lt;-<span class="st"> </span><span class="kw">boxplot</span>(br[, <span class="dv">7</span><span class="op">:</span><span class="kw">length</span>(br)], <span class="dt">main =</span> <span class="st">&quot;Briefdatensatz&quot;</span>,</span>
+<span id="cb468-3"><a href="sitzung-6.html#cb468-3"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Spaltenname&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Wert&quot;</span>)</span></code></pre></div>
 <p><img src="inference_files/figure-html/sixboxplot-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ein-plot-zum-abschluss-5" class="section level3">
 <h3>Ein Plot zum Abschluss</h3>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb469-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb469-2" data-line-number="2">p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(br, <span class="kw">aes</span>(<span class="dt">y =</span> I)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb469-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb469-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Briefdatensatz&quot;</span>,</a>
-<a class="sourceLine" id="cb469-5" data-line-number="5">    <span class="dt">x =</span> <span class="st">&quot;I&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Wert&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="sitzung-6.html#cb469-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb469-2"><a href="sitzung-6.html#cb469-2"></a>p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(br, <span class="kw">aes</span>(<span class="dt">y =</span> I)) <span class="op">+</span></span>
+<span id="cb469-3"><a href="sitzung-6.html#cb469-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb469-4"><a href="sitzung-6.html#cb469-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Briefdatensatz&quot;</span>,</span>
+<span id="cb469-5"><a href="sitzung-6.html#cb469-5"></a>    <span class="dt">x =</span> <span class="st">&quot;I&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Wert&quot;</span>)</span></code></pre></div>
 </div>
 <div id="ein-plot-zum-abschluss-6" class="section level3">
 <h3>Ein Plot zum Abschluss</h3>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb470-1" data-line-number="1">p2</a></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="sitzung-6.html#cb470-1"></a>p2</span></code></pre></div>
 <p><img src="inference_files/figure-html/ggboxplot2-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="fck-die-uni" class="section level3">
