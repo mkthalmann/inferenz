@@ -737,6 +737,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#gruppenkorrelationen-plotten"><i class="fa fa-check"></i>Gruppenkorrelationen plotten</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#filtern-und-plotten"><i class="fa fa-check"></i>Filtern und plotten</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#ein-tutorial"><i class="fa fa-check"></i>Ein Tutorial</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#speed-up"><i class="fa fa-check"></i>Speed-Up</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#for-loops"><i class="fa fa-check"></i>For-Loops</a>
 <ul>
@@ -1006,6 +1007,14 @@ This book is in <b><a href="open.html#open">Open Review</a></b>. I want your fee
 <div id="ein-tutorial" class="section level3">
 <h3>Ein Tutorial</h3>
 <div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="extrasitzung.html#cb807-1"></a><span class="kw">vignette</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+</div>
+<div id="speed-up" class="section level3">
+<h3>Speed-Up</h3>
+<p>Bei größeren Datensätzen (Korpusdaten, EGG, Eye-Tracking) kann es vorkommen, dass die inhärenten Funktionen von R und dem <code>tidyverse</code> zu langsam sind. Wem eine solche Situation häufiger unterkommt, sollte es sich überlegen, die unteren beiden Pakete in seinen Workflow zu integrieren. Beide bieten <code>tidyverse</code>-Syntax mit der Geschwindigkeit von <a href="https://github.com/Rdatatable/data.table">data.table</a>, einem Paket, das zwar wesentlich schneller als andere Lösungen ist, aber einiges an Komplexität mit sich bringt.</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://github.com/TysonStanley/tidyfast" class="uri">https://github.com/TysonStanley/tidyfast</a></li>
+<li><a href="https://github.com/markfairbanks/tidytable" class="uri">https://github.com/markfairbanks/tidytable</a></li>
+</ol>
 </div>
 </div>
 <div id="for-loops" class="section level2">
