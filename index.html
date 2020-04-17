@@ -55,7 +55,6 @@
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
-<script async defer src="https://hypothes.is/embed.js"></script>
 
 
 <style type="text/css">
@@ -140,10 +139,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorbemerkungen</a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#open-review"><i class="fa fa-check"></i>Open Review</a>
-<ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lizenz"><i class="fa fa-check"></i>Lizenz</a></li>
-</ul></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="sitzung-1.html"><a href="sitzung-1.html"><i class="fa fa-check"></i>Sitzung 1</a>
@@ -772,6 +767,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#automatische-tabellen-mit-gtsummary-1"><i class="fa fa-check"></i>Automatische Tabellen mit gtsummary</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#automatische-tabellen"><i class="fa fa-check"></i>Automatische Tabellen</a></li>
+<li><a href="extrasitzung.html#correlation-paket"><code>correlation</code>-Paket</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#automatische-berichte"><i class="fa fa-check"></i>Automatische Berichte</a>
+<ul>
+<li><a href="extrasitzung.html#report-paket"><code>report</code>-Paket</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#dataframes"><i class="fa fa-check"></i>Dataframes</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#t-test-1"><i class="fa fa-check"></i>t-Test</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#anova-base"><i class="fa fa-check"></i>ANOVA (base)</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#anova-afex"><i class="fa fa-check"></i>ANOVA (afex)</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#lmm"><i class="fa fa-check"></i>LMM</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#bildverarbeitung-und--bearbeitung-in-r"><i class="fa fa-check"></i>Bildverarbeitung (und -bearbeitung) in R</a>
 <ul>
@@ -810,17 +815,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-
-<div class = rmdreview>
-This book is in <b><a href="open.html#open">Open Review</a></b>. I want your feedback to make the book better for you and other readers. To add your annotation, <span style="background-color: #3297FD; color: white">select some text</span> and then click the <i class="h-icon-annotate"></i> on the pop-up menu. To see the annotations of others, click the <i class="h-icon-chevron-left"></i> in the upper right hand corner of the page <i class="fa fa-arrow-circle-right  fa-rotate-315" aria-hidden="true"></i>
-</div>
-
 <div id="header">
 <h1 class="title">Tutorium zur Inferenzstatistik</h1>
 <p class="author"><em><div class="line-block">Maik Thalmann<br />
 <a href="mailto:maik.thalmann@gmail.com">maik.thalmann@gmail.com</a></div></em></p>
 <p class="date"><em><div class="line-block">Wintersemester 2019/20<br />
-Version: 13. April, 2020</div></em></p>
+Version: 17. April, 2020</div></em></p>
 </div>
 <div id="vorbemerkungen" class="section level1 unnumbered">
 <h1 class="unnumbered">Vorbemerkungen</h1>
@@ -840,33 +840,31 @@ Version: 13. April, 2020</div></em></p>
 <span id="cb1-12"><a href="index.html#cb1-12"></a></span>
 <span id="cb1-13"><a href="index.html#cb1-13"></a><span class="co"># disable scientific number notation</span></span>
 <span id="cb1-14"><a href="index.html#cb1-14"></a><span class="kw">options</span>(<span class="dt">scipen =</span> <span class="dv">999</span>)</span></code></pre></div>
-<div id="open-review" class="section level2 unnumbered">
-<h2 class="unnumbered">Open Review</h2>
-<p>Dieses Buch enthält einige Skripte, die dem sogenannten Open Review Concept (<a href="http://www.openreviewtoolkit.org" class="uri">http://www.openreviewtoolkit.org</a>) nach Matthew Salganik Rechnung tragen. Dies bedeutet, dass jeder, der dieses Buch online liest, die Möglichkeit hat, direkt Feedback zu geben. Hierbei kann es sich um die Markierung von bloßen Tipp- und Rechtschreibfehlern oder um Inhaltskritik handeln. Gesehen habe ich diese Idee und dessen Implementierung bei <a href="https://github.com/benmarwick/bookdown-ort">Ben Marwick</a>. Sämtliche Einbindungen der Reviewmöglichkeiten sind von ihm übernommen.</p>
-<div id="lizenz" class="section level3">
-<h3>Lizenz</h3>
-<p>Der Code für das Open Review Toolkit hat eine <a href="https://github.com/open-review-toolkit/open-review-toolkit/blob/master/LICENSE">MIT Lizenz</a>, die ich hier wiedergebe:</p>
-<blockquote>
-<p>MIT License</p>
-<p>Copyright (c) 2016 Open Review Toolkit &amp; Ben Marwick</p>
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the “Software”), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
-<p>The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</p>
-</blockquote>
-</div>
-</div>
+<!-- ## Open Review {-} -->
+<!-- Dieses Buch enthält einige Skripte, die dem sogenannten Open Review Concept (http://www.openreviewtoolkit.org) nach Matthew Salganik Rechnung tragen. Dies bedeutet, dass jeder, der dieses Buch online liest, die Möglichkeit hat, direkt Feedback zu geben. Hierbei kann es sich um die Markierung von bloßen Tipp- und Rechtschreibfehlern oder um Inhaltskritik handeln. Gesehen habe ich diese Idee und dessen Implementierung bei [Ben Marwick](https://github.com/benmarwick/bookdown-ort). Sämtliche Einbindungen der Reviewmöglichkeiten sind von ihm übernommen. -->
+<!-- ### Lizenz  -->
+<!-- Der Code für das Open Review Toolkit hat eine [MIT Lizenz](https://github.com/open-review-toolkit/open-review-toolkit/blob/master/LICENSE), die ich hier wiedergebe:  -->
+<!-- > MIT License -->
+<!-- > -->
+<!-- > Copyright (c) 2016 Open Review Toolkit & Ben Marwick -->
+<!-- > -->
+<!-- > Permission is hereby granted, free of charge, to any person obtaining a copy -->
+<!-- of this software and associated documentation files (the "Software"), to deal -->
+<!-- in the Software without restriction, including without limitation the rights -->
+<!-- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell -->
+<!-- copies of the Software, and to permit persons to whom the Software is -->
+<!-- furnished to do so, subject to the following conditions: -->
+<!-- > -->
+<!-- > The above copyright notice and this permission notice shall be included in all -->
+<!-- copies or substantial portions of the Software. -->
+<!-- > -->
+<!-- > THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR -->
+<!-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, -->
+<!-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE -->
+<!-- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER -->
+<!-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, -->
+<!-- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE -->
+<!-- SOFTWARE. -->
 <div id="session-info" class="section level2 unnumbered">
 <h2 class="unnumbered">Session Info</h2>
 <pre><code>## R version 3.6.1 (2019-07-05)
