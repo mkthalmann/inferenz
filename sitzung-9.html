@@ -1386,13 +1386,13 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 <h2>Kontraste</h2>
 <div id="kontraste-kodieren-aber-wie" class="section level3">
 <h3>Kontraste kodieren, aber wie?</h3>
-<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="sitzung-9.html#cb645-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;lsmeans&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="sitzung-9.html#cb646-1"></a><span class="kw">library</span>(lsmeans)</span>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="sitzung-9.html#cb645-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;emmeans&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="sitzung-9.html#cb646-1"></a><span class="kw">library</span>(emmeans)</span>
 <span id="cb646-2"><a href="sitzung-9.html#cb646-2"></a></span>
-<span id="cb646-3"><a href="sitzung-9.html#cb646-3"></a><span class="co"># referenztabelle für kontraste</span></span>
-<span id="cb646-4"><a href="sitzung-9.html#cb646-4"></a>(ref_id &lt;-<span class="st"> </span><span class="kw">lsmeans</span>(anovasub,</span>
+<span id="cb646-3"><a href="sitzung-9.html#cb646-3"></a><span class="co"># referenztabelle für kontraste; specs sind die die Faktoren, dessen estimated marginal means (EMM) wir uns angucken wollen</span></span>
+<span id="cb646-4"><a href="sitzung-9.html#cb646-4"></a>(ref_id &lt;-<span class="st"> </span><span class="kw">emmeans</span>(anovasub,</span>
 <span id="cb646-5"><a href="sitzung-9.html#cb646-5"></a>  <span class="dt">specs =</span> <span class="kw">c</span>(<span class="st">&quot;stage&quot;</span>, <span class="st">&quot;trigger&quot;</span>, <span class="st">&quot;issueness&quot;</span>)))</span></code></pre></div>
-<pre><code>##  stage trigger issueness    lsmean    SE  df lower.CL upper.CL
+<pre><code>##  stage trigger issueness    emmean    SE  df lower.CL upper.CL
 ##  adult appRel  at.issue       1.85 0.171 133     1.51     2.19
 ##  child appRel  at.issue       3.34 0.169 129     3.01     3.68
 ##  adult hard    at.issue       1.99 0.171 133     1.66     2.33
@@ -1437,27 +1437,31 @@ verwenden wir folgende Spezifizierung:</p>
 </div>
 <div id="kontraste-berechnen" class="section level3">
 <h3>Kontraste berechnen</h3>
-<p>Bonferronikorrektur nur für post hoc Kontraste absolut nötig. Bei a priori spezifizierten (das heißt von der Hypothese gedeckten) Kontrasten kann diese Korrektur weggelassen werden.</p>
+<p>Bonferronikorrektur nur für <em>post hoc</em> Kontraste absolut nötig. Bei <em>a priori</em> spezifizierten (das heißt von der Hypothese gedeckten) Kontrasten kann diese Korrektur weggelassen werden.</p>
 <div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="sitzung-9.html#cb650-1"></a><span class="co"># bonferroni-korrigierte tests berechnen</span></span>
 <span id="cb650-2"><a href="sitzung-9.html#cb650-2"></a><span class="kw">summary</span>(<span class="kw">contrast</span>(ref_id, <span class="kw">list</span>(<span class="dt">RCvHTat =</span> test_RCvHTat,</span>
 <span id="cb650-3"><a href="sitzung-9.html#cb650-3"></a>  <span class="dt">STvHTat =</span> test_STvHTat,</span>
 <span id="cb650-4"><a href="sitzung-9.html#cb650-4"></a>  <span class="dt">ATcvATa =</span> test_ATcvATa),</span>
-<span id="cb650-5"><a href="sitzung-9.html#cb650-5"></a><span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>))</span></code></pre></div>
-<pre><code>##  contrast estimate    SE   df t.ratio p.value
-##  RCvHTat    -0.779 0.390 78.0 -1.998  0.1477 
-##  STvHTat     1.483 0.390 78.0  3.801  0.0009 
-##  ATcvATa     3.123 0.555 53.1  5.630  &lt;.0001 
+<span id="cb650-5"><a href="sitzung-9.html#cb650-5"></a><span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>, <span class="co"># Korrektur für multiple Tests</span></span>
+<span id="cb650-6"><a href="sitzung-9.html#cb650-6"></a><span class="dt">infer =</span> <span class="ot">TRUE</span> <span class="co"># zeigt p-Werte und KonfInt</span></span>
+<span id="cb650-7"><a href="sitzung-9.html#cb650-7"></a>))</span></code></pre></div>
+<pre><code>##  contrast estimate    SE    df lower.CL upper.CL t.ratio p.value
+##  RCvHTat    -0.259 0.267 155.3   -0.906    0.387 -0.971  0.9997 
+##  STvHTat     1.680 0.267 155.3    1.034    2.327  6.288  &lt;.0001 
+##  ATcvATa     3.123 0.555  53.1    1.752    4.495  5.630  &lt;.0001 
 ## 
+## Confidence level used: 0.95 
+## Conf-level adjustment: bonferroni method for 3 estimates 
 ## P value adjustment: bonferroni method for 3 tests</code></pre>
 </div>
 <div id="zum-selbst-ausprobieren" class="section level3">
 <h3>Zum selbst Ausprobieren</h3>
-<p>Warning von Thomas (pc): “D.h. ich wuerde den Leuten sagen, dass der letzte Code-Schnipsel (wo Du dann <em>alle</em> Vergleiche anschaust) eine Mischung aus prae- und post-hoc-Betrachtung ist. Und dass das natuerlich fuer moralisch sproede bzw. vom publication bias und Befristung weichgeklopfte Gemueter gewisse Verlockungen/Gefahren birgt. You see?”</p>
+<p>Warning von Thomas (pc): “D.h. ich wuerde den Leuten sagen, dass der letzte Code-Schnipsel (wo Du dann <em>alle</em> Vergleiche anschaust) eine Mischung aus <em>prae</em>- und <em>post-hoc</em>-Betrachtung ist. Und dass das natuerlich fuer moralisch sproede bzw. vom publication bias und Befristung weichgeklopfte Gemueter gewisse Verlockungen/Gefahren birgt. You see?”</p>
 <div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="sitzung-9.html#cb652-1"></a><span class="co"># alle paarweisen vergleiche für die beiden level von issueness berechnen</span></span>
-<span id="cb652-2"><a href="sitzung-9.html#cb652-2"></a>ref_big &lt;-<span class="st"> </span><span class="kw">lsmeans</span>(anovasub, <span class="op">~</span><span class="st"> </span>stage <span class="op">*</span><span class="st"> </span>trigger <span class="op">|</span><span class="st"> </span>issueness)</span>
+<span id="cb652-2"><a href="sitzung-9.html#cb652-2"></a>ref_big &lt;-<span class="st"> </span><span class="kw">emmeans</span>(anovasub, <span class="op">~</span><span class="st"> </span>stage <span class="op">*</span><span class="st"> </span>trigger <span class="op">|</span><span class="st"> </span>issueness)</span>
 <span id="cb652-3"><a href="sitzung-9.html#cb652-3"></a>ref_big</span></code></pre></div>
 <pre><code>## issueness = at.issue:
-##  stage trigger lsmean    SE  df lower.CL upper.CL
+##  stage trigger emmean    SE  df lower.CL upper.CL
 ##  adult appRel    1.85 0.171 133     1.51     2.19
 ##  child appRel    3.34 0.169 129     3.01     3.68
 ##  adult hard      1.99 0.171 133     1.66     2.33
@@ -1466,7 +1470,7 @@ verwenden wir folgende Spezifizierung:</p>
 ##  child soft      3.65 0.169 129     3.31     3.98
 ## 
 ## issueness = non.at.issue:
-##  stage trigger lsmean    SE  df lower.CL upper.CL
+##  stage trigger emmean    SE  df lower.CL upper.CL
 ##  adult appRel    3.99 0.171 133     3.66     4.33
 ##  child appRel    3.67 0.169 129     3.34     4.01
 ##  adult hard      4.35 0.171 133     4.01     4.69
@@ -1480,43 +1484,79 @@ verwenden wir folgende Spezifizierung:</p>
 <div id="ergebnisse-des-großen-paarvergleichs" class="section level3">
 <h3>Ergebnisse des großen Paarvergleichs</h3>
 <div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="sitzung-9.html#cb654-1"></a><span class="kw">summary</span>(<span class="kw">contrast</span>(ref_big, <span class="dt">method =</span> <span class="st">&quot;pairwise&quot;</span>,</span>
-<span id="cb654-2"><a href="sitzung-9.html#cb654-2"></a>  <span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>))</span></code></pre></div>
+<span id="cb654-2"><a href="sitzung-9.html#cb654-2"></a>  <span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
+<span id="cb654-3"><a href="sitzung-9.html#cb654-3"></a>  <span class="dt">infer =</span> <span class="ot">TRUE</span></span>
+<span id="cb654-4"><a href="sitzung-9.html#cb654-4"></a>))</span></code></pre></div>
 <pre><code>## issueness = at.issue:
-##  contrast                    estimate    SE  df t.ratio p.value
-##  adult,appRel - child,appRel  -1.4980 0.241 131 -6.220  &lt;.0001 
-##  adult,appRel - adult,hard    -0.1475 0.191 155 -0.771  1.0000 
-##  adult,appRel - child,hard    -1.6099 0.241 131 -6.684  &lt;.0001 
-##  adult,appRel - adult,soft    -1.6375 0.191 155 -8.561  &lt;.0001 
-##  adult,appRel - child,soft    -1.8004 0.241 131 -7.475  &lt;.0001 
-##  child,appRel - adult,hard     1.3505 0.241 131  5.607  &lt;.0001 
-##  child,appRel - child,hard    -0.1119 0.187 155 -0.600  1.0000 
-##  child,appRel - adult,soft    -0.1395 0.241 131 -0.579  1.0000 
-##  child,appRel - child,soft    -0.3024 0.187 155 -1.620  1.0000 
-##  adult,hard - child,hard      -1.4624 0.241 131 -6.072  &lt;.0001 
-##  adult,hard - adult,soft      -1.4900 0.191 155 -7.790  &lt;.0001 
-##  adult,hard - child,soft      -1.6529 0.241 131 -6.863  &lt;.0001 
-##  child,hard - adult,soft      -0.0276 0.241 131 -0.115  1.0000 
-##  child,hard - child,soft      -0.1905 0.187 155 -1.020  1.0000 
-##  adult,soft - child,soft      -0.1629 0.241 131 -0.676  1.0000 
+##  contrast                    estimate    SE  df lower.CL upper.CL t.ratio
+##  adult,appRel - child,appRel  -1.4980 0.241 131   -2.218  -0.7779 -6.220 
+##  adult,appRel - adult,hard    -0.1475 0.191 155   -0.718   0.4227 -0.771 
+##  adult,appRel - child,hard    -1.6099 0.241 131   -2.330  -0.8898 -6.684 
+##  adult,appRel - adult,soft    -1.6375 0.191 155   -2.208  -1.0673 -8.561 
+##  adult,appRel - child,soft    -1.8004 0.241 131   -2.520  -1.0802 -7.475 
+##  child,appRel - adult,hard     1.3505 0.241 131    0.630   2.0706  5.607 
+##  child,appRel - child,hard    -0.1119 0.187 155   -0.668   0.4446 -0.600 
+##  child,appRel - adult,soft    -0.1395 0.241 131   -0.860   0.5806 -0.579 
+##  child,appRel - child,soft    -0.3024 0.187 155   -0.859   0.2541 -1.620 
+##  adult,hard - child,hard      -1.4624 0.241 131   -2.182  -0.7423 -6.072 
+##  adult,hard - adult,soft      -1.4900 0.191 155   -2.060  -0.9198 -7.790 
+##  adult,hard - child,soft      -1.6529 0.241 131   -2.373  -0.9327 -6.863 
+##  child,hard - adult,soft      -0.0276 0.241 131   -0.748   0.6925 -0.115 
+##  child,hard - child,soft      -0.1905 0.187 155   -0.747   0.3660 -1.020 
+##  adult,soft - child,soft      -0.1629 0.241 131   -0.883   0.5573 -0.676 
+##  p.value
+##  &lt;.0001 
+##  1.0000 
+##  &lt;.0001 
+##  &lt;.0001 
+##  &lt;.0001 
+##  &lt;.0001 
+##  1.0000 
+##  1.0000 
+##  1.0000 
+##  &lt;.0001 
+##  &lt;.0001 
+##  &lt;.0001 
+##  1.0000 
+##  1.0000 
+##  1.0000 
 ## 
 ## issueness = non.at.issue:
-##  contrast                    estimate    SE  df t.ratio p.value
-##  adult appRel - child appRel   0.3194 0.241 131  1.326  1.0000 
-##  adult appRel - adult hard    -0.3525 0.191 155 -1.843  1.0000 
-##  adult appRel - child hard     0.1519 0.241 131  0.631  1.0000 
-##  adult appRel - adult soft    -0.1900 0.191 155 -0.993  1.0000 
-##  adult appRel - child soft     0.1868 0.241 131  0.776  1.0000 
-##  child appRel - adult hard    -0.6719 0.241 131 -2.790  0.0910 
-##  child appRel - child hard    -0.1675 0.187 155 -0.897  1.0000 
-##  child appRel - adult soft    -0.5094 0.241 131 -2.115  0.5449 
-##  child appRel - child soft    -0.1325 0.187 155 -0.710  1.0000 
-##  adult hard - child hard       0.5044 0.241 131  2.094  0.5723 
-##  adult hard - adult soft       0.1625 0.191 155  0.850  1.0000 
-##  adult hard - child soft       0.5393 0.241 131  2.239  0.4023 
-##  child hard - adult soft      -0.3419 0.241 131 -1.420  1.0000 
-##  child hard - child soft       0.0349 0.187 155  0.187  1.0000 
-##  adult soft - child soft       0.3768 0.241 131  1.565  1.0000 
+##  contrast                    estimate    SE  df lower.CL upper.CL t.ratio
+##  adult appRel - child appRel   0.3194 0.241 131   -0.401   1.0395  1.326 
+##  adult appRel - adult hard    -0.3525 0.191 155   -0.923   0.2177 -1.843 
+##  adult appRel - child hard     0.1519 0.241 131   -0.568   0.8720  0.631 
+##  adult appRel - adult soft    -0.1900 0.191 155   -0.760   0.3802 -0.993 
+##  adult appRel - child soft     0.1868 0.241 131   -0.533   0.9069  0.776 
+##  child appRel - adult hard    -0.6719 0.241 131   -1.392   0.0482 -2.790 
+##  child appRel - child hard    -0.1675 0.187 155   -0.724   0.3890 -0.897 
+##  child appRel - adult soft    -0.5094 0.241 131   -1.229   0.2107 -2.115 
+##  child appRel - child soft    -0.1325 0.187 155   -0.689   0.4239 -0.710 
+##  adult hard - child hard       0.5044 0.241 131   -0.216   1.2245  2.094 
+##  adult hard - adult soft       0.1625 0.191 155   -0.408   0.7327  0.850 
+##  adult hard - child soft       0.5393 0.241 131   -0.181   1.2594  2.239 
+##  child hard - adult soft      -0.3419 0.241 131   -1.062   0.3782 -1.420 
+##  child hard - child soft       0.0349 0.187 155   -0.522   0.5914  0.187 
+##  adult soft - child soft       0.3768 0.241 131   -0.343   1.0969  1.565 
+##  p.value
+##  1.0000 
+##  1.0000 
+##  1.0000 
+##  1.0000 
+##  1.0000 
+##  0.0910 
+##  1.0000 
+##  0.5449 
+##  1.0000 
+##  0.5723 
+##  1.0000 
+##  0.4023 
+##  1.0000 
+##  1.0000 
+##  1.0000 
 ## 
+## Confidence level used: 0.95 
+## Conf-level adjustment: bonferroni method for 15 estimates 
 ## P value adjustment: bonferroni method for 15 tests</code></pre>
 </div>
 </div>
