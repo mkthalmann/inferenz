@@ -543,6 +543,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste"><i class="fa fa-check"></i>Kontraste</a>
 <ul>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste-kodieren-aber-wie"><i class="fa fa-check"></i>Kontraste kodieren, aber wie?</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#exkurs-estimated-marginal-means"><i class="fa fa-check"></i>Exkurs: Estimated Marginal Means</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#exkurs-contd"><i class="fa fa-check"></i>Exkurs cont’d</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#übung-6"><i class="fa fa-check"></i>Übung</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-16"><i class="fa fa-check"></i>Lösung</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste-berechnen"><i class="fa fa-check"></i>Kontraste berechnen</a></li>
@@ -818,543 +820,543 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="eine-shiny-app" class="section level1">
 <h1>Eine Shiny App</h1>
 <p>Zum Ausprobieren einfach den Code in ein neues Skript kopieren, erforderliche Pakete installieren und in RStudio auf <code>Run App</code> klicken – mehr Infos gibts <a href="https://shiny.rstudio.com">hier</a>.</p>
-<div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb782-1"><a href="eine-shiny-app.html#cb782-1"></a><span class="kw">library</span>(shiny)</span>
-<span id="cb782-2"><a href="eine-shiny-app.html#cb782-2"></a><span class="kw">library</span>(shinythemes)</span>
-<span id="cb782-3"><a href="eine-shiny-app.html#cb782-3"></a><span class="kw">library</span>(psych)</span>
-<span id="cb782-4"><a href="eine-shiny-app.html#cb782-4"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb782-5"><a href="eine-shiny-app.html#cb782-5"></a><span class="kw">library</span>(ggridges) <span class="co"># geom_density_ridges</span></span>
-<span id="cb782-6"><a href="eine-shiny-app.html#cb782-6"></a><span class="kw">library</span>(ggthemes)</span>
-<span id="cb782-7"><a href="eine-shiny-app.html#cb782-7"></a><span class="kw">library</span>(ggpubr) <span class="co"># theme_pubr(margin = F) + labs_pubr()</span></span>
-<span id="cb782-8"><a href="eine-shiny-app.html#cb782-8"></a><span class="kw">library</span>(plotly) <span class="co"># for plots with zoom functions and much more</span></span>
-<span id="cb782-9"><a href="eine-shiny-app.html#cb782-9"></a><span class="kw">library</span>(reshape2) <span class="co"># for melting and casting data frames</span></span>
-<span id="cb782-10"><a href="eine-shiny-app.html#cb782-10"></a><span class="kw">library</span>(DT) <span class="co"># for better tables</span></span>
-<span id="cb782-11"><a href="eine-shiny-app.html#cb782-11"></a></span>
-<span id="cb782-12"><a href="eine-shiny-app.html#cb782-12"></a><span class="co"># plot theme variations</span></span>
-<span id="cb782-13"><a href="eine-shiny-app.html#cb782-13"></a>economist =<span class="st"> </span><span class="kw">theme_economist</span>() <span class="co"># requires library(ggthemes)</span></span>
-<span id="cb782-14"><a href="eine-shiny-app.html#cb782-14"></a>grey =<span class="st"> </span><span class="kw">theme_grey</span>() <span class="co"># requires library(ggthemes)</span></span>
-<span id="cb782-15"><a href="eine-shiny-app.html#cb782-15"></a>pubr =<span class="st"> </span><span class="kw">theme_pubr</span>(<span class="dt">margin =</span> F) <span class="op">+</span><span class="st"> </span><span class="kw">labs_pubr</span>() <span class="co"># requires library(pubr)</span></span>
-<span id="cb782-16"><a href="eine-shiny-app.html#cb782-16"></a>clean =<span class="st"> </span><span class="kw">theme_tufte</span>() <span class="op">+</span><span class="st"> </span><span class="kw">labs_pubr</span>() <span class="op">+</span><span class="st"> </span><span class="kw">clean_theme</span>() <span class="co"># requires library(pubr) and library(ggthemes)</span></span>
-<span id="cb782-17"><a href="eine-shiny-app.html#cb782-17"></a></span>
-<span id="cb782-18"><a href="eine-shiny-app.html#cb782-18"></a><span class="co">## %######################################################%##</span></span>
-<span id="cb782-19"><a href="eine-shiny-app.html#cb782-19"></a><span class="co">####         Data Set for Central Limit Theorem         ####</span></span>
-<span id="cb782-20"><a href="eine-shiny-app.html#cb782-20"></a><span class="co">## %######################################################%##</span></span>
-<span id="cb782-21"><a href="eine-shiny-app.html#cb782-21"></a></span>
-<span id="cb782-22"><a href="eine-shiny-app.html#cb782-22"></a><span class="co"># generate 5000 values from an exponential distribution</span></span>
-<span id="cb782-23"><a href="eine-shiny-app.html#cb782-23"></a><span class="co"># with rate parameter=0.2</span></span>
-<span id="cb782-24"><a href="eine-shiny-app.html#cb782-24"></a>exp_data =<span class="st"> </span><span class="kw">rexp</span>(<span class="dt">n =</span> <span class="dv">5000</span>, <span class="dt">rate =</span> <span class="fl">0.2</span>)</span>
-<span id="cb782-25"><a href="eine-shiny-app.html#cb782-25"></a><span class="co"># find mean of 5 values from an exponential distribution (repeat 5000 times)</span></span>
-<span id="cb782-26"><a href="eine-shiny-app.html#cb782-26"></a>exp_<span class="dv">5</span> =<span class="st"> </span><span class="kw">array</span>(<span class="ot">NA</span>, <span class="dt">dim =</span> <span class="dv">5000</span>)</span>
-<span id="cb782-27"><a href="eine-shiny-app.html#cb782-27"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5000</span>) {</span>
-<span id="cb782-28"><a href="eine-shiny-app.html#cb782-28"></a>  exp_<span class="dv">5</span>[i] =<span class="st"> </span><span class="kw">mean</span>(<span class="kw">rexp</span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">rate =</span> <span class="fl">0.2</span>))</span>
-<span id="cb782-29"><a href="eine-shiny-app.html#cb782-29"></a>}</span>
-<span id="cb782-30"><a href="eine-shiny-app.html#cb782-30"></a><span class="co"># find mean of 50 values from an exponential distribution (repeat 5000 times)</span></span>
-<span id="cb782-31"><a href="eine-shiny-app.html#cb782-31"></a>exp_<span class="dv">50</span> =<span class="st"> </span><span class="kw">array</span>(<span class="ot">NA</span>, <span class="dt">dim =</span> <span class="dv">5000</span>)</span>
-<span id="cb782-32"><a href="eine-shiny-app.html#cb782-32"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5000</span>) {</span>
-<span id="cb782-33"><a href="eine-shiny-app.html#cb782-33"></a>  exp_<span class="dv">50</span>[i] =<span class="st"> </span><span class="kw">mean</span>(<span class="kw">rexp</span>(<span class="dt">n =</span> <span class="dv">50</span>, <span class="dt">rate =</span> <span class="fl">0.2</span>))</span>
-<span id="cb782-34"><a href="eine-shiny-app.html#cb782-34"></a>}</span>
-<span id="cb782-35"><a href="eine-shiny-app.html#cb782-35"></a></span>
-<span id="cb782-36"><a href="eine-shiny-app.html#cb782-36"></a><span class="co"># generate data frame</span></span>
-<span id="cb782-37"><a href="eine-shiny-app.html#cb782-37"></a>d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(exp_data, exp_<span class="dv">5</span>, exp_<span class="dv">50</span>)</span>
-<span id="cb782-38"><a href="eine-shiny-app.html#cb782-38"></a><span class="co"># rename columns to make them nicer in the plot&#39;s legend</span></span>
-<span id="cb782-39"><a href="eine-shiny-app.html#cb782-39"></a><span class="kw">names</span>(d) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;N = 1&quot;</span>, <span class="st">&quot;N = 5&quot;</span>, <span class="st">&quot;N = 50&quot;</span>)</span>
-<span id="cb782-40"><a href="eine-shiny-app.html#cb782-40"></a><span class="co"># melt data so just one variable can be called to represent the three columns</span></span>
-<span id="cb782-41"><a href="eine-shiny-app.html#cb782-41"></a>d &lt;-<span class="st"> </span><span class="kw">melt</span>(d)</span>
-<span id="cb782-42"><a href="eine-shiny-app.html#cb782-42"></a></span>
-<span id="cb782-43"><a href="eine-shiny-app.html#cb782-43"></a></span>
-<span id="cb782-44"><a href="eine-shiny-app.html#cb782-44"></a><span class="co">## %######################################################%##</span></span>
-<span id="cb782-45"><a href="eine-shiny-app.html#cb782-45"></a><span class="co">####                     Shiny App                      ####</span></span>
-<span id="cb782-46"><a href="eine-shiny-app.html#cb782-46"></a><span class="co">## %######################################################%##</span></span>
-<span id="cb782-47"><a href="eine-shiny-app.html#cb782-47"></a></span>
-<span id="cb782-48"><a href="eine-shiny-app.html#cb782-48"></a><span class="co"># Define UI for random distribution app ----</span></span>
-<span id="cb782-49"><a href="eine-shiny-app.html#cb782-49"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
-<span id="cb782-50"><a href="eine-shiny-app.html#cb782-50"></a>  <span class="co"># change the theme</span></span>
-<span id="cb782-51"><a href="eine-shiny-app.html#cb782-51"></a>  <span class="co"># to quickly check which one you like, add shinythemes::themeSelector() instead of shinytheme(&quot;paper&quot;) # others: &quot;superhero&quot;</span></span>
-<span id="cb782-52"><a href="eine-shiny-app.html#cb782-52"></a>  <span class="dt">theme =</span> <span class="kw">shinytheme</span>(<span class="st">&quot;lumen&quot;</span>),</span>
-<span id="cb782-53"><a href="eine-shiny-app.html#cb782-53"></a></span>
-<span id="cb782-54"><a href="eine-shiny-app.html#cb782-54"></a>  <span class="co"># App title ----</span></span>
-<span id="cb782-55"><a href="eine-shiny-app.html#cb782-55"></a>  <span class="kw">titlePanel</span>(<span class="st">&quot;Normal? Distributions&quot;</span>),</span>
-<span id="cb782-56"><a href="eine-shiny-app.html#cb782-56"></a></span>
-<span id="cb782-57"><a href="eine-shiny-app.html#cb782-57"></a>  <span class="co"># Sidebar layout with input and output definitions ----</span></span>
-<span id="cb782-58"><a href="eine-shiny-app.html#cb782-58"></a>  <span class="kw">sidebarLayout</span>(</span>
-<span id="cb782-59"><a href="eine-shiny-app.html#cb782-59"></a></span>
-<span id="cb782-60"><a href="eine-shiny-app.html#cb782-60"></a>    <span class="co"># Sidebar panel for inputs ----</span></span>
-<span id="cb782-61"><a href="eine-shiny-app.html#cb782-61"></a>    <span class="kw">sidebarPanel</span>(</span>
-<span id="cb782-62"><a href="eine-shiny-app.html#cb782-62"></a>      <span class="co"># br() element to introduce extra vertical spacing ----</span></span>
-<span id="cb782-63"><a href="eine-shiny-app.html#cb782-63"></a></span>
-<span id="cb782-64"><a href="eine-shiny-app.html#cb782-64"></a>      <span class="co"># conditional panel to enable/disable certain features only when they are (not) applicable depending on the numerical value of the tabs</span></span>
-<span id="cb782-65"><a href="eine-shiny-app.html#cb782-65"></a>      <span class="kw">conditionalPanel</span>(<span class="dt">condition =</span> <span class="st">&quot;input.tabs&lt;=2&quot;</span>,</span>
-<span id="cb782-66"><a href="eine-shiny-app.html#cb782-66"></a>        <span class="co"># Input: slider for the number of observations to generate ----</span></span>
-<span id="cb782-67"><a href="eine-shiny-app.html#cb782-67"></a>        <span class="kw">numericInput</span>(<span class="st">&quot;n&quot;</span>,</span>
-<span id="cb782-68"><a href="eine-shiny-app.html#cb782-68"></a>          <span class="st">&quot;Number of Observations:&quot;</span>,</span>
-<span id="cb782-69"><a href="eine-shiny-app.html#cb782-69"></a>          <span class="dt">value =</span> <span class="dv">500</span>,</span>
-<span id="cb782-70"><a href="eine-shiny-app.html#cb782-70"></a>          <span class="dt">min =</span> <span class="dv">1</span>,</span>
-<span id="cb782-71"><a href="eine-shiny-app.html#cb782-71"></a>          <span class="dt">max =</span> <span class="dv">12000</span>),</span>
-<span id="cb782-72"><a href="eine-shiny-app.html#cb782-72"></a>        <span class="co"># Input: radio button for categorical selection,</span></span>
-<span id="cb782-73"><a href="eine-shiny-app.html#cb782-73"></a>        <span class="co"># alternative: selectInput</span></span>
-<span id="cb782-74"><a href="eine-shiny-app.html#cb782-74"></a>        <span class="kw">radioButtons</span>(<span class="st">&quot;dist&quot;</span>,</span>
-<span id="cb782-75"><a href="eine-shiny-app.html#cb782-75"></a>          <span class="st">&quot;Distribution&quot;</span>,</span>
-<span id="cb782-76"><a href="eine-shiny-app.html#cb782-76"></a>          <span class="kw">c</span>(<span class="st">&quot;Normal&quot;</span> =<span class="st"> &quot;rnorm&quot;</span>,</span>
-<span id="cb782-77"><a href="eine-shiny-app.html#cb782-77"></a>            <span class="st">&quot;Exponential&quot;</span> =<span class="st"> &quot;rexp&quot;</span>,</span>
-<span id="cb782-78"><a href="eine-shiny-app.html#cb782-78"></a>            <span class="st">&quot;Beta&quot;</span> =<span class="st"> &quot;rbeta&quot;</span></span>
-<span id="cb782-79"><a href="eine-shiny-app.html#cb782-79"></a>            <span class="co"># &quot;LogNormal&quot; = &quot;rlnorm&quot;</span></span>
-<span id="cb782-80"><a href="eine-shiny-app.html#cb782-80"></a>        ), <span class="dt">inline =</span> T),</span>
-<span id="cb782-81"><a href="eine-shiny-app.html#cb782-81"></a>        <span class="co"># checkbox to indicate whether a</span></span>
-<span id="cb782-82"><a href="eine-shiny-app.html#cb782-82"></a>        <span class="co"># transformation is to be applied</span></span>
-<span id="cb782-83"><a href="eine-shiny-app.html#cb782-83"></a>        <span class="kw">selectInput</span>(<span class="st">&quot;z&quot;</span>,</span>
-<span id="cb782-84"><a href="eine-shiny-app.html#cb782-84"></a>          <span class="st">&quot;Transformation:&quot;</span>,</span>
-<span id="cb782-85"><a href="eine-shiny-app.html#cb782-85"></a>          <span class="kw">c</span>(<span class="st">&quot;None&quot;</span> =<span class="st"> &quot;none&quot;</span>,</span>
-<span id="cb782-86"><a href="eine-shiny-app.html#cb782-86"></a>            <span class="st">&quot;z (mean = 0, sd = 1)&quot;</span> =<span class="st"> &quot;scale&quot;</span>,</span>
-<span id="cb782-87"><a href="eine-shiny-app.html#cb782-87"></a>            <span class="st">&quot;Logarithm&quot;</span> =<span class="st"> &quot;log&quot;</span>,</span>
-<span id="cb782-88"><a href="eine-shiny-app.html#cb782-88"></a>            <span class="st">&quot;Square Root&quot;</span> =<span class="st"> &quot;sqrt&quot;</span>)</span>
-<span id="cb782-89"><a href="eine-shiny-app.html#cb782-89"></a>        ),</span>
-<span id="cb782-90"><a href="eine-shiny-app.html#cb782-90"></a></span>
-<span id="cb782-91"><a href="eine-shiny-app.html#cb782-91"></a>        <span class="co"># conditional sidebar elements depending</span></span>
-<span id="cb782-92"><a href="eine-shiny-app.html#cb782-92"></a>        <span class="co"># on the choice of distribution</span></span>
-<span id="cb782-93"><a href="eine-shiny-app.html#cb782-93"></a>        <span class="kw">uiOutput</span>(<span class="st">&quot;slidermean&quot;</span>),</span>
-<span id="cb782-94"><a href="eine-shiny-app.html#cb782-94"></a>        <span class="kw">uiOutput</span>(<span class="st">&quot;slidersd&quot;</span>),</span>
-<span id="cb782-95"><a href="eine-shiny-app.html#cb782-95"></a>        <span class="kw">uiOutput</span>(<span class="st">&quot;sliderrate&quot;</span>),</span>
-<span id="cb782-96"><a href="eine-shiny-app.html#cb782-96"></a>        <span class="kw">uiOutput</span>(<span class="st">&quot;slidershape1&quot;</span>),</span>
-<span id="cb782-97"><a href="eine-shiny-app.html#cb782-97"></a>        <span class="kw">uiOutput</span>(<span class="st">&quot;slidershape2&quot;</span>)</span>
-<span id="cb782-98"><a href="eine-shiny-app.html#cb782-98"></a>      ),</span>
-<span id="cb782-99"><a href="eine-shiny-app.html#cb782-99"></a>      <span class="co"># conditional panel to enable/disable certain features only when they are (not) applicable depending on the numerical value of the tabs</span></span>
-<span id="cb782-100"><a href="eine-shiny-app.html#cb782-100"></a>      <span class="kw">conditionalPanel</span>(<span class="dt">condition =</span> <span class="st">&quot;input.tabs&lt;=3&amp;input.tabs!=1&quot;</span>,</span>
-<span id="cb782-101"><a href="eine-shiny-app.html#cb782-101"></a>        <span class="kw">sliderInput</span>(<span class="st">&quot;bin&quot;</span>,</span>
-<span id="cb782-102"><a href="eine-shiny-app.html#cb782-102"></a>          <span class="st">&quot;Bar Width/Point Size:&quot;</span>,</span>
-<span id="cb782-103"><a href="eine-shiny-app.html#cb782-103"></a>          <span class="dt">value =</span> <span class="fl">1.55</span>,</span>
-<span id="cb782-104"><a href="eine-shiny-app.html#cb782-104"></a>          <span class="dt">min =</span> <span class="fl">.01</span>,</span>
-<span id="cb782-105"><a href="eine-shiny-app.html#cb782-105"></a>          <span class="dt">max =</span> <span class="dv">10</span>),</span>
-<span id="cb782-106"><a href="eine-shiny-app.html#cb782-106"></a></span>
-<span id="cb782-107"><a href="eine-shiny-app.html#cb782-107"></a>        <span class="kw">sliderInput</span>(<span class="st">&quot;alpha&quot;</span>,</span>
-<span id="cb782-108"><a href="eine-shiny-app.html#cb782-108"></a>          <span class="st">&quot;Opacity&quot;</span>,</span>
-<span id="cb782-109"><a href="eine-shiny-app.html#cb782-109"></a>          <span class="dt">value =</span> <span class="fl">.6</span>,</span>
-<span id="cb782-110"><a href="eine-shiny-app.html#cb782-110"></a>          <span class="dt">min =</span> <span class="fl">.1</span>,</span>
-<span id="cb782-111"><a href="eine-shiny-app.html#cb782-111"></a>          <span class="dt">max =</span> <span class="dv">1</span>),</span>
-<span id="cb782-112"><a href="eine-shiny-app.html#cb782-112"></a>        <span class="co"># Input: radio</span></span>
-<span id="cb782-113"><a href="eine-shiny-app.html#cb782-113"></a>        <span class="co"># button for</span></span>
-<span id="cb782-114"><a href="eine-shiny-app.html#cb782-114"></a>        <span class="co"># categorical</span></span>
-<span id="cb782-115"><a href="eine-shiny-app.html#cb782-115"></a>        <span class="co"># selection,</span></span>
-<span id="cb782-116"><a href="eine-shiny-app.html#cb782-116"></a>        <span class="co"># alternative:</span></span>
-<span id="cb782-117"><a href="eine-shiny-app.html#cb782-117"></a>        <span class="co"># selectInput</span></span>
-<span id="cb782-118"><a href="eine-shiny-app.html#cb782-118"></a>        <span class="co"># ----</span></span>
-<span id="cb782-119"><a href="eine-shiny-app.html#cb782-119"></a>        <span class="kw">radioButtons</span>(<span class="st">&quot;col&quot;</span>,</span>
-<span id="cb782-120"><a href="eine-shiny-app.html#cb782-120"></a>          <span class="st">&quot;Color:&quot;</span>,</span>
-<span id="cb782-121"><a href="eine-shiny-app.html#cb782-121"></a>          <span class="kw">c</span>(<span class="st">&quot;Pink&quot;</span> =<span class="st"> &quot;deeppink1&quot;</span>,</span>
-<span id="cb782-122"><a href="eine-shiny-app.html#cb782-122"></a>            <span class="st">&quot;Black&quot;</span> =<span class="st"> &quot;black&quot;</span>,</span>
-<span id="cb782-123"><a href="eine-shiny-app.html#cb782-123"></a>            <span class="st">&quot;Blue&quot;</span> =<span class="st"> &quot;navyblue&quot;</span>,</span>
-<span id="cb782-124"><a href="eine-shiny-app.html#cb782-124"></a>            <span class="st">&quot;Green&quot;</span> =<span class="st"> &quot;darkolivegreen&quot;</span>,</span>
-<span id="cb782-125"><a href="eine-shiny-app.html#cb782-125"></a>            <span class="st">&quot;Magenta&quot;</span> =<span class="st"> &quot;darkmagenta&quot;</span>),</span>
-<span id="cb782-126"><a href="eine-shiny-app.html#cb782-126"></a>          <span class="dt">inline =</span> T</span>
-<span id="cb782-127"><a href="eine-shiny-app.html#cb782-127"></a>        ),</span>
-<span id="cb782-128"><a href="eine-shiny-app.html#cb782-128"></a>        <span class="co"># drop down list</span></span>
-<span id="cb782-129"><a href="eine-shiny-app.html#cb782-129"></a>        <span class="kw">selectInput</span>(<span class="st">&quot;theme&quot;</span>,</span>
-<span id="cb782-130"><a href="eine-shiny-app.html#cb782-130"></a>          <span class="st">&quot;Theme:&quot;</span>,</span>
-<span id="cb782-131"><a href="eine-shiny-app.html#cb782-131"></a>          <span class="kw">c</span>(<span class="st">&quot;Publication&quot;</span> =<span class="st"> &quot;pubr&quot;</span>,</span>
-<span id="cb782-132"><a href="eine-shiny-app.html#cb782-132"></a>            <span class="st">&quot;Economist&quot;</span> =<span class="st"> &quot;economist&quot;</span>,</span>
-<span id="cb782-133"><a href="eine-shiny-app.html#cb782-133"></a>            <span class="st">&quot;Grey&quot;</span> =<span class="st"> &quot;grey&quot;</span>,</span>
-<span id="cb782-134"><a href="eine-shiny-app.html#cb782-134"></a>            <span class="st">&quot;Clean&quot;</span> =<span class="st"> &quot;clean&quot;</span>)</span>
-<span id="cb782-135"><a href="eine-shiny-app.html#cb782-135"></a>        )</span>
-<span id="cb782-136"><a href="eine-shiny-app.html#cb782-136"></a>      ),</span>
-<span id="cb782-137"><a href="eine-shiny-app.html#cb782-137"></a></span>
-<span id="cb782-138"><a href="eine-shiny-app.html#cb782-138"></a>      <span class="co"># adjust width of side panel</span></span>
-<span id="cb782-139"><a href="eine-shiny-app.html#cb782-139"></a>      <span class="dt">width =</span> <span class="dv">3</span></span>
-<span id="cb782-140"><a href="eine-shiny-app.html#cb782-140"></a></span>
-<span id="cb782-141"><a href="eine-shiny-app.html#cb782-141"></a>    ),</span>
-<span id="cb782-142"><a href="eine-shiny-app.html#cb782-142"></a></span>
-<span id="cb782-143"><a href="eine-shiny-app.html#cb782-143"></a>    <span class="co"># Main panel for displaying outputs ----</span></span>
-<span id="cb782-144"><a href="eine-shiny-app.html#cb782-144"></a>    <span class="kw">mainPanel</span>(</span>
-<span id="cb782-145"><a href="eine-shiny-app.html#cb782-145"></a></span>
-<span id="cb782-146"><a href="eine-shiny-app.html#cb782-146"></a>      <span class="co"># Output: Tabset w/ plots, summary, and table ----</span></span>
-<span id="cb782-147"><a href="eine-shiny-app.html#cb782-147"></a>      <span class="co"># id is used to refer back to the individual panels for the</span></span>
-<span id="cb782-148"><a href="eine-shiny-app.html#cb782-148"></a>      <span class="co"># condiditional side bar elements depending on the value</span></span>
-<span id="cb782-149"><a href="eine-shiny-app.html#cb782-149"></a>      <span class="kw">tabsetPanel</span>(<span class="dt">id =</span> <span class="st">&quot;tabs&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;tabs&quot;</span>,</span>
-<span id="cb782-150"><a href="eine-shiny-app.html#cb782-150"></a>        <span class="co"># histogram with mean, uses ncount</span></span>
-<span id="cb782-151"><a href="eine-shiny-app.html#cb782-151"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;nCount Plot&quot;</span>, <span class="dt">value =</span> <span class="dv">2</span>,</span>
-<span id="cb782-152"><a href="eine-shiny-app.html#cb782-152"></a>          <span class="kw">plotlyOutput</span>(<span class="st">&quot;plot1&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>),</span>
-<span id="cb782-153"><a href="eine-shiny-app.html#cb782-153"></a>          <span class="kw">fluidRow</span>(</span>
-<span id="cb782-154"><a href="eine-shiny-app.html#cb782-154"></a>            <span class="kw">column</span>(<span class="dv">9</span>, <span class="dt">offset =</span> <span class="dv">0</span>,</span>
-<span id="cb782-155"><a href="eine-shiny-app.html#cb782-155"></a>              <span class="kw">h6</span>(<span class="st">&quot;Test&quot;</span>)</span>
-<span id="cb782-156"><a href="eine-shiny-app.html#cb782-156"></a>            )</span>
-<span id="cb782-157"><a href="eine-shiny-app.html#cb782-157"></a>          )</span>
-<span id="cb782-158"><a href="eine-shiny-app.html#cb782-158"></a>        ),</span>
-<span id="cb782-159"><a href="eine-shiny-app.html#cb782-159"></a>        <span class="co"># histogram with mean, +/- sd and t-significant areas</span></span>
-<span id="cb782-160"><a href="eine-shiny-app.html#cb782-160"></a>        <span class="co"># uses density statistic</span></span>
-<span id="cb782-161"><a href="eine-shiny-app.html#cb782-161"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;Density Plot&quot;</span>, <span class="dt">value =</span> <span class="dv">2</span>,</span>
-<span id="cb782-162"><a href="eine-shiny-app.html#cb782-162"></a>          <span class="kw">plotlyOutput</span>(<span class="st">&quot;plot2&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</span>
-<span id="cb782-163"><a href="eine-shiny-app.html#cb782-163"></a>        <span class="co"># qq plot</span></span>
-<span id="cb782-164"><a href="eine-shiny-app.html#cb782-164"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;QQ Plot&quot;</span>, <span class="dt">value =</span> <span class="dv">2</span>,</span>
-<span id="cb782-165"><a href="eine-shiny-app.html#cb782-165"></a>          <span class="kw">plotlyOutput</span>(<span class="st">&quot;plot3&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</span>
-<span id="cb782-166"><a href="eine-shiny-app.html#cb782-166"></a>        <span class="co"># boxplot with underlayed individual data points</span></span>
-<span id="cb782-167"><a href="eine-shiny-app.html#cb782-167"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;Boxplot&quot;</span>, <span class="dt">value =</span> <span class="dv">2</span>,</span>
-<span id="cb782-168"><a href="eine-shiny-app.html#cb782-168"></a>          <span class="kw">plotlyOutput</span>(<span class="st">&quot;plot4&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</span>
-<span id="cb782-169"><a href="eine-shiny-app.html#cb782-169"></a>        <span class="co"># descriptive stats of generated data set</span></span>
-<span id="cb782-170"><a href="eine-shiny-app.html#cb782-170"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;Descriptive Stats&quot;</span>, <span class="dt">value =</span> <span class="dv">1</span>,</span>
-<span id="cb782-171"><a href="eine-shiny-app.html#cb782-171"></a>          <span class="kw">fluidRow</span>(</span>
-<span id="cb782-172"><a href="eine-shiny-app.html#cb782-172"></a>            <span class="kw">h3</span>(<span class="st">&quot;Describe&quot;</span>),</span>
-<span id="cb782-173"><a href="eine-shiny-app.html#cb782-173"></a>            <span class="kw">dataTableOutput</span>(<span class="st">&quot;table&quot;</span>),</span>
-<span id="cb782-174"><a href="eine-shiny-app.html#cb782-174"></a>            <span class="kw">h3</span>(<span class="st">&quot;Head&quot;</span>),</span>
-<span id="cb782-175"><a href="eine-shiny-app.html#cb782-175"></a>            <span class="kw">dataTableOutput</span>(<span class="st">&quot;table4&quot;</span>)</span>
-<span id="cb782-176"><a href="eine-shiny-app.html#cb782-176"></a>          )</span>
-<span id="cb782-177"><a href="eine-shiny-app.html#cb782-177"></a>        ),</span>
-<span id="cb782-178"><a href="eine-shiny-app.html#cb782-178"></a>        <span class="co"># plot illustrating the cental limit</span></span>
-<span id="cb782-179"><a href="eine-shiny-app.html#cb782-179"></a>        <span class="co"># theorem with exponential distribution</span></span>
-<span id="cb782-180"><a href="eine-shiny-app.html#cb782-180"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;CLT1&quot;</span>, <span class="dt">value =</span> <span class="dv">3</span>,</span>
-<span id="cb782-181"><a href="eine-shiny-app.html#cb782-181"></a>          <span class="kw">plotOutput</span>(<span class="st">&quot;plot5&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</span>
-<span id="cb782-182"><a href="eine-shiny-app.html#cb782-182"></a>        <span class="co"># classical plots with</span></span>
-<span id="cb782-183"><a href="eine-shiny-app.html#cb782-183"></a>        <span class="co"># means, sd error and</span></span>
-<span id="cb782-184"><a href="eine-shiny-app.html#cb782-184"></a>        <span class="co"># lines conntecting the means</span></span>
-<span id="cb782-185"><a href="eine-shiny-app.html#cb782-185"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;CLT2&quot;</span>, <span class="dt">value =</span> <span class="dv">3</span>,</span>
-<span id="cb782-186"><a href="eine-shiny-app.html#cb782-186"></a>          <span class="kw">plotOutput</span>(<span class="st">&quot;plot6&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</span>
-<span id="cb782-187"><a href="eine-shiny-app.html#cb782-187"></a>        <span class="co"># descriptive stats of exponential data</span></span>
-<span id="cb782-188"><a href="eine-shiny-app.html#cb782-188"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;CLT Data&quot;</span>, <span class="dt">value =</span> <span class="dv">4</span>,</span>
-<span id="cb782-189"><a href="eine-shiny-app.html#cb782-189"></a>          <span class="co"># multiple outputs in one panel via fluidRow</span></span>
-<span id="cb782-190"><a href="eine-shiny-app.html#cb782-190"></a>          <span class="kw">fluidRow</span>(</span>
-<span id="cb782-191"><a href="eine-shiny-app.html#cb782-191"></a>            <span class="co"># Title element</span></span>
-<span id="cb782-192"><a href="eine-shiny-app.html#cb782-192"></a>            <span class="kw">h3</span>(<span class="st">&quot;DescribeBy&quot;</span>),</span>
-<span id="cb782-193"><a href="eine-shiny-app.html#cb782-193"></a>            <span class="kw">dataTableOutput</span>(<span class="st">&quot;table2&quot;</span>),</span>
-<span id="cb782-194"><a href="eine-shiny-app.html#cb782-194"></a>            <span class="kw">h3</span>(<span class="st">&quot;Head&quot;</span>),</span>
-<span id="cb782-195"><a href="eine-shiny-app.html#cb782-195"></a>            <span class="kw">dataTableOutput</span>(<span class="st">&quot;table3&quot;</span>)</span>
-<span id="cb782-196"><a href="eine-shiny-app.html#cb782-196"></a>        ))</span>
-<span id="cb782-197"><a href="eine-shiny-app.html#cb782-197"></a></span>
-<span id="cb782-198"><a href="eine-shiny-app.html#cb782-198"></a>      ),</span>
-<span id="cb782-199"><a href="eine-shiny-app.html#cb782-199"></a>      <span class="co"># adjust width of main panel</span></span>
-<span id="cb782-200"><a href="eine-shiny-app.html#cb782-200"></a>      <span class="dt">width =</span> <span class="dv">9</span>)</span>
-<span id="cb782-201"><a href="eine-shiny-app.html#cb782-201"></a>  )</span>
-<span id="cb782-202"><a href="eine-shiny-app.html#cb782-202"></a>)</span>
-<span id="cb782-203"><a href="eine-shiny-app.html#cb782-203"></a></span>
-<span id="cb782-204"><a href="eine-shiny-app.html#cb782-204"></a><span class="co"># Define server logic for random distribution app ----</span></span>
-<span id="cb782-205"><a href="eine-shiny-app.html#cb782-205"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</span>
-<span id="cb782-206"><a href="eine-shiny-app.html#cb782-206"></a></span>
-<span id="cb782-207"><a href="eine-shiny-app.html#cb782-207"></a>  <span class="co"># Reactive expression to generate the requested data set according to n, mean and sd ----</span></span>
-<span id="cb782-208"><a href="eine-shiny-app.html#cb782-208"></a>  <span class="co"># This is called whenever the inputs change. The output functions</span></span>
-<span id="cb782-209"><a href="eine-shiny-app.html#cb782-209"></a>  <span class="co"># defined below then use the value computed from this expression</span></span>
-<span id="cb782-210"><a href="eine-shiny-app.html#cb782-210"></a></span>
-<span id="cb782-211"><a href="eine-shiny-app.html#cb782-211"></a>  <span class="co"># generates the same dataset for all the manipulatable plots and tables</span></span>
-<span id="cb782-212"><a href="eine-shiny-app.html#cb782-212"></a>  <span class="co"># this allows the user to jump from numeric representations to</span></span>
-<span id="cb782-213"><a href="eine-shiny-app.html#cb782-213"></a>  <span class="co"># different types of visualization</span></span>
-<span id="cb782-214"><a href="eine-shiny-app.html#cb782-214"></a>  x &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
-<span id="cb782-215"><a href="eine-shiny-app.html#cb782-215"></a>    <span class="co"># react to the checkbox for z-transformation:</span></span>
-<span id="cb782-216"><a href="eine-shiny-app.html#cb782-216"></a>    <span class="co"># if FALSE, do the usual</span></span>
-<span id="cb782-217"><a href="eine-shiny-app.html#cb782-217"></a>    <span class="cf">if</span> (input<span class="op">$</span>z <span class="op">==</span><span class="st"> &quot;none&quot;</span>) {</span>
-<span id="cb782-218"><a href="eine-shiny-app.html#cb782-218"></a>      <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rnorm&quot;</span>)</span>
-<span id="cb782-219"><a href="eine-shiny-app.html#cb782-219"></a>        {x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(input<span class="op">$</span>n, <span class="dt">mean =</span> input<span class="op">$</span>mean, <span class="dt">sd =</span> input<span class="op">$</span>sd)}</span>
-<span id="cb782-220"><a href="eine-shiny-app.html#cb782-220"></a>      <span class="co"># else if(input$dist == &quot;rlnorm&quot;)</span></span>
-<span id="cb782-221"><a href="eine-shiny-app.html#cb782-221"></a>      <span class="co"># {x &lt;- rlnorm(input$n, meanlog = input$mean, sdlog=input$sd)}</span></span>
-<span id="cb782-222"><a href="eine-shiny-app.html#cb782-222"></a>      <span class="cf">else</span> <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rexp&quot;</span>) {</span>
-<span id="cb782-223"><a href="eine-shiny-app.html#cb782-223"></a>        x &lt;-<span class="st"> </span><span class="kw">rexp</span>(input<span class="op">$</span>n, <span class="dt">rate =</span> input<span class="op">$</span>rate)</span>
-<span id="cb782-224"><a href="eine-shiny-app.html#cb782-224"></a>      }</span>
-<span id="cb782-225"><a href="eine-shiny-app.html#cb782-225"></a>      <span class="cf">else</span> {</span>
-<span id="cb782-226"><a href="eine-shiny-app.html#cb782-226"></a>        x &lt;-<span class="st"> </span><span class="kw">rbeta</span>(input<span class="op">$</span>n, input<span class="op">$</span>shape1, input<span class="op">$</span>shape2)</span>
-<span id="cb782-227"><a href="eine-shiny-app.html#cb782-227"></a>      }</span>
-<span id="cb782-228"><a href="eine-shiny-app.html#cb782-228"></a>    }</span>
-<span id="cb782-229"><a href="eine-shiny-app.html#cb782-229"></a>    <span class="co"># if TRUE, apply the transformation specified by the input</span></span>
-<span id="cb782-230"><a href="eine-shiny-app.html#cb782-230"></a>    <span class="co"># either scale, log or sqrt</span></span>
-<span id="cb782-231"><a href="eine-shiny-app.html#cb782-231"></a>    <span class="cf">else</span> {</span>
-<span id="cb782-232"><a href="eine-shiny-app.html#cb782-232"></a>      <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rnorm&quot;</span>)</span>
-<span id="cb782-233"><a href="eine-shiny-app.html#cb782-233"></a>        {x &lt;-<span class="st"> </span><span class="kw">get</span>(input<span class="op">$</span>z)(<span class="kw">rnorm</span>(input<span class="op">$</span>n, <span class="dt">mean =</span> input<span class="op">$</span>mean,</span>
-<span id="cb782-234"><a href="eine-shiny-app.html#cb782-234"></a>          <span class="dt">sd =</span> input<span class="op">$</span>sd))}</span>
-<span id="cb782-235"><a href="eine-shiny-app.html#cb782-235"></a>      <span class="co"># else if(input$dist == &quot;rlnorm&quot;)</span></span>
-<span id="cb782-236"><a href="eine-shiny-app.html#cb782-236"></a>      <span class="co"># {x &lt;- rlnorm(input$n, meanlog = input$mean, sdlog=input$sd)}</span></span>
-<span id="cb782-237"><a href="eine-shiny-app.html#cb782-237"></a>      <span class="cf">else</span> <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rexp&quot;</span>) {</span>
-<span id="cb782-238"><a href="eine-shiny-app.html#cb782-238"></a>        x &lt;-<span class="st"> </span><span class="kw">get</span>(input<span class="op">$</span>z)(<span class="kw">rexp</span>(input<span class="op">$</span>n, <span class="dt">rate =</span> input<span class="op">$</span>rate))</span>
-<span id="cb782-239"><a href="eine-shiny-app.html#cb782-239"></a>      }</span>
-<span id="cb782-240"><a href="eine-shiny-app.html#cb782-240"></a>      <span class="cf">else</span> {</span>
-<span id="cb782-241"><a href="eine-shiny-app.html#cb782-241"></a>        x &lt;-<span class="st"> </span><span class="kw">get</span>(input<span class="op">$</span>z)(<span class="kw">rbeta</span>(input<span class="op">$</span>n, input<span class="op">$</span>shape1, input<span class="op">$</span>shape2))</span>
-<span id="cb782-242"><a href="eine-shiny-app.html#cb782-242"></a>      }</span>
-<span id="cb782-243"><a href="eine-shiny-app.html#cb782-243"></a>    }</span>
-<span id="cb782-244"><a href="eine-shiny-app.html#cb782-244"></a></span>
-<span id="cb782-245"><a href="eine-shiny-app.html#cb782-245"></a>  })</span>
-<span id="cb782-246"><a href="eine-shiny-app.html#cb782-246"></a></span>
-<span id="cb782-247"><a href="eine-shiny-app.html#cb782-247"></a>  <span class="co"># Generate a plot of the data ----</span></span>
-<span id="cb782-248"><a href="eine-shiny-app.html#cb782-248"></a>  <span class="co"># Also uses the inputs to build the plot label. Note that the</span></span>
-<span id="cb782-249"><a href="eine-shiny-app.html#cb782-249"></a>  <span class="co"># dependencies on the inputs and the data reactive expression are</span></span>
-<span id="cb782-250"><a href="eine-shiny-app.html#cb782-250"></a>  <span class="co"># both tracked, and all expressions are called in the sequence</span></span>
-<span id="cb782-251"><a href="eine-shiny-app.html#cb782-251"></a>  <span class="co"># implied by the dependency graph.</span></span>
-<span id="cb782-252"><a href="eine-shiny-app.html#cb782-252"></a></span>
-<span id="cb782-253"><a href="eine-shiny-app.html#cb782-253"></a>  <span class="co"># histogram with mean</span></span>
-<span id="cb782-254"><a href="eine-shiny-app.html#cb782-254"></a>  <span class="co"># uses ncount statistic</span></span>
-<span id="cb782-255"><a href="eine-shiny-app.html#cb782-255"></a>  output<span class="op">$</span>plot1 &lt;-<span class="st"> </span><span class="kw">renderPlotly</span>({</span>
-<span id="cb782-256"><a href="eine-shiny-app.html#cb782-256"></a>    <span class="co">#  dist &lt;- input$dist</span></span>
-<span id="cb782-257"><a href="eine-shiny-app.html#cb782-257"></a>    <span class="co"># compute descriptive stats, will use skew and kurtosis later</span></span>
-<span id="cb782-258"><a href="eine-shiny-app.html#cb782-258"></a>    s &lt;-<span class="st"> </span><span class="kw">describe</span>(<span class="kw">x</span>())</span>
-<span id="cb782-259"><a href="eine-shiny-app.html#cb782-259"></a>    <span class="co"># extract mean and sd</span></span>
-<span id="cb782-260"><a href="eine-shiny-app.html#cb782-260"></a>    mean &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">3</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-261"><a href="eine-shiny-app.html#cb782-261"></a>    sd &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">4</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-262"><a href="eine-shiny-app.html#cb782-262"></a>    <span class="co"># extract skew</span></span>
-<span id="cb782-263"><a href="eine-shiny-app.html#cb782-263"></a>    skew &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">11</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-264"><a href="eine-shiny-app.html#cb782-264"></a>    <span class="co"># extract kurtosis</span></span>
-<span id="cb782-265"><a href="eine-shiny-app.html#cb782-265"></a>    kurtosis &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">12</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-266"><a href="eine-shiny-app.html#cb782-266"></a>    <span class="co"># add kolmogorov-smirnov normality test</span></span>
-<span id="cb782-267"><a href="eine-shiny-app.html#cb782-267"></a>    <span class="co"># mean and sd have the same values as in the sampling distribution</span></span>
-<span id="cb782-268"><a href="eine-shiny-app.html#cb782-268"></a>    ks &lt;-<span class="st"> </span><span class="kw">ks.test</span>(<span class="kw">x</span>(), <span class="st">&quot;pnorm&quot;</span>, <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()), <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>()))</span>
-<span id="cb782-269"><a href="eine-shiny-app.html#cb782-269"></a>    ksp &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">as.data.frame</span>(ks[<span class="dv">2</span>])[<span class="dv">1</span>, <span class="dv">1</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-270"><a href="eine-shiny-app.html#cb782-270"></a>    text &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot; Mean: &quot;</span>, mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Std. Dev: &quot;</span>,</span>
-<span id="cb782-271"><a href="eine-shiny-app.html#cb782-271"></a>      sd, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Skew: &quot;</span>, skew, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kurtosis: &quot;</span>, kurtosis,</span>
-<span id="cb782-272"><a href="eine-shiny-app.html#cb782-272"></a>      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kolmogorov-Smirnov p: &quot;</span>, ksp)</span>
-<span id="cb782-273"><a href="eine-shiny-app.html#cb782-273"></a>    <span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="kw">x</span>()) <span class="op">+</span></span>
-<span id="cb782-274"><a href="eine-shiny-app.html#cb782-274"></a><span class="st">      </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..ncount..), <span class="dt">binwidth =</span> input<span class="op">$</span>bin,</span>
-<span id="cb782-275"><a href="eine-shiny-app.html#cb782-275"></a>        <span class="dt">fill =</span> input<span class="op">$</span>col, <span class="dt">alpha =</span> input<span class="op">$</span>alpha) <span class="op">+</span></span>
-<span id="cb782-276"><a href="eine-shiny-app.html#cb782-276"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="kw">paste</span>(<span class="st">&quot;Number of Observations: &quot;</span>, input<span class="op">$</span>n), <span class="dt">y =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
-<span id="cb782-277"><a href="eine-shiny-app.html#cb782-277"></a><span class="st">      </span><span class="co">#  annotate(&quot;text&quot;, -Inf, Inf, label = text, size=4.5, hjust = 0, vjust=1) +</span></span>
-<span id="cb782-278"><a href="eine-shiny-app.html#cb782-278"></a><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span></span>
-<span id="cb782-279"><a href="eine-shiny-app.html#cb782-279"></a><span class="st">      </span><span class="co"># scale_x_continuous(limits =  c(input$mean-(5*input$sd), input$mean+(5*input$sd))) +</span></span>
-<span id="cb782-280"><a href="eine-shiny-app.html#cb782-280"></a><span class="st">      </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(<span class="kw">x</span>(), <span class="dt">na.rm =</span> T)),</span>
-<span id="cb782-281"><a href="eine-shiny-app.html#cb782-281"></a>        <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>)</span>
-<span id="cb782-282"><a href="eine-shiny-app.html#cb782-282"></a>  })</span>
-<span id="cb782-283"><a href="eine-shiny-app.html#cb782-283"></a></span>
-<span id="cb782-284"><a href="eine-shiny-app.html#cb782-284"></a>  <span class="co"># histogram with mean, +/- sd and t-significant areas</span></span>
-<span id="cb782-285"><a href="eine-shiny-app.html#cb782-285"></a>  <span class="co"># uses density statistic</span></span>
-<span id="cb782-286"><a href="eine-shiny-app.html#cb782-286"></a>  output<span class="op">$</span>plot2 &lt;-<span class="st"> </span><span class="kw">renderPlotly</span>({</span>
-<span id="cb782-287"><a href="eine-shiny-app.html#cb782-287"></a>    <span class="co">#  dist &lt;- input$dist</span></span>
-<span id="cb782-288"><a href="eine-shiny-app.html#cb782-288"></a>    <span class="co"># compute descriptive stats, will use skew and kurtosis later</span></span>
-<span id="cb782-289"><a href="eine-shiny-app.html#cb782-289"></a>    s &lt;-<span class="st"> </span><span class="kw">describe</span>(<span class="kw">x</span>())</span>
-<span id="cb782-290"><a href="eine-shiny-app.html#cb782-290"></a>    <span class="co"># extract mean and sd</span></span>
-<span id="cb782-291"><a href="eine-shiny-app.html#cb782-291"></a>    mean &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">3</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-292"><a href="eine-shiny-app.html#cb782-292"></a>    sd &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">4</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-293"><a href="eine-shiny-app.html#cb782-293"></a>    <span class="co"># extract skew</span></span>
-<span id="cb782-294"><a href="eine-shiny-app.html#cb782-294"></a>    skew &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">11</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-295"><a href="eine-shiny-app.html#cb782-295"></a>    <span class="co"># extract kurtosis</span></span>
-<span id="cb782-296"><a href="eine-shiny-app.html#cb782-296"></a>    kurtosis &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">12</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-297"><a href="eine-shiny-app.html#cb782-297"></a>    <span class="co"># add kolmogorov-smirnov normality test</span></span>
-<span id="cb782-298"><a href="eine-shiny-app.html#cb782-298"></a>    <span class="co"># mean and sd have the same values as in the sampling distribution</span></span>
-<span id="cb782-299"><a href="eine-shiny-app.html#cb782-299"></a>    ks &lt;-<span class="st"> </span><span class="kw">ks.test</span>(<span class="kw">x</span>(), <span class="st">&quot;pnorm&quot;</span>, <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</span>
-<span id="cb782-300"><a href="eine-shiny-app.html#cb782-300"></a>      <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>()))</span>
-<span id="cb782-301"><a href="eine-shiny-app.html#cb782-301"></a>    ksp &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">as.data.frame</span>(ks[<span class="dv">2</span>])[<span class="dv">1</span>, <span class="dv">1</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-302"><a href="eine-shiny-app.html#cb782-302"></a>    text &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot; Mean: &quot;</span>, mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Std. Dev: &quot;</span>,</span>
-<span id="cb782-303"><a href="eine-shiny-app.html#cb782-303"></a>      sd, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Skew: &quot;</span>, skew, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kurtosis: &quot;</span>, kurtosis,</span>
-<span id="cb782-304"><a href="eine-shiny-app.html#cb782-304"></a>      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kolmogorov-Smirnov p: &quot;</span>, ksp)</span>
-<span id="cb782-305"><a href="eine-shiny-app.html#cb782-305"></a></span>
-<span id="cb782-306"><a href="eine-shiny-app.html#cb782-306"></a>    <span class="co"># thresholds for shaded areas;</span></span>
-<span id="cb782-307"><a href="eine-shiny-app.html#cb782-307"></a>    <span class="co"># modelled after two-tailed</span></span>
-<span id="cb782-308"><a href="eine-shiny-app.html#cb782-308"></a>    <span class="co"># t-distribution</span></span>
-<span id="cb782-309"><a href="eine-shiny-app.html#cb782-309"></a>    thresholdup &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="kw">x</span>(), <span class="dt">prob =</span> <span class="fl">0.975</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb782-310"><a href="eine-shiny-app.html#cb782-310"></a>    thresholddown &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="kw">x</span>(), <span class="dt">prob =</span> <span class="fl">0.025</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb782-311"><a href="eine-shiny-app.html#cb782-311"></a></span>
-<span id="cb782-312"><a href="eine-shiny-app.html#cb782-312"></a>    <span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="kw">x</span>()) <span class="op">+</span></span>
-<span id="cb782-313"><a href="eine-shiny-app.html#cb782-313"></a><span class="st">      </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">binwidth =</span> input<span class="op">$</span>bin, <span class="dt">fill =</span> input<span class="op">$</span>col, <span class="dt">alpha =</span> input<span class="op">$</span>alpha) <span class="op">+</span></span>
-<span id="cb782-314"><a href="eine-shiny-app.html#cb782-314"></a><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</span>
-<span id="cb782-315"><a href="eine-shiny-app.html#cb782-315"></a>        <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()), <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</span>
-<span id="cb782-316"><a href="eine-shiny-app.html#cb782-316"></a>        <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="kw">mean</span>(<span class="kw">x</span>()), <span class="kw">mean</span>(<span class="kw">x</span>()) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(<span class="kw">x</span>())),</span>
-<span id="cb782-317"><a href="eine-shiny-app.html#cb782-317"></a>        <span class="dt">geom =</span> <span class="st">&quot;area&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;transparent&quot;</span>,</span>
-<span id="cb782-318"><a href="eine-shiny-app.html#cb782-318"></a>        <span class="dt">size =</span> <span class="fl">.7</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="op">+</span></span>
-<span id="cb782-319"><a href="eine-shiny-app.html#cb782-319"></a><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</span>
-<span id="cb782-320"><a href="eine-shiny-app.html#cb782-320"></a>        <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</span>
-<span id="cb782-321"><a href="eine-shiny-app.html#cb782-321"></a>      <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="kw">mean</span>(<span class="kw">x</span>()) <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(<span class="kw">x</span>()), <span class="kw">mean</span>(<span class="kw">x</span>())), <span class="dt">geom =</span> <span class="st">&quot;area&quot;</span>,</span>
-<span id="cb782-322"><a href="eine-shiny-app.html#cb782-322"></a>      <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;transparent&quot;</span>, <span class="dt">size =</span> <span class="fl">.7</span>,</span>
-<span id="cb782-323"><a href="eine-shiny-app.html#cb782-323"></a>      <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="op">+</span></span>
-<span id="cb782-324"><a href="eine-shiny-app.html#cb782-324"></a><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</span>
-<span id="cb782-325"><a href="eine-shiny-app.html#cb782-325"></a>        <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</span>
-<span id="cb782-326"><a href="eine-shiny-app.html#cb782-326"></a>      <span class="dt">xlim =</span> <span class="kw">c</span>(thresholdup, <span class="kw">max</span>(<span class="kw">x</span>())), <span class="dt">geom =</span> <span class="st">&quot;area&quot;</span>,</span>
-<span id="cb782-327"><a href="eine-shiny-app.html#cb782-327"></a>      <span class="dt">fill =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.4</span>) <span class="op">+</span></span>
-<span id="cb782-328"><a href="eine-shiny-app.html#cb782-328"></a><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</span>
-<span id="cb782-329"><a href="eine-shiny-app.html#cb782-329"></a>        <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</span>
-<span id="cb782-330"><a href="eine-shiny-app.html#cb782-330"></a>      <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="kw">min</span>(<span class="kw">x</span>()), thresholddown), <span class="dt">geom =</span> <span class="st">&quot;area&quot;</span>,</span>
-<span id="cb782-331"><a href="eine-shiny-app.html#cb782-331"></a>      <span class="dt">fill =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.4</span>) <span class="op">+</span></span>
-<span id="cb782-332"><a href="eine-shiny-app.html#cb782-332"></a><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</span>
-<span id="cb782-333"><a href="eine-shiny-app.html#cb782-333"></a>        <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</span>
-<span id="cb782-334"><a href="eine-shiny-app.html#cb782-334"></a>      <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">.7</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>) <span class="op">+</span></span>
-<span id="cb782-335"><a href="eine-shiny-app.html#cb782-335"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="kw">paste</span>(<span class="st">&quot;Number of Observations: &quot;</span>, input<span class="op">$</span>n), <span class="dt">y =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
-<span id="cb782-336"><a href="eine-shiny-app.html#cb782-336"></a><span class="st">      </span><span class="co"># annotate(&quot;text&quot;, -Inf, Inf, label = text, size=4.5, hjust = 0, vjust=1) +</span></span>
-<span id="cb782-337"><a href="eine-shiny-app.html#cb782-337"></a><span class="st">      </span><span class="co"># scale_x_continuous(limits = c(input$mean-(5*input$sd), input$mean+(5*input$sd))) +</span></span>
-<span id="cb782-338"><a href="eine-shiny-app.html#cb782-338"></a><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme)</span>
-<span id="cb782-339"><a href="eine-shiny-app.html#cb782-339"></a>  })</span>
-<span id="cb782-340"><a href="eine-shiny-app.html#cb782-340"></a></span>
-<span id="cb782-341"><a href="eine-shiny-app.html#cb782-341"></a></span>
-<span id="cb782-342"><a href="eine-shiny-app.html#cb782-342"></a>  <span class="co"># qq plot</span></span>
-<span id="cb782-343"><a href="eine-shiny-app.html#cb782-343"></a>  output<span class="op">$</span>plot3 &lt;-<span class="st"> </span><span class="kw">renderPlotly</span>({</span>
-<span id="cb782-344"><a href="eine-shiny-app.html#cb782-344"></a>    <span class="co"># compute descriptive stats, will use skew and kurtosis later</span></span>
-<span id="cb782-345"><a href="eine-shiny-app.html#cb782-345"></a>    s &lt;-<span class="st"> </span><span class="kw">describe</span>(<span class="kw">x</span>())</span>
-<span id="cb782-346"><a href="eine-shiny-app.html#cb782-346"></a>    <span class="co"># extract mean and sd</span></span>
-<span id="cb782-347"><a href="eine-shiny-app.html#cb782-347"></a>    mean &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">3</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-348"><a href="eine-shiny-app.html#cb782-348"></a>    sd &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">4</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-349"><a href="eine-shiny-app.html#cb782-349"></a>    <span class="co"># extract skew</span></span>
-<span id="cb782-350"><a href="eine-shiny-app.html#cb782-350"></a>    skew &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">11</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-351"><a href="eine-shiny-app.html#cb782-351"></a>    <span class="co"># extract kurtosis</span></span>
-<span id="cb782-352"><a href="eine-shiny-app.html#cb782-352"></a>    kurtosis &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">12</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-353"><a href="eine-shiny-app.html#cb782-353"></a>    <span class="co"># add kolmogorov-smirnov normality test</span></span>
-<span id="cb782-354"><a href="eine-shiny-app.html#cb782-354"></a>    <span class="co"># mean and sd have the same values as in the sampling distribution</span></span>
-<span id="cb782-355"><a href="eine-shiny-app.html#cb782-355"></a>    ks &lt;-<span class="st"> </span><span class="kw">ks.test</span>(<span class="kw">x</span>(), <span class="st">&quot;pnorm&quot;</span>, <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()), <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>()))</span>
-<span id="cb782-356"><a href="eine-shiny-app.html#cb782-356"></a>    ksp &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">as.data.frame</span>(ks[<span class="dv">2</span>])[<span class="dv">1</span>, <span class="dv">1</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-357"><a href="eine-shiny-app.html#cb782-357"></a>    text &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot; Mean: &quot;</span>, mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Std. Dev: &quot;</span>, sd, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Skew: &quot;</span>,</span>
-<span id="cb782-358"><a href="eine-shiny-app.html#cb782-358"></a>      skew, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kurtosis: &quot;</span>, kurtosis,</span>
-<span id="cb782-359"><a href="eine-shiny-app.html#cb782-359"></a>      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kolmogorov-Smirnov p: &quot;</span>, ksp)</span>
-<span id="cb782-360"><a href="eine-shiny-app.html#cb782-360"></a>    <span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">sample =</span> <span class="kw">x</span>()) <span class="op">+</span><span class="st"> </span><span class="kw">geom_qq</span>(<span class="dt">size =</span> input<span class="op">$</span>bin,</span>
-<span id="cb782-361"><a href="eine-shiny-app.html#cb782-361"></a>      <span class="dt">color =</span> input<span class="op">$</span>col,</span>
-<span id="cb782-362"><a href="eine-shiny-app.html#cb782-362"></a>      <span class="dt">alpha =</span> input<span class="op">$</span>alpha) <span class="op">+</span></span>
-<span id="cb782-363"><a href="eine-shiny-app.html#cb782-363"></a><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</span>
-<span id="cb782-364"><a href="eine-shiny-app.html#cb782-364"></a>        <span class="dt">slope =</span> <span class="kw">sd</span>(<span class="kw">x</span>()), <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb782-365"><a href="eine-shiny-app.html#cb782-365"></a>        <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.8</span>) <span class="op">+</span></span>
-<span id="cb782-366"><a href="eine-shiny-app.html#cb782-366"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>) <span class="co"># + annotate(&quot;text&quot;, -Inf, Inf, label = text, size=4.5, hjust = 0, vjust=1)</span></span>
-<span id="cb782-367"><a href="eine-shiny-app.html#cb782-367"></a>  })</span>
-<span id="cb782-368"><a href="eine-shiny-app.html#cb782-368"></a></span>
-<span id="cb782-369"><a href="eine-shiny-app.html#cb782-369"></a></span>
-<span id="cb782-370"><a href="eine-shiny-app.html#cb782-370"></a>  <span class="co"># boxplot with underlayed individual data points</span></span>
-<span id="cb782-371"><a href="eine-shiny-app.html#cb782-371"></a>  output<span class="op">$</span>plot4 &lt;-<span class="st"> </span><span class="kw">renderPlotly</span>({</span>
-<span id="cb782-372"><a href="eine-shiny-app.html#cb782-372"></a>    <span class="co"># compute descriptive stats, will use skew and kurtosis later</span></span>
-<span id="cb782-373"><a href="eine-shiny-app.html#cb782-373"></a>    s &lt;-<span class="st"> </span>psych<span class="op">::</span><span class="kw">describe</span>(<span class="kw">x</span>())</span>
-<span id="cb782-374"><a href="eine-shiny-app.html#cb782-374"></a>    <span class="co"># extract mean and sd</span></span>
-<span id="cb782-375"><a href="eine-shiny-app.html#cb782-375"></a>    mean &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">3</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-376"><a href="eine-shiny-app.html#cb782-376"></a>    sd &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">4</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-377"><a href="eine-shiny-app.html#cb782-377"></a>    <span class="co"># extract skew</span></span>
-<span id="cb782-378"><a href="eine-shiny-app.html#cb782-378"></a>    skew &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">11</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-379"><a href="eine-shiny-app.html#cb782-379"></a>    <span class="co"># extract kurtosis</span></span>
-<span id="cb782-380"><a href="eine-shiny-app.html#cb782-380"></a>    kurtosis &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">12</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-381"><a href="eine-shiny-app.html#cb782-381"></a>    <span class="co"># add kolmogorov-smirnov normality test</span></span>
-<span id="cb782-382"><a href="eine-shiny-app.html#cb782-382"></a>    <span class="co"># mean and sd have the same values as in the sampling distribution</span></span>
-<span id="cb782-383"><a href="eine-shiny-app.html#cb782-383"></a>    ks &lt;-<span class="st"> </span><span class="kw">ks.test</span>(<span class="kw">x</span>(), <span class="st">&quot;pnorm&quot;</span>, <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()), <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>()))</span>
-<span id="cb782-384"><a href="eine-shiny-app.html#cb782-384"></a>    ksp &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">as.data.frame</span>(ks[<span class="dv">2</span>])[<span class="dv">1</span>, <span class="dv">1</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb782-385"><a href="eine-shiny-app.html#cb782-385"></a>    text &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot; Mean: &quot;</span>, mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Std. Dev: &quot;</span>, sd,</span>
-<span id="cb782-386"><a href="eine-shiny-app.html#cb782-386"></a>      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Skew: &quot;</span>, skew, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kurtosis: &quot;</span>, kurtosis,</span>
-<span id="cb782-387"><a href="eine-shiny-app.html#cb782-387"></a>      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kolmogorov-Smirnov p: &quot;</span>, ksp)</span>
-<span id="cb782-388"><a href="eine-shiny-app.html#cb782-388"></a>    <span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">x</span>()) <span class="op">+</span></span>
-<span id="cb782-389"><a href="eine-shiny-app.html#cb782-389"></a><span class="st">      </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">0</span>), <span class="dt">color =</span> input<span class="op">$</span>col, <span class="dt">alpha =</span> input<span class="op">$</span>alpha <span class="op">/</span><span class="st"> </span><span class="dv">3</span>,</span>
-<span id="cb782-390"><a href="eine-shiny-app.html#cb782-390"></a>        <span class="dt">size =</span> input<span class="op">$</span>bin, <span class="dt">width =</span> <span class="fl">0.37</span>) <span class="op">+</span></span>
-<span id="cb782-391"><a href="eine-shiny-app.html#cb782-391"></a><span class="st">      </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.shape =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">.7</span>,</span>
-<span id="cb782-392"><a href="eine-shiny-app.html#cb782-392"></a>        <span class="dt">outlier.color =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
-<span id="cb782-393"><a href="eine-shiny-app.html#cb782-393"></a><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
-<span id="cb782-394"><a href="eine-shiny-app.html#cb782-394"></a><span class="st">      </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(),</span>
-<span id="cb782-395"><a href="eine-shiny-app.html#cb782-395"></a>        <span class="dt">axis.ticks.x =</span> <span class="kw">element_blank</span>()) <span class="co"># + annotate(&quot;text&quot;, -Inf, Inf, label = text, size=4.5, hjust = 0, vjust=1)</span></span>
-<span id="cb782-396"><a href="eine-shiny-app.html#cb782-396"></a>  })</span>
-<span id="cb782-397"><a href="eine-shiny-app.html#cb782-397"></a></span>
-<span id="cb782-398"><a href="eine-shiny-app.html#cb782-398"></a></span>
-<span id="cb782-399"><a href="eine-shiny-app.html#cb782-399"></a>  <span class="co"># describe function including IQR and quantiles</span></span>
-<span id="cb782-400"><a href="eine-shiny-app.html#cb782-400"></a>  output<span class="op">$</span>table &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>({</span>
-<span id="cb782-401"><a href="eine-shiny-app.html#cb782-401"></a>    <span class="co"># describe the data, including IQR and Quantiles, requires library(psych)</span></span>
-<span id="cb782-402"><a href="eine-shiny-app.html#cb782-402"></a>    statrandom &lt;-<span class="st"> </span><span class="kw">describe</span>(<span class="kw">x</span>(), <span class="dt">IQR =</span> T, <span class="dt">quant =</span> <span class="kw">c</span>(.<span class="dv">25</span>, <span class="fl">.75</span>))</span>
-<span id="cb782-403"><a href="eine-shiny-app.html#cb782-403"></a>    <span class="co"># rename the columns</span></span>
-<span id="cb782-404"><a href="eine-shiny-app.html#cb782-404"></a>    <span class="kw">names</span>(statrandom) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Row&quot;</span>, <span class="st">&quot;Observations&quot;</span>, <span class="st">&quot;Mean&quot;</span>,</span>
-<span id="cb782-405"><a href="eine-shiny-app.html#cb782-405"></a>      <span class="st">&quot;Standard Deviation&quot;</span>, <span class="st">&quot;Median&quot;</span>, <span class="st">&quot;Trimmed&quot;</span>,</span>
-<span id="cb782-406"><a href="eine-shiny-app.html#cb782-406"></a>      <span class="st">&quot;MAD&quot;</span>, <span class="st">&quot;Min&quot;</span>, <span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Range&quot;</span>, <span class="st">&quot;Skew&quot;</span>, <span class="st">&quot;Kurtosis&quot;</span>,</span>
-<span id="cb782-407"><a href="eine-shiny-app.html#cb782-407"></a>      <span class="st">&quot;Standard Error&quot;</span>, <span class="st">&quot;IQR&quot;</span>, <span class="st">&quot;Q 0.25&quot;</span>, <span class="st">&quot;Q 0.75&quot;</span>)</span>
-<span id="cb782-408"><a href="eine-shiny-app.html#cb782-408"></a>    <span class="co"># to reduce the number of digits, embedd in print command</span></span>
-<span id="cb782-409"><a href="eine-shiny-app.html#cb782-409"></a>    <span class="kw">print</span>(statrandom[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(statrandom)], <span class="dt">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb782-410"><a href="eine-shiny-app.html#cb782-410"></a>    <span class="co"># do not display the uninformative row names</span></span>
-<span id="cb782-411"><a href="eine-shiny-app.html#cb782-411"></a>  }, <span class="dt">rownames =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb782-412"><a href="eine-shiny-app.html#cb782-412"></a></span>
-<span id="cb782-413"><a href="eine-shiny-app.html#cb782-413"></a>  <span class="co"># plots detailing the central limit</span></span>
-<span id="cb782-414"><a href="eine-shiny-app.html#cb782-414"></a>  <span class="co"># theorem by drawing from exponential</span></span>
-<span id="cb782-415"><a href="eine-shiny-app.html#cb782-415"></a>  <span class="co"># distribution with increasing number</span></span>
-<span id="cb782-416"><a href="eine-shiny-app.html#cb782-416"></a>  <span class="co"># of means, see above</span></span>
-<span id="cb782-417"><a href="eine-shiny-app.html#cb782-417"></a>  output<span class="op">$</span>plot5 &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
-<span id="cb782-418"><a href="eine-shiny-app.html#cb782-418"></a>    <span class="co"># newer version, requires library(ggridges)</span></span>
-<span id="cb782-419"><a href="eine-shiny-app.html#cb782-419"></a>    <span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">x =</span> value, <span class="dt">y =</span> variable)) <span class="op">+</span></span>
-<span id="cb782-420"><a href="eine-shiny-app.html#cb782-420"></a><span class="st">      </span><span class="kw">geom_density_ridges</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> variable, <span class="dt">color =</span> variable),</span>
-<span id="cb782-421"><a href="eine-shiny-app.html#cb782-421"></a>        <span class="dt">scale =</span> input<span class="op">$</span>bin, <span class="dt">alpha =</span> input<span class="op">$</span>alpha) <span class="op">+</span></span>
-<span id="cb782-422"><a href="eine-shiny-app.html#cb782-422"></a><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">15</span>)) <span class="op">+</span></span>
-<span id="cb782-423"><a href="eine-shiny-app.html#cb782-423"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Mean of n = 1, 5 and 50 Data Points from Exponential Distribution taken 5000 times&quot;</span>,</span>
-<span id="cb782-424"><a href="eine-shiny-app.html#cb782-424"></a>        <span class="dt">y =</span> <span class="st">&quot;&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>,</span>
-<span id="cb782-425"><a href="eine-shiny-app.html#cb782-425"></a>        <span class="dt">color =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>) <span class="op">+</span></span>
-<span id="cb782-426"><a href="eine-shiny-app.html#cb782-426"></a><span class="st">      </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;deeppink1&quot;</span>, <span class="st">&quot;darkmagenta&quot;</span>, <span class="st">&quot;navyblue&quot;</span>)) <span class="op">+</span></span>
-<span id="cb782-427"><a href="eine-shiny-app.html#cb782-427"></a><span class="st">      </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;deeppink1&quot;</span>, <span class="st">&quot;darkmagenta&quot;</span>, <span class="st">&quot;navyblue&quot;</span>))</span>
-<span id="cb782-428"><a href="eine-shiny-app.html#cb782-428"></a>  })</span>
-<span id="cb782-429"><a href="eine-shiny-app.html#cb782-429"></a></span>
-<span id="cb782-430"><a href="eine-shiny-app.html#cb782-430"></a></span>
-<span id="cb782-431"><a href="eine-shiny-app.html#cb782-431"></a>  <span class="co"># classical plots with means, sd error and lines conntecting them</span></span>
-<span id="cb782-432"><a href="eine-shiny-app.html#cb782-432"></a>  output<span class="op">$</span>plot6 &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
-<span id="cb782-433"><a href="eine-shiny-app.html#cb782-433"></a>    <span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">x =</span> variable, <span class="dt">y =</span> value, <span class="dt">color =</span> variable,</span>
-<span id="cb782-434"><a href="eine-shiny-app.html#cb782-434"></a>      <span class="dt">shape =</span> variable, <span class="dt">group =</span> variable)) <span class="op">+</span></span>
-<span id="cb782-435"><a href="eine-shiny-app.html#cb782-435"></a><span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">group =</span> <span class="dv">1</span>,</span>
-<span id="cb782-436"><a href="eine-shiny-app.html#cb782-436"></a>        <span class="dt">color =</span> input<span class="op">$</span>col) <span class="op">+</span></span>
-<span id="cb782-437"><a href="eine-shiny-app.html#cb782-437"></a><span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">size =</span> input<span class="op">$</span>bin) <span class="op">+</span></span>
-<span id="cb782-438"><a href="eine-shiny-app.html#cb782-438"></a><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;deeppink1&quot;</span>,</span>
-<span id="cb782-439"><a href="eine-shiny-app.html#cb782-439"></a>        <span class="st">&quot;darkmagenta&quot;</span>,</span>
-<span id="cb782-440"><a href="eine-shiny-app.html#cb782-440"></a>        <span class="st">&quot;navyblue&quot;</span>)) <span class="op">+</span></span>
-<span id="cb782-441"><a href="eine-shiny-app.html#cb782-441"></a><span class="st">      </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;deeppink1&quot;</span>, <span class="st">&quot;darkmagenta&quot;</span>, <span class="st">&quot;navyblue&quot;</span>)) <span class="op">+</span></span>
-<span id="cb782-442"><a href="eine-shiny-app.html#cb782-442"></a><span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>,</span>
-<span id="cb782-443"><a href="eine-shiny-app.html#cb782-443"></a>        <span class="dt">width =</span> input<span class="op">$</span>bin <span class="op">/</span><span class="st"> </span><span class="dv">10</span>, <span class="dt">color =</span> input<span class="op">$</span>col) <span class="op">+</span></span>
-<span id="cb782-444"><a href="eine-shiny-app.html#cb782-444"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Mean of n = 1, 5 and 50 Data Points from Exponential Distribution taken 5000 times&quot;</span>,</span>
-<span id="cb782-445"><a href="eine-shiny-app.html#cb782-445"></a>        <span class="dt">y =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb782-446"><a href="eine-shiny-app.html#cb782-446"></a>        <span class="dt">fill =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>,</span>
-<span id="cb782-447"><a href="eine-shiny-app.html#cb782-447"></a>        <span class="dt">color =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>,</span>
-<span id="cb782-448"><a href="eine-shiny-app.html#cb782-448"></a>        <span class="dt">shape =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>,</span>
-<span id="cb782-449"><a href="eine-shiny-app.html#cb782-449"></a>        <span class="dt">group =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>)</span>
-<span id="cb782-450"><a href="eine-shiny-app.html#cb782-450"></a>  })</span>
-<span id="cb782-451"><a href="eine-shiny-app.html#cb782-451"></a></span>
-<span id="cb782-452"><a href="eine-shiny-app.html#cb782-452"></a></span>
-<span id="cb782-453"><a href="eine-shiny-app.html#cb782-453"></a>  <span class="co"># describe CLT data by factor levels</span></span>
-<span id="cb782-454"><a href="eine-shiny-app.html#cb782-454"></a>  output<span class="op">$</span>table2 &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>({</span>
-<span id="cb782-455"><a href="eine-shiny-app.html#cb782-455"></a>    <span class="co"># describe the data, requires library(psych)</span></span>
-<span id="cb782-456"><a href="eine-shiny-app.html#cb782-456"></a>    stat &lt;-<span class="st"> </span><span class="kw">describeBy</span>(d<span class="op">$</span>value, d<span class="op">$</span>variable, <span class="dt">mat =</span> T, <span class="dt">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb782-457"><a href="eine-shiny-app.html#cb782-457"></a>    <span class="co"># rename the columns</span></span>
-<span id="cb782-458"><a href="eine-shiny-app.html#cb782-458"></a>    <span class="kw">names</span>(stat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Row&quot;</span>, <span class="st">&quot;Group&quot;</span>, <span class="st">&quot;Vars&quot;</span>, <span class="st">&quot;Observations&quot;</span>, <span class="st">&quot;Mean&quot;</span>,</span>
-<span id="cb782-459"><a href="eine-shiny-app.html#cb782-459"></a>      <span class="st">&quot;Standard Deviation&quot;</span>, <span class="st">&quot;Median&quot;</span>, <span class="st">&quot;Trimmed&quot;</span>, <span class="st">&quot;MAD&quot;</span>,</span>
-<span id="cb782-460"><a href="eine-shiny-app.html#cb782-460"></a>      <span class="st">&quot;Min&quot;</span>, <span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Range&quot;</span>, <span class="st">&quot;Skew&quot;</span>, <span class="st">&quot;Kurtosis&quot;</span>,</span>
-<span id="cb782-461"><a href="eine-shiny-app.html#cb782-461"></a>      <span class="st">&quot;Standard Error&quot;</span>)</span>
-<span id="cb782-462"><a href="eine-shiny-app.html#cb782-462"></a>    stat[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(stat)]</span>
-<span id="cb782-463"><a href="eine-shiny-app.html#cb782-463"></a>    <span class="co"># do not display the uninformative row names</span></span>
-<span id="cb782-464"><a href="eine-shiny-app.html#cb782-464"></a>  }, <span class="dt">rownames =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb782-465"><a href="eine-shiny-app.html#cb782-465"></a></span>
-<span id="cb782-466"><a href="eine-shiny-app.html#cb782-466"></a>  <span class="co"># show CLT data</span></span>
-<span id="cb782-467"><a href="eine-shiny-app.html#cb782-467"></a>  output<span class="op">$</span>table3 &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>({</span>
-<span id="cb782-468"><a href="eine-shiny-app.html#cb782-468"></a>    <span class="co"># format function to display less decimal numbers</span></span>
-<span id="cb782-469"><a href="eine-shiny-app.html#cb782-469"></a>    <span class="kw">format</span>(<span class="kw">head</span>(d, <span class="dt">n =</span> <span class="kw">length</span>(d<span class="op">$</span>variable)), <span class="dt">digits =</span> <span class="dv">2</span>)</span>
-<span id="cb782-470"><a href="eine-shiny-app.html#cb782-470"></a>    <span class="co"># do not display the uninformative row names</span></span>
-<span id="cb782-471"><a href="eine-shiny-app.html#cb782-471"></a>  }, <span class="dt">rownames =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb782-472"><a href="eine-shiny-app.html#cb782-472"></a></span>
-<span id="cb782-473"><a href="eine-shiny-app.html#cb782-473"></a>  <span class="co"># show dynamic data</span></span>
-<span id="cb782-474"><a href="eine-shiny-app.html#cb782-474"></a>  output<span class="op">$</span>table4 &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>({</span>
-<span id="cb782-475"><a href="eine-shiny-app.html#cb782-475"></a>    <span class="co"># format function to display less decimal numbers</span></span>
-<span id="cb782-476"><a href="eine-shiny-app.html#cb782-476"></a>    data &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">x</span>())</span>
-<span id="cb782-477"><a href="eine-shiny-app.html#cb782-477"></a>    <span class="kw">names</span>(data) &lt;-<span class="st"> &quot;Data&quot;</span></span>
-<span id="cb782-478"><a href="eine-shiny-app.html#cb782-478"></a>    <span class="kw">format</span>(<span class="kw">head</span>(data, <span class="dt">n =</span> input<span class="op">$</span>n), <span class="dt">digits =</span> <span class="dv">2</span>)</span>
-<span id="cb782-479"><a href="eine-shiny-app.html#cb782-479"></a>    <span class="co"># do not display the uninformative row names</span></span>
-<span id="cb782-480"><a href="eine-shiny-app.html#cb782-480"></a>  }, <span class="dt">rownames =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb782-481"><a href="eine-shiny-app.html#cb782-481"></a></span>
-<span id="cb782-482"><a href="eine-shiny-app.html#cb782-482"></a>  <span class="co"># CONditionally apparent UI elements ----</span></span>
-<span id="cb782-483"><a href="eine-shiny-app.html#cb782-483"></a>  output<span class="op">$</span>slidermean &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</span>
-<span id="cb782-484"><a href="eine-shiny-app.html#cb782-484"></a>    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rnorm&quot;</span>, <span class="st">&quot;rlnorm&quot;</span>)) {</span>
-<span id="cb782-485"><a href="eine-shiny-app.html#cb782-485"></a>      <span class="kw">sliderInput</span>(<span class="st">&quot;mean&quot;</span>,</span>
-<span id="cb782-486"><a href="eine-shiny-app.html#cb782-486"></a>        <span class="st">&quot;Mean&quot;</span>,</span>
-<span id="cb782-487"><a href="eine-shiny-app.html#cb782-487"></a>        <span class="dt">value =</span> <span class="dv">150</span>,</span>
-<span id="cb782-488"><a href="eine-shiny-app.html#cb782-488"></a>        <span class="dt">min =</span> <span class="dv">125</span>,</span>
-<span id="cb782-489"><a href="eine-shiny-app.html#cb782-489"></a>        <span class="dt">max =</span> <span class="dv">175</span>)</span>
-<span id="cb782-490"><a href="eine-shiny-app.html#cb782-490"></a>    }</span>
-<span id="cb782-491"><a href="eine-shiny-app.html#cb782-491"></a>  })</span>
-<span id="cb782-492"><a href="eine-shiny-app.html#cb782-492"></a></span>
-<span id="cb782-493"><a href="eine-shiny-app.html#cb782-493"></a>  output<span class="op">$</span>slidersd &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</span>
-<span id="cb782-494"><a href="eine-shiny-app.html#cb782-494"></a>    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rnorm&quot;</span>, <span class="st">&quot;rlnorm&quot;</span>)) {</span>
-<span id="cb782-495"><a href="eine-shiny-app.html#cb782-495"></a>      <span class="kw">sliderInput</span>(<span class="st">&quot;sd&quot;</span>,</span>
-<span id="cb782-496"><a href="eine-shiny-app.html#cb782-496"></a>        <span class="st">&quot;SD&quot;</span>,</span>
-<span id="cb782-497"><a href="eine-shiny-app.html#cb782-497"></a>        <span class="dt">value =</span> <span class="dv">15</span>,</span>
-<span id="cb782-498"><a href="eine-shiny-app.html#cb782-498"></a>        <span class="dt">min =</span> <span class="fl">0.1</span>,</span>
-<span id="cb782-499"><a href="eine-shiny-app.html#cb782-499"></a>        <span class="dt">max =</span> <span class="dv">30</span>)</span>
-<span id="cb782-500"><a href="eine-shiny-app.html#cb782-500"></a>    }</span>
-<span id="cb782-501"><a href="eine-shiny-app.html#cb782-501"></a>  })</span>
-<span id="cb782-502"><a href="eine-shiny-app.html#cb782-502"></a></span>
-<span id="cb782-503"><a href="eine-shiny-app.html#cb782-503"></a>  output<span class="op">$</span>sliderrate &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</span>
-<span id="cb782-504"><a href="eine-shiny-app.html#cb782-504"></a>    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rexp&quot;</span>) {</span>
-<span id="cb782-505"><a href="eine-shiny-app.html#cb782-505"></a>      <span class="kw">sliderInput</span>(<span class="st">&quot;rate&quot;</span>,</span>
-<span id="cb782-506"><a href="eine-shiny-app.html#cb782-506"></a>        <span class="st">&quot;Rate&quot;</span>,</span>
-<span id="cb782-507"><a href="eine-shiny-app.html#cb782-507"></a>        <span class="dt">value =</span> <span class="fl">0.2</span>,</span>
-<span id="cb782-508"><a href="eine-shiny-app.html#cb782-508"></a>        <span class="dt">min =</span> <span class="fl">0.01</span>,</span>
-<span id="cb782-509"><a href="eine-shiny-app.html#cb782-509"></a>        <span class="dt">max =</span> <span class="fl">0.9</span>)</span>
-<span id="cb782-510"><a href="eine-shiny-app.html#cb782-510"></a>    }</span>
-<span id="cb782-511"><a href="eine-shiny-app.html#cb782-511"></a>  })</span>
-<span id="cb782-512"><a href="eine-shiny-app.html#cb782-512"></a></span>
-<span id="cb782-513"><a href="eine-shiny-app.html#cb782-513"></a>  output<span class="op">$</span>slidershape1 &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</span>
-<span id="cb782-514"><a href="eine-shiny-app.html#cb782-514"></a>    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rbeta&quot;</span>) {</span>
-<span id="cb782-515"><a href="eine-shiny-app.html#cb782-515"></a>      <span class="kw">sliderInput</span>(<span class="st">&quot;shape1&quot;</span>,</span>
-<span id="cb782-516"><a href="eine-shiny-app.html#cb782-516"></a>        <span class="st">&quot;Shape 1&quot;</span>,</span>
-<span id="cb782-517"><a href="eine-shiny-app.html#cb782-517"></a>        <span class="dt">value =</span> <span class="dv">5</span>,</span>
-<span id="cb782-518"><a href="eine-shiny-app.html#cb782-518"></a>        <span class="dt">min =</span> <span class="fl">0.01</span>,</span>
-<span id="cb782-519"><a href="eine-shiny-app.html#cb782-519"></a>        <span class="dt">max =</span> <span class="dv">10</span>)</span>
-<span id="cb782-520"><a href="eine-shiny-app.html#cb782-520"></a>    }</span>
-<span id="cb782-521"><a href="eine-shiny-app.html#cb782-521"></a>  })</span>
-<span id="cb782-522"><a href="eine-shiny-app.html#cb782-522"></a></span>
-<span id="cb782-523"><a href="eine-shiny-app.html#cb782-523"></a>  output<span class="op">$</span>slidershape2 &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</span>
-<span id="cb782-524"><a href="eine-shiny-app.html#cb782-524"></a>    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rbeta&quot;</span>) {</span>
-<span id="cb782-525"><a href="eine-shiny-app.html#cb782-525"></a>      <span class="kw">sliderInput</span>(<span class="st">&quot;shape2&quot;</span>,</span>
-<span id="cb782-526"><a href="eine-shiny-app.html#cb782-526"></a>        <span class="st">&quot;Shape 2&quot;</span>,</span>
-<span id="cb782-527"><a href="eine-shiny-app.html#cb782-527"></a>        <span class="dt">value =</span> <span class="dv">2</span>,</span>
-<span id="cb782-528"><a href="eine-shiny-app.html#cb782-528"></a>        <span class="dt">min =</span> <span class="fl">0.01</span>,</span>
-<span id="cb782-529"><a href="eine-shiny-app.html#cb782-529"></a>        <span class="dt">max =</span> <span class="dv">10</span>)</span>
-<span id="cb782-530"><a href="eine-shiny-app.html#cb782-530"></a>    }</span>
-<span id="cb782-531"><a href="eine-shiny-app.html#cb782-531"></a>  })</span>
-<span id="cb782-532"><a href="eine-shiny-app.html#cb782-532"></a></span>
-<span id="cb782-533"><a href="eine-shiny-app.html#cb782-533"></a>  <span class="co"># </span><span class="re">END</span><span class="co"> OF: server &lt;- function(input, output) {</span></span>
-<span id="cb782-534"><a href="eine-shiny-app.html#cb782-534"></a>}</span>
-<span id="cb782-535"><a href="eine-shiny-app.html#cb782-535"></a></span>
-<span id="cb782-536"><a href="eine-shiny-app.html#cb782-536"></a><span class="co"># Create Shiny app ----</span></span>
-<span id="cb782-537"><a href="eine-shiny-app.html#cb782-537"></a><span class="kw">shinyApp</span>(ui, server)</span></code></pre></div>
+<div class="sourceCode" id="cb789"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb789-1"><a href="eine-shiny-app.html#cb789-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb789-2"><a href="eine-shiny-app.html#cb789-2"></a><span class="kw">library</span>(shinythemes)</span>
+<span id="cb789-3"><a href="eine-shiny-app.html#cb789-3"></a><span class="kw">library</span>(psych)</span>
+<span id="cb789-4"><a href="eine-shiny-app.html#cb789-4"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb789-5"><a href="eine-shiny-app.html#cb789-5"></a><span class="kw">library</span>(ggridges) <span class="co"># geom_density_ridges</span></span>
+<span id="cb789-6"><a href="eine-shiny-app.html#cb789-6"></a><span class="kw">library</span>(ggthemes)</span>
+<span id="cb789-7"><a href="eine-shiny-app.html#cb789-7"></a><span class="kw">library</span>(ggpubr) <span class="co"># theme_pubr(margin = F) + labs_pubr()</span></span>
+<span id="cb789-8"><a href="eine-shiny-app.html#cb789-8"></a><span class="kw">library</span>(plotly) <span class="co"># for plots with zoom functions and much more</span></span>
+<span id="cb789-9"><a href="eine-shiny-app.html#cb789-9"></a><span class="kw">library</span>(reshape2) <span class="co"># for melting and casting data frames</span></span>
+<span id="cb789-10"><a href="eine-shiny-app.html#cb789-10"></a><span class="kw">library</span>(DT) <span class="co"># for better tables</span></span>
+<span id="cb789-11"><a href="eine-shiny-app.html#cb789-11"></a></span>
+<span id="cb789-12"><a href="eine-shiny-app.html#cb789-12"></a><span class="co"># plot theme variations</span></span>
+<span id="cb789-13"><a href="eine-shiny-app.html#cb789-13"></a>economist =<span class="st"> </span><span class="kw">theme_economist</span>() <span class="co"># requires library(ggthemes)</span></span>
+<span id="cb789-14"><a href="eine-shiny-app.html#cb789-14"></a>grey =<span class="st"> </span><span class="kw">theme_grey</span>() <span class="co"># requires library(ggthemes)</span></span>
+<span id="cb789-15"><a href="eine-shiny-app.html#cb789-15"></a>pubr =<span class="st"> </span><span class="kw">theme_pubr</span>(<span class="dt">margin =</span> F) <span class="op">+</span><span class="st"> </span><span class="kw">labs_pubr</span>() <span class="co"># requires library(pubr)</span></span>
+<span id="cb789-16"><a href="eine-shiny-app.html#cb789-16"></a>clean =<span class="st"> </span><span class="kw">theme_tufte</span>() <span class="op">+</span><span class="st"> </span><span class="kw">labs_pubr</span>() <span class="op">+</span><span class="st"> </span><span class="kw">clean_theme</span>() <span class="co"># requires library(pubr) and library(ggthemes)</span></span>
+<span id="cb789-17"><a href="eine-shiny-app.html#cb789-17"></a></span>
+<span id="cb789-18"><a href="eine-shiny-app.html#cb789-18"></a><span class="co">## %######################################################%##</span></span>
+<span id="cb789-19"><a href="eine-shiny-app.html#cb789-19"></a><span class="co">####         Data Set for Central Limit Theorem         ####</span></span>
+<span id="cb789-20"><a href="eine-shiny-app.html#cb789-20"></a><span class="co">## %######################################################%##</span></span>
+<span id="cb789-21"><a href="eine-shiny-app.html#cb789-21"></a></span>
+<span id="cb789-22"><a href="eine-shiny-app.html#cb789-22"></a><span class="co"># generate 5000 values from an exponential distribution</span></span>
+<span id="cb789-23"><a href="eine-shiny-app.html#cb789-23"></a><span class="co"># with rate parameter=0.2</span></span>
+<span id="cb789-24"><a href="eine-shiny-app.html#cb789-24"></a>exp_data =<span class="st"> </span><span class="kw">rexp</span>(<span class="dt">n =</span> <span class="dv">5000</span>, <span class="dt">rate =</span> <span class="fl">0.2</span>)</span>
+<span id="cb789-25"><a href="eine-shiny-app.html#cb789-25"></a><span class="co"># find mean of 5 values from an exponential distribution (repeat 5000 times)</span></span>
+<span id="cb789-26"><a href="eine-shiny-app.html#cb789-26"></a>exp_<span class="dv">5</span> =<span class="st"> </span><span class="kw">array</span>(<span class="ot">NA</span>, <span class="dt">dim =</span> <span class="dv">5000</span>)</span>
+<span id="cb789-27"><a href="eine-shiny-app.html#cb789-27"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5000</span>) {</span>
+<span id="cb789-28"><a href="eine-shiny-app.html#cb789-28"></a>  exp_<span class="dv">5</span>[i] =<span class="st"> </span><span class="kw">mean</span>(<span class="kw">rexp</span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">rate =</span> <span class="fl">0.2</span>))</span>
+<span id="cb789-29"><a href="eine-shiny-app.html#cb789-29"></a>}</span>
+<span id="cb789-30"><a href="eine-shiny-app.html#cb789-30"></a><span class="co"># find mean of 50 values from an exponential distribution (repeat 5000 times)</span></span>
+<span id="cb789-31"><a href="eine-shiny-app.html#cb789-31"></a>exp_<span class="dv">50</span> =<span class="st"> </span><span class="kw">array</span>(<span class="ot">NA</span>, <span class="dt">dim =</span> <span class="dv">5000</span>)</span>
+<span id="cb789-32"><a href="eine-shiny-app.html#cb789-32"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5000</span>) {</span>
+<span id="cb789-33"><a href="eine-shiny-app.html#cb789-33"></a>  exp_<span class="dv">50</span>[i] =<span class="st"> </span><span class="kw">mean</span>(<span class="kw">rexp</span>(<span class="dt">n =</span> <span class="dv">50</span>, <span class="dt">rate =</span> <span class="fl">0.2</span>))</span>
+<span id="cb789-34"><a href="eine-shiny-app.html#cb789-34"></a>}</span>
+<span id="cb789-35"><a href="eine-shiny-app.html#cb789-35"></a></span>
+<span id="cb789-36"><a href="eine-shiny-app.html#cb789-36"></a><span class="co"># generate data frame</span></span>
+<span id="cb789-37"><a href="eine-shiny-app.html#cb789-37"></a>d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(exp_data, exp_<span class="dv">5</span>, exp_<span class="dv">50</span>)</span>
+<span id="cb789-38"><a href="eine-shiny-app.html#cb789-38"></a><span class="co"># rename columns to make them nicer in the plot&#39;s legend</span></span>
+<span id="cb789-39"><a href="eine-shiny-app.html#cb789-39"></a><span class="kw">names</span>(d) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;N = 1&quot;</span>, <span class="st">&quot;N = 5&quot;</span>, <span class="st">&quot;N = 50&quot;</span>)</span>
+<span id="cb789-40"><a href="eine-shiny-app.html#cb789-40"></a><span class="co"># melt data so just one variable can be called to represent the three columns</span></span>
+<span id="cb789-41"><a href="eine-shiny-app.html#cb789-41"></a>d &lt;-<span class="st"> </span><span class="kw">melt</span>(d)</span>
+<span id="cb789-42"><a href="eine-shiny-app.html#cb789-42"></a></span>
+<span id="cb789-43"><a href="eine-shiny-app.html#cb789-43"></a></span>
+<span id="cb789-44"><a href="eine-shiny-app.html#cb789-44"></a><span class="co">## %######################################################%##</span></span>
+<span id="cb789-45"><a href="eine-shiny-app.html#cb789-45"></a><span class="co">####                     Shiny App                      ####</span></span>
+<span id="cb789-46"><a href="eine-shiny-app.html#cb789-46"></a><span class="co">## %######################################################%##</span></span>
+<span id="cb789-47"><a href="eine-shiny-app.html#cb789-47"></a></span>
+<span id="cb789-48"><a href="eine-shiny-app.html#cb789-48"></a><span class="co"># Define UI for random distribution app ----</span></span>
+<span id="cb789-49"><a href="eine-shiny-app.html#cb789-49"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb789-50"><a href="eine-shiny-app.html#cb789-50"></a>  <span class="co"># change the theme</span></span>
+<span id="cb789-51"><a href="eine-shiny-app.html#cb789-51"></a>  <span class="co"># to quickly check which one you like, add shinythemes::themeSelector() instead of shinytheme(&quot;paper&quot;) # others: &quot;superhero&quot;</span></span>
+<span id="cb789-52"><a href="eine-shiny-app.html#cb789-52"></a>  <span class="dt">theme =</span> <span class="kw">shinytheme</span>(<span class="st">&quot;lumen&quot;</span>),</span>
+<span id="cb789-53"><a href="eine-shiny-app.html#cb789-53"></a></span>
+<span id="cb789-54"><a href="eine-shiny-app.html#cb789-54"></a>  <span class="co"># App title ----</span></span>
+<span id="cb789-55"><a href="eine-shiny-app.html#cb789-55"></a>  <span class="kw">titlePanel</span>(<span class="st">&quot;Normal? Distributions&quot;</span>),</span>
+<span id="cb789-56"><a href="eine-shiny-app.html#cb789-56"></a></span>
+<span id="cb789-57"><a href="eine-shiny-app.html#cb789-57"></a>  <span class="co"># Sidebar layout with input and output definitions ----</span></span>
+<span id="cb789-58"><a href="eine-shiny-app.html#cb789-58"></a>  <span class="kw">sidebarLayout</span>(</span>
+<span id="cb789-59"><a href="eine-shiny-app.html#cb789-59"></a></span>
+<span id="cb789-60"><a href="eine-shiny-app.html#cb789-60"></a>    <span class="co"># Sidebar panel for inputs ----</span></span>
+<span id="cb789-61"><a href="eine-shiny-app.html#cb789-61"></a>    <span class="kw">sidebarPanel</span>(</span>
+<span id="cb789-62"><a href="eine-shiny-app.html#cb789-62"></a>      <span class="co"># br() element to introduce extra vertical spacing ----</span></span>
+<span id="cb789-63"><a href="eine-shiny-app.html#cb789-63"></a></span>
+<span id="cb789-64"><a href="eine-shiny-app.html#cb789-64"></a>      <span class="co"># conditional panel to enable/disable certain features only when they are (not) applicable depending on the numerical value of the tabs</span></span>
+<span id="cb789-65"><a href="eine-shiny-app.html#cb789-65"></a>      <span class="kw">conditionalPanel</span>(<span class="dt">condition =</span> <span class="st">&quot;input.tabs&lt;=2&quot;</span>,</span>
+<span id="cb789-66"><a href="eine-shiny-app.html#cb789-66"></a>        <span class="co"># Input: slider for the number of observations to generate ----</span></span>
+<span id="cb789-67"><a href="eine-shiny-app.html#cb789-67"></a>        <span class="kw">numericInput</span>(<span class="st">&quot;n&quot;</span>,</span>
+<span id="cb789-68"><a href="eine-shiny-app.html#cb789-68"></a>          <span class="st">&quot;Number of Observations:&quot;</span>,</span>
+<span id="cb789-69"><a href="eine-shiny-app.html#cb789-69"></a>          <span class="dt">value =</span> <span class="dv">500</span>,</span>
+<span id="cb789-70"><a href="eine-shiny-app.html#cb789-70"></a>          <span class="dt">min =</span> <span class="dv">1</span>,</span>
+<span id="cb789-71"><a href="eine-shiny-app.html#cb789-71"></a>          <span class="dt">max =</span> <span class="dv">12000</span>),</span>
+<span id="cb789-72"><a href="eine-shiny-app.html#cb789-72"></a>        <span class="co"># Input: radio button for categorical selection,</span></span>
+<span id="cb789-73"><a href="eine-shiny-app.html#cb789-73"></a>        <span class="co"># alternative: selectInput</span></span>
+<span id="cb789-74"><a href="eine-shiny-app.html#cb789-74"></a>        <span class="kw">radioButtons</span>(<span class="st">&quot;dist&quot;</span>,</span>
+<span id="cb789-75"><a href="eine-shiny-app.html#cb789-75"></a>          <span class="st">&quot;Distribution&quot;</span>,</span>
+<span id="cb789-76"><a href="eine-shiny-app.html#cb789-76"></a>          <span class="kw">c</span>(<span class="st">&quot;Normal&quot;</span> =<span class="st"> &quot;rnorm&quot;</span>,</span>
+<span id="cb789-77"><a href="eine-shiny-app.html#cb789-77"></a>            <span class="st">&quot;Exponential&quot;</span> =<span class="st"> &quot;rexp&quot;</span>,</span>
+<span id="cb789-78"><a href="eine-shiny-app.html#cb789-78"></a>            <span class="st">&quot;Beta&quot;</span> =<span class="st"> &quot;rbeta&quot;</span></span>
+<span id="cb789-79"><a href="eine-shiny-app.html#cb789-79"></a>            <span class="co"># &quot;LogNormal&quot; = &quot;rlnorm&quot;</span></span>
+<span id="cb789-80"><a href="eine-shiny-app.html#cb789-80"></a>        ), <span class="dt">inline =</span> T),</span>
+<span id="cb789-81"><a href="eine-shiny-app.html#cb789-81"></a>        <span class="co"># checkbox to indicate whether a</span></span>
+<span id="cb789-82"><a href="eine-shiny-app.html#cb789-82"></a>        <span class="co"># transformation is to be applied</span></span>
+<span id="cb789-83"><a href="eine-shiny-app.html#cb789-83"></a>        <span class="kw">selectInput</span>(<span class="st">&quot;z&quot;</span>,</span>
+<span id="cb789-84"><a href="eine-shiny-app.html#cb789-84"></a>          <span class="st">&quot;Transformation:&quot;</span>,</span>
+<span id="cb789-85"><a href="eine-shiny-app.html#cb789-85"></a>          <span class="kw">c</span>(<span class="st">&quot;None&quot;</span> =<span class="st"> &quot;none&quot;</span>,</span>
+<span id="cb789-86"><a href="eine-shiny-app.html#cb789-86"></a>            <span class="st">&quot;z (mean = 0, sd = 1)&quot;</span> =<span class="st"> &quot;scale&quot;</span>,</span>
+<span id="cb789-87"><a href="eine-shiny-app.html#cb789-87"></a>            <span class="st">&quot;Logarithm&quot;</span> =<span class="st"> &quot;log&quot;</span>,</span>
+<span id="cb789-88"><a href="eine-shiny-app.html#cb789-88"></a>            <span class="st">&quot;Square Root&quot;</span> =<span class="st"> &quot;sqrt&quot;</span>)</span>
+<span id="cb789-89"><a href="eine-shiny-app.html#cb789-89"></a>        ),</span>
+<span id="cb789-90"><a href="eine-shiny-app.html#cb789-90"></a></span>
+<span id="cb789-91"><a href="eine-shiny-app.html#cb789-91"></a>        <span class="co"># conditional sidebar elements depending</span></span>
+<span id="cb789-92"><a href="eine-shiny-app.html#cb789-92"></a>        <span class="co"># on the choice of distribution</span></span>
+<span id="cb789-93"><a href="eine-shiny-app.html#cb789-93"></a>        <span class="kw">uiOutput</span>(<span class="st">&quot;slidermean&quot;</span>),</span>
+<span id="cb789-94"><a href="eine-shiny-app.html#cb789-94"></a>        <span class="kw">uiOutput</span>(<span class="st">&quot;slidersd&quot;</span>),</span>
+<span id="cb789-95"><a href="eine-shiny-app.html#cb789-95"></a>        <span class="kw">uiOutput</span>(<span class="st">&quot;sliderrate&quot;</span>),</span>
+<span id="cb789-96"><a href="eine-shiny-app.html#cb789-96"></a>        <span class="kw">uiOutput</span>(<span class="st">&quot;slidershape1&quot;</span>),</span>
+<span id="cb789-97"><a href="eine-shiny-app.html#cb789-97"></a>        <span class="kw">uiOutput</span>(<span class="st">&quot;slidershape2&quot;</span>)</span>
+<span id="cb789-98"><a href="eine-shiny-app.html#cb789-98"></a>      ),</span>
+<span id="cb789-99"><a href="eine-shiny-app.html#cb789-99"></a>      <span class="co"># conditional panel to enable/disable certain features only when they are (not) applicable depending on the numerical value of the tabs</span></span>
+<span id="cb789-100"><a href="eine-shiny-app.html#cb789-100"></a>      <span class="kw">conditionalPanel</span>(<span class="dt">condition =</span> <span class="st">&quot;input.tabs&lt;=3&amp;input.tabs!=1&quot;</span>,</span>
+<span id="cb789-101"><a href="eine-shiny-app.html#cb789-101"></a>        <span class="kw">sliderInput</span>(<span class="st">&quot;bin&quot;</span>,</span>
+<span id="cb789-102"><a href="eine-shiny-app.html#cb789-102"></a>          <span class="st">&quot;Bar Width/Point Size:&quot;</span>,</span>
+<span id="cb789-103"><a href="eine-shiny-app.html#cb789-103"></a>          <span class="dt">value =</span> <span class="fl">1.55</span>,</span>
+<span id="cb789-104"><a href="eine-shiny-app.html#cb789-104"></a>          <span class="dt">min =</span> <span class="fl">.01</span>,</span>
+<span id="cb789-105"><a href="eine-shiny-app.html#cb789-105"></a>          <span class="dt">max =</span> <span class="dv">10</span>),</span>
+<span id="cb789-106"><a href="eine-shiny-app.html#cb789-106"></a></span>
+<span id="cb789-107"><a href="eine-shiny-app.html#cb789-107"></a>        <span class="kw">sliderInput</span>(<span class="st">&quot;alpha&quot;</span>,</span>
+<span id="cb789-108"><a href="eine-shiny-app.html#cb789-108"></a>          <span class="st">&quot;Opacity&quot;</span>,</span>
+<span id="cb789-109"><a href="eine-shiny-app.html#cb789-109"></a>          <span class="dt">value =</span> <span class="fl">.6</span>,</span>
+<span id="cb789-110"><a href="eine-shiny-app.html#cb789-110"></a>          <span class="dt">min =</span> <span class="fl">.1</span>,</span>
+<span id="cb789-111"><a href="eine-shiny-app.html#cb789-111"></a>          <span class="dt">max =</span> <span class="dv">1</span>),</span>
+<span id="cb789-112"><a href="eine-shiny-app.html#cb789-112"></a>        <span class="co"># Input: radio</span></span>
+<span id="cb789-113"><a href="eine-shiny-app.html#cb789-113"></a>        <span class="co"># button for</span></span>
+<span id="cb789-114"><a href="eine-shiny-app.html#cb789-114"></a>        <span class="co"># categorical</span></span>
+<span id="cb789-115"><a href="eine-shiny-app.html#cb789-115"></a>        <span class="co"># selection,</span></span>
+<span id="cb789-116"><a href="eine-shiny-app.html#cb789-116"></a>        <span class="co"># alternative:</span></span>
+<span id="cb789-117"><a href="eine-shiny-app.html#cb789-117"></a>        <span class="co"># selectInput</span></span>
+<span id="cb789-118"><a href="eine-shiny-app.html#cb789-118"></a>        <span class="co"># ----</span></span>
+<span id="cb789-119"><a href="eine-shiny-app.html#cb789-119"></a>        <span class="kw">radioButtons</span>(<span class="st">&quot;col&quot;</span>,</span>
+<span id="cb789-120"><a href="eine-shiny-app.html#cb789-120"></a>          <span class="st">&quot;Color:&quot;</span>,</span>
+<span id="cb789-121"><a href="eine-shiny-app.html#cb789-121"></a>          <span class="kw">c</span>(<span class="st">&quot;Pink&quot;</span> =<span class="st"> &quot;deeppink1&quot;</span>,</span>
+<span id="cb789-122"><a href="eine-shiny-app.html#cb789-122"></a>            <span class="st">&quot;Black&quot;</span> =<span class="st"> &quot;black&quot;</span>,</span>
+<span id="cb789-123"><a href="eine-shiny-app.html#cb789-123"></a>            <span class="st">&quot;Blue&quot;</span> =<span class="st"> &quot;navyblue&quot;</span>,</span>
+<span id="cb789-124"><a href="eine-shiny-app.html#cb789-124"></a>            <span class="st">&quot;Green&quot;</span> =<span class="st"> &quot;darkolivegreen&quot;</span>,</span>
+<span id="cb789-125"><a href="eine-shiny-app.html#cb789-125"></a>            <span class="st">&quot;Magenta&quot;</span> =<span class="st"> &quot;darkmagenta&quot;</span>),</span>
+<span id="cb789-126"><a href="eine-shiny-app.html#cb789-126"></a>          <span class="dt">inline =</span> T</span>
+<span id="cb789-127"><a href="eine-shiny-app.html#cb789-127"></a>        ),</span>
+<span id="cb789-128"><a href="eine-shiny-app.html#cb789-128"></a>        <span class="co"># drop down list</span></span>
+<span id="cb789-129"><a href="eine-shiny-app.html#cb789-129"></a>        <span class="kw">selectInput</span>(<span class="st">&quot;theme&quot;</span>,</span>
+<span id="cb789-130"><a href="eine-shiny-app.html#cb789-130"></a>          <span class="st">&quot;Theme:&quot;</span>,</span>
+<span id="cb789-131"><a href="eine-shiny-app.html#cb789-131"></a>          <span class="kw">c</span>(<span class="st">&quot;Publication&quot;</span> =<span class="st"> &quot;pubr&quot;</span>,</span>
+<span id="cb789-132"><a href="eine-shiny-app.html#cb789-132"></a>            <span class="st">&quot;Economist&quot;</span> =<span class="st"> &quot;economist&quot;</span>,</span>
+<span id="cb789-133"><a href="eine-shiny-app.html#cb789-133"></a>            <span class="st">&quot;Grey&quot;</span> =<span class="st"> &quot;grey&quot;</span>,</span>
+<span id="cb789-134"><a href="eine-shiny-app.html#cb789-134"></a>            <span class="st">&quot;Clean&quot;</span> =<span class="st"> &quot;clean&quot;</span>)</span>
+<span id="cb789-135"><a href="eine-shiny-app.html#cb789-135"></a>        )</span>
+<span id="cb789-136"><a href="eine-shiny-app.html#cb789-136"></a>      ),</span>
+<span id="cb789-137"><a href="eine-shiny-app.html#cb789-137"></a></span>
+<span id="cb789-138"><a href="eine-shiny-app.html#cb789-138"></a>      <span class="co"># adjust width of side panel</span></span>
+<span id="cb789-139"><a href="eine-shiny-app.html#cb789-139"></a>      <span class="dt">width =</span> <span class="dv">3</span></span>
+<span id="cb789-140"><a href="eine-shiny-app.html#cb789-140"></a></span>
+<span id="cb789-141"><a href="eine-shiny-app.html#cb789-141"></a>    ),</span>
+<span id="cb789-142"><a href="eine-shiny-app.html#cb789-142"></a></span>
+<span id="cb789-143"><a href="eine-shiny-app.html#cb789-143"></a>    <span class="co"># Main panel for displaying outputs ----</span></span>
+<span id="cb789-144"><a href="eine-shiny-app.html#cb789-144"></a>    <span class="kw">mainPanel</span>(</span>
+<span id="cb789-145"><a href="eine-shiny-app.html#cb789-145"></a></span>
+<span id="cb789-146"><a href="eine-shiny-app.html#cb789-146"></a>      <span class="co"># Output: Tabset w/ plots, summary, and table ----</span></span>
+<span id="cb789-147"><a href="eine-shiny-app.html#cb789-147"></a>      <span class="co"># id is used to refer back to the individual panels for the</span></span>
+<span id="cb789-148"><a href="eine-shiny-app.html#cb789-148"></a>      <span class="co"># condiditional side bar elements depending on the value</span></span>
+<span id="cb789-149"><a href="eine-shiny-app.html#cb789-149"></a>      <span class="kw">tabsetPanel</span>(<span class="dt">id =</span> <span class="st">&quot;tabs&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;tabs&quot;</span>,</span>
+<span id="cb789-150"><a href="eine-shiny-app.html#cb789-150"></a>        <span class="co"># histogram with mean, uses ncount</span></span>
+<span id="cb789-151"><a href="eine-shiny-app.html#cb789-151"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;nCount Plot&quot;</span>, <span class="dt">value =</span> <span class="dv">2</span>,</span>
+<span id="cb789-152"><a href="eine-shiny-app.html#cb789-152"></a>          <span class="kw">plotlyOutput</span>(<span class="st">&quot;plot1&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>),</span>
+<span id="cb789-153"><a href="eine-shiny-app.html#cb789-153"></a>          <span class="kw">fluidRow</span>(</span>
+<span id="cb789-154"><a href="eine-shiny-app.html#cb789-154"></a>            <span class="kw">column</span>(<span class="dv">9</span>, <span class="dt">offset =</span> <span class="dv">0</span>,</span>
+<span id="cb789-155"><a href="eine-shiny-app.html#cb789-155"></a>              <span class="kw">h6</span>(<span class="st">&quot;Test&quot;</span>)</span>
+<span id="cb789-156"><a href="eine-shiny-app.html#cb789-156"></a>            )</span>
+<span id="cb789-157"><a href="eine-shiny-app.html#cb789-157"></a>          )</span>
+<span id="cb789-158"><a href="eine-shiny-app.html#cb789-158"></a>        ),</span>
+<span id="cb789-159"><a href="eine-shiny-app.html#cb789-159"></a>        <span class="co"># histogram with mean, +/- sd and t-significant areas</span></span>
+<span id="cb789-160"><a href="eine-shiny-app.html#cb789-160"></a>        <span class="co"># uses density statistic</span></span>
+<span id="cb789-161"><a href="eine-shiny-app.html#cb789-161"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;Density Plot&quot;</span>, <span class="dt">value =</span> <span class="dv">2</span>,</span>
+<span id="cb789-162"><a href="eine-shiny-app.html#cb789-162"></a>          <span class="kw">plotlyOutput</span>(<span class="st">&quot;plot2&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</span>
+<span id="cb789-163"><a href="eine-shiny-app.html#cb789-163"></a>        <span class="co"># qq plot</span></span>
+<span id="cb789-164"><a href="eine-shiny-app.html#cb789-164"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;QQ Plot&quot;</span>, <span class="dt">value =</span> <span class="dv">2</span>,</span>
+<span id="cb789-165"><a href="eine-shiny-app.html#cb789-165"></a>          <span class="kw">plotlyOutput</span>(<span class="st">&quot;plot3&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</span>
+<span id="cb789-166"><a href="eine-shiny-app.html#cb789-166"></a>        <span class="co"># boxplot with underlayed individual data points</span></span>
+<span id="cb789-167"><a href="eine-shiny-app.html#cb789-167"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;Boxplot&quot;</span>, <span class="dt">value =</span> <span class="dv">2</span>,</span>
+<span id="cb789-168"><a href="eine-shiny-app.html#cb789-168"></a>          <span class="kw">plotlyOutput</span>(<span class="st">&quot;plot4&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</span>
+<span id="cb789-169"><a href="eine-shiny-app.html#cb789-169"></a>        <span class="co"># descriptive stats of generated data set</span></span>
+<span id="cb789-170"><a href="eine-shiny-app.html#cb789-170"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;Descriptive Stats&quot;</span>, <span class="dt">value =</span> <span class="dv">1</span>,</span>
+<span id="cb789-171"><a href="eine-shiny-app.html#cb789-171"></a>          <span class="kw">fluidRow</span>(</span>
+<span id="cb789-172"><a href="eine-shiny-app.html#cb789-172"></a>            <span class="kw">h3</span>(<span class="st">&quot;Describe&quot;</span>),</span>
+<span id="cb789-173"><a href="eine-shiny-app.html#cb789-173"></a>            <span class="kw">dataTableOutput</span>(<span class="st">&quot;table&quot;</span>),</span>
+<span id="cb789-174"><a href="eine-shiny-app.html#cb789-174"></a>            <span class="kw">h3</span>(<span class="st">&quot;Head&quot;</span>),</span>
+<span id="cb789-175"><a href="eine-shiny-app.html#cb789-175"></a>            <span class="kw">dataTableOutput</span>(<span class="st">&quot;table4&quot;</span>)</span>
+<span id="cb789-176"><a href="eine-shiny-app.html#cb789-176"></a>          )</span>
+<span id="cb789-177"><a href="eine-shiny-app.html#cb789-177"></a>        ),</span>
+<span id="cb789-178"><a href="eine-shiny-app.html#cb789-178"></a>        <span class="co"># plot illustrating the cental limit</span></span>
+<span id="cb789-179"><a href="eine-shiny-app.html#cb789-179"></a>        <span class="co"># theorem with exponential distribution</span></span>
+<span id="cb789-180"><a href="eine-shiny-app.html#cb789-180"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;CLT1&quot;</span>, <span class="dt">value =</span> <span class="dv">3</span>,</span>
+<span id="cb789-181"><a href="eine-shiny-app.html#cb789-181"></a>          <span class="kw">plotOutput</span>(<span class="st">&quot;plot5&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</span>
+<span id="cb789-182"><a href="eine-shiny-app.html#cb789-182"></a>        <span class="co"># classical plots with</span></span>
+<span id="cb789-183"><a href="eine-shiny-app.html#cb789-183"></a>        <span class="co"># means, sd error and</span></span>
+<span id="cb789-184"><a href="eine-shiny-app.html#cb789-184"></a>        <span class="co"># lines conntecting the means</span></span>
+<span id="cb789-185"><a href="eine-shiny-app.html#cb789-185"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;CLT2&quot;</span>, <span class="dt">value =</span> <span class="dv">3</span>,</span>
+<span id="cb789-186"><a href="eine-shiny-app.html#cb789-186"></a>          <span class="kw">plotOutput</span>(<span class="st">&quot;plot6&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;550px&quot;</span>)),</span>
+<span id="cb789-187"><a href="eine-shiny-app.html#cb789-187"></a>        <span class="co"># descriptive stats of exponential data</span></span>
+<span id="cb789-188"><a href="eine-shiny-app.html#cb789-188"></a>        <span class="kw">tabPanel</span>(<span class="st">&quot;CLT Data&quot;</span>, <span class="dt">value =</span> <span class="dv">4</span>,</span>
+<span id="cb789-189"><a href="eine-shiny-app.html#cb789-189"></a>          <span class="co"># multiple outputs in one panel via fluidRow</span></span>
+<span id="cb789-190"><a href="eine-shiny-app.html#cb789-190"></a>          <span class="kw">fluidRow</span>(</span>
+<span id="cb789-191"><a href="eine-shiny-app.html#cb789-191"></a>            <span class="co"># Title element</span></span>
+<span id="cb789-192"><a href="eine-shiny-app.html#cb789-192"></a>            <span class="kw">h3</span>(<span class="st">&quot;DescribeBy&quot;</span>),</span>
+<span id="cb789-193"><a href="eine-shiny-app.html#cb789-193"></a>            <span class="kw">dataTableOutput</span>(<span class="st">&quot;table2&quot;</span>),</span>
+<span id="cb789-194"><a href="eine-shiny-app.html#cb789-194"></a>            <span class="kw">h3</span>(<span class="st">&quot;Head&quot;</span>),</span>
+<span id="cb789-195"><a href="eine-shiny-app.html#cb789-195"></a>            <span class="kw">dataTableOutput</span>(<span class="st">&quot;table3&quot;</span>)</span>
+<span id="cb789-196"><a href="eine-shiny-app.html#cb789-196"></a>        ))</span>
+<span id="cb789-197"><a href="eine-shiny-app.html#cb789-197"></a></span>
+<span id="cb789-198"><a href="eine-shiny-app.html#cb789-198"></a>      ),</span>
+<span id="cb789-199"><a href="eine-shiny-app.html#cb789-199"></a>      <span class="co"># adjust width of main panel</span></span>
+<span id="cb789-200"><a href="eine-shiny-app.html#cb789-200"></a>      <span class="dt">width =</span> <span class="dv">9</span>)</span>
+<span id="cb789-201"><a href="eine-shiny-app.html#cb789-201"></a>  )</span>
+<span id="cb789-202"><a href="eine-shiny-app.html#cb789-202"></a>)</span>
+<span id="cb789-203"><a href="eine-shiny-app.html#cb789-203"></a></span>
+<span id="cb789-204"><a href="eine-shiny-app.html#cb789-204"></a><span class="co"># Define server logic for random distribution app ----</span></span>
+<span id="cb789-205"><a href="eine-shiny-app.html#cb789-205"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</span>
+<span id="cb789-206"><a href="eine-shiny-app.html#cb789-206"></a></span>
+<span id="cb789-207"><a href="eine-shiny-app.html#cb789-207"></a>  <span class="co"># Reactive expression to generate the requested data set according to n, mean and sd ----</span></span>
+<span id="cb789-208"><a href="eine-shiny-app.html#cb789-208"></a>  <span class="co"># This is called whenever the inputs change. The output functions</span></span>
+<span id="cb789-209"><a href="eine-shiny-app.html#cb789-209"></a>  <span class="co"># defined below then use the value computed from this expression</span></span>
+<span id="cb789-210"><a href="eine-shiny-app.html#cb789-210"></a></span>
+<span id="cb789-211"><a href="eine-shiny-app.html#cb789-211"></a>  <span class="co"># generates the same dataset for all the manipulatable plots and tables</span></span>
+<span id="cb789-212"><a href="eine-shiny-app.html#cb789-212"></a>  <span class="co"># this allows the user to jump from numeric representations to</span></span>
+<span id="cb789-213"><a href="eine-shiny-app.html#cb789-213"></a>  <span class="co"># different types of visualization</span></span>
+<span id="cb789-214"><a href="eine-shiny-app.html#cb789-214"></a>  x &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
+<span id="cb789-215"><a href="eine-shiny-app.html#cb789-215"></a>    <span class="co"># react to the checkbox for z-transformation:</span></span>
+<span id="cb789-216"><a href="eine-shiny-app.html#cb789-216"></a>    <span class="co"># if FALSE, do the usual</span></span>
+<span id="cb789-217"><a href="eine-shiny-app.html#cb789-217"></a>    <span class="cf">if</span> (input<span class="op">$</span>z <span class="op">==</span><span class="st"> &quot;none&quot;</span>) {</span>
+<span id="cb789-218"><a href="eine-shiny-app.html#cb789-218"></a>      <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rnorm&quot;</span>)</span>
+<span id="cb789-219"><a href="eine-shiny-app.html#cb789-219"></a>        {x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(input<span class="op">$</span>n, <span class="dt">mean =</span> input<span class="op">$</span>mean, <span class="dt">sd =</span> input<span class="op">$</span>sd)}</span>
+<span id="cb789-220"><a href="eine-shiny-app.html#cb789-220"></a>      <span class="co"># else if(input$dist == &quot;rlnorm&quot;)</span></span>
+<span id="cb789-221"><a href="eine-shiny-app.html#cb789-221"></a>      <span class="co"># {x &lt;- rlnorm(input$n, meanlog = input$mean, sdlog=input$sd)}</span></span>
+<span id="cb789-222"><a href="eine-shiny-app.html#cb789-222"></a>      <span class="cf">else</span> <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rexp&quot;</span>) {</span>
+<span id="cb789-223"><a href="eine-shiny-app.html#cb789-223"></a>        x &lt;-<span class="st"> </span><span class="kw">rexp</span>(input<span class="op">$</span>n, <span class="dt">rate =</span> input<span class="op">$</span>rate)</span>
+<span id="cb789-224"><a href="eine-shiny-app.html#cb789-224"></a>      }</span>
+<span id="cb789-225"><a href="eine-shiny-app.html#cb789-225"></a>      <span class="cf">else</span> {</span>
+<span id="cb789-226"><a href="eine-shiny-app.html#cb789-226"></a>        x &lt;-<span class="st"> </span><span class="kw">rbeta</span>(input<span class="op">$</span>n, input<span class="op">$</span>shape1, input<span class="op">$</span>shape2)</span>
+<span id="cb789-227"><a href="eine-shiny-app.html#cb789-227"></a>      }</span>
+<span id="cb789-228"><a href="eine-shiny-app.html#cb789-228"></a>    }</span>
+<span id="cb789-229"><a href="eine-shiny-app.html#cb789-229"></a>    <span class="co"># if TRUE, apply the transformation specified by the input</span></span>
+<span id="cb789-230"><a href="eine-shiny-app.html#cb789-230"></a>    <span class="co"># either scale, log or sqrt</span></span>
+<span id="cb789-231"><a href="eine-shiny-app.html#cb789-231"></a>    <span class="cf">else</span> {</span>
+<span id="cb789-232"><a href="eine-shiny-app.html#cb789-232"></a>      <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rnorm&quot;</span>)</span>
+<span id="cb789-233"><a href="eine-shiny-app.html#cb789-233"></a>        {x &lt;-<span class="st"> </span><span class="kw">get</span>(input<span class="op">$</span>z)(<span class="kw">rnorm</span>(input<span class="op">$</span>n, <span class="dt">mean =</span> input<span class="op">$</span>mean,</span>
+<span id="cb789-234"><a href="eine-shiny-app.html#cb789-234"></a>          <span class="dt">sd =</span> input<span class="op">$</span>sd))}</span>
+<span id="cb789-235"><a href="eine-shiny-app.html#cb789-235"></a>      <span class="co"># else if(input$dist == &quot;rlnorm&quot;)</span></span>
+<span id="cb789-236"><a href="eine-shiny-app.html#cb789-236"></a>      <span class="co"># {x &lt;- rlnorm(input$n, meanlog = input$mean, sdlog=input$sd)}</span></span>
+<span id="cb789-237"><a href="eine-shiny-app.html#cb789-237"></a>      <span class="cf">else</span> <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rexp&quot;</span>) {</span>
+<span id="cb789-238"><a href="eine-shiny-app.html#cb789-238"></a>        x &lt;-<span class="st"> </span><span class="kw">get</span>(input<span class="op">$</span>z)(<span class="kw">rexp</span>(input<span class="op">$</span>n, <span class="dt">rate =</span> input<span class="op">$</span>rate))</span>
+<span id="cb789-239"><a href="eine-shiny-app.html#cb789-239"></a>      }</span>
+<span id="cb789-240"><a href="eine-shiny-app.html#cb789-240"></a>      <span class="cf">else</span> {</span>
+<span id="cb789-241"><a href="eine-shiny-app.html#cb789-241"></a>        x &lt;-<span class="st"> </span><span class="kw">get</span>(input<span class="op">$</span>z)(<span class="kw">rbeta</span>(input<span class="op">$</span>n, input<span class="op">$</span>shape1, input<span class="op">$</span>shape2))</span>
+<span id="cb789-242"><a href="eine-shiny-app.html#cb789-242"></a>      }</span>
+<span id="cb789-243"><a href="eine-shiny-app.html#cb789-243"></a>    }</span>
+<span id="cb789-244"><a href="eine-shiny-app.html#cb789-244"></a></span>
+<span id="cb789-245"><a href="eine-shiny-app.html#cb789-245"></a>  })</span>
+<span id="cb789-246"><a href="eine-shiny-app.html#cb789-246"></a></span>
+<span id="cb789-247"><a href="eine-shiny-app.html#cb789-247"></a>  <span class="co"># Generate a plot of the data ----</span></span>
+<span id="cb789-248"><a href="eine-shiny-app.html#cb789-248"></a>  <span class="co"># Also uses the inputs to build the plot label. Note that the</span></span>
+<span id="cb789-249"><a href="eine-shiny-app.html#cb789-249"></a>  <span class="co"># dependencies on the inputs and the data reactive expression are</span></span>
+<span id="cb789-250"><a href="eine-shiny-app.html#cb789-250"></a>  <span class="co"># both tracked, and all expressions are called in the sequence</span></span>
+<span id="cb789-251"><a href="eine-shiny-app.html#cb789-251"></a>  <span class="co"># implied by the dependency graph.</span></span>
+<span id="cb789-252"><a href="eine-shiny-app.html#cb789-252"></a></span>
+<span id="cb789-253"><a href="eine-shiny-app.html#cb789-253"></a>  <span class="co"># histogram with mean</span></span>
+<span id="cb789-254"><a href="eine-shiny-app.html#cb789-254"></a>  <span class="co"># uses ncount statistic</span></span>
+<span id="cb789-255"><a href="eine-shiny-app.html#cb789-255"></a>  output<span class="op">$</span>plot1 &lt;-<span class="st"> </span><span class="kw">renderPlotly</span>({</span>
+<span id="cb789-256"><a href="eine-shiny-app.html#cb789-256"></a>    <span class="co">#  dist &lt;- input$dist</span></span>
+<span id="cb789-257"><a href="eine-shiny-app.html#cb789-257"></a>    <span class="co"># compute descriptive stats, will use skew and kurtosis later</span></span>
+<span id="cb789-258"><a href="eine-shiny-app.html#cb789-258"></a>    s &lt;-<span class="st"> </span><span class="kw">describe</span>(<span class="kw">x</span>())</span>
+<span id="cb789-259"><a href="eine-shiny-app.html#cb789-259"></a>    <span class="co"># extract mean and sd</span></span>
+<span id="cb789-260"><a href="eine-shiny-app.html#cb789-260"></a>    mean &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">3</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-261"><a href="eine-shiny-app.html#cb789-261"></a>    sd &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">4</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-262"><a href="eine-shiny-app.html#cb789-262"></a>    <span class="co"># extract skew</span></span>
+<span id="cb789-263"><a href="eine-shiny-app.html#cb789-263"></a>    skew &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">11</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-264"><a href="eine-shiny-app.html#cb789-264"></a>    <span class="co"># extract kurtosis</span></span>
+<span id="cb789-265"><a href="eine-shiny-app.html#cb789-265"></a>    kurtosis &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">12</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-266"><a href="eine-shiny-app.html#cb789-266"></a>    <span class="co"># add kolmogorov-smirnov normality test</span></span>
+<span id="cb789-267"><a href="eine-shiny-app.html#cb789-267"></a>    <span class="co"># mean and sd have the same values as in the sampling distribution</span></span>
+<span id="cb789-268"><a href="eine-shiny-app.html#cb789-268"></a>    ks &lt;-<span class="st"> </span><span class="kw">ks.test</span>(<span class="kw">x</span>(), <span class="st">&quot;pnorm&quot;</span>, <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()), <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>()))</span>
+<span id="cb789-269"><a href="eine-shiny-app.html#cb789-269"></a>    ksp &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">as.data.frame</span>(ks[<span class="dv">2</span>])[<span class="dv">1</span>, <span class="dv">1</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-270"><a href="eine-shiny-app.html#cb789-270"></a>    text &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot; Mean: &quot;</span>, mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Std. Dev: &quot;</span>,</span>
+<span id="cb789-271"><a href="eine-shiny-app.html#cb789-271"></a>      sd, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Skew: &quot;</span>, skew, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kurtosis: &quot;</span>, kurtosis,</span>
+<span id="cb789-272"><a href="eine-shiny-app.html#cb789-272"></a>      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kolmogorov-Smirnov p: &quot;</span>, ksp)</span>
+<span id="cb789-273"><a href="eine-shiny-app.html#cb789-273"></a>    <span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="kw">x</span>()) <span class="op">+</span></span>
+<span id="cb789-274"><a href="eine-shiny-app.html#cb789-274"></a><span class="st">      </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..ncount..), <span class="dt">binwidth =</span> input<span class="op">$</span>bin,</span>
+<span id="cb789-275"><a href="eine-shiny-app.html#cb789-275"></a>        <span class="dt">fill =</span> input<span class="op">$</span>col, <span class="dt">alpha =</span> input<span class="op">$</span>alpha) <span class="op">+</span></span>
+<span id="cb789-276"><a href="eine-shiny-app.html#cb789-276"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="kw">paste</span>(<span class="st">&quot;Number of Observations: &quot;</span>, input<span class="op">$</span>n), <span class="dt">y =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
+<span id="cb789-277"><a href="eine-shiny-app.html#cb789-277"></a><span class="st">      </span><span class="co">#  annotate(&quot;text&quot;, -Inf, Inf, label = text, size=4.5, hjust = 0, vjust=1) +</span></span>
+<span id="cb789-278"><a href="eine-shiny-app.html#cb789-278"></a><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span></span>
+<span id="cb789-279"><a href="eine-shiny-app.html#cb789-279"></a><span class="st">      </span><span class="co"># scale_x_continuous(limits =  c(input$mean-(5*input$sd), input$mean+(5*input$sd))) +</span></span>
+<span id="cb789-280"><a href="eine-shiny-app.html#cb789-280"></a><span class="st">      </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(<span class="kw">x</span>(), <span class="dt">na.rm =</span> T)),</span>
+<span id="cb789-281"><a href="eine-shiny-app.html#cb789-281"></a>        <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>)</span>
+<span id="cb789-282"><a href="eine-shiny-app.html#cb789-282"></a>  })</span>
+<span id="cb789-283"><a href="eine-shiny-app.html#cb789-283"></a></span>
+<span id="cb789-284"><a href="eine-shiny-app.html#cb789-284"></a>  <span class="co"># histogram with mean, +/- sd and t-significant areas</span></span>
+<span id="cb789-285"><a href="eine-shiny-app.html#cb789-285"></a>  <span class="co"># uses density statistic</span></span>
+<span id="cb789-286"><a href="eine-shiny-app.html#cb789-286"></a>  output<span class="op">$</span>plot2 &lt;-<span class="st"> </span><span class="kw">renderPlotly</span>({</span>
+<span id="cb789-287"><a href="eine-shiny-app.html#cb789-287"></a>    <span class="co">#  dist &lt;- input$dist</span></span>
+<span id="cb789-288"><a href="eine-shiny-app.html#cb789-288"></a>    <span class="co"># compute descriptive stats, will use skew and kurtosis later</span></span>
+<span id="cb789-289"><a href="eine-shiny-app.html#cb789-289"></a>    s &lt;-<span class="st"> </span><span class="kw">describe</span>(<span class="kw">x</span>())</span>
+<span id="cb789-290"><a href="eine-shiny-app.html#cb789-290"></a>    <span class="co"># extract mean and sd</span></span>
+<span id="cb789-291"><a href="eine-shiny-app.html#cb789-291"></a>    mean &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">3</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-292"><a href="eine-shiny-app.html#cb789-292"></a>    sd &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">4</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-293"><a href="eine-shiny-app.html#cb789-293"></a>    <span class="co"># extract skew</span></span>
+<span id="cb789-294"><a href="eine-shiny-app.html#cb789-294"></a>    skew &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">11</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-295"><a href="eine-shiny-app.html#cb789-295"></a>    <span class="co"># extract kurtosis</span></span>
+<span id="cb789-296"><a href="eine-shiny-app.html#cb789-296"></a>    kurtosis &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">12</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-297"><a href="eine-shiny-app.html#cb789-297"></a>    <span class="co"># add kolmogorov-smirnov normality test</span></span>
+<span id="cb789-298"><a href="eine-shiny-app.html#cb789-298"></a>    <span class="co"># mean and sd have the same values as in the sampling distribution</span></span>
+<span id="cb789-299"><a href="eine-shiny-app.html#cb789-299"></a>    ks &lt;-<span class="st"> </span><span class="kw">ks.test</span>(<span class="kw">x</span>(), <span class="st">&quot;pnorm&quot;</span>, <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</span>
+<span id="cb789-300"><a href="eine-shiny-app.html#cb789-300"></a>      <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>()))</span>
+<span id="cb789-301"><a href="eine-shiny-app.html#cb789-301"></a>    ksp &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">as.data.frame</span>(ks[<span class="dv">2</span>])[<span class="dv">1</span>, <span class="dv">1</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-302"><a href="eine-shiny-app.html#cb789-302"></a>    text &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot; Mean: &quot;</span>, mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Std. Dev: &quot;</span>,</span>
+<span id="cb789-303"><a href="eine-shiny-app.html#cb789-303"></a>      sd, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Skew: &quot;</span>, skew, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kurtosis: &quot;</span>, kurtosis,</span>
+<span id="cb789-304"><a href="eine-shiny-app.html#cb789-304"></a>      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kolmogorov-Smirnov p: &quot;</span>, ksp)</span>
+<span id="cb789-305"><a href="eine-shiny-app.html#cb789-305"></a></span>
+<span id="cb789-306"><a href="eine-shiny-app.html#cb789-306"></a>    <span class="co"># thresholds for shaded areas;</span></span>
+<span id="cb789-307"><a href="eine-shiny-app.html#cb789-307"></a>    <span class="co"># modelled after two-tailed</span></span>
+<span id="cb789-308"><a href="eine-shiny-app.html#cb789-308"></a>    <span class="co"># t-distribution</span></span>
+<span id="cb789-309"><a href="eine-shiny-app.html#cb789-309"></a>    thresholdup &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="kw">x</span>(), <span class="dt">prob =</span> <span class="fl">0.975</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb789-310"><a href="eine-shiny-app.html#cb789-310"></a>    thresholddown &lt;-<span class="st"> </span><span class="kw">quantile</span>(<span class="kw">x</span>(), <span class="dt">prob =</span> <span class="fl">0.025</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb789-311"><a href="eine-shiny-app.html#cb789-311"></a></span>
+<span id="cb789-312"><a href="eine-shiny-app.html#cb789-312"></a>    <span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="kw">x</span>()) <span class="op">+</span></span>
+<span id="cb789-313"><a href="eine-shiny-app.html#cb789-313"></a><span class="st">      </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">binwidth =</span> input<span class="op">$</span>bin, <span class="dt">fill =</span> input<span class="op">$</span>col, <span class="dt">alpha =</span> input<span class="op">$</span>alpha) <span class="op">+</span></span>
+<span id="cb789-314"><a href="eine-shiny-app.html#cb789-314"></a><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</span>
+<span id="cb789-315"><a href="eine-shiny-app.html#cb789-315"></a>        <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()), <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</span>
+<span id="cb789-316"><a href="eine-shiny-app.html#cb789-316"></a>        <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="kw">mean</span>(<span class="kw">x</span>()), <span class="kw">mean</span>(<span class="kw">x</span>()) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(<span class="kw">x</span>())),</span>
+<span id="cb789-317"><a href="eine-shiny-app.html#cb789-317"></a>        <span class="dt">geom =</span> <span class="st">&quot;area&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;transparent&quot;</span>,</span>
+<span id="cb789-318"><a href="eine-shiny-app.html#cb789-318"></a>        <span class="dt">size =</span> <span class="fl">.7</span>, <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="op">+</span></span>
+<span id="cb789-319"><a href="eine-shiny-app.html#cb789-319"></a><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</span>
+<span id="cb789-320"><a href="eine-shiny-app.html#cb789-320"></a>        <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</span>
+<span id="cb789-321"><a href="eine-shiny-app.html#cb789-321"></a>      <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="kw">mean</span>(<span class="kw">x</span>()) <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(<span class="kw">x</span>()), <span class="kw">mean</span>(<span class="kw">x</span>())), <span class="dt">geom =</span> <span class="st">&quot;area&quot;</span>,</span>
+<span id="cb789-322"><a href="eine-shiny-app.html#cb789-322"></a>      <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;transparent&quot;</span>, <span class="dt">size =</span> <span class="fl">.7</span>,</span>
+<span id="cb789-323"><a href="eine-shiny-app.html#cb789-323"></a>      <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="op">+</span></span>
+<span id="cb789-324"><a href="eine-shiny-app.html#cb789-324"></a><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</span>
+<span id="cb789-325"><a href="eine-shiny-app.html#cb789-325"></a>        <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</span>
+<span id="cb789-326"><a href="eine-shiny-app.html#cb789-326"></a>      <span class="dt">xlim =</span> <span class="kw">c</span>(thresholdup, <span class="kw">max</span>(<span class="kw">x</span>())), <span class="dt">geom =</span> <span class="st">&quot;area&quot;</span>,</span>
+<span id="cb789-327"><a href="eine-shiny-app.html#cb789-327"></a>      <span class="dt">fill =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.4</span>) <span class="op">+</span></span>
+<span id="cb789-328"><a href="eine-shiny-app.html#cb789-328"></a><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</span>
+<span id="cb789-329"><a href="eine-shiny-app.html#cb789-329"></a>        <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</span>
+<span id="cb789-330"><a href="eine-shiny-app.html#cb789-330"></a>      <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="kw">min</span>(<span class="kw">x</span>()), thresholddown), <span class="dt">geom =</span> <span class="st">&quot;area&quot;</span>,</span>
+<span id="cb789-331"><a href="eine-shiny-app.html#cb789-331"></a>      <span class="dt">fill =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.4</span>) <span class="op">+</span></span>
+<span id="cb789-332"><a href="eine-shiny-app.html#cb789-332"></a><span class="st">      </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</span>
+<span id="cb789-333"><a href="eine-shiny-app.html#cb789-333"></a>        <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>())),</span>
+<span id="cb789-334"><a href="eine-shiny-app.html#cb789-334"></a>      <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">.7</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>) <span class="op">+</span></span>
+<span id="cb789-335"><a href="eine-shiny-app.html#cb789-335"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="kw">paste</span>(<span class="st">&quot;Number of Observations: &quot;</span>, input<span class="op">$</span>n), <span class="dt">y =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
+<span id="cb789-336"><a href="eine-shiny-app.html#cb789-336"></a><span class="st">      </span><span class="co"># annotate(&quot;text&quot;, -Inf, Inf, label = text, size=4.5, hjust = 0, vjust=1) +</span></span>
+<span id="cb789-337"><a href="eine-shiny-app.html#cb789-337"></a><span class="st">      </span><span class="co"># scale_x_continuous(limits = c(input$mean-(5*input$sd), input$mean+(5*input$sd))) +</span></span>
+<span id="cb789-338"><a href="eine-shiny-app.html#cb789-338"></a><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme)</span>
+<span id="cb789-339"><a href="eine-shiny-app.html#cb789-339"></a>  })</span>
+<span id="cb789-340"><a href="eine-shiny-app.html#cb789-340"></a></span>
+<span id="cb789-341"><a href="eine-shiny-app.html#cb789-341"></a></span>
+<span id="cb789-342"><a href="eine-shiny-app.html#cb789-342"></a>  <span class="co"># qq plot</span></span>
+<span id="cb789-343"><a href="eine-shiny-app.html#cb789-343"></a>  output<span class="op">$</span>plot3 &lt;-<span class="st"> </span><span class="kw">renderPlotly</span>({</span>
+<span id="cb789-344"><a href="eine-shiny-app.html#cb789-344"></a>    <span class="co"># compute descriptive stats, will use skew and kurtosis later</span></span>
+<span id="cb789-345"><a href="eine-shiny-app.html#cb789-345"></a>    s &lt;-<span class="st"> </span><span class="kw">describe</span>(<span class="kw">x</span>())</span>
+<span id="cb789-346"><a href="eine-shiny-app.html#cb789-346"></a>    <span class="co"># extract mean and sd</span></span>
+<span id="cb789-347"><a href="eine-shiny-app.html#cb789-347"></a>    mean &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">3</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-348"><a href="eine-shiny-app.html#cb789-348"></a>    sd &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">4</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-349"><a href="eine-shiny-app.html#cb789-349"></a>    <span class="co"># extract skew</span></span>
+<span id="cb789-350"><a href="eine-shiny-app.html#cb789-350"></a>    skew &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">11</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-351"><a href="eine-shiny-app.html#cb789-351"></a>    <span class="co"># extract kurtosis</span></span>
+<span id="cb789-352"><a href="eine-shiny-app.html#cb789-352"></a>    kurtosis &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">12</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-353"><a href="eine-shiny-app.html#cb789-353"></a>    <span class="co"># add kolmogorov-smirnov normality test</span></span>
+<span id="cb789-354"><a href="eine-shiny-app.html#cb789-354"></a>    <span class="co"># mean and sd have the same values as in the sampling distribution</span></span>
+<span id="cb789-355"><a href="eine-shiny-app.html#cb789-355"></a>    ks &lt;-<span class="st"> </span><span class="kw">ks.test</span>(<span class="kw">x</span>(), <span class="st">&quot;pnorm&quot;</span>, <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()), <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>()))</span>
+<span id="cb789-356"><a href="eine-shiny-app.html#cb789-356"></a>    ksp &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">as.data.frame</span>(ks[<span class="dv">2</span>])[<span class="dv">1</span>, <span class="dv">1</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-357"><a href="eine-shiny-app.html#cb789-357"></a>    text &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot; Mean: &quot;</span>, mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Std. Dev: &quot;</span>, sd, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Skew: &quot;</span>,</span>
+<span id="cb789-358"><a href="eine-shiny-app.html#cb789-358"></a>      skew, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kurtosis: &quot;</span>, kurtosis,</span>
+<span id="cb789-359"><a href="eine-shiny-app.html#cb789-359"></a>      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kolmogorov-Smirnov p: &quot;</span>, ksp)</span>
+<span id="cb789-360"><a href="eine-shiny-app.html#cb789-360"></a>    <span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">sample =</span> <span class="kw">x</span>()) <span class="op">+</span><span class="st"> </span><span class="kw">geom_qq</span>(<span class="dt">size =</span> input<span class="op">$</span>bin,</span>
+<span id="cb789-361"><a href="eine-shiny-app.html#cb789-361"></a>      <span class="dt">color =</span> input<span class="op">$</span>col,</span>
+<span id="cb789-362"><a href="eine-shiny-app.html#cb789-362"></a>      <span class="dt">alpha =</span> input<span class="op">$</span>alpha) <span class="op">+</span></span>
+<span id="cb789-363"><a href="eine-shiny-app.html#cb789-363"></a><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="kw">mean</span>(<span class="kw">x</span>()),</span>
+<span id="cb789-364"><a href="eine-shiny-app.html#cb789-364"></a>        <span class="dt">slope =</span> <span class="kw">sd</span>(<span class="kw">x</span>()), <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb789-365"><a href="eine-shiny-app.html#cb789-365"></a>        <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.8</span>) <span class="op">+</span></span>
+<span id="cb789-366"><a href="eine-shiny-app.html#cb789-366"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>) <span class="co"># + annotate(&quot;text&quot;, -Inf, Inf, label = text, size=4.5, hjust = 0, vjust=1)</span></span>
+<span id="cb789-367"><a href="eine-shiny-app.html#cb789-367"></a>  })</span>
+<span id="cb789-368"><a href="eine-shiny-app.html#cb789-368"></a></span>
+<span id="cb789-369"><a href="eine-shiny-app.html#cb789-369"></a></span>
+<span id="cb789-370"><a href="eine-shiny-app.html#cb789-370"></a>  <span class="co"># boxplot with underlayed individual data points</span></span>
+<span id="cb789-371"><a href="eine-shiny-app.html#cb789-371"></a>  output<span class="op">$</span>plot4 &lt;-<span class="st"> </span><span class="kw">renderPlotly</span>({</span>
+<span id="cb789-372"><a href="eine-shiny-app.html#cb789-372"></a>    <span class="co"># compute descriptive stats, will use skew and kurtosis later</span></span>
+<span id="cb789-373"><a href="eine-shiny-app.html#cb789-373"></a>    s &lt;-<span class="st"> </span>psych<span class="op">::</span><span class="kw">describe</span>(<span class="kw">x</span>())</span>
+<span id="cb789-374"><a href="eine-shiny-app.html#cb789-374"></a>    <span class="co"># extract mean and sd</span></span>
+<span id="cb789-375"><a href="eine-shiny-app.html#cb789-375"></a>    mean &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">3</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-376"><a href="eine-shiny-app.html#cb789-376"></a>    sd &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">4</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-377"><a href="eine-shiny-app.html#cb789-377"></a>    <span class="co"># extract skew</span></span>
+<span id="cb789-378"><a href="eine-shiny-app.html#cb789-378"></a>    skew &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">11</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-379"><a href="eine-shiny-app.html#cb789-379"></a>    <span class="co"># extract kurtosis</span></span>
+<span id="cb789-380"><a href="eine-shiny-app.html#cb789-380"></a>    kurtosis &lt;-<span class="st"> </span><span class="kw">round</span>(s[<span class="dv">12</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-381"><a href="eine-shiny-app.html#cb789-381"></a>    <span class="co"># add kolmogorov-smirnov normality test</span></span>
+<span id="cb789-382"><a href="eine-shiny-app.html#cb789-382"></a>    <span class="co"># mean and sd have the same values as in the sampling distribution</span></span>
+<span id="cb789-383"><a href="eine-shiny-app.html#cb789-383"></a>    ks &lt;-<span class="st"> </span><span class="kw">ks.test</span>(<span class="kw">x</span>(), <span class="st">&quot;pnorm&quot;</span>, <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">x</span>()), <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">x</span>()))</span>
+<span id="cb789-384"><a href="eine-shiny-app.html#cb789-384"></a>    ksp &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">as.data.frame</span>(ks[<span class="dv">2</span>])[<span class="dv">1</span>, <span class="dv">1</span>], <span class="dt">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb789-385"><a href="eine-shiny-app.html#cb789-385"></a>    text &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot; Mean: &quot;</span>, mean, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Std. Dev: &quot;</span>, sd,</span>
+<span id="cb789-386"><a href="eine-shiny-app.html#cb789-386"></a>      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Skew: &quot;</span>, skew, <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kurtosis: &quot;</span>, kurtosis,</span>
+<span id="cb789-387"><a href="eine-shiny-app.html#cb789-387"></a>      <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Kolmogorov-Smirnov p: &quot;</span>, ksp)</span>
+<span id="cb789-388"><a href="eine-shiny-app.html#cb789-388"></a>    <span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">x</span>()) <span class="op">+</span></span>
+<span id="cb789-389"><a href="eine-shiny-app.html#cb789-389"></a><span class="st">      </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">0</span>), <span class="dt">color =</span> input<span class="op">$</span>col, <span class="dt">alpha =</span> input<span class="op">$</span>alpha <span class="op">/</span><span class="st"> </span><span class="dv">3</span>,</span>
+<span id="cb789-390"><a href="eine-shiny-app.html#cb789-390"></a>        <span class="dt">size =</span> input<span class="op">$</span>bin, <span class="dt">width =</span> <span class="fl">0.37</span>) <span class="op">+</span></span>
+<span id="cb789-391"><a href="eine-shiny-app.html#cb789-391"></a><span class="st">      </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.shape =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">.7</span>,</span>
+<span id="cb789-392"><a href="eine-shiny-app.html#cb789-392"></a>        <span class="dt">outlier.color =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
+<span id="cb789-393"><a href="eine-shiny-app.html#cb789-393"></a><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
+<span id="cb789-394"><a href="eine-shiny-app.html#cb789-394"></a><span class="st">      </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb789-395"><a href="eine-shiny-app.html#cb789-395"></a>        <span class="dt">axis.ticks.x =</span> <span class="kw">element_blank</span>()) <span class="co"># + annotate(&quot;text&quot;, -Inf, Inf, label = text, size=4.5, hjust = 0, vjust=1)</span></span>
+<span id="cb789-396"><a href="eine-shiny-app.html#cb789-396"></a>  })</span>
+<span id="cb789-397"><a href="eine-shiny-app.html#cb789-397"></a></span>
+<span id="cb789-398"><a href="eine-shiny-app.html#cb789-398"></a></span>
+<span id="cb789-399"><a href="eine-shiny-app.html#cb789-399"></a>  <span class="co"># describe function including IQR and quantiles</span></span>
+<span id="cb789-400"><a href="eine-shiny-app.html#cb789-400"></a>  output<span class="op">$</span>table &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>({</span>
+<span id="cb789-401"><a href="eine-shiny-app.html#cb789-401"></a>    <span class="co"># describe the data, including IQR and Quantiles, requires library(psych)</span></span>
+<span id="cb789-402"><a href="eine-shiny-app.html#cb789-402"></a>    statrandom &lt;-<span class="st"> </span><span class="kw">describe</span>(<span class="kw">x</span>(), <span class="dt">IQR =</span> T, <span class="dt">quant =</span> <span class="kw">c</span>(.<span class="dv">25</span>, <span class="fl">.75</span>))</span>
+<span id="cb789-403"><a href="eine-shiny-app.html#cb789-403"></a>    <span class="co"># rename the columns</span></span>
+<span id="cb789-404"><a href="eine-shiny-app.html#cb789-404"></a>    <span class="kw">names</span>(statrandom) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Row&quot;</span>, <span class="st">&quot;Observations&quot;</span>, <span class="st">&quot;Mean&quot;</span>,</span>
+<span id="cb789-405"><a href="eine-shiny-app.html#cb789-405"></a>      <span class="st">&quot;Standard Deviation&quot;</span>, <span class="st">&quot;Median&quot;</span>, <span class="st">&quot;Trimmed&quot;</span>,</span>
+<span id="cb789-406"><a href="eine-shiny-app.html#cb789-406"></a>      <span class="st">&quot;MAD&quot;</span>, <span class="st">&quot;Min&quot;</span>, <span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Range&quot;</span>, <span class="st">&quot;Skew&quot;</span>, <span class="st">&quot;Kurtosis&quot;</span>,</span>
+<span id="cb789-407"><a href="eine-shiny-app.html#cb789-407"></a>      <span class="st">&quot;Standard Error&quot;</span>, <span class="st">&quot;IQR&quot;</span>, <span class="st">&quot;Q 0.25&quot;</span>, <span class="st">&quot;Q 0.75&quot;</span>)</span>
+<span id="cb789-408"><a href="eine-shiny-app.html#cb789-408"></a>    <span class="co"># to reduce the number of digits, embedd in print command</span></span>
+<span id="cb789-409"><a href="eine-shiny-app.html#cb789-409"></a>    <span class="kw">print</span>(statrandom[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(statrandom)], <span class="dt">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb789-410"><a href="eine-shiny-app.html#cb789-410"></a>    <span class="co"># do not display the uninformative row names</span></span>
+<span id="cb789-411"><a href="eine-shiny-app.html#cb789-411"></a>  }, <span class="dt">rownames =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb789-412"><a href="eine-shiny-app.html#cb789-412"></a></span>
+<span id="cb789-413"><a href="eine-shiny-app.html#cb789-413"></a>  <span class="co"># plots detailing the central limit</span></span>
+<span id="cb789-414"><a href="eine-shiny-app.html#cb789-414"></a>  <span class="co"># theorem by drawing from exponential</span></span>
+<span id="cb789-415"><a href="eine-shiny-app.html#cb789-415"></a>  <span class="co"># distribution with increasing number</span></span>
+<span id="cb789-416"><a href="eine-shiny-app.html#cb789-416"></a>  <span class="co"># of means, see above</span></span>
+<span id="cb789-417"><a href="eine-shiny-app.html#cb789-417"></a>  output<span class="op">$</span>plot5 &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
+<span id="cb789-418"><a href="eine-shiny-app.html#cb789-418"></a>    <span class="co"># newer version, requires library(ggridges)</span></span>
+<span id="cb789-419"><a href="eine-shiny-app.html#cb789-419"></a>    <span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">x =</span> value, <span class="dt">y =</span> variable)) <span class="op">+</span></span>
+<span id="cb789-420"><a href="eine-shiny-app.html#cb789-420"></a><span class="st">      </span><span class="kw">geom_density_ridges</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> variable, <span class="dt">color =</span> variable),</span>
+<span id="cb789-421"><a href="eine-shiny-app.html#cb789-421"></a>        <span class="dt">scale =</span> input<span class="op">$</span>bin, <span class="dt">alpha =</span> input<span class="op">$</span>alpha) <span class="op">+</span></span>
+<span id="cb789-422"><a href="eine-shiny-app.html#cb789-422"></a><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">15</span>)) <span class="op">+</span></span>
+<span id="cb789-423"><a href="eine-shiny-app.html#cb789-423"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Mean of n = 1, 5 and 50 Data Points from Exponential Distribution taken 5000 times&quot;</span>,</span>
+<span id="cb789-424"><a href="eine-shiny-app.html#cb789-424"></a>        <span class="dt">y =</span> <span class="st">&quot;&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>,</span>
+<span id="cb789-425"><a href="eine-shiny-app.html#cb789-425"></a>        <span class="dt">color =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>) <span class="op">+</span></span>
+<span id="cb789-426"><a href="eine-shiny-app.html#cb789-426"></a><span class="st">      </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;deeppink1&quot;</span>, <span class="st">&quot;darkmagenta&quot;</span>, <span class="st">&quot;navyblue&quot;</span>)) <span class="op">+</span></span>
+<span id="cb789-427"><a href="eine-shiny-app.html#cb789-427"></a><span class="st">      </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;deeppink1&quot;</span>, <span class="st">&quot;darkmagenta&quot;</span>, <span class="st">&quot;navyblue&quot;</span>))</span>
+<span id="cb789-428"><a href="eine-shiny-app.html#cb789-428"></a>  })</span>
+<span id="cb789-429"><a href="eine-shiny-app.html#cb789-429"></a></span>
+<span id="cb789-430"><a href="eine-shiny-app.html#cb789-430"></a></span>
+<span id="cb789-431"><a href="eine-shiny-app.html#cb789-431"></a>  <span class="co"># classical plots with means, sd error and lines conntecting them</span></span>
+<span id="cb789-432"><a href="eine-shiny-app.html#cb789-432"></a>  output<span class="op">$</span>plot6 &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
+<span id="cb789-433"><a href="eine-shiny-app.html#cb789-433"></a>    <span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">x =</span> variable, <span class="dt">y =</span> value, <span class="dt">color =</span> variable,</span>
+<span id="cb789-434"><a href="eine-shiny-app.html#cb789-434"></a>      <span class="dt">shape =</span> variable, <span class="dt">group =</span> variable)) <span class="op">+</span></span>
+<span id="cb789-435"><a href="eine-shiny-app.html#cb789-435"></a><span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">group =</span> <span class="dv">1</span>,</span>
+<span id="cb789-436"><a href="eine-shiny-app.html#cb789-436"></a>        <span class="dt">color =</span> input<span class="op">$</span>col) <span class="op">+</span></span>
+<span id="cb789-437"><a href="eine-shiny-app.html#cb789-437"></a><span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">size =</span> input<span class="op">$</span>bin) <span class="op">+</span></span>
+<span id="cb789-438"><a href="eine-shiny-app.html#cb789-438"></a><span class="st">      </span><span class="kw">get</span>(input<span class="op">$</span>theme) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;deeppink1&quot;</span>,</span>
+<span id="cb789-439"><a href="eine-shiny-app.html#cb789-439"></a>        <span class="st">&quot;darkmagenta&quot;</span>,</span>
+<span id="cb789-440"><a href="eine-shiny-app.html#cb789-440"></a>        <span class="st">&quot;navyblue&quot;</span>)) <span class="op">+</span></span>
+<span id="cb789-441"><a href="eine-shiny-app.html#cb789-441"></a><span class="st">      </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;deeppink1&quot;</span>, <span class="st">&quot;darkmagenta&quot;</span>, <span class="st">&quot;navyblue&quot;</span>)) <span class="op">+</span></span>
+<span id="cb789-442"><a href="eine-shiny-app.html#cb789-442"></a><span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>,</span>
+<span id="cb789-443"><a href="eine-shiny-app.html#cb789-443"></a>        <span class="dt">width =</span> input<span class="op">$</span>bin <span class="op">/</span><span class="st"> </span><span class="dv">10</span>, <span class="dt">color =</span> input<span class="op">$</span>col) <span class="op">+</span></span>
+<span id="cb789-444"><a href="eine-shiny-app.html#cb789-444"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Mean of n = 1, 5 and 50 Data Points from Exponential Distribution taken 5000 times&quot;</span>,</span>
+<span id="cb789-445"><a href="eine-shiny-app.html#cb789-445"></a>        <span class="dt">y =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb789-446"><a href="eine-shiny-app.html#cb789-446"></a>        <span class="dt">fill =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>,</span>
+<span id="cb789-447"><a href="eine-shiny-app.html#cb789-447"></a>        <span class="dt">color =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>,</span>
+<span id="cb789-448"><a href="eine-shiny-app.html#cb789-448"></a>        <span class="dt">shape =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>,</span>
+<span id="cb789-449"><a href="eine-shiny-app.html#cb789-449"></a>        <span class="dt">group =</span> <span class="st">&quot;Number of Observations for Mean&quot;</span>)</span>
+<span id="cb789-450"><a href="eine-shiny-app.html#cb789-450"></a>  })</span>
+<span id="cb789-451"><a href="eine-shiny-app.html#cb789-451"></a></span>
+<span id="cb789-452"><a href="eine-shiny-app.html#cb789-452"></a></span>
+<span id="cb789-453"><a href="eine-shiny-app.html#cb789-453"></a>  <span class="co"># describe CLT data by factor levels</span></span>
+<span id="cb789-454"><a href="eine-shiny-app.html#cb789-454"></a>  output<span class="op">$</span>table2 &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>({</span>
+<span id="cb789-455"><a href="eine-shiny-app.html#cb789-455"></a>    <span class="co"># describe the data, requires library(psych)</span></span>
+<span id="cb789-456"><a href="eine-shiny-app.html#cb789-456"></a>    stat &lt;-<span class="st"> </span><span class="kw">describeBy</span>(d<span class="op">$</span>value, d<span class="op">$</span>variable, <span class="dt">mat =</span> T, <span class="dt">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb789-457"><a href="eine-shiny-app.html#cb789-457"></a>    <span class="co"># rename the columns</span></span>
+<span id="cb789-458"><a href="eine-shiny-app.html#cb789-458"></a>    <span class="kw">names</span>(stat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Row&quot;</span>, <span class="st">&quot;Group&quot;</span>, <span class="st">&quot;Vars&quot;</span>, <span class="st">&quot;Observations&quot;</span>, <span class="st">&quot;Mean&quot;</span>,</span>
+<span id="cb789-459"><a href="eine-shiny-app.html#cb789-459"></a>      <span class="st">&quot;Standard Deviation&quot;</span>, <span class="st">&quot;Median&quot;</span>, <span class="st">&quot;Trimmed&quot;</span>, <span class="st">&quot;MAD&quot;</span>,</span>
+<span id="cb789-460"><a href="eine-shiny-app.html#cb789-460"></a>      <span class="st">&quot;Min&quot;</span>, <span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Range&quot;</span>, <span class="st">&quot;Skew&quot;</span>, <span class="st">&quot;Kurtosis&quot;</span>,</span>
+<span id="cb789-461"><a href="eine-shiny-app.html#cb789-461"></a>      <span class="st">&quot;Standard Error&quot;</span>)</span>
+<span id="cb789-462"><a href="eine-shiny-app.html#cb789-462"></a>    stat[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(stat)]</span>
+<span id="cb789-463"><a href="eine-shiny-app.html#cb789-463"></a>    <span class="co"># do not display the uninformative row names</span></span>
+<span id="cb789-464"><a href="eine-shiny-app.html#cb789-464"></a>  }, <span class="dt">rownames =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb789-465"><a href="eine-shiny-app.html#cb789-465"></a></span>
+<span id="cb789-466"><a href="eine-shiny-app.html#cb789-466"></a>  <span class="co"># show CLT data</span></span>
+<span id="cb789-467"><a href="eine-shiny-app.html#cb789-467"></a>  output<span class="op">$</span>table3 &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>({</span>
+<span id="cb789-468"><a href="eine-shiny-app.html#cb789-468"></a>    <span class="co"># format function to display less decimal numbers</span></span>
+<span id="cb789-469"><a href="eine-shiny-app.html#cb789-469"></a>    <span class="kw">format</span>(<span class="kw">head</span>(d, <span class="dt">n =</span> <span class="kw">length</span>(d<span class="op">$</span>variable)), <span class="dt">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb789-470"><a href="eine-shiny-app.html#cb789-470"></a>    <span class="co"># do not display the uninformative row names</span></span>
+<span id="cb789-471"><a href="eine-shiny-app.html#cb789-471"></a>  }, <span class="dt">rownames =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb789-472"><a href="eine-shiny-app.html#cb789-472"></a></span>
+<span id="cb789-473"><a href="eine-shiny-app.html#cb789-473"></a>  <span class="co"># show dynamic data</span></span>
+<span id="cb789-474"><a href="eine-shiny-app.html#cb789-474"></a>  output<span class="op">$</span>table4 &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>({</span>
+<span id="cb789-475"><a href="eine-shiny-app.html#cb789-475"></a>    <span class="co"># format function to display less decimal numbers</span></span>
+<span id="cb789-476"><a href="eine-shiny-app.html#cb789-476"></a>    data &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">x</span>())</span>
+<span id="cb789-477"><a href="eine-shiny-app.html#cb789-477"></a>    <span class="kw">names</span>(data) &lt;-<span class="st"> &quot;Data&quot;</span></span>
+<span id="cb789-478"><a href="eine-shiny-app.html#cb789-478"></a>    <span class="kw">format</span>(<span class="kw">head</span>(data, <span class="dt">n =</span> input<span class="op">$</span>n), <span class="dt">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb789-479"><a href="eine-shiny-app.html#cb789-479"></a>    <span class="co"># do not display the uninformative row names</span></span>
+<span id="cb789-480"><a href="eine-shiny-app.html#cb789-480"></a>  }, <span class="dt">rownames =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb789-481"><a href="eine-shiny-app.html#cb789-481"></a></span>
+<span id="cb789-482"><a href="eine-shiny-app.html#cb789-482"></a>  <span class="co"># CONditionally apparent UI elements ----</span></span>
+<span id="cb789-483"><a href="eine-shiny-app.html#cb789-483"></a>  output<span class="op">$</span>slidermean &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</span>
+<span id="cb789-484"><a href="eine-shiny-app.html#cb789-484"></a>    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rnorm&quot;</span>, <span class="st">&quot;rlnorm&quot;</span>)) {</span>
+<span id="cb789-485"><a href="eine-shiny-app.html#cb789-485"></a>      <span class="kw">sliderInput</span>(<span class="st">&quot;mean&quot;</span>,</span>
+<span id="cb789-486"><a href="eine-shiny-app.html#cb789-486"></a>        <span class="st">&quot;Mean&quot;</span>,</span>
+<span id="cb789-487"><a href="eine-shiny-app.html#cb789-487"></a>        <span class="dt">value =</span> <span class="dv">150</span>,</span>
+<span id="cb789-488"><a href="eine-shiny-app.html#cb789-488"></a>        <span class="dt">min =</span> <span class="dv">125</span>,</span>
+<span id="cb789-489"><a href="eine-shiny-app.html#cb789-489"></a>        <span class="dt">max =</span> <span class="dv">175</span>)</span>
+<span id="cb789-490"><a href="eine-shiny-app.html#cb789-490"></a>    }</span>
+<span id="cb789-491"><a href="eine-shiny-app.html#cb789-491"></a>  })</span>
+<span id="cb789-492"><a href="eine-shiny-app.html#cb789-492"></a></span>
+<span id="cb789-493"><a href="eine-shiny-app.html#cb789-493"></a>  output<span class="op">$</span>slidersd &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</span>
+<span id="cb789-494"><a href="eine-shiny-app.html#cb789-494"></a>    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rnorm&quot;</span>, <span class="st">&quot;rlnorm&quot;</span>)) {</span>
+<span id="cb789-495"><a href="eine-shiny-app.html#cb789-495"></a>      <span class="kw">sliderInput</span>(<span class="st">&quot;sd&quot;</span>,</span>
+<span id="cb789-496"><a href="eine-shiny-app.html#cb789-496"></a>        <span class="st">&quot;SD&quot;</span>,</span>
+<span id="cb789-497"><a href="eine-shiny-app.html#cb789-497"></a>        <span class="dt">value =</span> <span class="dv">15</span>,</span>
+<span id="cb789-498"><a href="eine-shiny-app.html#cb789-498"></a>        <span class="dt">min =</span> <span class="fl">0.1</span>,</span>
+<span id="cb789-499"><a href="eine-shiny-app.html#cb789-499"></a>        <span class="dt">max =</span> <span class="dv">30</span>)</span>
+<span id="cb789-500"><a href="eine-shiny-app.html#cb789-500"></a>    }</span>
+<span id="cb789-501"><a href="eine-shiny-app.html#cb789-501"></a>  })</span>
+<span id="cb789-502"><a href="eine-shiny-app.html#cb789-502"></a></span>
+<span id="cb789-503"><a href="eine-shiny-app.html#cb789-503"></a>  output<span class="op">$</span>sliderrate &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</span>
+<span id="cb789-504"><a href="eine-shiny-app.html#cb789-504"></a>    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rexp&quot;</span>) {</span>
+<span id="cb789-505"><a href="eine-shiny-app.html#cb789-505"></a>      <span class="kw">sliderInput</span>(<span class="st">&quot;rate&quot;</span>,</span>
+<span id="cb789-506"><a href="eine-shiny-app.html#cb789-506"></a>        <span class="st">&quot;Rate&quot;</span>,</span>
+<span id="cb789-507"><a href="eine-shiny-app.html#cb789-507"></a>        <span class="dt">value =</span> <span class="fl">0.2</span>,</span>
+<span id="cb789-508"><a href="eine-shiny-app.html#cb789-508"></a>        <span class="dt">min =</span> <span class="fl">0.01</span>,</span>
+<span id="cb789-509"><a href="eine-shiny-app.html#cb789-509"></a>        <span class="dt">max =</span> <span class="fl">0.9</span>)</span>
+<span id="cb789-510"><a href="eine-shiny-app.html#cb789-510"></a>    }</span>
+<span id="cb789-511"><a href="eine-shiny-app.html#cb789-511"></a>  })</span>
+<span id="cb789-512"><a href="eine-shiny-app.html#cb789-512"></a></span>
+<span id="cb789-513"><a href="eine-shiny-app.html#cb789-513"></a>  output<span class="op">$</span>slidershape1 &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</span>
+<span id="cb789-514"><a href="eine-shiny-app.html#cb789-514"></a>    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rbeta&quot;</span>) {</span>
+<span id="cb789-515"><a href="eine-shiny-app.html#cb789-515"></a>      <span class="kw">sliderInput</span>(<span class="st">&quot;shape1&quot;</span>,</span>
+<span id="cb789-516"><a href="eine-shiny-app.html#cb789-516"></a>        <span class="st">&quot;Shape 1&quot;</span>,</span>
+<span id="cb789-517"><a href="eine-shiny-app.html#cb789-517"></a>        <span class="dt">value =</span> <span class="dv">5</span>,</span>
+<span id="cb789-518"><a href="eine-shiny-app.html#cb789-518"></a>        <span class="dt">min =</span> <span class="fl">0.01</span>,</span>
+<span id="cb789-519"><a href="eine-shiny-app.html#cb789-519"></a>        <span class="dt">max =</span> <span class="dv">10</span>)</span>
+<span id="cb789-520"><a href="eine-shiny-app.html#cb789-520"></a>    }</span>
+<span id="cb789-521"><a href="eine-shiny-app.html#cb789-521"></a>  })</span>
+<span id="cb789-522"><a href="eine-shiny-app.html#cb789-522"></a></span>
+<span id="cb789-523"><a href="eine-shiny-app.html#cb789-523"></a>  output<span class="op">$</span>slidershape2 &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</span>
+<span id="cb789-524"><a href="eine-shiny-app.html#cb789-524"></a>    <span class="cf">if</span> (input<span class="op">$</span>dist <span class="op">==</span><span class="st"> &quot;rbeta&quot;</span>) {</span>
+<span id="cb789-525"><a href="eine-shiny-app.html#cb789-525"></a>      <span class="kw">sliderInput</span>(<span class="st">&quot;shape2&quot;</span>,</span>
+<span id="cb789-526"><a href="eine-shiny-app.html#cb789-526"></a>        <span class="st">&quot;Shape 2&quot;</span>,</span>
+<span id="cb789-527"><a href="eine-shiny-app.html#cb789-527"></a>        <span class="dt">value =</span> <span class="dv">2</span>,</span>
+<span id="cb789-528"><a href="eine-shiny-app.html#cb789-528"></a>        <span class="dt">min =</span> <span class="fl">0.01</span>,</span>
+<span id="cb789-529"><a href="eine-shiny-app.html#cb789-529"></a>        <span class="dt">max =</span> <span class="dv">10</span>)</span>
+<span id="cb789-530"><a href="eine-shiny-app.html#cb789-530"></a>    }</span>
+<span id="cb789-531"><a href="eine-shiny-app.html#cb789-531"></a>  })</span>
+<span id="cb789-532"><a href="eine-shiny-app.html#cb789-532"></a></span>
+<span id="cb789-533"><a href="eine-shiny-app.html#cb789-533"></a>  <span class="co"># </span><span class="re">END</span><span class="co"> OF: server &lt;- function(input, output) {</span></span>
+<span id="cb789-534"><a href="eine-shiny-app.html#cb789-534"></a>}</span>
+<span id="cb789-535"><a href="eine-shiny-app.html#cb789-535"></a></span>
+<span id="cb789-536"><a href="eine-shiny-app.html#cb789-536"></a><span class="co"># Create Shiny app ----</span></span>
+<span id="cb789-537"><a href="eine-shiny-app.html#cb789-537"></a><span class="kw">shinyApp</span>(ui, server)</span></code></pre></div>
 
 </div>
             </section>

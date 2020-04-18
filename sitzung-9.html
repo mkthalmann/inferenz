@@ -543,6 +543,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste"><i class="fa fa-check"></i>Kontraste</a>
 <ul>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste-kodieren-aber-wie"><i class="fa fa-check"></i>Kontraste kodieren, aber wie?</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#exkurs-estimated-marginal-means"><i class="fa fa-check"></i>Exkurs: Estimated Marginal Means</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#exkurs-contd"><i class="fa fa-check"></i>Exkurs cont’d</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#übung-6"><i class="fa fa-check"></i>Übung</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-16"><i class="fa fa-check"></i>Lösung</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste-berechnen"><i class="fa fa-check"></i>Kontraste berechnen</a></li>
@@ -1409,6 +1411,51 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 ## Warning: EMMs are biased unless design is perfectly balanced 
 ## Confidence level used: 0.95</code></pre>
 </div>
+<div id="exkurs-estimated-marginal-means" class="section level3">
+<h3>Exkurs: Estimated Marginal Means</h3>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="sitzung-9.html#cb648-1"></a><span class="co"># let&#39;s generate a table with values</span></span>
+<span id="cb648-2"><a href="sitzung-9.html#cb648-2"></a>d &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb648-3"><a href="sitzung-9.html#cb648-3"></a>  <span class="dt">reads =</span> <span class="kw">c</span>(<span class="st">&quot;reads&quot;</span>, <span class="st">&quot;doesnt_read&quot;</span>),</span>
+<span id="cb648-4"><a href="sitzung-9.html#cb648-4"></a>  <span class="dt">studies =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb648-5"><a href="sitzung-9.html#cb648-5"></a>  <span class="dt">doesnt_study =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb648-6"><a href="sitzung-9.html#cb648-6"></a>)</span>
+<span id="cb648-7"><a href="sitzung-9.html#cb648-7"></a>d</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   reads       studies doesnt_study
+##   &lt;chr&gt;         &lt;dbl&gt;        &lt;dbl&gt;
+## 1 reads             1            3
+## 2 doesnt_read       2            5</code></pre>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="sitzung-9.html#cb650-1"></a><span class="co"># then lets transform the data into a tidy one (one row = one observation)</span></span>
+<span id="cb650-2"><a href="sitzung-9.html#cb650-2"></a>d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></span>
+<span id="cb650-3"><a href="sitzung-9.html#cb650-3"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(<span class="st">&quot;studies&quot;</span>, <span class="st">&quot;doesnt_study&quot;</span>),</span>
+<span id="cb650-4"><a href="sitzung-9.html#cb650-4"></a>    <span class="dt">names_to =</span> <span class="st">&quot;prepares&quot;</span>,</span>
+<span id="cb650-5"><a href="sitzung-9.html#cb650-5"></a>    <span class="dt">values_to =</span> <span class="st">&quot;grade&quot;</span>)</span>
+<span id="cb650-6"><a href="sitzung-9.html#cb650-6"></a>d</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+##   reads       prepares     grade
+##   &lt;chr&gt;       &lt;chr&gt;        &lt;dbl&gt;
+## 1 reads       studies          1
+## 2 reads       doesnt_study     3
+## 3 doesnt_read studies          2
+## 4 doesnt_read doesnt_study     5</code></pre>
+</div>
+<div id="exkurs-contd" class="section level3">
+<h3>Exkurs cont’d</h3>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="sitzung-9.html#cb652-1"></a><span class="co"># then lets fit a model</span></span>
+<span id="cb652-2"><a href="sitzung-9.html#cb652-2"></a>fit &lt;-<span class="st"> </span><span class="kw">aov</span>(grade <span class="op">~</span><span class="st"> </span>reads <span class="op">*</span><span class="st"> </span>prepares, <span class="dt">data =</span> d)</span>
+<span id="cb652-3"><a href="sitzung-9.html#cb652-3"></a><span class="co"># and compute estimated marginal means</span></span>
+<span id="cb652-4"><a href="sitzung-9.html#cb652-4"></a><span class="co"># in a balanced design, EMMs just represent the cell means (here, because we only have one observation per factor combination, means = observations)</span></span>
+<span id="cb652-5"><a href="sitzung-9.html#cb652-5"></a><span class="co"># in unbalanced design EMMs are adjusted so that all cell means are given equal weight</span></span>
+<span id="cb652-6"><a href="sitzung-9.html#cb652-6"></a>(ref &lt;-<span class="st"> </span><span class="kw">emmeans</span>(fit, <span class="kw">c</span>(<span class="st">&quot;reads&quot;</span>, <span class="st">&quot;prepares&quot;</span>)))</span></code></pre></div>
+<pre><code>## Warning in qt((1 - level)/adiv, df): NaNs produced</code></pre>
+<pre><code>##  reads       prepares     emmean  SE df lower.CL upper.CL
+##  doesnt_read doesnt_study      5 NaN  0      NaN      NaN
+##  reads       doesnt_study      3 NaN  0      NaN      NaN
+##  doesnt_read studies           2 NaN  0      NaN      NaN
+##  reads       studies           1 NaN  0      NaN      NaN
+## 
+## Confidence level used: 0.95</code></pre>
+</div>
 <div id="übung-6" class="section level3">
 <h3>Übung</h3>
 <p>Spezifiziert Vektoren für die folgenden Kontraste mithilfe der Referenztabelle:</p>
@@ -1419,8 +1466,8 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 </ul>
 <p>Beispiel: um adult_appRel mit child_appRel (und nichts anderes) zu vergleichen,
 verwenden wir folgende Spezifizierung:</p>
-<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="sitzung-9.html#cb648-1"></a><span class="co"># adult_appRel versus child_appRel</span></span>
-<span id="cb648-2"><a href="sitzung-9.html#cb648-2"></a>RCAvsC &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="sitzung-9.html#cb655-1"></a><span class="co"># adult_appRel versus child_appRel</span></span>
+<span id="cb655-2"><a href="sitzung-9.html#cb655-2"></a>RCAvsC &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div>
 </div>
 <div id="lösung-16" class="section level3">
 <h3>Lösung</h3>
@@ -1430,21 +1477,21 @@ verwenden wir folgende Spezifizierung:</p>
 <li>Soft Trigger (at-issue) vs Hard Trigger (at-issue)</li>
 <li>At-issue, Kinder vs At-issue, Erwachsene</li>
 </ul>
-<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="sitzung-9.html#cb649-1"></a><span class="co"># kontraste spezifizieren</span></span>
-<span id="cb649-2"><a href="sitzung-9.html#cb649-2"></a>test_RCvHTat &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">-1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb649-3"><a href="sitzung-9.html#cb649-3"></a>test_STvHTat &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb649-4"><a href="sitzung-9.html#cb649-4"></a>test_ATcvATa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="sitzung-9.html#cb656-1"></a><span class="co"># kontraste spezifizieren</span></span>
+<span id="cb656-2"><a href="sitzung-9.html#cb656-2"></a>test_RCvHTat &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">-1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb656-3"><a href="sitzung-9.html#cb656-3"></a>test_STvHTat &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb656-4"><a href="sitzung-9.html#cb656-4"></a>test_ATcvATa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div>
 </div>
 <div id="kontraste-berechnen" class="section level3">
 <h3>Kontraste berechnen</h3>
 <p>Bonferronikorrektur nur für <em>post hoc</em> Kontraste absolut nötig. Bei <em>a priori</em> spezifizierten (das heißt von der Hypothese gedeckten) Kontrasten kann diese Korrektur weggelassen werden.</p>
-<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="sitzung-9.html#cb650-1"></a><span class="co"># bonferroni-korrigierte tests berechnen</span></span>
-<span id="cb650-2"><a href="sitzung-9.html#cb650-2"></a><span class="kw">summary</span>(<span class="kw">contrast</span>(ref_id, <span class="kw">list</span>(<span class="dt">RCvHTat =</span> test_RCvHTat,</span>
-<span id="cb650-3"><a href="sitzung-9.html#cb650-3"></a>  <span class="dt">STvHTat =</span> test_STvHTat,</span>
-<span id="cb650-4"><a href="sitzung-9.html#cb650-4"></a>  <span class="dt">ATcvATa =</span> test_ATcvATa),</span>
-<span id="cb650-5"><a href="sitzung-9.html#cb650-5"></a><span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>, <span class="co"># Korrektur für multiple Tests</span></span>
-<span id="cb650-6"><a href="sitzung-9.html#cb650-6"></a><span class="dt">infer =</span> <span class="ot">TRUE</span> <span class="co"># zeigt p-Werte und KonfInt</span></span>
-<span id="cb650-7"><a href="sitzung-9.html#cb650-7"></a>))</span></code></pre></div>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="sitzung-9.html#cb657-1"></a><span class="co"># bonferroni-korrigierte tests berechnen</span></span>
+<span id="cb657-2"><a href="sitzung-9.html#cb657-2"></a><span class="kw">summary</span>(<span class="kw">contrast</span>(ref_id, <span class="kw">list</span>(<span class="dt">RCvHTat =</span> test_RCvHTat,</span>
+<span id="cb657-3"><a href="sitzung-9.html#cb657-3"></a>  <span class="dt">STvHTat =</span> test_STvHTat,</span>
+<span id="cb657-4"><a href="sitzung-9.html#cb657-4"></a>  <span class="dt">ATcvATa =</span> test_ATcvATa),</span>
+<span id="cb657-5"><a href="sitzung-9.html#cb657-5"></a><span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>, <span class="co"># Korrektur für multiple Tests</span></span>
+<span id="cb657-6"><a href="sitzung-9.html#cb657-6"></a><span class="dt">infer =</span> <span class="ot">TRUE</span> <span class="co"># zeigt p-Werte und KonfInt</span></span>
+<span id="cb657-7"><a href="sitzung-9.html#cb657-7"></a>))</span></code></pre></div>
 <pre><code>##  contrast estimate    SE    df lower.CL upper.CL t.ratio p.value
 ##  RCvHTat    -0.259 0.267 155.3   -0.906    0.387 -0.971  0.9997 
 ##  STvHTat     1.680 0.267 155.3    1.034    2.327  6.288  &lt;.0001 
@@ -1457,9 +1504,9 @@ verwenden wir folgende Spezifizierung:</p>
 <div id="zum-selbst-ausprobieren" class="section level3">
 <h3>Zum selbst Ausprobieren</h3>
 <p>Warning von Thomas (pc): “D.h. ich wuerde den Leuten sagen, dass der letzte Code-Schnipsel (wo Du dann <em>alle</em> Vergleiche anschaust) eine Mischung aus <em>prae</em>- und <em>post-hoc</em>-Betrachtung ist. Und dass das natuerlich fuer moralisch sproede bzw. vom publication bias und Befristung weichgeklopfte Gemueter gewisse Verlockungen/Gefahren birgt. You see?”</p>
-<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="sitzung-9.html#cb652-1"></a><span class="co"># alle paarweisen vergleiche für die beiden level von issueness berechnen</span></span>
-<span id="cb652-2"><a href="sitzung-9.html#cb652-2"></a>ref_big &lt;-<span class="st"> </span><span class="kw">emmeans</span>(anovasub, <span class="op">~</span><span class="st"> </span>stage <span class="op">*</span><span class="st"> </span>trigger <span class="op">|</span><span class="st"> </span>issueness)</span>
-<span id="cb652-3"><a href="sitzung-9.html#cb652-3"></a>ref_big</span></code></pre></div>
+<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="sitzung-9.html#cb659-1"></a><span class="co"># alle paarweisen vergleiche für die beiden level von issueness berechnen</span></span>
+<span id="cb659-2"><a href="sitzung-9.html#cb659-2"></a>ref_big &lt;-<span class="st"> </span><span class="kw">emmeans</span>(anovasub, <span class="op">~</span><span class="st"> </span>stage <span class="op">*</span><span class="st"> </span>trigger <span class="op">|</span><span class="st"> </span>issueness)</span>
+<span id="cb659-3"><a href="sitzung-9.html#cb659-3"></a>ref_big</span></code></pre></div>
 <pre><code>## issueness = at.issue:
 ##  stage trigger emmean    SE  df lower.CL upper.CL
 ##  adult appRel    1.85 0.171 133     1.51     2.19
@@ -1483,10 +1530,10 @@ verwenden wir folgende Spezifizierung:</p>
 </div>
 <div id="ergebnisse-des-großen-paarvergleichs" class="section level3">
 <h3>Ergebnisse des großen Paarvergleichs</h3>
-<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="sitzung-9.html#cb654-1"></a><span class="kw">summary</span>(<span class="kw">contrast</span>(ref_big, <span class="dt">method =</span> <span class="st">&quot;pairwise&quot;</span>,</span>
-<span id="cb654-2"><a href="sitzung-9.html#cb654-2"></a>  <span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
-<span id="cb654-3"><a href="sitzung-9.html#cb654-3"></a>  <span class="dt">infer =</span> <span class="ot">TRUE</span></span>
-<span id="cb654-4"><a href="sitzung-9.html#cb654-4"></a>))</span></code></pre></div>
+<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="sitzung-9.html#cb661-1"></a><span class="kw">summary</span>(<span class="kw">contrast</span>(ref_big, <span class="dt">method =</span> <span class="st">&quot;pairwise&quot;</span>,</span>
+<span id="cb661-2"><a href="sitzung-9.html#cb661-2"></a>  <span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
+<span id="cb661-3"><a href="sitzung-9.html#cb661-3"></a>  <span class="dt">infer =</span> <span class="ot">TRUE</span></span>
+<span id="cb661-4"><a href="sitzung-9.html#cb661-4"></a>))</span></code></pre></div>
 <pre><code>## issueness = at.issue:
 ##  contrast                    estimate    SE  df lower.CL upper.CL t.ratio
 ##  adult,appRel - child,appRel  -1.4980 0.241 131   -2.218  -0.7779 -6.220 
@@ -1564,38 +1611,38 @@ verwenden wir folgende Spezifizierung:</p>
 <h2>Nochmal Plots</h2>
 <div id="by-subject" class="section level3">
 <h3>by subject</h3>
-<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="sitzung-9.html#cb656-1"></a>subs &lt;-<span class="st"> </span><span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">y =</span> judgment, <span class="dt">x =</span> trigger, <span class="dt">color =</span> issueness,</span>
-<span id="cb656-2"><a href="sitzung-9.html#cb656-2"></a>  <span class="dt">shape =</span> issueness, <span class="dt">linetype =</span> issueness,</span>
-<span id="cb656-3"><a href="sitzung-9.html#cb656-3"></a>  <span class="dt">group =</span> issueness)) <span class="op">+</span></span>
-<span id="cb656-4"><a href="sitzung-9.html#cb656-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>) <span class="op">+</span></span>
-<span id="cb656-5"><a href="sitzung-9.html#cb656-5"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span></span>
-<span id="cb656-6"><a href="sitzung-9.html#cb656-6"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">width =</span> <span class="fl">0.25</span>,</span>
-<span id="cb656-7"><a href="sitzung-9.html#cb656-7"></a>    <span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">linetype =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb656-8"><a href="sitzung-9.html#cb656-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Mean Judgments&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Trigger Type&quot;</span>) <span class="op">+</span></span>
-<span id="cb656-9"><a href="sitzung-9.html#cb656-9"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#19278e&quot;</span>, <span class="st">&quot;#BC0D0D&quot;</span>)) <span class="op">+</span></span>
-<span id="cb656-10"><a href="sitzung-9.html#cb656-10"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;appositive RC&#39;</span>, <span class="st">&#39;Hard&#39;</span>, <span class="st">&#39;Soft&#39;</span>)) <span class="op">+</span></span>
-<span id="cb656-11"><a href="sitzung-9.html#cb656-11"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>id) <span class="op">+</span><span class="st"> </span>cleanup</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="sitzung-9.html#cb663-1"></a>subs &lt;-<span class="st"> </span><span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">y =</span> judgment, <span class="dt">x =</span> trigger, <span class="dt">color =</span> issueness,</span>
+<span id="cb663-2"><a href="sitzung-9.html#cb663-2"></a>  <span class="dt">shape =</span> issueness, <span class="dt">linetype =</span> issueness,</span>
+<span id="cb663-3"><a href="sitzung-9.html#cb663-3"></a>  <span class="dt">group =</span> issueness)) <span class="op">+</span></span>
+<span id="cb663-4"><a href="sitzung-9.html#cb663-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>) <span class="op">+</span></span>
+<span id="cb663-5"><a href="sitzung-9.html#cb663-5"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span></span>
+<span id="cb663-6"><a href="sitzung-9.html#cb663-6"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">width =</span> <span class="fl">0.25</span>,</span>
+<span id="cb663-7"><a href="sitzung-9.html#cb663-7"></a>    <span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">linetype =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb663-8"><a href="sitzung-9.html#cb663-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Mean Judgments&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Trigger Type&quot;</span>) <span class="op">+</span></span>
+<span id="cb663-9"><a href="sitzung-9.html#cb663-9"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#19278e&quot;</span>, <span class="st">&quot;#BC0D0D&quot;</span>)) <span class="op">+</span></span>
+<span id="cb663-10"><a href="sitzung-9.html#cb663-10"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;appositive RC&#39;</span>, <span class="st">&#39;Hard&#39;</span>, <span class="st">&#39;Soft&#39;</span>)) <span class="op">+</span></span>
+<span id="cb663-11"><a href="sitzung-9.html#cb663-11"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>id) <span class="op">+</span><span class="st"> </span>cleanup</span></code></pre></div>
 </div>
 <div id="by-subject-1" class="section level3">
 <h3>by subject</h3>
-<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="sitzung-9.html#cb657-1"></a>subs</span></code></pre></div>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="sitzung-9.html#cb664-1"></a>subs</span></code></pre></div>
 <p><img src="inference_files/figure-html/lineplotsubs2-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="by-item" class="section level3">
 <h3>by item</h3>
-<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="sitzung-9.html#cb658-1"></a>items &lt;-<span class="st"> </span><span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">y =</span> judgment, <span class="dt">x =</span> issueness, <span class="dt">color =</span> issueness,</span>
-<span id="cb658-2"><a href="sitzung-9.html#cb658-2"></a>  <span class="dt">shape =</span> issueness)) <span class="op">+</span></span>
-<span id="cb658-3"><a href="sitzung-9.html#cb658-3"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb658-4"><a href="sitzung-9.html#cb658-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb658-5"><a href="sitzung-9.html#cb658-5"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">width =</span> <span class="fl">0.25</span>,</span>
-<span id="cb658-6"><a href="sitzung-9.html#cb658-6"></a>    <span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">linetype =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb658-7"><a href="sitzung-9.html#cb658-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Mean Judgments&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Issueness&quot;</span>) <span class="op">+</span></span>
-<span id="cb658-8"><a href="sitzung-9.html#cb658-8"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#19278e&quot;</span>, <span class="st">&quot;#BC0D0D&quot;</span>)) <span class="op">+</span></span>
-<span id="cb658-9"><a href="sitzung-9.html#cb658-9"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>itemid) <span class="op">+</span><span class="st"> </span>cleanup</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="sitzung-9.html#cb665-1"></a>items &lt;-<span class="st"> </span><span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">y =</span> judgment, <span class="dt">x =</span> issueness, <span class="dt">color =</span> issueness,</span>
+<span id="cb665-2"><a href="sitzung-9.html#cb665-2"></a>  <span class="dt">shape =</span> issueness)) <span class="op">+</span></span>
+<span id="cb665-3"><a href="sitzung-9.html#cb665-3"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb665-4"><a href="sitzung-9.html#cb665-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb665-5"><a href="sitzung-9.html#cb665-5"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">width =</span> <span class="fl">0.25</span>,</span>
+<span id="cb665-6"><a href="sitzung-9.html#cb665-6"></a>    <span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">linetype =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb665-7"><a href="sitzung-9.html#cb665-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Mean Judgments&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Issueness&quot;</span>) <span class="op">+</span></span>
+<span id="cb665-8"><a href="sitzung-9.html#cb665-8"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#19278e&quot;</span>, <span class="st">&quot;#BC0D0D&quot;</span>)) <span class="op">+</span></span>
+<span id="cb665-9"><a href="sitzung-9.html#cb665-9"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>itemid) <span class="op">+</span><span class="st"> </span>cleanup</span></code></pre></div>
 </div>
 <div id="by-item-1" class="section level3">
 <h3>by item</h3>
-<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="sitzung-9.html#cb659-1"></a>items</span></code></pre></div>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="sitzung-9.html#cb666-1"></a>items</span></code></pre></div>
 <p><img src="inference_files/figure-html/lineplotitems2-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="off-to-the-rave" class="section level3">

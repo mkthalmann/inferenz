@@ -543,6 +543,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste"><i class="fa fa-check"></i>Kontraste</a>
 <ul>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste-kodieren-aber-wie"><i class="fa fa-check"></i>Kontraste kodieren, aber wie?</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#exkurs-estimated-marginal-means"><i class="fa fa-check"></i>Exkurs: Estimated Marginal Means</a></li>
+<li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#exkurs-contd"><i class="fa fa-check"></i>Exkurs cont’d</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#übung-6"><i class="fa fa-check"></i>Übung</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#lösung-16"><i class="fa fa-check"></i>Lösung</a></li>
 <li class="chapter" data-level="" data-path="sitzung-9.html"><a href="sitzung-9.html#kontraste-berechnen"><i class="fa fa-check"></i>Kontraste berechnen</a></li>
@@ -821,9 +823,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Einfach Textdateien speichern</h2>
 <div id="daten-4" class="section level3">
 <h3>Daten</h3>
-<div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb783-1"><a href="extrasitzung.html#cb783-1"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
-<div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb784-1"><a href="extrasitzung.html#cb784-1"></a>d &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(msleep) <span class="co"># from ggplot2 package</span></span>
-<span id="cb784-2"><a href="extrasitzung.html#cb784-2"></a><span class="kw">head</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb790-1"><a href="extrasitzung.html#cb790-1"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb791-1"><a href="extrasitzung.html#cb791-1"></a>d &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(msleep) <span class="co"># from ggplot2 package</span></span>
+<span id="cb791-2"><a href="extrasitzung.html#cb791-2"></a><span class="kw">head</span>(d)</span></code></pre></div>
 <pre><code>##                         name      genus  vore        order conservation
 ## 1                    Cheetah   Acinonyx carni    Carnivora           lc
 ## 2                 Owl monkey      Aotus  omni     Primates         &lt;NA&gt;
@@ -848,15 +850,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Mit <code>with</code> erspart man sich ein kleines bisschen Schreibarbeit, weil man den Datensatz selbst nicht immer wieder innerhalb der Funktion eingeben muss</li>
 <li>Wichtig: <code>sink</code> immer mit <code>sink</code> beenden, wenn die Textdatei alle Infos enthält, die man abspeichern wollte</li>
 </ul>
-<div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb786-1"><a href="extrasitzung.html#cb786-1"></a><span class="kw">library</span>(psych)</span>
-<span id="cb786-2"><a href="extrasitzung.html#cb786-2"></a><span class="kw">sink</span>(<span class="st">&quot;descriptive_stats.txt&quot;</span>)</span>
-<span id="cb786-3"><a href="extrasitzung.html#cb786-3"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">###################################################################&quot;</span>)</span>
-<span id="cb786-4"><a href="extrasitzung.html#cb786-4"></a></span>
-<span id="cb786-5"><a href="extrasitzung.html#cb786-5"></a><span class="kw">with</span>(d,</span>
-<span id="cb786-6"><a href="extrasitzung.html#cb786-6"></a>  <span class="kw">describeBy</span>(price, cut))</span>
-<span id="cb786-7"><a href="extrasitzung.html#cb786-7"></a></span>
-<span id="cb786-8"><a href="extrasitzung.html#cb786-8"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">###################################################################&quot;</span>)</span>
-<span id="cb786-9"><a href="extrasitzung.html#cb786-9"></a><span class="kw">sink</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb793-1"><a href="extrasitzung.html#cb793-1"></a><span class="kw">library</span>(psych)</span>
+<span id="cb793-2"><a href="extrasitzung.html#cb793-2"></a><span class="kw">sink</span>(<span class="st">&quot;descriptive_stats.txt&quot;</span>)</span>
+<span id="cb793-3"><a href="extrasitzung.html#cb793-3"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">###################################################################&quot;</span>)</span>
+<span id="cb793-4"><a href="extrasitzung.html#cb793-4"></a></span>
+<span id="cb793-5"><a href="extrasitzung.html#cb793-5"></a><span class="kw">with</span>(d,</span>
+<span id="cb793-6"><a href="extrasitzung.html#cb793-6"></a>  <span class="kw">describeBy</span>(price, cut))</span>
+<span id="cb793-7"><a href="extrasitzung.html#cb793-7"></a></span>
+<span id="cb793-8"><a href="extrasitzung.html#cb793-8"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">###################################################################&quot;</span>)</span>
+<span id="cb793-9"><a href="extrasitzung.html#cb793-9"></a><span class="kw">sink</span>()</span></code></pre></div>
 </div>
 </div>
 <div id="funktionen-aus-dem-tidyverse" class="section level2">
@@ -864,15 +866,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tidyverse" class="section level3">
 <h3>Tidyverse</h3>
 <p><a href="https://www.tidyverse.org" class="uri">https://www.tidyverse.org</a></p>
-<div class="sourceCode" id="cb787"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb787-1"><a href="extrasitzung.html#cb787-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb788"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb788-1"><a href="extrasitzung.html#cb788-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="extrasitzung.html#cb794-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb795-1"><a href="extrasitzung.html#cb795-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="funktionen-die-man-kennen-sollte" class="section level3">
 <h3>Funktionen, die man kennen sollte</h3>
-<div class="sourceCode" id="cb789"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb789-1"><a href="extrasitzung.html#cb789-1"></a><span class="kw">mutate</span>() <span class="co"># spalten erstellen oder verändern</span></span>
-<span id="cb789-2"><a href="extrasitzung.html#cb789-2"></a><span class="kw">summarise</span>() <span class="co"># mehrere werte auf einen reduzieren (zB mean)</span></span>
-<span id="cb789-3"><a href="extrasitzung.html#cb789-3"></a><span class="kw">group_by</span>() <span class="co"># datenblatt gruppieren (wie by() )</span></span>
-<span id="cb789-4"><a href="extrasitzung.html#cb789-4"></a><span class="op">%&gt;%</span><span class="st"> </span><span class="co"># &quot;pipe&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="extrasitzung.html#cb796-1"></a><span class="kw">mutate</span>() <span class="co"># spalten erstellen oder verändern</span></span>
+<span id="cb796-2"><a href="extrasitzung.html#cb796-2"></a><span class="kw">summarise</span>() <span class="co"># mehrere werte auf einen reduzieren (zB mean)</span></span>
+<span id="cb796-3"><a href="extrasitzung.html#cb796-3"></a><span class="kw">group_by</span>() <span class="co"># datenblatt gruppieren (wie by() )</span></span>
+<span id="cb796-4"><a href="extrasitzung.html#cb796-4"></a><span class="op">%&gt;%</span><span class="st"> </span><span class="co"># &quot;pipe&quot;</span></span></code></pre></div>
 </div>
 <div id="pipe" class="section level3">
 <h3>Pipe %&gt;%</h3>
@@ -883,27 +885,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="beispiele-2" class="section level3">
 <h3>Beispiele</h3>
-<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb790-1"><a href="extrasitzung.html#cb790-1"></a><span class="co"># Spalte für Faktor Issueness anlegen</span></span>
-<span id="cb790-2"><a href="extrasitzung.html#cb790-2"></a>d &lt;-<span class="st"> </span><span class="kw">mutate</span>(d, <span class="dt">issue =</span> <span class="kw">case_when</span>(</span>
-<span id="cb790-3"><a href="extrasitzung.html#cb790-3"></a>  <span class="kw">str_detect</span>(d<span class="op">$</span>V8, <span class="st">&quot;_at&quot;</span>) <span class="op">~</span><span class="st"> &quot;at-issue&quot;</span>,</span>
-<span id="cb790-4"><a href="extrasitzung.html#cb790-4"></a>  <span class="kw">str_detect</span>(d<span class="op">$</span>V8, <span class="st">&quot;_non&quot;</span>) <span class="op">~</span><span class="st"> &quot;non-at-issue&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb791-1"><a href="extrasitzung.html#cb791-1"></a><span class="co"># Spalten zu Faktoren konvertieren</span></span>
-<span id="cb791-2"><a href="extrasitzung.html#cb791-2"></a>d &lt;-<span class="st"> </span><span class="kw">mutate_at</span>(d,</span>
-<span id="cb791-3"><a href="extrasitzung.html#cb791-3"></a>  <span class="kw">c</span>(<span class="st">&quot;issue&quot;</span>, <span class="st">&quot;trigger&quot;</span>, <span class="st">&quot;itemid&quot;</span>, <span class="st">&quot;lex&quot;</span>),</span>
-<span id="cb791-4"><a href="extrasitzung.html#cb791-4"></a>  <span class="kw">funs</span>(<span class="kw">factor</span>(.)))</span></code></pre></div>
-<div class="sourceCode" id="cb792"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb792-1"><a href="extrasitzung.html#cb792-1"></a><span class="co"># neue Spalte und Faktoren mit Pipes</span></span>
-<span id="cb792-2"><a href="extrasitzung.html#cb792-2"></a>d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></span>
-<span id="cb792-3"><a href="extrasitzung.html#cb792-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">issue =</span> <span class="kw">case_when</span>(</span>
-<span id="cb792-4"><a href="extrasitzung.html#cb792-4"></a>    <span class="kw">str_detect</span>(V8, <span class="st">&quot;_at&quot;</span>) <span class="op">~</span><span class="st"> &quot;at-issue&quot;</span>,</span>
-<span id="cb792-5"><a href="extrasitzung.html#cb792-5"></a>    <span class="kw">str_detect</span>(V8, <span class="st">&quot;_non&quot;</span>) <span class="op">~</span><span class="st"> &quot;non-at-issue&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb792-6"><a href="extrasitzung.html#cb792-6"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;issue&quot;</span>, <span class="st">&quot;trigger&quot;</span>, <span class="st">&quot;itemid&quot;</span>, <span class="st">&quot;lex&quot;</span>),</span>
-<span id="cb792-7"><a href="extrasitzung.html#cb792-7"></a>    <span class="kw">funs</span>(<span class="kw">factor</span>(.)))</span></code></pre></div>
+<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb797-1"><a href="extrasitzung.html#cb797-1"></a><span class="co"># Spalte für Faktor Issueness anlegen</span></span>
+<span id="cb797-2"><a href="extrasitzung.html#cb797-2"></a>d &lt;-<span class="st"> </span><span class="kw">mutate</span>(d, <span class="dt">issue =</span> <span class="kw">case_when</span>(</span>
+<span id="cb797-3"><a href="extrasitzung.html#cb797-3"></a>  <span class="kw">str_detect</span>(d<span class="op">$</span>V8, <span class="st">&quot;_at&quot;</span>) <span class="op">~</span><span class="st"> &quot;at-issue&quot;</span>,</span>
+<span id="cb797-4"><a href="extrasitzung.html#cb797-4"></a>  <span class="kw">str_detect</span>(d<span class="op">$</span>V8, <span class="st">&quot;_non&quot;</span>) <span class="op">~</span><span class="st"> &quot;non-at-issue&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="extrasitzung.html#cb798-1"></a><span class="co"># Spalten zu Faktoren konvertieren</span></span>
+<span id="cb798-2"><a href="extrasitzung.html#cb798-2"></a>d &lt;-<span class="st"> </span><span class="kw">mutate_at</span>(d,</span>
+<span id="cb798-3"><a href="extrasitzung.html#cb798-3"></a>  <span class="kw">c</span>(<span class="st">&quot;issue&quot;</span>, <span class="st">&quot;trigger&quot;</span>, <span class="st">&quot;itemid&quot;</span>, <span class="st">&quot;lex&quot;</span>),</span>
+<span id="cb798-4"><a href="extrasitzung.html#cb798-4"></a>  <span class="kw">funs</span>(<span class="kw">factor</span>(.)))</span></code></pre></div>
+<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="extrasitzung.html#cb799-1"></a><span class="co"># neue Spalte und Faktoren mit Pipes</span></span>
+<span id="cb799-2"><a href="extrasitzung.html#cb799-2"></a>d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></span>
+<span id="cb799-3"><a href="extrasitzung.html#cb799-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">issue =</span> <span class="kw">case_when</span>(</span>
+<span id="cb799-4"><a href="extrasitzung.html#cb799-4"></a>    <span class="kw">str_detect</span>(V8, <span class="st">&quot;_at&quot;</span>) <span class="op">~</span><span class="st"> &quot;at-issue&quot;</span>,</span>
+<span id="cb799-5"><a href="extrasitzung.html#cb799-5"></a>    <span class="kw">str_detect</span>(V8, <span class="st">&quot;_non&quot;</span>) <span class="op">~</span><span class="st"> &quot;non-at-issue&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb799-6"><a href="extrasitzung.html#cb799-6"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;issue&quot;</span>, <span class="st">&quot;trigger&quot;</span>, <span class="st">&quot;itemid&quot;</span>, <span class="st">&quot;lex&quot;</span>),</span>
+<span id="cb799-7"><a href="extrasitzung.html#cb799-7"></a>    <span class="kw">funs</span>(<span class="kw">factor</span>(.)))</span></code></pre></div>
 </div>
 <div id="weitere-beispiele" class="section level3">
 <h3>Weitere Beispiele</h3>
 <p>Mit dem altbekannten Diamantendatenset:</p>
-<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb793-1"><a href="extrasitzung.html#cb793-1"></a>d &lt;-<span class="st"> </span>diamonds</span>
-<span id="cb793-2"><a href="extrasitzung.html#cb793-2"></a><span class="kw">head</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb800-1"><a href="extrasitzung.html#cb800-1"></a>d &lt;-<span class="st"> </span>diamonds</span>
+<span id="cb800-2"><a href="extrasitzung.html#cb800-2"></a><span class="kw">head</span>(d)</span></code></pre></div>
 <pre><code>##   carat       cut color clarity depth table price    x    y    z
 ## 1  0.23     Ideal     E     SI2  61.5    55   326 3.95 3.98 2.43
 ## 2  0.21   Premium     E     SI1  59.8    61   326 3.89 3.84 2.31
@@ -914,9 +916,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="vorkommen-zählen" class="section level3">
 <h3>Vorkommen zählen</h3>
-<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb795-1"><a href="extrasitzung.html#cb795-1"></a><span class="co"># reihen zählen und nach color und cut aufspalten</span></span>
-<span id="cb795-2"><a href="extrasitzung.html#cb795-2"></a>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(color, cut) <span class="op">%&gt;%</span></span>
-<span id="cb795-3"><a href="extrasitzung.html#cb795-3"></a><span class="st">  </span>head</span></code></pre></div>
+<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="extrasitzung.html#cb802-1"></a><span class="co"># reihen zählen und nach color und cut aufspalten</span></span>
+<span id="cb802-2"><a href="extrasitzung.html#cb802-2"></a>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(color, cut) <span class="op">%&gt;%</span></span>
+<span id="cb802-3"><a href="extrasitzung.html#cb802-3"></a><span class="st">  </span>head</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   color cut           n
 ##   &lt;ord&gt; &lt;ord&gt;     &lt;int&gt;
@@ -929,9 +931,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="zählen-und-sortieren" class="section level3">
 <h3>Zählen und Sortieren</h3>
-<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb797-1"><a href="extrasitzung.html#cb797-1"></a>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(color, cut) <span class="op">%&gt;%</span></span>
-<span id="cb797-2"><a href="extrasitzung.html#cb797-2"></a><span class="st">  </span><span class="kw">arrange</span>(n) <span class="op">%&gt;%</span></span>
-<span id="cb797-3"><a href="extrasitzung.html#cb797-3"></a><span class="st">  </span><span class="kw">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb804-1"><a href="extrasitzung.html#cb804-1"></a>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(color, cut) <span class="op">%&gt;%</span></span>
+<span id="cb804-2"><a href="extrasitzung.html#cb804-2"></a><span class="st">  </span><span class="kw">arrange</span>(n) <span class="op">%&gt;%</span></span>
+<span id="cb804-3"><a href="extrasitzung.html#cb804-3"></a><span class="st">  </span><span class="kw">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   color cut       n
 ##   &lt;ord&gt; &lt;ord&gt; &lt;int&gt;
@@ -944,9 +946,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="sortieren-und-spalten-auswählen" class="section level3">
 <h3>Sortieren und Spalten auswählen</h3>
-<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="extrasitzung.html#cb799-1"></a>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(price)) <span class="op">%&gt;%</span></span>
-<span id="cb799-2"><a href="extrasitzung.html#cb799-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(price, carat, color, cut) <span class="op">%&gt;%</span></span>
-<span id="cb799-3"><a href="extrasitzung.html#cb799-3"></a><span class="st">  </span><span class="kw">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb806-1"><a href="extrasitzung.html#cb806-1"></a>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(price)) <span class="op">%&gt;%</span></span>
+<span id="cb806-2"><a href="extrasitzung.html#cb806-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(price, carat, color, cut) <span class="op">%&gt;%</span></span>
+<span id="cb806-3"><a href="extrasitzung.html#cb806-3"></a><span class="st">  </span><span class="kw">head</span>()</span></code></pre></div>
 <pre><code>##   price carat color       cut
 ## 1 18823  2.29     I   Premium
 ## 2 18818  2.00     G Very Good
@@ -957,9 +959,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="gruppieren-und-rechnen" class="section level3">
 <h3>Gruppieren und rechnen</h3>
-<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb801-1"><a href="extrasitzung.html#cb801-1"></a>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(color) <span class="op">%&gt;%</span></span>
-<span id="cb801-2"><a href="extrasitzung.html#cb801-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mprice =</span> <span class="kw">mean</span>(price),</span>
-<span id="cb801-3"><a href="extrasitzung.html#cb801-3"></a>    <span class="dt">medprice =</span> <span class="kw">median</span>(price))</span></code></pre></div>
+<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb808-1"><a href="extrasitzung.html#cb808-1"></a>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(color) <span class="op">%&gt;%</span></span>
+<span id="cb808-2"><a href="extrasitzung.html#cb808-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mprice =</span> <span class="kw">mean</span>(price),</span>
+<span id="cb808-3"><a href="extrasitzung.html#cb808-3"></a>    <span class="dt">medprice =</span> <span class="kw">median</span>(price))</span></code></pre></div>
 <pre><code>## # A tibble: 7 x 3
 ##   color mprice medprice
 ##   &lt;ord&gt;  &lt;dbl&gt;    &lt;dbl&gt;
@@ -973,12 +975,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="gruppieren-berechnen-filtern" class="section level3">
 <h3>Gruppieren, berechnen, filtern</h3>
-<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="extrasitzung.html#cb803-1"></a><span class="co"># nach schliff gruppieren</span></span>
-<span id="cb803-2"><a href="extrasitzung.html#cb803-2"></a><span class="co"># spalte mit mittlerem preis hinzufügen</span></span>
-<span id="cb803-3"><a href="extrasitzung.html#cb803-3"></a><span class="co"># und maximale verkaufspreise anzeigen lassen</span></span>
-<span id="cb803-4"><a href="extrasitzung.html#cb803-4"></a>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(cut) <span class="op">%&gt;%</span></span>
-<span id="cb803-5"><a href="extrasitzung.html#cb803-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mprice =</span> <span class="kw">mean</span>(price)) <span class="op">%&gt;%</span></span>
-<span id="cb803-6"><a href="extrasitzung.html#cb803-6"></a><span class="st">  </span><span class="kw">filter</span>(price <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(price))</span></code></pre></div>
+<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb810-1"><a href="extrasitzung.html#cb810-1"></a><span class="co"># nach schliff gruppieren</span></span>
+<span id="cb810-2"><a href="extrasitzung.html#cb810-2"></a><span class="co"># spalte mit mittlerem preis hinzufügen</span></span>
+<span id="cb810-3"><a href="extrasitzung.html#cb810-3"></a><span class="co"># und maximale verkaufspreise anzeigen lassen</span></span>
+<span id="cb810-4"><a href="extrasitzung.html#cb810-4"></a>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(cut) <span class="op">%&gt;%</span></span>
+<span id="cb810-5"><a href="extrasitzung.html#cb810-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mprice =</span> <span class="kw">mean</span>(price)) <span class="op">%&gt;%</span></span>
+<span id="cb810-6"><a href="extrasitzung.html#cb810-6"></a><span class="st">  </span><span class="kw">filter</span>(price <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(price))</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 11
 ## # Groups:   cut [5]
 ##   carat cut       color clarity depth table price     x     y     z mprice
@@ -991,27 +993,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="gruppenkorrelationen-plotten" class="section level3">
 <h3>Gruppenkorrelationen plotten</h3>
-<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb805-1"><a href="extrasitzung.html#cb805-1"></a><span class="co"># nach farbe gruppieren</span></span>
-<span id="cb805-2"><a href="extrasitzung.html#cb805-2"></a><span class="co"># und korrelation zwischen preis und gewicht berechnen</span></span>
-<span id="cb805-3"><a href="extrasitzung.html#cb805-3"></a><span class="co"># und plotten</span></span>
-<span id="cb805-4"><a href="extrasitzung.html#cb805-4"></a>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(color) <span class="op">%&gt;%</span></span>
-<span id="cb805-5"><a href="extrasitzung.html#cb805-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">price_carat_cor =</span> <span class="kw">cor</span>(price, carat)) <span class="op">%&gt;%</span></span>
-<span id="cb805-6"><a href="extrasitzung.html#cb805-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(color, price_carat_cor, <span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb805-7"><a href="extrasitzung.html#cb805-7"></a><span class="st">  </span><span class="kw">geom_path</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb812"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb812-1"><a href="extrasitzung.html#cb812-1"></a><span class="co"># nach farbe gruppieren</span></span>
+<span id="cb812-2"><a href="extrasitzung.html#cb812-2"></a><span class="co"># und korrelation zwischen preis und gewicht berechnen</span></span>
+<span id="cb812-3"><a href="extrasitzung.html#cb812-3"></a><span class="co"># und plotten</span></span>
+<span id="cb812-4"><a href="extrasitzung.html#cb812-4"></a>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(color) <span class="op">%&gt;%</span></span>
+<span id="cb812-5"><a href="extrasitzung.html#cb812-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">price_carat_cor =</span> <span class="kw">cor</span>(price, carat)) <span class="op">%&gt;%</span></span>
+<span id="cb812-6"><a href="extrasitzung.html#cb812-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(color, price_carat_cor, <span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb812-7"><a href="extrasitzung.html#cb812-7"></a><span class="st">  </span><span class="kw">geom_path</span>()</span></code></pre></div>
 <p><img src="inference_files/figure-html/summariseplot-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="filtern-und-plotten" class="section level3">
 <h3>Filtern und plotten</h3>
-<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb806-1"><a href="extrasitzung.html#cb806-1"></a><span class="co"># nur zeilen mit preis &gt; 15000 und schliff == Fair</span></span>
-<span id="cb806-2"><a href="extrasitzung.html#cb806-2"></a><span class="co"># im plot darstellen</span></span>
-<span id="cb806-3"><a href="extrasitzung.html#cb806-3"></a>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(price <span class="op">&gt;</span><span class="st"> </span><span class="dv">15000</span>, cut <span class="op">==</span><span class="st"> &quot;Fair&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb806-4"><a href="extrasitzung.html#cb806-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(carat, price)) <span class="op">+</span></span>
-<span id="cb806-5"><a href="extrasitzung.html#cb806-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="extrasitzung.html#cb813-1"></a><span class="co"># nur zeilen mit preis &gt; 15000 und schliff == Fair</span></span>
+<span id="cb813-2"><a href="extrasitzung.html#cb813-2"></a><span class="co"># im plot darstellen</span></span>
+<span id="cb813-3"><a href="extrasitzung.html#cb813-3"></a>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(price <span class="op">&gt;</span><span class="st"> </span><span class="dv">15000</span>, cut <span class="op">==</span><span class="st"> &quot;Fair&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb813-4"><a href="extrasitzung.html#cb813-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(carat, price)) <span class="op">+</span></span>
+<span id="cb813-5"><a href="extrasitzung.html#cb813-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="inference_files/figure-html/filterplot-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ein-tutorial" class="section level3">
 <h3>Ein Tutorial</h3>
-<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="extrasitzung.html#cb807-1"></a><span class="kw">vignette</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb814-1"><a href="extrasitzung.html#cb814-1"></a><span class="kw">vignette</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
 </div>
 <div id="speed-up" class="section level3">
 <h3>Speed-Up</h3>
@@ -1026,12 +1028,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>For-Loops</h2>
 <div id="loops" class="section level3">
 <h3>Loops</h3>
-<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb808-1"><a href="extrasitzung.html#cb808-1"></a><span class="co"># ausgabe aller geraden zahlen zwischen 1 und 15</span></span>
-<span id="cb808-2"><a href="extrasitzung.html#cb808-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">15</span>) { <span class="co"># 1:15 = zahlenreihe 1 bis 15</span></span>
-<span id="cb808-3"><a href="extrasitzung.html#cb808-3"></a>  <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">2</span>) { <span class="co"># wenn die jeweilige zahl durch 2 teilbar ist, ...</span></span>
-<span id="cb808-4"><a href="extrasitzung.html#cb808-4"></a>    <span class="cf">next</span>} <span class="co"># dann gehe zum nächsten Schritt und</span></span>
-<span id="cb808-5"><a href="extrasitzung.html#cb808-5"></a>  <span class="kw">print</span>(i) <span class="co"># gib sie aus</span></span>
-<span id="cb808-6"><a href="extrasitzung.html#cb808-6"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="extrasitzung.html#cb815-1"></a><span class="co"># ausgabe aller geraden zahlen zwischen 1 und 15</span></span>
+<span id="cb815-2"><a href="extrasitzung.html#cb815-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">15</span>) { <span class="co"># 1:15 = zahlenreihe 1 bis 15</span></span>
+<span id="cb815-3"><a href="extrasitzung.html#cb815-3"></a>  <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">2</span>) { <span class="co"># wenn die jeweilige zahl durch 2 teilbar ist, ...</span></span>
+<span id="cb815-4"><a href="extrasitzung.html#cb815-4"></a>    <span class="cf">next</span>} <span class="co"># dann gehe zum nächsten Schritt und</span></span>
+<span id="cb815-5"><a href="extrasitzung.html#cb815-5"></a>  <span class="kw">print</span>(i) <span class="co"># gib sie aus</span></span>
+<span id="cb815-6"><a href="extrasitzung.html#cb815-6"></a>}</span></code></pre></div>
 <pre><code>## [1] 2
 ## [1] 4
 ## [1] 6
@@ -1042,21 +1044,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="loops-1" class="section level3">
 <h3>Loops</h3>
-<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb810-1"><a href="extrasitzung.html#cb810-1"></a><span class="co"># summe: x_1 + x_2 + ... + x_n</span></span>
-<span id="cb810-2"><a href="extrasitzung.html#cb810-2"></a>my.sum &lt;-<span class="st"> </span><span class="cf">function</span>(vector) {</span>
-<span id="cb810-3"><a href="extrasitzung.html#cb810-3"></a>  sum &lt;-<span class="st"> </span><span class="dv">0</span> <span class="co"># ist nötig, damit wir immer wieder neu bei</span></span>
-<span id="cb810-4"><a href="extrasitzung.html#cb810-4"></a>  <span class="co"># null beginnen, wenn wir die funktion nochmal benutzen wollen</span></span>
-<span id="cb810-5"><a href="extrasitzung.html#cb810-5"></a>  <span class="cf">for</span> (i <span class="cf">in</span> vector) {sum &lt;-<span class="st"> </span>sum <span class="op">+</span><span class="st"> </span>i</span>
-<span id="cb810-6"><a href="extrasitzung.html#cb810-6"></a>  }</span>
-<span id="cb810-7"><a href="extrasitzung.html#cb810-7"></a>  sum</span>
-<span id="cb810-8"><a href="extrasitzung.html#cb810-8"></a>}</span>
-<span id="cb810-9"><a href="extrasitzung.html#cb810-9"></a></span>
-<span id="cb810-10"><a href="extrasitzung.html#cb810-10"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
-<span id="cb810-11"><a href="extrasitzung.html#cb810-11"></a><span class="kw">my.sum</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="extrasitzung.html#cb817-1"></a><span class="co"># summe: x_1 + x_2 + ... + x_n</span></span>
+<span id="cb817-2"><a href="extrasitzung.html#cb817-2"></a>my.sum &lt;-<span class="st"> </span><span class="cf">function</span>(vector) {</span>
+<span id="cb817-3"><a href="extrasitzung.html#cb817-3"></a>  sum &lt;-<span class="st"> </span><span class="dv">0</span> <span class="co"># ist nötig, damit wir immer wieder neu bei</span></span>
+<span id="cb817-4"><a href="extrasitzung.html#cb817-4"></a>  <span class="co"># null beginnen, wenn wir die funktion nochmal benutzen wollen</span></span>
+<span id="cb817-5"><a href="extrasitzung.html#cb817-5"></a>  <span class="cf">for</span> (i <span class="cf">in</span> vector) {sum &lt;-<span class="st"> </span>sum <span class="op">+</span><span class="st"> </span>i</span>
+<span id="cb817-6"><a href="extrasitzung.html#cb817-6"></a>  }</span>
+<span id="cb817-7"><a href="extrasitzung.html#cb817-7"></a>  sum</span>
+<span id="cb817-8"><a href="extrasitzung.html#cb817-8"></a>}</span>
+<span id="cb817-9"><a href="extrasitzung.html#cb817-9"></a></span>
+<span id="cb817-10"><a href="extrasitzung.html#cb817-10"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb817-11"><a href="extrasitzung.html#cb817-11"></a><span class="kw">my.sum</span>(a)</span></code></pre></div>
 <pre><code>## [1] 21</code></pre>
-<div class="sourceCode" id="cb812"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb812-1"><a href="extrasitzung.html#cb812-1"></a><span class="kw">sum</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="extrasitzung.html#cb819-1"></a><span class="kw">sum</span>(a)</span></code></pre></div>
 <pre><code>## [1] 21</code></pre>
-<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb814-1"><a href="extrasitzung.html#cb814-1"></a><span class="kw">my.sum</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb821-1"><a href="extrasitzung.html#cb821-1"></a><span class="kw">my.sum</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>))</span></code></pre></div>
 <pre><code>## [1] 21</code></pre>
 </div>
 <div id="übung-8" class="section level3">
@@ -1071,18 +1073,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Schreibe eine Funktion “my.mean”, die den Mittelwert eines Vektors berechnet</li>
 </ol>
-<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="extrasitzung.html#cb816-1"></a><span class="co"># mittelwert: (x_1 + x_2 + ... + x_n)/n</span></span>
-<span id="cb816-2"><a href="extrasitzung.html#cb816-2"></a>my.mean &lt;-<span class="st"> </span><span class="cf">function</span>(vector) {</span>
-<span id="cb816-3"><a href="extrasitzung.html#cb816-3"></a>  sum &lt;-<span class="st"> </span><span class="dv">0</span> <span class="co"># wie oben</span></span>
-<span id="cb816-4"><a href="extrasitzung.html#cb816-4"></a>  <span class="cf">for</span> (i <span class="cf">in</span> vector) {</span>
-<span id="cb816-5"><a href="extrasitzung.html#cb816-5"></a>    sum &lt;-<span class="st"> </span>sum <span class="op">+</span><span class="st"> </span>i</span>
-<span id="cb816-6"><a href="extrasitzung.html#cb816-6"></a>  }</span>
-<span id="cb816-7"><a href="extrasitzung.html#cb816-7"></a>  sum <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(vector)</span>
-<span id="cb816-8"><a href="extrasitzung.html#cb816-8"></a>}</span>
-<span id="cb816-9"><a href="extrasitzung.html#cb816-9"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
-<span id="cb816-10"><a href="extrasitzung.html#cb816-10"></a><span class="kw">my.mean</span>(a) <span class="op">==</span><span class="st"> </span><span class="kw">mean</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="extrasitzung.html#cb823-1"></a><span class="co"># mittelwert: (x_1 + x_2 + ... + x_n)/n</span></span>
+<span id="cb823-2"><a href="extrasitzung.html#cb823-2"></a>my.mean &lt;-<span class="st"> </span><span class="cf">function</span>(vector) {</span>
+<span id="cb823-3"><a href="extrasitzung.html#cb823-3"></a>  sum &lt;-<span class="st"> </span><span class="dv">0</span> <span class="co"># wie oben</span></span>
+<span id="cb823-4"><a href="extrasitzung.html#cb823-4"></a>  <span class="cf">for</span> (i <span class="cf">in</span> vector) {</span>
+<span id="cb823-5"><a href="extrasitzung.html#cb823-5"></a>    sum &lt;-<span class="st"> </span>sum <span class="op">+</span><span class="st"> </span>i</span>
+<span id="cb823-6"><a href="extrasitzung.html#cb823-6"></a>  }</span>
+<span id="cb823-7"><a href="extrasitzung.html#cb823-7"></a>  sum <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(vector)</span>
+<span id="cb823-8"><a href="extrasitzung.html#cb823-8"></a>}</span>
+<span id="cb823-9"><a href="extrasitzung.html#cb823-9"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb823-10"><a href="extrasitzung.html#cb823-10"></a><span class="kw">my.mean</span>(a) <span class="op">==</span><span class="st"> </span><span class="kw">mean</span>(a)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb818"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb818-1"><a href="extrasitzung.html#cb818-1"></a><span class="kw">my.mean</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="extrasitzung.html#cb825-1"></a><span class="kw">my.mean</span>(a)</span></code></pre></div>
 <pre><code>## [1] 3.5</code></pre>
 </div>
 <div id="lösungen-19" class="section level3">
@@ -1090,19 +1092,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="2" style="list-style-type: decimal">
 <li>Schreibe eine Funktion “my.var”, die die Varianz eines Vektors berechnet</li>
 </ol>
-<div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb820-1"><a href="extrasitzung.html#cb820-1"></a><span class="co"># varianz:</span></span>
-<span id="cb820-2"><a href="extrasitzung.html#cb820-2"></a><span class="co"># ((x_1-x_mittelwert)+(x_n-x_mittelwert) ... + (x_n-x_mittelwert))/n</span></span>
-<span id="cb820-3"><a href="extrasitzung.html#cb820-3"></a>my.var &lt;-<span class="st"> </span><span class="cf">function</span>(vector) {</span>
-<span id="cb820-4"><a href="extrasitzung.html#cb820-4"></a>  sum &lt;-<span class="st"> </span><span class="dv">0</span></span>
-<span id="cb820-5"><a href="extrasitzung.html#cb820-5"></a>  meanie &lt;-<span class="st"> </span><span class="kw">my.mean</span>(vector)</span>
-<span id="cb820-6"><a href="extrasitzung.html#cb820-6"></a>  <span class="cf">for</span> (i <span class="cf">in</span> vector) {</span>
-<span id="cb820-7"><a href="extrasitzung.html#cb820-7"></a>    sum &lt;-<span class="st"> </span>sum <span class="op">+</span><span class="st"> </span>(i <span class="op">-</span><span class="st"> </span>meanie)<span class="op">^</span><span class="dv">2</span></span>
-<span id="cb820-8"><a href="extrasitzung.html#cb820-8"></a>  }</span>
-<span id="cb820-9"><a href="extrasitzung.html#cb820-9"></a>  sum <span class="op">/</span><span class="st"> </span>(<span class="kw">length</span>(vector) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</span>
-<span id="cb820-10"><a href="extrasitzung.html#cb820-10"></a>}</span>
-<span id="cb820-11"><a href="extrasitzung.html#cb820-11"></a><span class="kw">my.var</span>(a) <span class="op">==</span><span class="st"> </span><span class="kw">var</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="extrasitzung.html#cb827-1"></a><span class="co"># varianz:</span></span>
+<span id="cb827-2"><a href="extrasitzung.html#cb827-2"></a><span class="co"># ((x_1-x_mittelwert)+(x_n-x_mittelwert) ... + (x_n-x_mittelwert))/n</span></span>
+<span id="cb827-3"><a href="extrasitzung.html#cb827-3"></a>my.var &lt;-<span class="st"> </span><span class="cf">function</span>(vector) {</span>
+<span id="cb827-4"><a href="extrasitzung.html#cb827-4"></a>  sum &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb827-5"><a href="extrasitzung.html#cb827-5"></a>  meanie &lt;-<span class="st"> </span><span class="kw">my.mean</span>(vector)</span>
+<span id="cb827-6"><a href="extrasitzung.html#cb827-6"></a>  <span class="cf">for</span> (i <span class="cf">in</span> vector) {</span>
+<span id="cb827-7"><a href="extrasitzung.html#cb827-7"></a>    sum &lt;-<span class="st"> </span>sum <span class="op">+</span><span class="st"> </span>(i <span class="op">-</span><span class="st"> </span>meanie)<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb827-8"><a href="extrasitzung.html#cb827-8"></a>  }</span>
+<span id="cb827-9"><a href="extrasitzung.html#cb827-9"></a>  sum <span class="op">/</span><span class="st"> </span>(<span class="kw">length</span>(vector) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb827-10"><a href="extrasitzung.html#cb827-10"></a>}</span>
+<span id="cb827-11"><a href="extrasitzung.html#cb827-11"></a><span class="kw">my.var</span>(a) <span class="op">==</span><span class="st"> </span><span class="kw">var</span>(a)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="extrasitzung.html#cb822-1"></a><span class="kw">my.var</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="extrasitzung.html#cb829-1"></a><span class="kw">my.var</span>(a)</span></code></pre></div>
 <pre><code>## [1] 3.5</code></pre>
 </div>
 </div>
@@ -1110,8 +1112,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Funktionen, die das Coden erleichtern</h2>
 <div id="daten-5" class="section level3">
 <h3>Daten</h3>
-<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb824-1"><a href="extrasitzung.html#cb824-1"></a>d &lt;-<span class="st"> </span>InsectSprays</span>
-<span id="cb824-2"><a href="extrasitzung.html#cb824-2"></a><span class="kw">head</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="extrasitzung.html#cb831-1"></a>d &lt;-<span class="st"> </span>InsectSprays</span>
+<span id="cb831-2"><a href="extrasitzung.html#cb831-2"></a><span class="kw">head</span>(d)</span></code></pre></div>
 <pre><code>##   count spray
 ## 1    10     A
 ## 2     7     A
@@ -1119,14 +1121,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4    14     A
 ## 5    14     A
 ## 6    12     A</code></pre>
-<div class="sourceCode" id="cb826"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb826-1"><a href="extrasitzung.html#cb826-1"></a><span class="kw">str</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="extrasitzung.html#cb833-1"></a><span class="kw">str</span>(d)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    72 obs. of  2 variables:
 ##  $ count: num  10 7 20 14 14 12 10 23 17 20 ...
 ##  $ spray: Factor w/ 6 levels &quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 </div>
 <div id="by" class="section level3">
 <h3>by()</h3>
-<div class="sourceCode" id="cb828"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb828-1"><a href="extrasitzung.html#cb828-1"></a><span class="kw">by</span>(d<span class="op">$</span>count, d<span class="op">$</span>spray, mean)</span></code></pre></div>
+<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb835-1"><a href="extrasitzung.html#cb835-1"></a><span class="kw">by</span>(d<span class="op">$</span>count, d<span class="op">$</span>spray, mean)</span></code></pre></div>
 <pre><code>## d$spray: A
 ## [1] 14.5
 ## ------------------------------------------------------------ 
@@ -1157,7 +1159,7 @@ Variable durchgeführt</p>
 <div id="with-1" class="section level3">
 <h3>with()</h3>
 <p>Hier die Daten, mit denen ich die Funktionsweise von <code>with</code> illustrieren werde:</p>
-<div class="sourceCode" id="cb830"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb830-1"><a href="extrasitzung.html#cb830-1"></a><span class="kw">head</span>(ToothGrowth)</span></code></pre></div>
+<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="extrasitzung.html#cb837-1"></a><span class="kw">head</span>(ToothGrowth)</span></code></pre></div>
 <pre><code>##    len supp dose
 ## 1  4.2   VC  0.5
 ## 2 11.5   VC  0.5
@@ -1165,7 +1167,7 @@ Variable durchgeführt</p>
 ## 4  5.8   VC  0.5
 ## 5  6.4   VC  0.5
 ## 6 10.0   VC  0.5</code></pre>
-<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="extrasitzung.html#cb832-1"></a><span class="kw">str</span>(ToothGrowth)</span></code></pre></div>
+<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="extrasitzung.html#cb839-1"></a><span class="kw">str</span>(ToothGrowth)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    60 obs. of  3 variables:
 ##  $ len : num  4.2 11.5 7.3 5.8 6.4 10 11.2 11.2 5.2 7 ...
 ##  $ supp: Factor w/ 2 levels &quot;OJ&quot;,&quot;VC&quot;: 2 2 2 2 2 2 2 2 2 2 ...
@@ -1173,17 +1175,17 @@ Variable durchgeführt</p>
 </div>
 <div id="with-2" class="section level3">
 <h3>with()</h3>
-<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="extrasitzung.html#cb834-1"></a><span class="kw">with</span>(ToothGrowth, {</span>
-<span id="cb834-2"><a href="extrasitzung.html#cb834-2"></a>  <span class="kw">boxplot</span>(len <span class="op">~</span><span class="st"> </span>dose, <span class="dt">boxwex =</span> <span class="fl">0.25</span>, <span class="dt">at =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.2</span>,</span>
-<span id="cb834-3"><a href="extrasitzung.html#cb834-3"></a>    <span class="dt">subset =</span> (supp <span class="op">==</span><span class="st"> &quot;VC&quot;</span>), <span class="dt">col =</span> <span class="st">&quot;yellow&quot;</span>,</span>
-<span id="cb834-4"><a href="extrasitzung.html#cb834-4"></a>    <span class="dt">main =</span> <span class="st">&quot;Guinea Pigs&#39; Tooth Growth&quot;</span>,</span>
-<span id="cb834-5"><a href="extrasitzung.html#cb834-5"></a>    <span class="dt">xlab =</span> <span class="st">&quot;Vitamin C dose mg&quot;</span>,</span>
-<span id="cb834-6"><a href="extrasitzung.html#cb834-6"></a>    <span class="dt">ylab =</span> <span class="st">&quot;tooth length&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">35</span>))</span>
-<span id="cb834-7"><a href="extrasitzung.html#cb834-7"></a>  <span class="kw">boxplot</span>(len <span class="op">~</span><span class="st"> </span>dose, <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">boxwex =</span> <span class="fl">0.25</span>, <span class="dt">at =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.2</span>,</span>
-<span id="cb834-8"><a href="extrasitzung.html#cb834-8"></a>    <span class="dt">subset =</span> supp <span class="op">==</span><span class="st"> &quot;OJ&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
-<span id="cb834-9"><a href="extrasitzung.html#cb834-9"></a>  <span class="kw">legend</span>(<span class="dv">2</span>, <span class="dv">9</span>, <span class="kw">c</span>(<span class="st">&quot;Ascorbic acid&quot;</span>, <span class="st">&quot;Orange juice&quot;</span>),</span>
-<span id="cb834-10"><a href="extrasitzung.html#cb834-10"></a>    <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;orange&quot;</span>))</span>
-<span id="cb834-11"><a href="extrasitzung.html#cb834-11"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="extrasitzung.html#cb841-1"></a><span class="kw">with</span>(ToothGrowth, {</span>
+<span id="cb841-2"><a href="extrasitzung.html#cb841-2"></a>  <span class="kw">boxplot</span>(len <span class="op">~</span><span class="st"> </span>dose, <span class="dt">boxwex =</span> <span class="fl">0.25</span>, <span class="dt">at =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.2</span>,</span>
+<span id="cb841-3"><a href="extrasitzung.html#cb841-3"></a>    <span class="dt">subset =</span> (supp <span class="op">==</span><span class="st"> &quot;VC&quot;</span>), <span class="dt">col =</span> <span class="st">&quot;yellow&quot;</span>,</span>
+<span id="cb841-4"><a href="extrasitzung.html#cb841-4"></a>    <span class="dt">main =</span> <span class="st">&quot;Guinea Pigs&#39; Tooth Growth&quot;</span>,</span>
+<span id="cb841-5"><a href="extrasitzung.html#cb841-5"></a>    <span class="dt">xlab =</span> <span class="st">&quot;Vitamin C dose mg&quot;</span>,</span>
+<span id="cb841-6"><a href="extrasitzung.html#cb841-6"></a>    <span class="dt">ylab =</span> <span class="st">&quot;tooth length&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">35</span>))</span>
+<span id="cb841-7"><a href="extrasitzung.html#cb841-7"></a>  <span class="kw">boxplot</span>(len <span class="op">~</span><span class="st"> </span>dose, <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">boxwex =</span> <span class="fl">0.25</span>, <span class="dt">at =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.2</span>,</span>
+<span id="cb841-8"><a href="extrasitzung.html#cb841-8"></a>    <span class="dt">subset =</span> supp <span class="op">==</span><span class="st"> &quot;OJ&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb841-9"><a href="extrasitzung.html#cb841-9"></a>  <span class="kw">legend</span>(<span class="dv">2</span>, <span class="dv">9</span>, <span class="kw">c</span>(<span class="st">&quot;Ascorbic acid&quot;</span>, <span class="st">&quot;Orange juice&quot;</span>),</span>
+<span id="cb841-10"><a href="extrasitzung.html#cb841-10"></a>    <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;orange&quot;</span>))</span>
+<span id="cb841-11"><a href="extrasitzung.html#cb841-11"></a>})</span></code></pre></div>
 <p><img src="inference_files/figure-html/with-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="attach" class="section level3">
@@ -1194,16 +1196,16 @@ Variable durchgeführt</p>
 <li><p>Eine Variable, die mit attach ausgewählt wurde, kann mit <code>detach</code> wieder
 entfernt werden, wenn beispielsweise eine neue Variable verwendet werden soll</p></li>
 </ul>
-<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb835-1"><a href="extrasitzung.html#cb835-1"></a><span class="kw">attach</span>(d)</span>
-<span id="cb835-2"><a href="extrasitzung.html#cb835-2"></a><span class="kw">mean</span>(count)</span></code></pre></div>
+<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb842-1"><a href="extrasitzung.html#cb842-1"></a><span class="kw">attach</span>(d)</span>
+<span id="cb842-2"><a href="extrasitzung.html#cb842-2"></a><span class="kw">mean</span>(count)</span></code></pre></div>
 <pre><code>## [1] 9.5</code></pre>
-<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="extrasitzung.html#cb837-1"></a><span class="kw">sd</span>(count)</span></code></pre></div>
+<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb844-1"><a href="extrasitzung.html#cb844-1"></a><span class="kw">sd</span>(count)</span></code></pre></div>
 <pre><code>## [1] 7.203286</code></pre>
-<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="extrasitzung.html#cb839-1"></a><span class="kw">median</span>(count)</span></code></pre></div>
+<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb846-1"><a href="extrasitzung.html#cb846-1"></a><span class="kw">median</span>(count)</span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
-<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="extrasitzung.html#cb841-1"></a><span class="kw">mad</span>(count, <span class="dt">constant =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="extrasitzung.html#cb848-1"></a><span class="kw">mad</span>(count, <span class="dt">constant =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="extrasitzung.html#cb843-1"></a><span class="kw">detach</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="extrasitzung.html#cb850-1"></a><span class="kw">detach</span>(d)</span></code></pre></div>
 </div>
 <div id="apply-familie" class="section level3">
 <h3>apply()-Familie</h3>
@@ -1221,12 +1223,12 @@ Funktion ausgeführt wird
 </div>
 <div id="apply-familie-1" class="section level3">
 <h3>apply()-Familie</h3>
-<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb844-1"><a href="extrasitzung.html#cb844-1"></a><span class="co"># Berechnet Mittelwert und Median der Insektenanzahl</span></span>
-<span id="cb844-2"><a href="extrasitzung.html#cb844-2"></a><span class="co"># für den jeweiligen Typ von Insektenspray</span></span>
-<span id="cb844-3"><a href="extrasitzung.html#cb844-3"></a><span class="kw">tapply</span>(d<span class="op">$</span>count, d<span class="op">$</span>spray, mean)</span></code></pre></div>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="extrasitzung.html#cb851-1"></a><span class="co"># Berechnet Mittelwert und Median der Insektenanzahl</span></span>
+<span id="cb851-2"><a href="extrasitzung.html#cb851-2"></a><span class="co"># für den jeweiligen Typ von Insektenspray</span></span>
+<span id="cb851-3"><a href="extrasitzung.html#cb851-3"></a><span class="kw">tapply</span>(d<span class="op">$</span>count, d<span class="op">$</span>spray, mean)</span></code></pre></div>
 <pre><code>##         A         B         C         D         E         F 
 ## 14.500000 15.333333  2.083333  4.916667  3.500000 16.666667</code></pre>
-<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb846-1"><a href="extrasitzung.html#cb846-1"></a><span class="kw">tapply</span>(d<span class="op">$</span>count, d<span class="op">$</span>spray, median)</span></code></pre></div>
+<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb853-1"><a href="extrasitzung.html#cb853-1"></a><span class="kw">tapply</span>(d<span class="op">$</span>count, d<span class="op">$</span>spray, median)</span></code></pre></div>
 <pre><code>##    A    B    C    D    E    F 
 ## 14.0 16.5  1.5  5.0  3.0 15.0</code></pre>
 </div>
@@ -1238,8 +1240,8 @@ Funktion ausgeführt wird
 <h2>Janitor-Paket</h2>
 <div id="installieren-und-laden" class="section level3">
 <h3>Installieren und laden</h3>
-<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="extrasitzung.html#cb848-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;janitor&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb849-1"><a href="extrasitzung.html#cb849-1"></a><span class="kw">library</span>(janitor)</span></code></pre></div>
+<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="extrasitzung.html#cb855-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;janitor&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb856-1"><a href="extrasitzung.html#cb856-1"></a><span class="kw">library</span>(janitor)</span></code></pre></div>
 </div>
 <div id="bessere-häufigkeitstabellen" class="section level3">
 <h3>Bessere Häufigkeitstabellen</h3>
@@ -1247,10 +1249,10 @@ Funktion ausgeführt wird
 <li>Alternative zu <code>table</code></li>
 <li>Gibt Ergebnisse als data frame aus</li>
 </ul>
-<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="extrasitzung.html#cb850-1"></a>d &lt;-<span class="st"> </span>diamonds</span>
-<span id="cb850-2"><a href="extrasitzung.html#cb850-2"></a></span>
-<span id="cb850-3"><a href="extrasitzung.html#cb850-3"></a>tab &lt;-<span class="st"> </span><span class="kw">tabyl</span>(d, color, cut)</span>
-<span id="cb850-4"><a href="extrasitzung.html#cb850-4"></a>tab <span class="co"># absolute Häufigkeiten</span></span></code></pre></div>
+<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb857-1"><a href="extrasitzung.html#cb857-1"></a>d &lt;-<span class="st"> </span>diamonds</span>
+<span id="cb857-2"><a href="extrasitzung.html#cb857-2"></a></span>
+<span id="cb857-3"><a href="extrasitzung.html#cb857-3"></a>tab &lt;-<span class="st"> </span><span class="kw">tabyl</span>(d, color, cut)</span>
+<span id="cb857-4"><a href="extrasitzung.html#cb857-4"></a>tab <span class="co"># absolute Häufigkeiten</span></span></code></pre></div>
 <pre><code>##  color Fair Good Very Good Premium Ideal
 ##      D  163  662      1513    1603  2834
 ##      E  224  933      2400    2337  3903
@@ -1259,7 +1261,7 @@ Funktion ausgeführt wird
 ##      H  303  702      1824    2360  3115
 ##      I  175  522      1204    1428  2093
 ##      J  119  307       678     808   896</code></pre>
-<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb852-1"><a href="extrasitzung.html#cb852-1"></a><span class="kw">adorn_percentages</span>(tab, <span class="dt">denominator =</span> <span class="st">&quot;row&quot;</span>) <span class="co"># relative Häufigkeiten</span></span></code></pre></div>
+<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb859-1"><a href="extrasitzung.html#cb859-1"></a><span class="kw">adorn_percentages</span>(tab, <span class="dt">denominator =</span> <span class="st">&quot;row&quot;</span>) <span class="co"># relative Häufigkeiten</span></span></code></pre></div>
 <pre><code>##  color       Fair       Good Very Good   Premium     Ideal
 ##      D 0.02405904 0.09771218 0.2233210 0.2366052 0.4183026
 ##      E 0.02286414 0.09523323 0.2449730 0.2385424 0.3983873
@@ -1276,7 +1278,7 @@ Funktion ausgeführt wird
 <li><code>adorn_pct_formatting</code>: *100 plus %</li>
 <li>zusätzlich möglich: <code>adorn_totals</code></li>
 </ul>
-<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="extrasitzung.html#cb854-1"></a><span class="kw">adorn_pct_formatting</span>(<span class="kw">adorn_percentages</span>(tab, <span class="dt">denominator =</span> <span class="st">&quot;col&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb861-1"><a href="extrasitzung.html#cb861-1"></a><span class="kw">adorn_pct_formatting</span>(<span class="kw">adorn_percentages</span>(tab, <span class="dt">denominator =</span> <span class="st">&quot;col&quot;</span>))</span></code></pre></div>
 <pre><code>##  color  Fair  Good Very Good Premium Ideal
 ##      D 10.1% 13.5%     12.5%   11.6% 13.2%
 ##      E 13.9% 19.0%     19.9%   16.9% 18.1%
@@ -1285,7 +1287,7 @@ Funktion ausgeführt wird
 ##      H 18.8% 14.3%     15.1%   17.1% 14.5%
 ##      I 10.9% 10.6%     10.0%   10.4%  9.7%
 ##      J  7.4%  6.3%      5.6%    5.9%  4.2%</code></pre>
-<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb856-1"><a href="extrasitzung.html#cb856-1"></a><span class="kw">adorn_pct_formatting</span>(<span class="kw">adorn_percentages</span>(tab, <span class="dt">denominator =</span> <span class="st">&quot;all&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb863-1"><a href="extrasitzung.html#cb863-1"></a><span class="kw">adorn_pct_formatting</span>(<span class="kw">adorn_percentages</span>(tab, <span class="dt">denominator =</span> <span class="st">&quot;all&quot;</span>))</span></code></pre></div>
 <pre><code>##  color Fair Good Very Good Premium Ideal
 ##      D 0.3% 1.2%      2.8%    3.0%  5.3%
 ##      E 0.4% 1.7%      4.4%    4.3%  7.2%
@@ -1297,27 +1299,27 @@ Funktion ausgeführt wird
 </div>
 <div id="leere-zeilen-und-spalten-entfernen" class="section level3">
 <h3>Leere Zeilen und Spalten entfernen</h3>
-<div class="sourceCode" id="cb858"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb858-1"><a href="extrasitzung.html#cb858-1"></a>q &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">v1 =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="ot">NA</span>, <span class="dv">3</span>),</span>
-<span id="cb858-2"><a href="extrasitzung.html#cb858-2"></a>  <span class="dt">v2 =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>),</span>
-<span id="cb858-3"><a href="extrasitzung.html#cb858-3"></a>  <span class="dt">v3 =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;b&quot;</span>))</span>
-<span id="cb858-4"><a href="extrasitzung.html#cb858-4"></a>q</span></code></pre></div>
+<div class="sourceCode" id="cb865"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb865-1"><a href="extrasitzung.html#cb865-1"></a>q &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">v1 =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="ot">NA</span>, <span class="dv">3</span>),</span>
+<span id="cb865-2"><a href="extrasitzung.html#cb865-2"></a>  <span class="dt">v2 =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>),</span>
+<span id="cb865-3"><a href="extrasitzung.html#cb865-3"></a>  <span class="dt">v3 =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;b&quot;</span>))</span>
+<span id="cb865-4"><a href="extrasitzung.html#cb865-4"></a>q</span></code></pre></div>
 <pre><code>##   v1 v2   v3
 ## 1  1 NA    a
 ## 2 NA NA &lt;NA&gt;
 ## 3  3 NA    b</code></pre>
-<div class="sourceCode" id="cb860"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb860-1"><a href="extrasitzung.html#cb860-1"></a><span class="kw">remove_empty</span>(q, <span class="kw">c</span>(<span class="st">&quot;rows&quot;</span>, <span class="st">&quot;cols&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb867-1"><a href="extrasitzung.html#cb867-1"></a><span class="kw">remove_empty</span>(q, <span class="kw">c</span>(<span class="st">&quot;rows&quot;</span>, <span class="st">&quot;cols&quot;</span>))</span></code></pre></div>
 <pre><code>##   v1 v3
 ## 1  1  a
 ## 3  3  b</code></pre>
 </div>
 <div id="spalten-mit-konstanten-werten-entfernen" class="section level3">
 <h3>Spalten mit konstanten Werten entfernen</h3>
-<div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb862-1"><a href="extrasitzung.html#cb862-1"></a>(a &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">good =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">boring =</span> <span class="st">&quot;the same&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb869-1"><a href="extrasitzung.html#cb869-1"></a>(a &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">good =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">boring =</span> <span class="st">&quot;the same&quot;</span>))</span></code></pre></div>
 <pre><code>##   good   boring
 ## 1    1 the same
 ## 2    2 the same
 ## 3    3 the same</code></pre>
-<div class="sourceCode" id="cb864"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb864-1"><a href="extrasitzung.html#cb864-1"></a><span class="kw">remove_constant</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb871"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb871-1"><a href="extrasitzung.html#cb871-1"></a><span class="kw">remove_constant</span>(a)</span></code></pre></div>
 <pre><code>##   good
 ## 1    1
 ## 2    2
@@ -1325,14 +1327,14 @@ Funktion ausgeführt wird
 </div>
 <div id="clean_names" class="section level3">
 <h3>clean_names()</h3>
-<div class="sourceCode" id="cb866"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb866-1"><a href="extrasitzung.html#cb866-1"></a><span class="co"># Create a data.frame with dirty names</span></span>
-<span id="cb866-2"><a href="extrasitzung.html#cb866-2"></a>test_df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">matrix</span>(<span class="dt">ncol =</span> <span class="dv">6</span>))</span>
-<span id="cb866-3"><a href="extrasitzung.html#cb866-3"></a><span class="kw">names</span>(test_df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;firstName&quot;</span>, <span class="st">&quot;ábc@!*&quot;</span>, <span class="st">&quot;% successful (2009)&quot;</span>,</span>
-<span id="cb866-4"><a href="extrasitzung.html#cb866-4"></a>  <span class="st">&quot;REPEAT VALUE&quot;</span>, <span class="st">&quot;REPEAT VALUE&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
-<span id="cb866-5"><a href="extrasitzung.html#cb866-5"></a>test_df</span></code></pre></div>
+<div class="sourceCode" id="cb873"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb873-1"><a href="extrasitzung.html#cb873-1"></a><span class="co"># Create a data.frame with dirty names</span></span>
+<span id="cb873-2"><a href="extrasitzung.html#cb873-2"></a>test_df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">matrix</span>(<span class="dt">ncol =</span> <span class="dv">6</span>))</span>
+<span id="cb873-3"><a href="extrasitzung.html#cb873-3"></a><span class="kw">names</span>(test_df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;firstName&quot;</span>, <span class="st">&quot;ábc@!*&quot;</span>, <span class="st">&quot;% successful (2009)&quot;</span>,</span>
+<span id="cb873-4"><a href="extrasitzung.html#cb873-4"></a>  <span class="st">&quot;REPEAT VALUE&quot;</span>, <span class="st">&quot;REPEAT VALUE&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb873-5"><a href="extrasitzung.html#cb873-5"></a>test_df</span></code></pre></div>
 <pre><code>##   firstName ábc@!* % successful (2009) REPEAT VALUE REPEAT VALUE   
 ## 1        NA     NA                  NA           NA           NA NA</code></pre>
-<div class="sourceCode" id="cb868"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb868-1"><a href="extrasitzung.html#cb868-1"></a><span class="kw">clean_names</span>(test_df)</span></code></pre></div>
+<div class="sourceCode" id="cb875"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb875-1"><a href="extrasitzung.html#cb875-1"></a><span class="kw">clean_names</span>(test_df)</span></code></pre></div>
 <pre><code>##   first_name abc percent_successful_2009 repeat_value repeat_value_2  x
 ## 1         NA  NA                      NA           NA             NA NA</code></pre>
 </div>
@@ -1341,26 +1343,26 @@ Funktion ausgeführt wird
 <h2>Automatische Tabellen mit gtsummary</h2>
 <div id="automatische-tabellen-mit-gtsummary-1" class="section level3">
 <h3>Automatische Tabellen mit gtsummary</h3>
-<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb870-1"><a href="extrasitzung.html#cb870-1"></a><span class="kw">library</span>(gtsummary)</span>
-<span id="cb870-2"><a href="extrasitzung.html#cb870-2"></a><span class="kw">options</span>(</span>
-<span id="cb870-3"><a href="extrasitzung.html#cb870-3"></a>  <span class="dt">gtsummary.add_p.test.continuous_by2 =</span> <span class="st">&quot;t.test&quot;</span>,</span>
-<span id="cb870-4"><a href="extrasitzung.html#cb870-4"></a>  <span class="dt">gtsummary.add_p.test.continuous =</span> <span class="st">&quot;aov&quot;</span></span>
-<span id="cb870-5"><a href="extrasitzung.html#cb870-5"></a>)</span>
-<span id="cb870-6"><a href="extrasitzung.html#cb870-6"></a>d &lt;-<span class="st"> </span>diamonds</span>
-<span id="cb870-7"><a href="extrasitzung.html#cb870-7"></a>sum_tbl &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></span>
-<span id="cb870-8"><a href="extrasitzung.html#cb870-8"></a><span class="st">  </span><span class="kw">select</span>(price, cut, carat) <span class="op">%&gt;%</span></span>
-<span id="cb870-9"><a href="extrasitzung.html#cb870-9"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cut =</span> <span class="kw">factor</span>(cut, <span class="dt">ordered =</span> F)) <span class="op">%&gt;%</span></span>
-<span id="cb870-10"><a href="extrasitzung.html#cb870-10"></a><span class="st">  </span><span class="kw">filter</span>(cut <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Premium&quot;</span>, <span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb870-11"><a href="extrasitzung.html#cb870-11"></a><span class="st">  </span><span class="kw">droplevels</span>() <span class="op">%&gt;%</span></span>
-<span id="cb870-12"><a href="extrasitzung.html#cb870-12"></a><span class="st">  </span><span class="kw">tbl_summary</span>(<span class="dt">by =</span> cut,</span>
-<span id="cb870-13"><a href="extrasitzung.html#cb870-13"></a>    <span class="dt">statistic =</span> <span class="kw">list</span>(<span class="kw">all_continuous</span>() <span class="op">~</span><span class="st"> &quot;{mean} ({sd})&quot;</span>),</span>
-<span id="cb870-14"><a href="extrasitzung.html#cb870-14"></a>    <span class="dt">label =</span> <span class="kw">list</span>(carat <span class="op">~</span><span class="st"> &quot;Carat&quot;</span>,</span>
-<span id="cb870-15"><a href="extrasitzung.html#cb870-15"></a>      price <span class="op">~</span><span class="st"> &quot;Price&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb870-16"><a href="extrasitzung.html#cb870-16"></a><span class="st">  </span><span class="kw">add_p</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb877"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb877-1"><a href="extrasitzung.html#cb877-1"></a><span class="kw">library</span>(gtsummary)</span>
+<span id="cb877-2"><a href="extrasitzung.html#cb877-2"></a><span class="kw">options</span>(</span>
+<span id="cb877-3"><a href="extrasitzung.html#cb877-3"></a>  <span class="dt">gtsummary.add_p.test.continuous_by2 =</span> <span class="st">&quot;t.test&quot;</span>,</span>
+<span id="cb877-4"><a href="extrasitzung.html#cb877-4"></a>  <span class="dt">gtsummary.add_p.test.continuous =</span> <span class="st">&quot;aov&quot;</span></span>
+<span id="cb877-5"><a href="extrasitzung.html#cb877-5"></a>)</span>
+<span id="cb877-6"><a href="extrasitzung.html#cb877-6"></a>d &lt;-<span class="st"> </span>diamonds</span>
+<span id="cb877-7"><a href="extrasitzung.html#cb877-7"></a>sum_tbl &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></span>
+<span id="cb877-8"><a href="extrasitzung.html#cb877-8"></a><span class="st">  </span><span class="kw">select</span>(price, cut, carat) <span class="op">%&gt;%</span></span>
+<span id="cb877-9"><a href="extrasitzung.html#cb877-9"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cut =</span> <span class="kw">factor</span>(cut, <span class="dt">ordered =</span> F)) <span class="op">%&gt;%</span></span>
+<span id="cb877-10"><a href="extrasitzung.html#cb877-10"></a><span class="st">  </span><span class="kw">filter</span>(cut <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Premium&quot;</span>, <span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb877-11"><a href="extrasitzung.html#cb877-11"></a><span class="st">  </span><span class="kw">droplevels</span>() <span class="op">%&gt;%</span></span>
+<span id="cb877-12"><a href="extrasitzung.html#cb877-12"></a><span class="st">  </span><span class="kw">tbl_summary</span>(<span class="dt">by =</span> cut,</span>
+<span id="cb877-13"><a href="extrasitzung.html#cb877-13"></a>    <span class="dt">statistic =</span> <span class="kw">list</span>(<span class="kw">all_continuous</span>() <span class="op">~</span><span class="st"> &quot;{mean} ({sd})&quot;</span>),</span>
+<span id="cb877-14"><a href="extrasitzung.html#cb877-14"></a>    <span class="dt">label =</span> <span class="kw">list</span>(carat <span class="op">~</span><span class="st"> &quot;Carat&quot;</span>,</span>
+<span id="cb877-15"><a href="extrasitzung.html#cb877-15"></a>      price <span class="op">~</span><span class="st"> &quot;Price&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb877-16"><a href="extrasitzung.html#cb877-16"></a><span class="st">  </span><span class="kw">add_p</span>()</span></code></pre></div>
 </div>
 <div id="automatische-tabellen" class="section level3">
 <h3>Automatische Tabellen</h3>
-<div class="sourceCode" id="cb871"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb871-1"><a href="extrasitzung.html#cb871-1"></a>sum_tbl</span></code></pre></div>
+<div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb878-1"><a href="extrasitzung.html#cb878-1"></a>sum_tbl</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1851,10 +1853,10 @@ Funktion ausgeführt wird
 </div>
 <div id="correlation-paket" class="section level3">
 <h3><code>correlation</code>-Paket</h3>
-<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb872-1"><a href="extrasitzung.html#cb872-1"></a><span class="kw">library</span>(correlation)</span>
-<span id="cb872-2"><a href="extrasitzung.html#cb872-2"></a>d <span class="op">%&gt;%</span></span>
-<span id="cb872-3"><a href="extrasitzung.html#cb872-3"></a><span class="st">  </span><span class="kw">select</span>(price, carat, depth) <span class="op">%&gt;%</span></span>
-<span id="cb872-4"><a href="extrasitzung.html#cb872-4"></a><span class="st">  </span><span class="kw">correlation</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb879"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb879-1"><a href="extrasitzung.html#cb879-1"></a><span class="kw">library</span>(correlation)</span>
+<span id="cb879-2"><a href="extrasitzung.html#cb879-2"></a>d <span class="op">%&gt;%</span></span>
+<span id="cb879-3"><a href="extrasitzung.html#cb879-3"></a><span class="st">  </span><span class="kw">select</span>(price, carat, depth) <span class="op">%&gt;%</span></span>
+<span id="cb879-4"><a href="extrasitzung.html#cb879-4"></a><span class="st">  </span><span class="kw">correlation</span>()</span></code></pre></div>
 <pre><code>## Parameter1 | Parameter2 |     r |         95% CI |      t |    df |      p |  Method | n_Obs
 ## --------------------------------------------------------------------------------------------
 ## price      |      carat |  0.92 | [ 0.92,  0.92] | 551.41 | 53938 | &lt; .001 | Pearson | 53940
@@ -1867,16 +1869,16 @@ Funktion ausgeführt wird
 <div id="report-paket" class="section level3">
 <h3><code>report</code>-Paket</h3>
 <p>Hier zu finden: <a href="https://github.com/easystats/report" class="uri">https://github.com/easystats/report</a></p>
-<div class="sourceCode" id="cb874"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb874-1"><a href="extrasitzung.html#cb874-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb874-2"><a href="extrasitzung.html#cb874-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;easystats/report&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb875"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb875-1"><a href="extrasitzung.html#cb875-1"></a><span class="kw">library</span>(report)</span></code></pre></div>
+<div class="sourceCode" id="cb881"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb881-1"><a href="extrasitzung.html#cb881-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb881-2"><a href="extrasitzung.html#cb881-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;easystats/report&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb882"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb882-1"><a href="extrasitzung.html#cb882-1"></a><span class="kw">library</span>(report)</span></code></pre></div>
 </div>
 <div id="dataframes" class="section level3">
 <h3>Dataframes</h3>
-<div class="sourceCode" id="cb876"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb876-1"><a href="extrasitzung.html#cb876-1"></a>d &lt;-<span class="st"> </span>diamonds</span>
-<span id="cb876-2"><a href="extrasitzung.html#cb876-2"></a>d <span class="op">%&gt;%</span></span>
-<span id="cb876-3"><a href="extrasitzung.html#cb876-3"></a><span class="st">  </span><span class="kw">select</span>(price, carat, cut) <span class="op">%&gt;%</span></span>
-<span id="cb876-4"><a href="extrasitzung.html#cb876-4"></a><span class="st">  </span><span class="kw">report_sample</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb883"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb883-1"><a href="extrasitzung.html#cb883-1"></a>d &lt;-<span class="st"> </span>diamonds</span>
+<span id="cb883-2"><a href="extrasitzung.html#cb883-2"></a>d <span class="op">%&gt;%</span></span>
+<span id="cb883-3"><a href="extrasitzung.html#cb883-3"></a><span class="st">  </span><span class="kw">select</span>(price, carat, cut) <span class="op">%&gt;%</span></span>
+<span id="cb883-4"><a href="extrasitzung.html#cb883-4"></a><span class="st">  </span><span class="kw">report_sample</span>()</span></code></pre></div>
 <pre><code>## # Descriptive Statistics
 ## 
 ## Characteristic     |         Summary
@@ -1888,7 +1890,7 @@ Funktion ausgeführt wird
 ## cut [Very Good], % |            22.4
 ## cut [Premium], %   |            25.6
 ## cut [Ideal], %     |            40.0</code></pre>
-<div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb878-1"><a href="extrasitzung.html#cb878-1"></a><span class="kw">report_sample</span>(d, <span class="dt">group_by =</span> <span class="st">&quot;cut&quot;</span>, <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;price&quot;</span>, <span class="st">&quot;carat&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb885"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb885-1"><a href="extrasitzung.html#cb885-1"></a><span class="kw">report_sample</span>(d, <span class="dt">group_by =</span> <span class="st">&quot;cut&quot;</span>, <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;price&quot;</span>, <span class="st">&quot;carat&quot;</span>))</span></code></pre></div>
 <pre><code>## # Descriptive Statistics
 ## 
 ## Characteristic  |   Fair (n=1610) |   Good (n=4906) | Very Good (n=12082) | Premium (n=13791) | Ideal (n=21551) |           Total
@@ -1898,18 +1900,18 @@ Funktion ausgeführt wird
 </div>
 <div id="t-test-1" class="section level3">
 <h3>t-Test</h3>
-<div class="sourceCode" id="cb880"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb880-1"><a href="extrasitzung.html#cb880-1"></a>d <span class="op">%&gt;%</span></span>
-<span id="cb880-2"><a href="extrasitzung.html#cb880-2"></a><span class="st">  </span><span class="kw">filter</span>(cut <span class="op">==</span><span class="st"> &quot;Fair&quot;</span> <span class="op">|</span><span class="st"> </span>cut <span class="op">==</span><span class="st"> &quot;Ideal&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb880-3"><a href="extrasitzung.html#cb880-3"></a><span class="st">  </span><span class="kw">droplevels</span>() <span class="op">%&gt;%</span></span>
-<span id="cb880-4"><a href="extrasitzung.html#cb880-4"></a><span class="st">  </span><span class="kw">t.test</span>(carat <span class="op">~</span><span class="st"> </span>cut, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></span>
-<span id="cb880-5"><a href="extrasitzung.html#cb880-5"></a><span class="st">  </span><span class="kw">report</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb887"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb887-1"><a href="extrasitzung.html#cb887-1"></a>d <span class="op">%&gt;%</span></span>
+<span id="cb887-2"><a href="extrasitzung.html#cb887-2"></a><span class="st">  </span><span class="kw">filter</span>(cut <span class="op">==</span><span class="st"> &quot;Fair&quot;</span> <span class="op">|</span><span class="st"> </span>cut <span class="op">==</span><span class="st"> &quot;Ideal&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb887-3"><a href="extrasitzung.html#cb887-3"></a><span class="st">  </span><span class="kw">droplevels</span>() <span class="op">%&gt;%</span></span>
+<span id="cb887-4"><a href="extrasitzung.html#cb887-4"></a><span class="st">  </span><span class="kw">t.test</span>(carat <span class="op">~</span><span class="st"> </span>cut, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></span>
+<span id="cb887-5"><a href="extrasitzung.html#cb887-5"></a><span class="st">  </span><span class="kw">report</span>()</span></code></pre></div>
 <p>The Welch Two Sample t-test suggests that the difference of carat by cut (mean in group Fair = 1.05, mean in group Ideal = 0.70) is significant (difference = 0.34, 95% CI [0.32, 0.37], t(1781.99) = 26.00, p &lt; .001) and can be considered as very large (Cohen’s d = 1)., The Welch Two Sample t-test suggests that the difference of carat by cut (mean in group Fair = 1.05, mean in group Ideal = 0.70) is significant (difference = 0.34, 95% CI [0.32, 0.37], t(1781.99) = 26.00, p &lt; .001) and can be considered as very large (Cohen’s d = 1)., The Welch Two Sample t-test suggests that the difference of carat by cut (mean in group Fair = 1.05, mean in group Ideal = 0.70) is significant (difference = 0.34, 95% CI [0.32, 0.37], t(1781.99) = 26.00, p &lt; .001) and can be considered as very large (Cohen’s d = 1). and The Welch Two Sample t-test suggests that the difference of carat by cut (mean in group Fair = 1.05, mean in group Ideal = 0.70) is significant (difference = 0.34, 95% CI [0.32, 0.37], t(1781.99) = 26.00, p &lt; .001) and can be considered as very large (Cohen’s d = 1).</p>
 </div>
 <div id="anova-base" class="section level3">
 <h3>ANOVA (base)</h3>
-<div class="sourceCode" id="cb881"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb881-1"><a href="extrasitzung.html#cb881-1"></a>stdaov &lt;-<span class="st"> </span><span class="kw">aov</span>(price <span class="op">~</span><span class="st"> </span>color <span class="op">*</span><span class="st"> </span>cut, <span class="dt">data =</span> d)</span>
-<span id="cb881-2"><a href="extrasitzung.html#cb881-2"></a>stdaov <span class="op">%&gt;%</span></span>
-<span id="cb881-3"><a href="extrasitzung.html#cb881-3"></a><span class="st">  </span><span class="kw">report</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb888"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb888-1"><a href="extrasitzung.html#cb888-1"></a>stdaov &lt;-<span class="st"> </span><span class="kw">aov</span>(price <span class="op">~</span><span class="st"> </span>color <span class="op">*</span><span class="st"> </span>cut, <span class="dt">data =</span> d)</span>
+<span id="cb888-2"><a href="extrasitzung.html#cb888-2"></a>stdaov <span class="op">%&gt;%</span></span>
+<span id="cb888-3"><a href="extrasitzung.html#cb888-3"></a><span class="st">  </span><span class="kw">report</span>()</span></code></pre></div>
 <p>The ANOVA suggests that:</p>
 <ul>
 <li>The main effect of color is significant (F(6, 53905) = 294.07, p &lt; .001) and can be considered as small (partial omega squared = 0.03).</li>
@@ -1919,20 +1921,20 @@ Funktion ausgeführt wird
 </div>
 <div id="anova-afex" class="section level3">
 <h3>ANOVA (afex)</h3>
-<div class="sourceCode" id="cb882"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb882-1"><a href="extrasitzung.html#cb882-1"></a><span class="kw">library</span>(afex)</span>
-<span id="cb882-2"><a href="extrasitzung.html#cb882-2"></a>d<span class="op">$</span>id &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(d<span class="op">$</span>carat)</span>
-<span id="cb882-3"><a href="extrasitzung.html#cb882-3"></a>afexaov &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="st">&quot;id&quot;</span>, <span class="dt">dv =</span> <span class="st">&quot;price&quot;</span>, <span class="dt">between =</span> <span class="kw">c</span>(<span class="st">&quot;color&quot;</span>, <span class="st">&quot;cut&quot;</span>), <span class="dt">data =</span> d)</span>
-<span id="cb882-4"><a href="extrasitzung.html#cb882-4"></a>afexaov<span class="op">$</span>aov <span class="op">%&gt;%</span></span>
-<span id="cb882-5"><a href="extrasitzung.html#cb882-5"></a><span class="st">  </span><span class="kw">report</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb889"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb889-1"><a href="extrasitzung.html#cb889-1"></a><span class="kw">library</span>(afex)</span>
+<span id="cb889-2"><a href="extrasitzung.html#cb889-2"></a>d<span class="op">$</span>id &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(d<span class="op">$</span>carat)</span>
+<span id="cb889-3"><a href="extrasitzung.html#cb889-3"></a>afexaov &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="st">&quot;id&quot;</span>, <span class="dt">dv =</span> <span class="st">&quot;price&quot;</span>, <span class="dt">between =</span> <span class="kw">c</span>(<span class="st">&quot;color&quot;</span>, <span class="st">&quot;cut&quot;</span>), <span class="dt">data =</span> d)</span>
+<span id="cb889-4"><a href="extrasitzung.html#cb889-4"></a>afexaov<span class="op">$</span>aov <span class="op">%&gt;%</span></span>
+<span id="cb889-5"><a href="extrasitzung.html#cb889-5"></a><span class="st">  </span><span class="kw">report</span>()</span></code></pre></div>
 <p>The ANOVA suggests that:</p>
 <ul>
 <li>The main effect of color is significant (F(6, 53905) = 294.07, p &lt; .001) and can be considered as small (partial omega squared = 0.03).</li>
 <li>The main effect of cut is significant (F(4, 53905) = 159.36, p &lt; .001) and can be considered as small (partial omega squared = 0.01).</li>
 <li>The interaction between color and cut is significant (F(24, 53905) = 4.53, p &lt; .001) and can be considered as very small (partial omega squared = 0.00).</li>
 </ul>
-<div class="sourceCode" id="cb883"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb883-1"><a href="extrasitzung.html#cb883-1"></a>afexaov<span class="op">$</span>aov <span class="op">%&gt;%</span></span>
-<span id="cb883-2"><a href="extrasitzung.html#cb883-2"></a><span class="st">  </span><span class="kw">report</span>() <span class="op">%&gt;%</span></span>
-<span id="cb883-3"><a href="extrasitzung.html#cb883-3"></a><span class="st">  </span><span class="kw">table_short</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb890"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb890-1"><a href="extrasitzung.html#cb890-1"></a>afexaov<span class="op">$</span>aov <span class="op">%&gt;%</span></span>
+<span id="cb890-2"><a href="extrasitzung.html#cb890-2"></a><span class="st">  </span><span class="kw">report</span>() <span class="op">%&gt;%</span></span>
+<span id="cb890-3"><a href="extrasitzung.html#cb890-3"></a><span class="st">  </span><span class="kw">table_short</span>()</span></code></pre></div>
 <pre><code>## Parameter | Sum_Squares |    df | Mean_Square |      F |    p | Omega_Sq_partial
 ## --------------------------------------------------------------------------------
 ## color     | 2.68491e+10 |     6 | 4.47485e+09 | 294.07 | 0.00 |             0.03
@@ -1942,11 +1944,11 @@ Funktion ausgeführt wird
 </div>
 <div id="lmm" class="section level3">
 <h3>LMM</h3>
-<div class="sourceCode" id="cb885"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb885-1"><a href="extrasitzung.html#cb885-1"></a>d <span class="op">%&gt;%</span></span>
-<span id="cb885-2"><a href="extrasitzung.html#cb885-2"></a><span class="st">  </span><span class="kw">filter</span>(cut <span class="op">==</span><span class="st"> &quot;Fair&quot;</span> <span class="op">|</span><span class="st"> </span>cut <span class="op">==</span><span class="st"> &quot;Ideal&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb885-3"><a href="extrasitzung.html#cb885-3"></a><span class="st">  </span><span class="kw">droplevels</span>() <span class="op">%&gt;%</span></span>
-<span id="cb885-4"><a href="extrasitzung.html#cb885-4"></a><span class="st">  </span><span class="kw">lmer</span>(price <span class="op">~</span><span class="st"> </span>carat <span class="op">+</span><span class="st"> </span>cut <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>carat), <span class="dt">data =</span> .) <span class="op">%&gt;%</span></span>
-<span id="cb885-5"><a href="extrasitzung.html#cb885-5"></a><span class="st">  </span><span class="kw">report</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb892"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb892-1"><a href="extrasitzung.html#cb892-1"></a>d <span class="op">%&gt;%</span></span>
+<span id="cb892-2"><a href="extrasitzung.html#cb892-2"></a><span class="st">  </span><span class="kw">filter</span>(cut <span class="op">==</span><span class="st"> &quot;Fair&quot;</span> <span class="op">|</span><span class="st"> </span>cut <span class="op">==</span><span class="st"> &quot;Ideal&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb892-3"><a href="extrasitzung.html#cb892-3"></a><span class="st">  </span><span class="kw">droplevels</span>() <span class="op">%&gt;%</span></span>
+<span id="cb892-4"><a href="extrasitzung.html#cb892-4"></a><span class="st">  </span><span class="kw">lmer</span>(price <span class="op">~</span><span class="st"> </span>carat <span class="op">+</span><span class="st"> </span>cut <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>carat), <span class="dt">data =</span> .) <span class="op">%&gt;%</span></span>
+<span id="cb892-5"><a href="extrasitzung.html#cb892-5"></a><span class="st">  </span><span class="kw">report</span>()</span></code></pre></div>
 <p>We fitted a linear mixed model (estimated using REML and nloptwrap optimizer) to predict price with carat and cut (formula = price ~ carat + cut). The model included carat as random effects (formula = ~1 | carat). Standardized parameters were obtained by fitting the model on a standardized version of the dataset. Effect sizes were labelled following Funder’s (2019) recommendations.The model’s total explanatory power is substantial (conditional R2 = 0.87) and the part related to the fixed effects alone (marginal R2) is of 0.57. The model’s intercept, corresponding to price = 0, carat = 0 and cut = Fair, is at -1192.60 (SE = 273.06, 95% CI [-1727.79, -657.41], p &lt; .001). Within this model:</p>
 <ul>
 <li>The effect of carat is positive and can be considered as very large and significant (beta = 6346.99, SE = 165.26, 95% CI [6023.09, 6670.89], std. beta = 1.67, p &lt; .001).</li>
@@ -1959,8 +1961,8 @@ Funktion ausgeführt wird
 <div id="magick" class="section level3">
 <h3>magick</h3>
 <p><a href="https://cran.r-project.org/web/packages/magick/vignettes/intro.html" class="uri">https://cran.r-project.org/web/packages/magick/vignettes/intro.html</a></p>
-<div class="sourceCode" id="cb886"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb886-1"><a href="extrasitzung.html#cb886-1"></a><span class="co"># install.packages(&quot;magick&quot;)</span></span>
-<span id="cb886-2"><a href="extrasitzung.html#cb886-2"></a><span class="kw">library</span>(magick)</span></code></pre></div>
+<div class="sourceCode" id="cb893"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb893-1"><a href="extrasitzung.html#cb893-1"></a><span class="co"># install.packages(&quot;magick&quot;)</span></span>
+<span id="cb893-2"><a href="extrasitzung.html#cb893-2"></a><span class="kw">library</span>(magick)</span></code></pre></div>
 </div>
 </div>
 <div id="popularity-contest" class="section level2">
@@ -1985,105 +1987,105 @@ Funktion ausgeführt wird
 <div id="allgemein" class="section level3">
 <h3>Allgemein</h3>
 <p>Hier geklaut: <a href="http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html" class="uri">http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html</a></p>
-<div class="sourceCode" id="cb887"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb887-1"><a href="extrasitzung.html#cb887-1"></a><span class="kw">builtins</span>() <span class="co"># List all built-in functions</span></span>
-<span id="cb887-2"><a href="extrasitzung.html#cb887-2"></a><span class="kw">options</span>()  <span class="co"># Set options to control how R computes &amp; displays results</span></span>
-<span id="cb887-3"><a href="extrasitzung.html#cb887-3"></a></span>
-<span id="cb887-4"><a href="extrasitzung.html#cb887-4"></a>?<span class="ot">NA</span>        <span class="co"># Help page on handling of missing data values</span></span>
-<span id="cb887-5"><a href="extrasitzung.html#cb887-5"></a><span class="kw">abs</span>(x)     <span class="co"># The absolute value of &quot;x&quot;</span></span>
-<span id="cb887-6"><a href="extrasitzung.html#cb887-6"></a><span class="kw">append</span>()   <span class="co"># Add elements to a vector</span></span>
-<span id="cb887-7"><a href="extrasitzung.html#cb887-7"></a><span class="kw">c</span>(x)       <span class="co"># A generic function which combines its arguments </span></span>
-<span id="cb887-8"><a href="extrasitzung.html#cb887-8"></a><span class="kw">cat</span>(x)     <span class="co"># Prints the arguments</span></span>
-<span id="cb887-9"><a href="extrasitzung.html#cb887-9"></a><span class="kw">cbind</span>()    <span class="co"># Combine vectors by row/column (cf. &quot;paste&quot; in Unix)</span></span>
-<span id="cb887-10"><a href="extrasitzung.html#cb887-10"></a><span class="kw">diff</span>(x)    <span class="co"># Returns suitably lagged and iterated differences</span></span>
-<span id="cb887-11"><a href="extrasitzung.html#cb887-11"></a><span class="kw">gl</span>()       <span class="co"># Generate factors with the pattern of their levels</span></span>
-<span id="cb887-12"><a href="extrasitzung.html#cb887-12"></a><span class="kw">grep</span>()     <span class="co"># Pattern matching</span></span>
-<span id="cb887-13"><a href="extrasitzung.html#cb887-13"></a><span class="kw">identical</span>()  <span class="co"># Test if 2 objects are *exactly* equal</span></span>
-<span id="cb887-14"><a href="extrasitzung.html#cb887-14"></a><span class="kw">jitter</span>()     <span class="co"># Add a small amount of noise to a numeric vector</span></span>
-<span id="cb887-15"><a href="extrasitzung.html#cb887-15"></a><span class="kw">julian</span>()     <span class="co"># Return Julian date</span></span>
-<span id="cb887-16"><a href="extrasitzung.html#cb887-16"></a><span class="kw">length</span>(x)    <span class="co"># Return no. of elements in vector x</span></span>
-<span id="cb887-17"><a href="extrasitzung.html#cb887-17"></a><span class="kw">ls</span>()         <span class="co"># List objects in current environment</span></span>
-<span id="cb887-18"><a href="extrasitzung.html#cb887-18"></a><span class="kw">mat.or.vec</span>() <span class="co"># Create a matrix or vector</span></span>
-<span id="cb887-19"><a href="extrasitzung.html#cb887-19"></a><span class="kw">paste</span>(x)     <span class="co"># Concatenate vectors after converting to character</span></span>
-<span id="cb887-20"><a href="extrasitzung.html#cb887-20"></a><span class="kw">range</span>(x)     <span class="co"># Returns the minimum and maximum of x</span></span>
-<span id="cb887-21"><a href="extrasitzung.html#cb887-21"></a><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>)     <span class="co"># Repeat the number 1 five times</span></span>
-<span id="cb887-22"><a href="extrasitzung.html#cb887-22"></a><span class="kw">rev</span>(x)       <span class="co"># List the elements of &quot;x&quot; in reverse order</span></span>
-<span id="cb887-23"><a href="extrasitzung.html#cb887-23"></a><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>,<span class="fl">0.4</span>)  <span class="co"># Generate a sequence (1 -&gt; 10, spaced by 0.4)</span></span>
-<span id="cb887-24"><a href="extrasitzung.html#cb887-24"></a><span class="kw">sequence</span>()     <span class="co"># Create a vector of sequences</span></span>
-<span id="cb887-25"><a href="extrasitzung.html#cb887-25"></a><span class="kw">sign</span>(x)        <span class="co"># Returns the signs of the elements of x</span></span>
-<span id="cb887-26"><a href="extrasitzung.html#cb887-26"></a><span class="kw">sort</span>(x)        <span class="co"># Sort the vector x</span></span>
-<span id="cb887-27"><a href="extrasitzung.html#cb887-27"></a><span class="kw">order</span>(x)       <span class="co"># list sorted element numbers of x</span></span>
-<span id="cb887-28"><a href="extrasitzung.html#cb887-28"></a><span class="kw">tolower</span>(),<span class="kw">toupper</span>()  <span class="co"># Convert string to lower/upper case letters</span></span>
-<span id="cb887-29"><a href="extrasitzung.html#cb887-29"></a><span class="kw">unique</span>(x)      <span class="co"># Remove duplicate entries from vector</span></span>
-<span id="cb887-30"><a href="extrasitzung.html#cb887-30"></a><span class="kw">system</span>(<span class="st">&quot;cmd&quot;</span>)  <span class="co"># Execute &quot;cmd&quot; in operating system (outside of R)</span></span>
-<span id="cb887-31"><a href="extrasitzung.html#cb887-31"></a><span class="kw">vector</span>()       <span class="co"># Produces a vector of given length and mode</span></span>
-<span id="cb887-32"><a href="extrasitzung.html#cb887-32"></a></span>
-<span id="cb887-33"><a href="extrasitzung.html#cb887-33"></a><span class="kw">formatC</span>(x)     <span class="co"># Format x using &#39;C&#39; style formatting specifications</span></span>
-<span id="cb887-34"><a href="extrasitzung.html#cb887-34"></a><span class="kw">floor</span>(x), <span class="kw">ceiling</span>(x), <span class="kw">round</span>(x), <span class="kw">signif</span>(x), <span class="kw">trunc</span>(x)   <span class="co"># rounding functions</span></span>
-<span id="cb887-35"><a href="extrasitzung.html#cb887-35"></a></span>
-<span id="cb887-36"><a href="extrasitzung.html#cb887-36"></a><span class="kw">Sys.getenv</span>(x)  <span class="co"># Get the value of the environment variable &quot;x&quot;</span></span>
-<span id="cb887-37"><a href="extrasitzung.html#cb887-37"></a><span class="kw">Sys.putenv</span>(x)  <span class="co"># Set the value of the environment variable &quot;x&quot;</span></span>
-<span id="cb887-38"><a href="extrasitzung.html#cb887-38"></a><span class="kw">Sys.time</span>()     <span class="co"># Return system time</span></span>
-<span id="cb887-39"><a href="extrasitzung.html#cb887-39"></a><span class="kw">Sys.Date</span>()     <span class="co"># Return system date</span></span>
-<span id="cb887-40"><a href="extrasitzung.html#cb887-40"></a><span class="kw">getwd</span>()        <span class="co"># Return working directory</span></span>
-<span id="cb887-41"><a href="extrasitzung.html#cb887-41"></a><span class="kw">setwd</span>()        <span class="co"># Set working directory</span></span>
-<span id="cb887-42"><a href="extrasitzung.html#cb887-42"></a>?files         <span class="co"># Help on low-level interface to file system</span></span>
-<span id="cb887-43"><a href="extrasitzung.html#cb887-43"></a><span class="kw">list.files</span>()   <span class="co"># List files in a give directory</span></span>
-<span id="cb887-44"><a href="extrasitzung.html#cb887-44"></a><span class="kw">file.info</span>()    <span class="co"># Get information about files</span></span>
-<span id="cb887-45"><a href="extrasitzung.html#cb887-45"></a></span>
-<span id="cb887-46"><a href="extrasitzung.html#cb887-46"></a><span class="co"># Built-in constants:</span></span>
-<span id="cb887-47"><a href="extrasitzung.html#cb887-47"></a>pi,letters,LETTERS   <span class="co"># Pi, lower &amp; uppercase letters, e.g. letters[7] = &quot;g&quot;</span></span>
-<span id="cb887-48"><a href="extrasitzung.html#cb887-48"></a>month.abb,month.name <span class="co"># Abbreviated &amp; full names for months</span></span></code></pre></div>
+<div class="sourceCode" id="cb894"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb894-1"><a href="extrasitzung.html#cb894-1"></a><span class="kw">builtins</span>() <span class="co"># List all built-in functions</span></span>
+<span id="cb894-2"><a href="extrasitzung.html#cb894-2"></a><span class="kw">options</span>()  <span class="co"># Set options to control how R computes &amp; displays results</span></span>
+<span id="cb894-3"><a href="extrasitzung.html#cb894-3"></a></span>
+<span id="cb894-4"><a href="extrasitzung.html#cb894-4"></a>?<span class="ot">NA</span>        <span class="co"># Help page on handling of missing data values</span></span>
+<span id="cb894-5"><a href="extrasitzung.html#cb894-5"></a><span class="kw">abs</span>(x)     <span class="co"># The absolute value of &quot;x&quot;</span></span>
+<span id="cb894-6"><a href="extrasitzung.html#cb894-6"></a><span class="kw">append</span>()   <span class="co"># Add elements to a vector</span></span>
+<span id="cb894-7"><a href="extrasitzung.html#cb894-7"></a><span class="kw">c</span>(x)       <span class="co"># A generic function which combines its arguments </span></span>
+<span id="cb894-8"><a href="extrasitzung.html#cb894-8"></a><span class="kw">cat</span>(x)     <span class="co"># Prints the arguments</span></span>
+<span id="cb894-9"><a href="extrasitzung.html#cb894-9"></a><span class="kw">cbind</span>()    <span class="co"># Combine vectors by row/column (cf. &quot;paste&quot; in Unix)</span></span>
+<span id="cb894-10"><a href="extrasitzung.html#cb894-10"></a><span class="kw">diff</span>(x)    <span class="co"># Returns suitably lagged and iterated differences</span></span>
+<span id="cb894-11"><a href="extrasitzung.html#cb894-11"></a><span class="kw">gl</span>()       <span class="co"># Generate factors with the pattern of their levels</span></span>
+<span id="cb894-12"><a href="extrasitzung.html#cb894-12"></a><span class="kw">grep</span>()     <span class="co"># Pattern matching</span></span>
+<span id="cb894-13"><a href="extrasitzung.html#cb894-13"></a><span class="kw">identical</span>()  <span class="co"># Test if 2 objects are *exactly* equal</span></span>
+<span id="cb894-14"><a href="extrasitzung.html#cb894-14"></a><span class="kw">jitter</span>()     <span class="co"># Add a small amount of noise to a numeric vector</span></span>
+<span id="cb894-15"><a href="extrasitzung.html#cb894-15"></a><span class="kw">julian</span>()     <span class="co"># Return Julian date</span></span>
+<span id="cb894-16"><a href="extrasitzung.html#cb894-16"></a><span class="kw">length</span>(x)    <span class="co"># Return no. of elements in vector x</span></span>
+<span id="cb894-17"><a href="extrasitzung.html#cb894-17"></a><span class="kw">ls</span>()         <span class="co"># List objects in current environment</span></span>
+<span id="cb894-18"><a href="extrasitzung.html#cb894-18"></a><span class="kw">mat.or.vec</span>() <span class="co"># Create a matrix or vector</span></span>
+<span id="cb894-19"><a href="extrasitzung.html#cb894-19"></a><span class="kw">paste</span>(x)     <span class="co"># Concatenate vectors after converting to character</span></span>
+<span id="cb894-20"><a href="extrasitzung.html#cb894-20"></a><span class="kw">range</span>(x)     <span class="co"># Returns the minimum and maximum of x</span></span>
+<span id="cb894-21"><a href="extrasitzung.html#cb894-21"></a><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>)     <span class="co"># Repeat the number 1 five times</span></span>
+<span id="cb894-22"><a href="extrasitzung.html#cb894-22"></a><span class="kw">rev</span>(x)       <span class="co"># List the elements of &quot;x&quot; in reverse order</span></span>
+<span id="cb894-23"><a href="extrasitzung.html#cb894-23"></a><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>,<span class="fl">0.4</span>)  <span class="co"># Generate a sequence (1 -&gt; 10, spaced by 0.4)</span></span>
+<span id="cb894-24"><a href="extrasitzung.html#cb894-24"></a><span class="kw">sequence</span>()     <span class="co"># Create a vector of sequences</span></span>
+<span id="cb894-25"><a href="extrasitzung.html#cb894-25"></a><span class="kw">sign</span>(x)        <span class="co"># Returns the signs of the elements of x</span></span>
+<span id="cb894-26"><a href="extrasitzung.html#cb894-26"></a><span class="kw">sort</span>(x)        <span class="co"># Sort the vector x</span></span>
+<span id="cb894-27"><a href="extrasitzung.html#cb894-27"></a><span class="kw">order</span>(x)       <span class="co"># list sorted element numbers of x</span></span>
+<span id="cb894-28"><a href="extrasitzung.html#cb894-28"></a><span class="kw">tolower</span>(),<span class="kw">toupper</span>()  <span class="co"># Convert string to lower/upper case letters</span></span>
+<span id="cb894-29"><a href="extrasitzung.html#cb894-29"></a><span class="kw">unique</span>(x)      <span class="co"># Remove duplicate entries from vector</span></span>
+<span id="cb894-30"><a href="extrasitzung.html#cb894-30"></a><span class="kw">system</span>(<span class="st">&quot;cmd&quot;</span>)  <span class="co"># Execute &quot;cmd&quot; in operating system (outside of R)</span></span>
+<span id="cb894-31"><a href="extrasitzung.html#cb894-31"></a><span class="kw">vector</span>()       <span class="co"># Produces a vector of given length and mode</span></span>
+<span id="cb894-32"><a href="extrasitzung.html#cb894-32"></a></span>
+<span id="cb894-33"><a href="extrasitzung.html#cb894-33"></a><span class="kw">formatC</span>(x)     <span class="co"># Format x using &#39;C&#39; style formatting specifications</span></span>
+<span id="cb894-34"><a href="extrasitzung.html#cb894-34"></a><span class="kw">floor</span>(x), <span class="kw">ceiling</span>(x), <span class="kw">round</span>(x), <span class="kw">signif</span>(x), <span class="kw">trunc</span>(x)   <span class="co"># rounding functions</span></span>
+<span id="cb894-35"><a href="extrasitzung.html#cb894-35"></a></span>
+<span id="cb894-36"><a href="extrasitzung.html#cb894-36"></a><span class="kw">Sys.getenv</span>(x)  <span class="co"># Get the value of the environment variable &quot;x&quot;</span></span>
+<span id="cb894-37"><a href="extrasitzung.html#cb894-37"></a><span class="kw">Sys.putenv</span>(x)  <span class="co"># Set the value of the environment variable &quot;x&quot;</span></span>
+<span id="cb894-38"><a href="extrasitzung.html#cb894-38"></a><span class="kw">Sys.time</span>()     <span class="co"># Return system time</span></span>
+<span id="cb894-39"><a href="extrasitzung.html#cb894-39"></a><span class="kw">Sys.Date</span>()     <span class="co"># Return system date</span></span>
+<span id="cb894-40"><a href="extrasitzung.html#cb894-40"></a><span class="kw">getwd</span>()        <span class="co"># Return working directory</span></span>
+<span id="cb894-41"><a href="extrasitzung.html#cb894-41"></a><span class="kw">setwd</span>()        <span class="co"># Set working directory</span></span>
+<span id="cb894-42"><a href="extrasitzung.html#cb894-42"></a>?files         <span class="co"># Help on low-level interface to file system</span></span>
+<span id="cb894-43"><a href="extrasitzung.html#cb894-43"></a><span class="kw">list.files</span>()   <span class="co"># List files in a give directory</span></span>
+<span id="cb894-44"><a href="extrasitzung.html#cb894-44"></a><span class="kw">file.info</span>()    <span class="co"># Get information about files</span></span>
+<span id="cb894-45"><a href="extrasitzung.html#cb894-45"></a></span>
+<span id="cb894-46"><a href="extrasitzung.html#cb894-46"></a><span class="co"># Built-in constants:</span></span>
+<span id="cb894-47"><a href="extrasitzung.html#cb894-47"></a>pi,letters,LETTERS   <span class="co"># Pi, lower &amp; uppercase letters, e.g. letters[7] = &quot;g&quot;</span></span>
+<span id="cb894-48"><a href="extrasitzung.html#cb894-48"></a>month.abb,month.name <span class="co"># Abbreviated &amp; full names for months</span></span></code></pre></div>
 </div>
 <div id="mathe" class="section level3">
 <h3>Mathe</h3>
 <p>Hier geklaut: <a href="http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html" class="uri">http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html</a></p>
-<div class="sourceCode" id="cb888"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb888-1"><a href="extrasitzung.html#cb888-1"></a><span class="kw">log</span>(x),<span class="kw">logb</span>(),<span class="kw">log10</span>(),<span class="kw">log2</span>(),<span class="kw">exp</span>(),<span class="kw">expm1</span>(),<span class="kw">log1p</span>(),<span class="kw">sqrt</span>()   <span class="co"># Fairly obvious</span></span>
-<span id="cb888-2"><a href="extrasitzung.html#cb888-2"></a><span class="kw">cos</span>(),<span class="kw">sin</span>(),<span class="kw">tan</span>(),<span class="kw">acos</span>(),<span class="kw">asin</span>(),<span class="kw">atan</span>(),<span class="kw">atan2</span>()       <span class="co"># Usual stuff</span></span>
-<span id="cb888-3"><a href="extrasitzung.html#cb888-3"></a><span class="kw">cosh</span>(),<span class="kw">sinh</span>(),<span class="kw">tanh</span>(),<span class="kw">acosh</span>(),<span class="kw">asinh</span>(),<span class="kw">atanh</span>()         <span class="co"># Hyperbolic functions</span></span>
-<span id="cb888-4"><a href="extrasitzung.html#cb888-4"></a><span class="kw">union</span>(),<span class="kw">intersect</span>(),<span class="kw">setdiff</span>(),<span class="kw">setequal</span>()             <span class="co"># Set operations</span></span>
-<span id="cb888-5"><a href="extrasitzung.html#cb888-5"></a><span class="op">+</span>,<span class="op">-</span>,<span class="op">*</span>,<span class="op">/</span>,<span class="op">^</span>,<span class="op">%%</span>,<span class="op">%/%</span><span class="st">                                     </span><span class="co"># Arithmetic operators</span></span>
-<span id="cb888-6"><a href="extrasitzung.html#cb888-6"></a><span class="er">&lt;</span>,<span class="op">&gt;</span>,<span class="op">&lt;=</span>,<span class="op">&gt;=</span>,<span class="op">==</span>,<span class="op">!=</span><span class="st">                                      </span><span class="co"># Comparison operators</span></span>
-<span id="cb888-7"><a href="extrasitzung.html#cb888-7"></a><span class="kw">eigen</span>()      <span class="co"># Computes eigenvalues and eigenvectors</span></span>
-<span id="cb888-8"><a href="extrasitzung.html#cb888-8"></a></span>
-<span id="cb888-9"><a href="extrasitzung.html#cb888-9"></a><span class="kw">deriv</span>()      <span class="co"># Symbolic and algorithmic derivatives of simple expressions</span></span>
-<span id="cb888-10"><a href="extrasitzung.html#cb888-10"></a><span class="kw">integrate</span>()  <span class="co"># Adaptive quadrature over a finite or infinite interval.</span></span>
-<span id="cb888-11"><a href="extrasitzung.html#cb888-11"></a></span>
-<span id="cb888-12"><a href="extrasitzung.html#cb888-12"></a><span class="kw">sqrt</span>(),<span class="kw">sum</span>()</span>
-<span id="cb888-13"><a href="extrasitzung.html#cb888-13"></a>?Control     <span class="co"># Help on control flow statements (e.g. if, for, while)</span></span>
-<span id="cb888-14"><a href="extrasitzung.html#cb888-14"></a>?Extract     <span class="co"># Help on operators acting to extract or replace subsets of vectors</span></span>
-<span id="cb888-15"><a href="extrasitzung.html#cb888-15"></a>?Logic       <span class="co"># Help on logical operators</span></span>
-<span id="cb888-16"><a href="extrasitzung.html#cb888-16"></a>?Mod         <span class="co"># Help on functions which support complex arithmetic in R</span></span>
-<span id="cb888-17"><a href="extrasitzung.html#cb888-17"></a>?Paren       <span class="co"># Help on parentheses</span></span>
-<span id="cb888-18"><a href="extrasitzung.html#cb888-18"></a>?regex       <span class="co"># Help on regular expressions used in R</span></span>
-<span id="cb888-19"><a href="extrasitzung.html#cb888-19"></a>?Syntax      <span class="co"># Help on R syntax and giving the precedence of operators</span></span>
-<span id="cb888-20"><a href="extrasitzung.html#cb888-20"></a>?Special     <span class="co"># Help on special functions related to beta and gamma functions</span></span></code></pre></div>
+<div class="sourceCode" id="cb895"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb895-1"><a href="extrasitzung.html#cb895-1"></a><span class="kw">log</span>(x),<span class="kw">logb</span>(),<span class="kw">log10</span>(),<span class="kw">log2</span>(),<span class="kw">exp</span>(),<span class="kw">expm1</span>(),<span class="kw">log1p</span>(),<span class="kw">sqrt</span>()   <span class="co"># Fairly obvious</span></span>
+<span id="cb895-2"><a href="extrasitzung.html#cb895-2"></a><span class="kw">cos</span>(),<span class="kw">sin</span>(),<span class="kw">tan</span>(),<span class="kw">acos</span>(),<span class="kw">asin</span>(),<span class="kw">atan</span>(),<span class="kw">atan2</span>()       <span class="co"># Usual stuff</span></span>
+<span id="cb895-3"><a href="extrasitzung.html#cb895-3"></a><span class="kw">cosh</span>(),<span class="kw">sinh</span>(),<span class="kw">tanh</span>(),<span class="kw">acosh</span>(),<span class="kw">asinh</span>(),<span class="kw">atanh</span>()         <span class="co"># Hyperbolic functions</span></span>
+<span id="cb895-4"><a href="extrasitzung.html#cb895-4"></a><span class="kw">union</span>(),<span class="kw">intersect</span>(),<span class="kw">setdiff</span>(),<span class="kw">setequal</span>()             <span class="co"># Set operations</span></span>
+<span id="cb895-5"><a href="extrasitzung.html#cb895-5"></a><span class="op">+</span>,<span class="op">-</span>,<span class="op">*</span>,<span class="op">/</span>,<span class="op">^</span>,<span class="op">%%</span>,<span class="op">%/%</span><span class="st">                                     </span><span class="co"># Arithmetic operators</span></span>
+<span id="cb895-6"><a href="extrasitzung.html#cb895-6"></a><span class="er">&lt;</span>,<span class="op">&gt;</span>,<span class="op">&lt;=</span>,<span class="op">&gt;=</span>,<span class="op">==</span>,<span class="op">!=</span><span class="st">                                      </span><span class="co"># Comparison operators</span></span>
+<span id="cb895-7"><a href="extrasitzung.html#cb895-7"></a><span class="kw">eigen</span>()      <span class="co"># Computes eigenvalues and eigenvectors</span></span>
+<span id="cb895-8"><a href="extrasitzung.html#cb895-8"></a></span>
+<span id="cb895-9"><a href="extrasitzung.html#cb895-9"></a><span class="kw">deriv</span>()      <span class="co"># Symbolic and algorithmic derivatives of simple expressions</span></span>
+<span id="cb895-10"><a href="extrasitzung.html#cb895-10"></a><span class="kw">integrate</span>()  <span class="co"># Adaptive quadrature over a finite or infinite interval.</span></span>
+<span id="cb895-11"><a href="extrasitzung.html#cb895-11"></a></span>
+<span id="cb895-12"><a href="extrasitzung.html#cb895-12"></a><span class="kw">sqrt</span>(),<span class="kw">sum</span>()</span>
+<span id="cb895-13"><a href="extrasitzung.html#cb895-13"></a>?Control     <span class="co"># Help on control flow statements (e.g. if, for, while)</span></span>
+<span id="cb895-14"><a href="extrasitzung.html#cb895-14"></a>?Extract     <span class="co"># Help on operators acting to extract or replace subsets of vectors</span></span>
+<span id="cb895-15"><a href="extrasitzung.html#cb895-15"></a>?Logic       <span class="co"># Help on logical operators</span></span>
+<span id="cb895-16"><a href="extrasitzung.html#cb895-16"></a>?Mod         <span class="co"># Help on functions which support complex arithmetic in R</span></span>
+<span id="cb895-17"><a href="extrasitzung.html#cb895-17"></a>?Paren       <span class="co"># Help on parentheses</span></span>
+<span id="cb895-18"><a href="extrasitzung.html#cb895-18"></a>?regex       <span class="co"># Help on regular expressions used in R</span></span>
+<span id="cb895-19"><a href="extrasitzung.html#cb895-19"></a>?Syntax      <span class="co"># Help on R syntax and giving the precedence of operators</span></span>
+<span id="cb895-20"><a href="extrasitzung.html#cb895-20"></a>?Special     <span class="co"># Help on special functions related to beta and gamma functions</span></span></code></pre></div>
 </div>
 <div id="statistik" class="section level3">
 <h3>Statistik</h3>
 <p>Hier geklaut: <a href="http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html" class="uri">http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html</a></p>
-<div class="sourceCode" id="cb889"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb889-1"><a href="extrasitzung.html#cb889-1"></a><span class="kw">help</span>(<span class="dt">package=</span>stats)   <span class="co"># List all stats functions</span></span>
-<span id="cb889-2"><a href="extrasitzung.html#cb889-2"></a></span>
-<span id="cb889-3"><a href="extrasitzung.html#cb889-3"></a>?Chisquare            <span class="co"># Help on chi-squared distribution functions</span></span>
-<span id="cb889-4"><a href="extrasitzung.html#cb889-4"></a>?Poisson              <span class="co"># Help on Poisson distribution functions</span></span>
-<span id="cb889-5"><a href="extrasitzung.html#cb889-5"></a><span class="kw">help</span>(<span class="dt">package=</span>survival) <span class="co"># Survival analysis</span></span>
-<span id="cb889-6"><a href="extrasitzung.html#cb889-6"></a></span>
-<span id="cb889-7"><a href="extrasitzung.html#cb889-7"></a><span class="kw">cor.test</span>()            <span class="co"># Perform correlation test</span></span>
-<span id="cb889-8"><a href="extrasitzung.html#cb889-8"></a><span class="kw">cumsum</span>(); <span class="kw">cumprod</span>(); <span class="kw">cummin</span>(); <span class="kw">cummax</span>()   <span class="co"># Cumuluative functions for vectors</span></span>
-<span id="cb889-9"><a href="extrasitzung.html#cb889-9"></a><span class="kw">density</span>(x)            <span class="co"># Compute kernel density estimates</span></span>
-<span id="cb889-10"><a href="extrasitzung.html#cb889-10"></a><span class="kw">ks.test</span>()             <span class="co"># Performs one or two sample Kolmogorov-Smirnov tests</span></span>
-<span id="cb889-11"><a href="extrasitzung.html#cb889-11"></a><span class="kw">loess</span>(), <span class="kw">lowess</span>()     <span class="co"># Scatter plot smoothing</span></span>
-<span id="cb889-12"><a href="extrasitzung.html#cb889-12"></a><span class="kw">mad</span>()                 <span class="co"># Calculate median absolute deviation</span></span>
-<span id="cb889-13"><a href="extrasitzung.html#cb889-13"></a><span class="kw">mean</span>(x), <span class="kw">weighted.mean</span>(x), <span class="kw">median</span>(x), <span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="kw">quantile</span>(x)</span>
-<span id="cb889-14"><a href="extrasitzung.html#cb889-14"></a><span class="kw">rnorm</span>(), <span class="kw">runif</span>()  <span class="co"># Generate random data with Gaussian/uniform distribution</span></span>
-<span id="cb889-15"><a href="extrasitzung.html#cb889-15"></a><span class="kw">splinefun</span>()           <span class="co"># Perform spline interpolation</span></span>
-<span id="cb889-16"><a href="extrasitzung.html#cb889-16"></a><span class="kw">smooth.spline</span>()       <span class="co"># Fits a cubic smoothing spline</span></span>
-<span id="cb889-17"><a href="extrasitzung.html#cb889-17"></a><span class="kw">sd</span>()                  <span class="co"># Calculate standard deviation</span></span>
-<span id="cb889-18"><a href="extrasitzung.html#cb889-18"></a><span class="kw">summary</span>(x)            <span class="co"># Returns a summary of x: mean, min, max etc.</span></span>
-<span id="cb889-19"><a href="extrasitzung.html#cb889-19"></a><span class="kw">t.test</span>()              <span class="co"># Student&#39;s t-test</span></span>
-<span id="cb889-20"><a href="extrasitzung.html#cb889-20"></a><span class="kw">var</span>()                 <span class="co"># Calculate variance</span></span>
-<span id="cb889-21"><a href="extrasitzung.html#cb889-21"></a><span class="kw">sample</span>()              <span class="co"># Random samples &amp; permutations</span></span>
-<span id="cb889-22"><a href="extrasitzung.html#cb889-22"></a><span class="kw">ecdf</span>()                <span class="co"># Empirical Cumulative Distribution Function</span></span>
-<span id="cb889-23"><a href="extrasitzung.html#cb889-23"></a><span class="kw">qqplot</span>()              <span class="co"># quantile-quantile plot</span></span></code></pre></div>
+<div class="sourceCode" id="cb896"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb896-1"><a href="extrasitzung.html#cb896-1"></a><span class="kw">help</span>(<span class="dt">package=</span>stats)   <span class="co"># List all stats functions</span></span>
+<span id="cb896-2"><a href="extrasitzung.html#cb896-2"></a></span>
+<span id="cb896-3"><a href="extrasitzung.html#cb896-3"></a>?Chisquare            <span class="co"># Help on chi-squared distribution functions</span></span>
+<span id="cb896-4"><a href="extrasitzung.html#cb896-4"></a>?Poisson              <span class="co"># Help on Poisson distribution functions</span></span>
+<span id="cb896-5"><a href="extrasitzung.html#cb896-5"></a><span class="kw">help</span>(<span class="dt">package=</span>survival) <span class="co"># Survival analysis</span></span>
+<span id="cb896-6"><a href="extrasitzung.html#cb896-6"></a></span>
+<span id="cb896-7"><a href="extrasitzung.html#cb896-7"></a><span class="kw">cor.test</span>()            <span class="co"># Perform correlation test</span></span>
+<span id="cb896-8"><a href="extrasitzung.html#cb896-8"></a><span class="kw">cumsum</span>(); <span class="kw">cumprod</span>(); <span class="kw">cummin</span>(); <span class="kw">cummax</span>()   <span class="co"># Cumuluative functions for vectors</span></span>
+<span id="cb896-9"><a href="extrasitzung.html#cb896-9"></a><span class="kw">density</span>(x)            <span class="co"># Compute kernel density estimates</span></span>
+<span id="cb896-10"><a href="extrasitzung.html#cb896-10"></a><span class="kw">ks.test</span>()             <span class="co"># Performs one or two sample Kolmogorov-Smirnov tests</span></span>
+<span id="cb896-11"><a href="extrasitzung.html#cb896-11"></a><span class="kw">loess</span>(), <span class="kw">lowess</span>()     <span class="co"># Scatter plot smoothing</span></span>
+<span id="cb896-12"><a href="extrasitzung.html#cb896-12"></a><span class="kw">mad</span>()                 <span class="co"># Calculate median absolute deviation</span></span>
+<span id="cb896-13"><a href="extrasitzung.html#cb896-13"></a><span class="kw">mean</span>(x), <span class="kw">weighted.mean</span>(x), <span class="kw">median</span>(x), <span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="kw">quantile</span>(x)</span>
+<span id="cb896-14"><a href="extrasitzung.html#cb896-14"></a><span class="kw">rnorm</span>(), <span class="kw">runif</span>()  <span class="co"># Generate random data with Gaussian/uniform distribution</span></span>
+<span id="cb896-15"><a href="extrasitzung.html#cb896-15"></a><span class="kw">splinefun</span>()           <span class="co"># Perform spline interpolation</span></span>
+<span id="cb896-16"><a href="extrasitzung.html#cb896-16"></a><span class="kw">smooth.spline</span>()       <span class="co"># Fits a cubic smoothing spline</span></span>
+<span id="cb896-17"><a href="extrasitzung.html#cb896-17"></a><span class="kw">sd</span>()                  <span class="co"># Calculate standard deviation</span></span>
+<span id="cb896-18"><a href="extrasitzung.html#cb896-18"></a><span class="kw">summary</span>(x)            <span class="co"># Returns a summary of x: mean, min, max etc.</span></span>
+<span id="cb896-19"><a href="extrasitzung.html#cb896-19"></a><span class="kw">t.test</span>()              <span class="co"># Student&#39;s t-test</span></span>
+<span id="cb896-20"><a href="extrasitzung.html#cb896-20"></a><span class="kw">var</span>()                 <span class="co"># Calculate variance</span></span>
+<span id="cb896-21"><a href="extrasitzung.html#cb896-21"></a><span class="kw">sample</span>()              <span class="co"># Random samples &amp; permutations</span></span>
+<span id="cb896-22"><a href="extrasitzung.html#cb896-22"></a><span class="kw">ecdf</span>()                <span class="co"># Empirical Cumulative Distribution Function</span></span>
+<span id="cb896-23"><a href="extrasitzung.html#cb896-23"></a><span class="kw">qqplot</span>()              <span class="co"># quantile-quantile plot</span></span></code></pre></div>
 
 </div>
 </div>
