@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Tutorium zur Inferenzstatistik</title>
-  <meta name="description" content="Tutorium zur Inferenzstatistik" />
+  <meta name="description" content="This book introduces inferential statistics using R (in German) and is based on a class I taught at Georg-August-University Göttingen." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Tutorium zur Inferenzstatistik" />
   <meta property="og:type" content="book" />
   
   
-  
+  <meta property="og:description" content="This book introduces inferential statistics using R (in German) and is based on a class I taught at Georg-August-University Göttingen." />
   <meta name="github-repo" content="mkthalmann" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Tutorium zur Inferenzstatistik" />
   
-  
+  <meta name="twitter:description" content="This book introduces inferential statistics using R (in German) and is based on a class I taught at Georg-August-University Göttingen." />
   
 
 
@@ -780,6 +780,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#anova-afex"><i class="fa fa-check"></i>ANOVA (afex)</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#lmm"><i class="fa fa-check"></i>LMM</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#daten-untersuchen"><i class="fa fa-check"></i>Daten untersuchen</a>
+<ul>
+<li><a href="extrasitzung.html#das-dlookr-paket">Das <code>dlookr</code>-Paket</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#datenblatt-diagonstizieren"><i class="fa fa-check"></i>Datenblatt diagonstizieren</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#normalverteilung-2"><i class="fa fa-check"></i>Normalverteilung</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#deskriptive-statistik-1"><i class="fa fa-check"></i>Deskriptive Statistik</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#komplette-diagnoseberichte-standardmäßig-als-pdf"><i class="fa fa-check"></i>Komplette Diagnoseberichte (standardmäßig als PDF)</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#bildverarbeitung-und--bearbeitung-in-r"><i class="fa fa-check"></i>Bildverarbeitung (und -bearbeitung) in R</a>
 <ul>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#magick"><i class="fa fa-check"></i>magick</a></li>
@@ -822,12 +830,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="author"><em><div class="line-block">Maik Thalmann<br />
 <a href="mailto:maik.thalmann@gmail.com">maik.thalmann@gmail.com</a></div></em></p>
 <p class="date"><em><div class="line-block">Wintersemester 2019/20<br />
-Version: 18. April, 2020</div></em></p>
+Version: 20. April, 2020</div></em></p>
 </div>
 <div id="vorbemerkungen" class="section level1 unnumbered">
 <h1 class="unnumbered">Vorbemerkungen</h1>
 <p>Dieses Buch ist zeitlich nach den Folien entstanden, die ich zum Unterrichten meiner Veranstaltung verwenden werde. Um gewährleisten zu können, dass der Inhalt der Folien und dieser Onlineresource deckungsgleich bleibt, werden beide auf Basis derselben <a href="https://bookdown.org/yihui/rmarkdown/">R Markdown</a>-Dateien erstellt – genauer im darauf basierenden <a href="https://bookdown.org/yihui/bookdown/">bookdown</a>-Format. Das hat einige Konsequenzen, die ästhetisch wenig zufriedenstellend sind, aber von mir billigend in Kauf genommen werden (müssen). Ein offensichtlicher dieser Punkte betrifft die Abschnittsgliederung: Da Abschnitte im Präsentationsformat die Foliengrenzen markieren, ist dieses Buch leider vielerorts etwas unglücklich gegliedert (insbesondere in den Übungssektionen). Bis ich eine Lösung gefunden habe, die mir weiterhin erlaubt, in nur einem Dokument/Format zu arbeiten und mehrere Dateien generiert zu bekommen, muss das allerdings so bleiben.</p>
-<p>Obwohl diese Resource eine Einfürung in R ist, muss ich an dieser Stelle ein paar Voreinstellungen für die nachfolgenden Kapitel (insbesondere zu ladende Pakete und Schriftarteinstellungen für Plots) vornehmen. Anfänger brauchen sich mit den folgenden Codezeilen nicht zu beschäftigen; ich wollte lediglich transparent vorgehen und offenlegen, welche externen Pakete ich verwende.</p>
+<p>Obwohl diese Resource eine Einführung in R ist, muss ich an dieser Stelle ein paar Voreinstellungen für die nachfolgenden Kapitel (insbesondere zu ladende Pakete und Schriftarteinstellungen für Plots) vornehmen. Anfänger brauchen sich mit den folgenden Codezeilen nicht zu beschäftigen; ich wollte lediglich transparent vorgehen und offenlegen, welche externen Pakete ich verwende.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1"></a><span class="co"># load packages</span></span>
 <span id="cb1-2"><a href="index.html#cb1-2"></a>Packages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;gridExtra&quot;</span>, <span class="st">&quot;reshape2&quot;</span>, <span class="st">&quot;psych&quot;</span>,</span>
 <span id="cb1-3"><a href="index.html#cb1-3"></a>  <span class="st">&quot;stringr&quot;</span>, <span class="st">&quot;afex&quot;</span>, <span class="st">&quot;ez&quot;</span>, <span class="st">&quot;car&quot;</span>, <span class="st">&quot;emmeans&quot;</span>,</span>

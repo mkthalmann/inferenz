@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Extrasitzung | Tutorium zur Inferenzstatistik</title>
-  <meta name="description" content="Extrasitzung | Tutorium zur Inferenzstatistik" />
+  <meta name="description" content="This book introduces inferential statistics using R (in German) and is based on a class I taught at Georg-August-University Göttingen." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Extrasitzung | Tutorium zur Inferenzstatistik" />
   <meta property="og:type" content="book" />
   
   
-  
+  <meta property="og:description" content="This book introduces inferential statistics using R (in German) and is based on a class I taught at Georg-August-University Göttingen." />
   <meta name="github-repo" content="mkthalmann" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Extrasitzung | Tutorium zur Inferenzstatistik" />
   
-  
+  <meta name="twitter:description" content="This book introduces inferential statistics using R (in German) and is based on a class I taught at Georg-August-University Göttingen." />
   
 
 
@@ -780,6 +780,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#anova-afex"><i class="fa fa-check"></i>ANOVA (afex)</a></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#lmm"><i class="fa fa-check"></i>LMM</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#daten-untersuchen"><i class="fa fa-check"></i>Daten untersuchen</a>
+<ul>
+<li><a href="extrasitzung.html#das-dlookr-paket">Das <code>dlookr</code>-Paket</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#datenblatt-diagonstizieren"><i class="fa fa-check"></i>Datenblatt diagonstizieren</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#normalverteilung-2"><i class="fa fa-check"></i>Normalverteilung</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#deskriptive-statistik-1"><i class="fa fa-check"></i>Deskriptive Statistik</a></li>
+<li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#komplette-diagnoseberichte-standardmäßig-als-pdf"><i class="fa fa-check"></i>Komplette Diagnoseberichte (standardmäßig als PDF)</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#bildverarbeitung-und--bearbeitung-in-r"><i class="fa fa-check"></i>Bildverarbeitung (und -bearbeitung) in R</a>
 <ul>
 <li class="chapter" data-level="" data-path="extrasitzung.html"><a href="extrasitzung.html#magick"><i class="fa fa-check"></i>magick</a></li>
@@ -1195,7 +1203,12 @@ Variable durchgeführt</p>
 <li><p>Eignet sich, wenn mit wenigen Tabellen/Variablen gleichzeitig gearbeitet wird</p></li>
 <li><p>Eine Variable, die mit attach ausgewählt wurde, kann mit <code>detach</code> wieder
 entfernt werden, wenn beispielsweise eine neue Variable verwendet werden soll</p></li>
+<li><p>Warnung: <a href="http://google.github.io/styleguide/Rguide.html">Google</a> sagt:</p></li>
 </ul>
+<blockquote>
+<p><strong>Don’t use attach()</strong>
+The possibilities for creating errors when using attach() are numerous.</p>
+</blockquote>
 <div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb842-1"><a href="extrasitzung.html#cb842-1"></a><span class="kw">attach</span>(d)</span>
 <span id="cb842-2"><a href="extrasitzung.html#cb842-2"></a><span class="kw">mean</span>(count)</span></code></pre></div>
 <pre><code>## [1] 9.5</code></pre>
@@ -1956,13 +1969,165 @@ Funktion ausgeführt wird
 </ul>
 </div>
 </div>
+<div id="daten-untersuchen" class="section level2">
+<h2>Daten untersuchen</h2>
+<div id="das-dlookr-paket" class="section level3">
+<h3>Das <code>dlookr</code>-Paket</h3>
+<div class="sourceCode" id="cb893"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb893-1"><a href="extrasitzung.html#cb893-1"></a><span class="co"># install.packages(&quot;dlookr&quot;)</span></span>
+<span id="cb893-2"><a href="extrasitzung.html#cb893-2"></a><span class="kw">library</span>(dlookr)</span></code></pre></div>
+</div>
+<div id="datenblatt-diagonstizieren" class="section level3">
+<h3>Datenblatt diagonstizieren</h3>
+<div class="sourceCode" id="cb894"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb894-1"><a href="extrasitzung.html#cb894-1"></a><span class="co"># check for missing data and distinct values per column</span></span>
+<span id="cb894-2"><a href="extrasitzung.html#cb894-2"></a>d <span class="op">%&gt;%</span></span>
+<span id="cb894-3"><a href="extrasitzung.html#cb894-3"></a><span class="st">  </span><span class="kw">diagnose</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 11 x 6
+##    variables types   missing_count missing_percent unique_count unique_rate
+##    &lt;chr&gt;     &lt;chr&gt;           &lt;int&gt;           &lt;dbl&gt;        &lt;int&gt;       &lt;dbl&gt;
+##  1 carat     numeric             0               0          273   0.00506  
+##  2 cut       ordered             0               0            5   0.0000927
+##  3 color     ordered             0               0            7   0.000130 
+##  4 clarity   ordered             0               0            8   0.000148 
+##  5 depth     numeric             0               0          184   0.00341  
+##  6 table     numeric             0               0          127   0.00235  
+##  7 price     integer             0               0        11602   0.215    
+##  8 x         numeric             0               0          554   0.0103   
+##  9 y         numeric             0               0          552   0.0102   
+## 10 z         numeric             0               0          375   0.00695  
+## 11 id        integer             0               0        53940   1</code></pre>
+<div class="sourceCode" id="cb896"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb896-1"><a href="extrasitzung.html#cb896-1"></a><span class="co"># descriptive statistics of all numeric variables (min, max, mean, etc.)</span></span>
+<span id="cb896-2"><a href="extrasitzung.html#cb896-2"></a>d <span class="op">%&gt;%</span></span>
+<span id="cb896-3"><a href="extrasitzung.html#cb896-3"></a><span class="st">  </span><span class="kw">diagnose_numeric</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 8 x 10
+##   variables   min       Q1      mean  median      Q3     max  zero minus outlier
+##   &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt; &lt;int&gt;   &lt;int&gt;
+## 1 carat       0.2     0.4      0.798 7.00e-1  1.04e0  5.01e0     0     0    1889
+## 2 depth      43      61       61.7   6.18e+1  6.25e1  7.90e1     0     0    2545
+## 3 table      43      56       57.5   5.70e+1  5.90e1  9.50e1     0     0     605
+## 4 price     326     950     3933.    2.40e+3  5.32e3  1.88e4     0     0    3538
+## 5 x           0       4.71     5.73  5.70e+0  6.54e0  1.07e1     8     0      32
+## 6 y           0       4.72     5.73  5.71e+0  6.54e0  5.89e1     7     0      29
+## 7 z           0       2.91     3.54  3.53e+0  4.04e0  3.18e1    20     0      49
+## 8 id          1   13486.   26970.    2.70e+4  4.05e4  5.39e4     0     0       0</code></pre>
+<div class="sourceCode" id="cb898"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb898-1"><a href="extrasitzung.html#cb898-1"></a><span class="co"># values and distribution of all categorical variables</span></span>
+<span id="cb898-2"><a href="extrasitzung.html#cb898-2"></a>d <span class="op">%&gt;%</span></span>
+<span id="cb898-3"><a href="extrasitzung.html#cb898-3"></a><span class="st">  </span><span class="kw">diagnose_category</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 20 x 6
+##    variables levels        N  freq ratio  rank
+##    &lt;chr&gt;     &lt;ord&gt;     &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
+##  1 cut       Ideal     53940 21551 40.0      1
+##  2 cut       Premium   53940 13791 25.6      2
+##  3 cut       Very Good 53940 12082 22.4      3
+##  4 cut       Good      53940  4906  9.10     4
+##  5 cut       Fair      53940  1610  2.98     5
+##  6 color     G         53940 11292 20.9      1
+##  7 color     E         53940  9797 18.2      2
+##  8 color     F         53940  9542 17.7      3
+##  9 color     H         53940  8304 15.4      4
+## 10 color     D         53940  6775 12.6      5
+## 11 color     I         53940  5422 10.1      6
+## 12 color     J         53940  2808  5.21     7
+## 13 clarity   SI1       53940 13065 24.2      1
+## 14 clarity   VS2       53940 12258 22.7      2
+## 15 clarity   SI2       53940  9194 17.0      3
+## 16 clarity   VS1       53940  8171 15.1      4
+## 17 clarity   VVS2      53940  5066  9.39     5
+## 18 clarity   VVS1      53940  3655  6.78     6
+## 19 clarity   IF        53940  1790  3.32     7
+## 20 clarity   I1        53940   741  1.37     8</code></pre>
+<div class="sourceCode" id="cb900"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb900-1"><a href="extrasitzung.html#cb900-1"></a><span class="co"># show outlier information for all numerical variables</span></span>
+<span id="cb900-2"><a href="extrasitzung.html#cb900-2"></a>d <span class="op">%&gt;%</span></span>
+<span id="cb900-3"><a href="extrasitzung.html#cb900-3"></a><span class="st">  </span><span class="kw">diagnose_outlier</span>()</span></code></pre></div>
+<pre><code>##   variables outliers_cnt outliers_ratio outliers_mean    with_mean without_mean
+## 1     carat         1889     3.50203930      2.153684 7.979397e-01     0.748738
+## 2     depth         2545     4.71820541     61.204794 6.174940e+01    61.776373
+## 3     table          605     1.12161661     64.842975 5.745718e+01    57.373404
+## 4     price         3538     6.55913978  14944.776427 3.932800e+03  3159.807111
+## 5         x           32     0.05932518      7.239375 5.731157e+00     5.730262
+## 6         y           29     0.05376344      9.773448 5.734526e+00     5.732353
+## 7         z           49     0.09084168      4.054694 3.538734e+00     3.538265
+## 8        id            0     0.00000000           NaN 2.697050e+04 26970.500000</code></pre>
+</div>
+<div id="normalverteilung-2" class="section level3">
+<h3>Normalverteilung</h3>
+<div class="sourceCode" id="cb902"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb902-1"><a href="extrasitzung.html#cb902-1"></a><span class="co"># shapiro-wilk test</span></span>
+<span id="cb902-2"><a href="extrasitzung.html#cb902-2"></a>d <span class="op">%&gt;%</span></span>
+<span id="cb902-3"><a href="extrasitzung.html#cb902-3"></a><span class="st">  </span><span class="kw">select</span>(price, carat, color, cut) <span class="op">%&gt;%</span></span>
+<span id="cb902-4"><a href="extrasitzung.html#cb902-4"></a><span class="st">  </span><span class="kw">group_by</span>(color) <span class="op">%&gt;%</span></span>
+<span id="cb902-5"><a href="extrasitzung.html#cb902-5"></a><span class="st">  </span><span class="kw">normality</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 14 x 5
+##    variable color statistic  p_value sample
+##    &lt;chr&gt;    &lt;ord&gt;     &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+##  1 price    D         0.741 1.48e-66   5000
+##  2 price    E         0.726 1.09e-67   5000
+##  3 price    F         0.787 8.07e-63   5000
+##  4 price    G         0.803 2.84e-61   5000
+##  5 price    H         0.846 8.64e-57   5000
+##  6 price    I         0.854 9.30e-56   5000
+##  7 price    J         0.889 6.11e-41   2808
+##  8 carat    D         0.873 2.94e-53   5000
+##  9 carat    E         0.878 1.17e-52   5000
+## 10 carat    F         0.909 1.36e-47   5000
+## 11 carat    G         0.896 7.92e-50   5000
+## 12 carat    H         0.926 2.31e-44   5000
+## 13 carat    I         0.935 3.96e-42   5000
+## 14 carat    J         0.955 1.64e-28   2808</code></pre>
+</div>
+<div id="deskriptive-statistik-1" class="section level3">
+<h3>Deskriptive Statistik</h3>
+<div class="sourceCode" id="cb904"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb904-1"><a href="extrasitzung.html#cb904-1"></a><span class="co"># tidy alternative for psych::describe</span></span>
+<span id="cb904-2"><a href="extrasitzung.html#cb904-2"></a>d <span class="op">%&gt;%</span></span>
+<span id="cb904-3"><a href="extrasitzung.html#cb904-3"></a><span class="st">  </span><span class="kw">describe</span>() <span class="op">%&gt;%</span></span>
+<span id="cb904-4"><a href="extrasitzung.html#cb904-4"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">starts_with</span>(<span class="st">&quot;p&quot;</span>)) <span class="co"># don&#39;t show percentiles</span></span></code></pre></div>
+<pre><code>## # A tibble: 8 x 9
+##   variable     n    na  mean    sd se_mean   IQR skewness kurtosis
+##   &lt;chr&gt;    &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1 carat    53940     0  5.73  1.12 0.00483  1.83    0.379   -0.618
+## 2 depth    53940     0  5.73  1.12 0.00483  1.83    0.379   -0.618
+## 3 table    53940     0  5.73  1.12 0.00483  1.83    0.379   -0.618
+## 4 price    53940     0  5.73  1.12 0.00483  1.83    0.379   -0.618
+## 5 x        53940     0  5.73  1.12 0.00483  1.83    0.379   -0.618
+## 6 y        53940     0  5.73  1.12 0.00483  1.83    0.379   -0.618
+## 7 z        53940     0  5.73  1.12 0.00483  1.83    0.379   -0.618
+## 8 id       53940     0  5.73  1.12 0.00483  1.83    0.379   -0.618</code></pre>
+<div class="sourceCode" id="cb906"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb906-1"><a href="extrasitzung.html#cb906-1"></a><span class="co"># tidy alternative for psych::describeBy</span></span>
+<span id="cb906-2"><a href="extrasitzung.html#cb906-2"></a>d <span class="op">%&gt;%</span></span>
+<span id="cb906-3"><a href="extrasitzung.html#cb906-3"></a><span class="st">  </span><span class="kw">group_by</span>(cut) <span class="op">%&gt;%</span></span>
+<span id="cb906-4"><a href="extrasitzung.html#cb906-4"></a><span class="st">  </span><span class="kw">describe</span>(price, carat) <span class="op">%&gt;%</span></span>
+<span id="cb906-5"><a href="extrasitzung.html#cb906-5"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">starts_with</span>(<span class="st">&quot;p&quot;</span>)) <span class="co"># don&#39;t show percentiles</span></span></code></pre></div>
+<pre><code>## # A tibble: 10 x 10
+##    variable cut        n    na    mean      sd se_mean     IQR skewness kurtosis
+##    &lt;chr&gt;    &lt;ord&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+##  1 price    Fair    1610     0 4.36e+3 3.56e+3 8.87e+1 3155.      1.78     3.09 
+##  2 price    Good    4906     0 3.93e+3 3.68e+3 5.26e+1 3883       1.72     3.05 
+##  3 price    Very … 12082     0 3.98e+3 3.94e+3 3.58e+1 4461.      1.60     2.24 
+##  4 price    Premi… 13791     0 4.58e+3 4.35e+3 3.70e+1 5250       1.33     1.07 
+##  5 price    Ideal  21551     0 3.46e+3 3.81e+3 2.59e+1 3800.      1.84     2.98 
+##  6 carat    Fair    1610     0 1.05e+0 5.16e-1 1.29e-2    0.5     1.69     5.34 
+##  7 carat    Good    4906     0 8.49e-1 4.54e-1 6.48e-3    0.51    1.03     1.23 
+##  8 carat    Very … 12082     0 8.06e-1 4.59e-1 4.18e-3    0.61    0.994    0.896
+##  9 carat    Premi… 13791     0 8.92e-1 5.15e-1 4.39e-3    0.79    0.862    0.431
+## 10 carat    Ideal  21551     0 7.03e-1 4.33e-1 2.95e-3    0.66    1.34     1.63</code></pre>
+</div>
+<div id="komplette-diagnoseberichte-standardmäßig-als-pdf" class="section level3">
+<h3>Komplette Diagnoseberichte (standardmäßig als PDF)</h3>
+<div class="sourceCode" id="cb908"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb908-1"><a href="extrasitzung.html#cb908-1"></a><span class="co"># generate pdf report for various diagnosis tasks</span></span>
+<span id="cb908-2"><a href="extrasitzung.html#cb908-2"></a><span class="co"># d %&gt;%</span></span>
+<span id="cb908-3"><a href="extrasitzung.html#cb908-3"></a><span class="co">#     diagnose_report()</span></span>
+<span id="cb908-4"><a href="extrasitzung.html#cb908-4"></a></span>
+<span id="cb908-5"><a href="extrasitzung.html#cb908-5"></a><span class="co"># generate pdf report for exploratory data analysis</span></span>
+<span id="cb908-6"><a href="extrasitzung.html#cb908-6"></a><span class="co"># (including correlations and transform ations)</span></span>
+<span id="cb908-7"><a href="extrasitzung.html#cb908-7"></a><span class="co"># d %&gt;%</span></span>
+<span id="cb908-8"><a href="extrasitzung.html#cb908-8"></a><span class="co">#     eda_report()</span></span></code></pre></div>
+</div>
+</div>
 <div id="bildverarbeitung-und--bearbeitung-in-r" class="section level2">
 <h2>Bildverarbeitung (und -bearbeitung) in R</h2>
 <div id="magick" class="section level3">
 <h3>magick</h3>
 <p><a href="https://cran.r-project.org/web/packages/magick/vignettes/intro.html" class="uri">https://cran.r-project.org/web/packages/magick/vignettes/intro.html</a></p>
-<div class="sourceCode" id="cb893"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb893-1"><a href="extrasitzung.html#cb893-1"></a><span class="co"># install.packages(&quot;magick&quot;)</span></span>
-<span id="cb893-2"><a href="extrasitzung.html#cb893-2"></a><span class="kw">library</span>(magick)</span></code></pre></div>
+<div class="sourceCode" id="cb909"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb909-1"><a href="extrasitzung.html#cb909-1"></a><span class="co"># install.packages(&quot;magick&quot;)</span></span>
+<span id="cb909-2"><a href="extrasitzung.html#cb909-2"></a><span class="kw">library</span>(magick)</span></code></pre></div>
 </div>
 </div>
 <div id="popularity-contest" class="section level2">
@@ -1987,105 +2152,105 @@ Funktion ausgeführt wird
 <div id="allgemein" class="section level3">
 <h3>Allgemein</h3>
 <p>Hier geklaut: <a href="http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html" class="uri">http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html</a></p>
-<div class="sourceCode" id="cb894"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb894-1"><a href="extrasitzung.html#cb894-1"></a><span class="kw">builtins</span>() <span class="co"># List all built-in functions</span></span>
-<span id="cb894-2"><a href="extrasitzung.html#cb894-2"></a><span class="kw">options</span>()  <span class="co"># Set options to control how R computes &amp; displays results</span></span>
-<span id="cb894-3"><a href="extrasitzung.html#cb894-3"></a></span>
-<span id="cb894-4"><a href="extrasitzung.html#cb894-4"></a>?<span class="ot">NA</span>        <span class="co"># Help page on handling of missing data values</span></span>
-<span id="cb894-5"><a href="extrasitzung.html#cb894-5"></a><span class="kw">abs</span>(x)     <span class="co"># The absolute value of &quot;x&quot;</span></span>
-<span id="cb894-6"><a href="extrasitzung.html#cb894-6"></a><span class="kw">append</span>()   <span class="co"># Add elements to a vector</span></span>
-<span id="cb894-7"><a href="extrasitzung.html#cb894-7"></a><span class="kw">c</span>(x)       <span class="co"># A generic function which combines its arguments </span></span>
-<span id="cb894-8"><a href="extrasitzung.html#cb894-8"></a><span class="kw">cat</span>(x)     <span class="co"># Prints the arguments</span></span>
-<span id="cb894-9"><a href="extrasitzung.html#cb894-9"></a><span class="kw">cbind</span>()    <span class="co"># Combine vectors by row/column (cf. &quot;paste&quot; in Unix)</span></span>
-<span id="cb894-10"><a href="extrasitzung.html#cb894-10"></a><span class="kw">diff</span>(x)    <span class="co"># Returns suitably lagged and iterated differences</span></span>
-<span id="cb894-11"><a href="extrasitzung.html#cb894-11"></a><span class="kw">gl</span>()       <span class="co"># Generate factors with the pattern of their levels</span></span>
-<span id="cb894-12"><a href="extrasitzung.html#cb894-12"></a><span class="kw">grep</span>()     <span class="co"># Pattern matching</span></span>
-<span id="cb894-13"><a href="extrasitzung.html#cb894-13"></a><span class="kw">identical</span>()  <span class="co"># Test if 2 objects are *exactly* equal</span></span>
-<span id="cb894-14"><a href="extrasitzung.html#cb894-14"></a><span class="kw">jitter</span>()     <span class="co"># Add a small amount of noise to a numeric vector</span></span>
-<span id="cb894-15"><a href="extrasitzung.html#cb894-15"></a><span class="kw">julian</span>()     <span class="co"># Return Julian date</span></span>
-<span id="cb894-16"><a href="extrasitzung.html#cb894-16"></a><span class="kw">length</span>(x)    <span class="co"># Return no. of elements in vector x</span></span>
-<span id="cb894-17"><a href="extrasitzung.html#cb894-17"></a><span class="kw">ls</span>()         <span class="co"># List objects in current environment</span></span>
-<span id="cb894-18"><a href="extrasitzung.html#cb894-18"></a><span class="kw">mat.or.vec</span>() <span class="co"># Create a matrix or vector</span></span>
-<span id="cb894-19"><a href="extrasitzung.html#cb894-19"></a><span class="kw">paste</span>(x)     <span class="co"># Concatenate vectors after converting to character</span></span>
-<span id="cb894-20"><a href="extrasitzung.html#cb894-20"></a><span class="kw">range</span>(x)     <span class="co"># Returns the minimum and maximum of x</span></span>
-<span id="cb894-21"><a href="extrasitzung.html#cb894-21"></a><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>)     <span class="co"># Repeat the number 1 five times</span></span>
-<span id="cb894-22"><a href="extrasitzung.html#cb894-22"></a><span class="kw">rev</span>(x)       <span class="co"># List the elements of &quot;x&quot; in reverse order</span></span>
-<span id="cb894-23"><a href="extrasitzung.html#cb894-23"></a><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>,<span class="fl">0.4</span>)  <span class="co"># Generate a sequence (1 -&gt; 10, spaced by 0.4)</span></span>
-<span id="cb894-24"><a href="extrasitzung.html#cb894-24"></a><span class="kw">sequence</span>()     <span class="co"># Create a vector of sequences</span></span>
-<span id="cb894-25"><a href="extrasitzung.html#cb894-25"></a><span class="kw">sign</span>(x)        <span class="co"># Returns the signs of the elements of x</span></span>
-<span id="cb894-26"><a href="extrasitzung.html#cb894-26"></a><span class="kw">sort</span>(x)        <span class="co"># Sort the vector x</span></span>
-<span id="cb894-27"><a href="extrasitzung.html#cb894-27"></a><span class="kw">order</span>(x)       <span class="co"># list sorted element numbers of x</span></span>
-<span id="cb894-28"><a href="extrasitzung.html#cb894-28"></a><span class="kw">tolower</span>(),<span class="kw">toupper</span>()  <span class="co"># Convert string to lower/upper case letters</span></span>
-<span id="cb894-29"><a href="extrasitzung.html#cb894-29"></a><span class="kw">unique</span>(x)      <span class="co"># Remove duplicate entries from vector</span></span>
-<span id="cb894-30"><a href="extrasitzung.html#cb894-30"></a><span class="kw">system</span>(<span class="st">&quot;cmd&quot;</span>)  <span class="co"># Execute &quot;cmd&quot; in operating system (outside of R)</span></span>
-<span id="cb894-31"><a href="extrasitzung.html#cb894-31"></a><span class="kw">vector</span>()       <span class="co"># Produces a vector of given length and mode</span></span>
-<span id="cb894-32"><a href="extrasitzung.html#cb894-32"></a></span>
-<span id="cb894-33"><a href="extrasitzung.html#cb894-33"></a><span class="kw">formatC</span>(x)     <span class="co"># Format x using &#39;C&#39; style formatting specifications</span></span>
-<span id="cb894-34"><a href="extrasitzung.html#cb894-34"></a><span class="kw">floor</span>(x), <span class="kw">ceiling</span>(x), <span class="kw">round</span>(x), <span class="kw">signif</span>(x), <span class="kw">trunc</span>(x)   <span class="co"># rounding functions</span></span>
-<span id="cb894-35"><a href="extrasitzung.html#cb894-35"></a></span>
-<span id="cb894-36"><a href="extrasitzung.html#cb894-36"></a><span class="kw">Sys.getenv</span>(x)  <span class="co"># Get the value of the environment variable &quot;x&quot;</span></span>
-<span id="cb894-37"><a href="extrasitzung.html#cb894-37"></a><span class="kw">Sys.putenv</span>(x)  <span class="co"># Set the value of the environment variable &quot;x&quot;</span></span>
-<span id="cb894-38"><a href="extrasitzung.html#cb894-38"></a><span class="kw">Sys.time</span>()     <span class="co"># Return system time</span></span>
-<span id="cb894-39"><a href="extrasitzung.html#cb894-39"></a><span class="kw">Sys.Date</span>()     <span class="co"># Return system date</span></span>
-<span id="cb894-40"><a href="extrasitzung.html#cb894-40"></a><span class="kw">getwd</span>()        <span class="co"># Return working directory</span></span>
-<span id="cb894-41"><a href="extrasitzung.html#cb894-41"></a><span class="kw">setwd</span>()        <span class="co"># Set working directory</span></span>
-<span id="cb894-42"><a href="extrasitzung.html#cb894-42"></a>?files         <span class="co"># Help on low-level interface to file system</span></span>
-<span id="cb894-43"><a href="extrasitzung.html#cb894-43"></a><span class="kw">list.files</span>()   <span class="co"># List files in a give directory</span></span>
-<span id="cb894-44"><a href="extrasitzung.html#cb894-44"></a><span class="kw">file.info</span>()    <span class="co"># Get information about files</span></span>
-<span id="cb894-45"><a href="extrasitzung.html#cb894-45"></a></span>
-<span id="cb894-46"><a href="extrasitzung.html#cb894-46"></a><span class="co"># Built-in constants:</span></span>
-<span id="cb894-47"><a href="extrasitzung.html#cb894-47"></a>pi,letters,LETTERS   <span class="co"># Pi, lower &amp; uppercase letters, e.g. letters[7] = &quot;g&quot;</span></span>
-<span id="cb894-48"><a href="extrasitzung.html#cb894-48"></a>month.abb,month.name <span class="co"># Abbreviated &amp; full names for months</span></span></code></pre></div>
+<div class="sourceCode" id="cb910"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb910-1"><a href="extrasitzung.html#cb910-1"></a><span class="kw">builtins</span>() <span class="co"># List all built-in functions</span></span>
+<span id="cb910-2"><a href="extrasitzung.html#cb910-2"></a><span class="kw">options</span>()  <span class="co"># Set options to control how R computes &amp; displays results</span></span>
+<span id="cb910-3"><a href="extrasitzung.html#cb910-3"></a></span>
+<span id="cb910-4"><a href="extrasitzung.html#cb910-4"></a>?<span class="ot">NA</span>        <span class="co"># Help page on handling of missing data values</span></span>
+<span id="cb910-5"><a href="extrasitzung.html#cb910-5"></a><span class="kw">abs</span>(x)     <span class="co"># The absolute value of &quot;x&quot;</span></span>
+<span id="cb910-6"><a href="extrasitzung.html#cb910-6"></a><span class="kw">append</span>()   <span class="co"># Add elements to a vector</span></span>
+<span id="cb910-7"><a href="extrasitzung.html#cb910-7"></a><span class="kw">c</span>(x)       <span class="co"># A generic function which combines its arguments </span></span>
+<span id="cb910-8"><a href="extrasitzung.html#cb910-8"></a><span class="kw">cat</span>(x)     <span class="co"># Prints the arguments</span></span>
+<span id="cb910-9"><a href="extrasitzung.html#cb910-9"></a><span class="kw">cbind</span>()    <span class="co"># Combine vectors by row/column (cf. &quot;paste&quot; in Unix)</span></span>
+<span id="cb910-10"><a href="extrasitzung.html#cb910-10"></a><span class="kw">diff</span>(x)    <span class="co"># Returns suitably lagged and iterated differences</span></span>
+<span id="cb910-11"><a href="extrasitzung.html#cb910-11"></a><span class="kw">gl</span>()       <span class="co"># Generate factors with the pattern of their levels</span></span>
+<span id="cb910-12"><a href="extrasitzung.html#cb910-12"></a><span class="kw">grep</span>()     <span class="co"># Pattern matching</span></span>
+<span id="cb910-13"><a href="extrasitzung.html#cb910-13"></a><span class="kw">identical</span>()  <span class="co"># Test if 2 objects are *exactly* equal</span></span>
+<span id="cb910-14"><a href="extrasitzung.html#cb910-14"></a><span class="kw">jitter</span>()     <span class="co"># Add a small amount of noise to a numeric vector</span></span>
+<span id="cb910-15"><a href="extrasitzung.html#cb910-15"></a><span class="kw">julian</span>()     <span class="co"># Return Julian date</span></span>
+<span id="cb910-16"><a href="extrasitzung.html#cb910-16"></a><span class="kw">length</span>(x)    <span class="co"># Return no. of elements in vector x</span></span>
+<span id="cb910-17"><a href="extrasitzung.html#cb910-17"></a><span class="kw">ls</span>()         <span class="co"># List objects in current environment</span></span>
+<span id="cb910-18"><a href="extrasitzung.html#cb910-18"></a><span class="kw">mat.or.vec</span>() <span class="co"># Create a matrix or vector</span></span>
+<span id="cb910-19"><a href="extrasitzung.html#cb910-19"></a><span class="kw">paste</span>(x)     <span class="co"># Concatenate vectors after converting to character</span></span>
+<span id="cb910-20"><a href="extrasitzung.html#cb910-20"></a><span class="kw">range</span>(x)     <span class="co"># Returns the minimum and maximum of x</span></span>
+<span id="cb910-21"><a href="extrasitzung.html#cb910-21"></a><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>)     <span class="co"># Repeat the number 1 five times</span></span>
+<span id="cb910-22"><a href="extrasitzung.html#cb910-22"></a><span class="kw">rev</span>(x)       <span class="co"># List the elements of &quot;x&quot; in reverse order</span></span>
+<span id="cb910-23"><a href="extrasitzung.html#cb910-23"></a><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>,<span class="fl">0.4</span>)  <span class="co"># Generate a sequence (1 -&gt; 10, spaced by 0.4)</span></span>
+<span id="cb910-24"><a href="extrasitzung.html#cb910-24"></a><span class="kw">sequence</span>()     <span class="co"># Create a vector of sequences</span></span>
+<span id="cb910-25"><a href="extrasitzung.html#cb910-25"></a><span class="kw">sign</span>(x)        <span class="co"># Returns the signs of the elements of x</span></span>
+<span id="cb910-26"><a href="extrasitzung.html#cb910-26"></a><span class="kw">sort</span>(x)        <span class="co"># Sort the vector x</span></span>
+<span id="cb910-27"><a href="extrasitzung.html#cb910-27"></a><span class="kw">order</span>(x)       <span class="co"># list sorted element numbers of x</span></span>
+<span id="cb910-28"><a href="extrasitzung.html#cb910-28"></a><span class="kw">tolower</span>(),<span class="kw">toupper</span>()  <span class="co"># Convert string to lower/upper case letters</span></span>
+<span id="cb910-29"><a href="extrasitzung.html#cb910-29"></a><span class="kw">unique</span>(x)      <span class="co"># Remove duplicate entries from vector</span></span>
+<span id="cb910-30"><a href="extrasitzung.html#cb910-30"></a><span class="kw">system</span>(<span class="st">&quot;cmd&quot;</span>)  <span class="co"># Execute &quot;cmd&quot; in operating system (outside of R)</span></span>
+<span id="cb910-31"><a href="extrasitzung.html#cb910-31"></a><span class="kw">vector</span>()       <span class="co"># Produces a vector of given length and mode</span></span>
+<span id="cb910-32"><a href="extrasitzung.html#cb910-32"></a></span>
+<span id="cb910-33"><a href="extrasitzung.html#cb910-33"></a><span class="kw">formatC</span>(x)     <span class="co"># Format x using &#39;C&#39; style formatting specifications</span></span>
+<span id="cb910-34"><a href="extrasitzung.html#cb910-34"></a><span class="kw">floor</span>(x), <span class="kw">ceiling</span>(x), <span class="kw">round</span>(x), <span class="kw">signif</span>(x), <span class="kw">trunc</span>(x)   <span class="co"># rounding functions</span></span>
+<span id="cb910-35"><a href="extrasitzung.html#cb910-35"></a></span>
+<span id="cb910-36"><a href="extrasitzung.html#cb910-36"></a><span class="kw">Sys.getenv</span>(x)  <span class="co"># Get the value of the environment variable &quot;x&quot;</span></span>
+<span id="cb910-37"><a href="extrasitzung.html#cb910-37"></a><span class="kw">Sys.putenv</span>(x)  <span class="co"># Set the value of the environment variable &quot;x&quot;</span></span>
+<span id="cb910-38"><a href="extrasitzung.html#cb910-38"></a><span class="kw">Sys.time</span>()     <span class="co"># Return system time</span></span>
+<span id="cb910-39"><a href="extrasitzung.html#cb910-39"></a><span class="kw">Sys.Date</span>()     <span class="co"># Return system date</span></span>
+<span id="cb910-40"><a href="extrasitzung.html#cb910-40"></a><span class="kw">getwd</span>()        <span class="co"># Return working directory</span></span>
+<span id="cb910-41"><a href="extrasitzung.html#cb910-41"></a><span class="kw">setwd</span>()        <span class="co"># Set working directory</span></span>
+<span id="cb910-42"><a href="extrasitzung.html#cb910-42"></a>?files         <span class="co"># Help on low-level interface to file system</span></span>
+<span id="cb910-43"><a href="extrasitzung.html#cb910-43"></a><span class="kw">list.files</span>()   <span class="co"># List files in a give directory</span></span>
+<span id="cb910-44"><a href="extrasitzung.html#cb910-44"></a><span class="kw">file.info</span>()    <span class="co"># Get information about files</span></span>
+<span id="cb910-45"><a href="extrasitzung.html#cb910-45"></a></span>
+<span id="cb910-46"><a href="extrasitzung.html#cb910-46"></a><span class="co"># Built-in constants:</span></span>
+<span id="cb910-47"><a href="extrasitzung.html#cb910-47"></a>pi,letters,LETTERS   <span class="co"># Pi, lower &amp; uppercase letters, e.g. letters[7] = &quot;g&quot;</span></span>
+<span id="cb910-48"><a href="extrasitzung.html#cb910-48"></a>month.abb,month.name <span class="co"># Abbreviated &amp; full names for months</span></span></code></pre></div>
 </div>
 <div id="mathe" class="section level3">
 <h3>Mathe</h3>
 <p>Hier geklaut: <a href="http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html" class="uri">http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html</a></p>
-<div class="sourceCode" id="cb895"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb895-1"><a href="extrasitzung.html#cb895-1"></a><span class="kw">log</span>(x),<span class="kw">logb</span>(),<span class="kw">log10</span>(),<span class="kw">log2</span>(),<span class="kw">exp</span>(),<span class="kw">expm1</span>(),<span class="kw">log1p</span>(),<span class="kw">sqrt</span>()   <span class="co"># Fairly obvious</span></span>
-<span id="cb895-2"><a href="extrasitzung.html#cb895-2"></a><span class="kw">cos</span>(),<span class="kw">sin</span>(),<span class="kw">tan</span>(),<span class="kw">acos</span>(),<span class="kw">asin</span>(),<span class="kw">atan</span>(),<span class="kw">atan2</span>()       <span class="co"># Usual stuff</span></span>
-<span id="cb895-3"><a href="extrasitzung.html#cb895-3"></a><span class="kw">cosh</span>(),<span class="kw">sinh</span>(),<span class="kw">tanh</span>(),<span class="kw">acosh</span>(),<span class="kw">asinh</span>(),<span class="kw">atanh</span>()         <span class="co"># Hyperbolic functions</span></span>
-<span id="cb895-4"><a href="extrasitzung.html#cb895-4"></a><span class="kw">union</span>(),<span class="kw">intersect</span>(),<span class="kw">setdiff</span>(),<span class="kw">setequal</span>()             <span class="co"># Set operations</span></span>
-<span id="cb895-5"><a href="extrasitzung.html#cb895-5"></a><span class="op">+</span>,<span class="op">-</span>,<span class="op">*</span>,<span class="op">/</span>,<span class="op">^</span>,<span class="op">%%</span>,<span class="op">%/%</span><span class="st">                                     </span><span class="co"># Arithmetic operators</span></span>
-<span id="cb895-6"><a href="extrasitzung.html#cb895-6"></a><span class="er">&lt;</span>,<span class="op">&gt;</span>,<span class="op">&lt;=</span>,<span class="op">&gt;=</span>,<span class="op">==</span>,<span class="op">!=</span><span class="st">                                      </span><span class="co"># Comparison operators</span></span>
-<span id="cb895-7"><a href="extrasitzung.html#cb895-7"></a><span class="kw">eigen</span>()      <span class="co"># Computes eigenvalues and eigenvectors</span></span>
-<span id="cb895-8"><a href="extrasitzung.html#cb895-8"></a></span>
-<span id="cb895-9"><a href="extrasitzung.html#cb895-9"></a><span class="kw">deriv</span>()      <span class="co"># Symbolic and algorithmic derivatives of simple expressions</span></span>
-<span id="cb895-10"><a href="extrasitzung.html#cb895-10"></a><span class="kw">integrate</span>()  <span class="co"># Adaptive quadrature over a finite or infinite interval.</span></span>
-<span id="cb895-11"><a href="extrasitzung.html#cb895-11"></a></span>
-<span id="cb895-12"><a href="extrasitzung.html#cb895-12"></a><span class="kw">sqrt</span>(),<span class="kw">sum</span>()</span>
-<span id="cb895-13"><a href="extrasitzung.html#cb895-13"></a>?Control     <span class="co"># Help on control flow statements (e.g. if, for, while)</span></span>
-<span id="cb895-14"><a href="extrasitzung.html#cb895-14"></a>?Extract     <span class="co"># Help on operators acting to extract or replace subsets of vectors</span></span>
-<span id="cb895-15"><a href="extrasitzung.html#cb895-15"></a>?Logic       <span class="co"># Help on logical operators</span></span>
-<span id="cb895-16"><a href="extrasitzung.html#cb895-16"></a>?Mod         <span class="co"># Help on functions which support complex arithmetic in R</span></span>
-<span id="cb895-17"><a href="extrasitzung.html#cb895-17"></a>?Paren       <span class="co"># Help on parentheses</span></span>
-<span id="cb895-18"><a href="extrasitzung.html#cb895-18"></a>?regex       <span class="co"># Help on regular expressions used in R</span></span>
-<span id="cb895-19"><a href="extrasitzung.html#cb895-19"></a>?Syntax      <span class="co"># Help on R syntax and giving the precedence of operators</span></span>
-<span id="cb895-20"><a href="extrasitzung.html#cb895-20"></a>?Special     <span class="co"># Help on special functions related to beta and gamma functions</span></span></code></pre></div>
+<div class="sourceCode" id="cb911"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb911-1"><a href="extrasitzung.html#cb911-1"></a><span class="kw">log</span>(x),<span class="kw">logb</span>(),<span class="kw">log10</span>(),<span class="kw">log2</span>(),<span class="kw">exp</span>(),<span class="kw">expm1</span>(),<span class="kw">log1p</span>(),<span class="kw">sqrt</span>()   <span class="co"># Fairly obvious</span></span>
+<span id="cb911-2"><a href="extrasitzung.html#cb911-2"></a><span class="kw">cos</span>(),<span class="kw">sin</span>(),<span class="kw">tan</span>(),<span class="kw">acos</span>(),<span class="kw">asin</span>(),<span class="kw">atan</span>(),<span class="kw">atan2</span>()       <span class="co"># Usual stuff</span></span>
+<span id="cb911-3"><a href="extrasitzung.html#cb911-3"></a><span class="kw">cosh</span>(),<span class="kw">sinh</span>(),<span class="kw">tanh</span>(),<span class="kw">acosh</span>(),<span class="kw">asinh</span>(),<span class="kw">atanh</span>()         <span class="co"># Hyperbolic functions</span></span>
+<span id="cb911-4"><a href="extrasitzung.html#cb911-4"></a><span class="kw">union</span>(),<span class="kw">intersect</span>(),<span class="kw">setdiff</span>(),<span class="kw">setequal</span>()             <span class="co"># Set operations</span></span>
+<span id="cb911-5"><a href="extrasitzung.html#cb911-5"></a><span class="op">+</span>,<span class="op">-</span>,<span class="op">*</span>,<span class="op">/</span>,<span class="op">^</span>,<span class="op">%%</span>,<span class="op">%/%</span><span class="st">                                     </span><span class="co"># Arithmetic operators</span></span>
+<span id="cb911-6"><a href="extrasitzung.html#cb911-6"></a><span class="er">&lt;</span>,<span class="op">&gt;</span>,<span class="op">&lt;=</span>,<span class="op">&gt;=</span>,<span class="op">==</span>,<span class="op">!=</span><span class="st">                                      </span><span class="co"># Comparison operators</span></span>
+<span id="cb911-7"><a href="extrasitzung.html#cb911-7"></a><span class="kw">eigen</span>()      <span class="co"># Computes eigenvalues and eigenvectors</span></span>
+<span id="cb911-8"><a href="extrasitzung.html#cb911-8"></a></span>
+<span id="cb911-9"><a href="extrasitzung.html#cb911-9"></a><span class="kw">deriv</span>()      <span class="co"># Symbolic and algorithmic derivatives of simple expressions</span></span>
+<span id="cb911-10"><a href="extrasitzung.html#cb911-10"></a><span class="kw">integrate</span>()  <span class="co"># Adaptive quadrature over a finite or infinite interval.</span></span>
+<span id="cb911-11"><a href="extrasitzung.html#cb911-11"></a></span>
+<span id="cb911-12"><a href="extrasitzung.html#cb911-12"></a><span class="kw">sqrt</span>(),<span class="kw">sum</span>()</span>
+<span id="cb911-13"><a href="extrasitzung.html#cb911-13"></a>?Control     <span class="co"># Help on control flow statements (e.g. if, for, while)</span></span>
+<span id="cb911-14"><a href="extrasitzung.html#cb911-14"></a>?Extract     <span class="co"># Help on operators acting to extract or replace subsets of vectors</span></span>
+<span id="cb911-15"><a href="extrasitzung.html#cb911-15"></a>?Logic       <span class="co"># Help on logical operators</span></span>
+<span id="cb911-16"><a href="extrasitzung.html#cb911-16"></a>?Mod         <span class="co"># Help on functions which support complex arithmetic in R</span></span>
+<span id="cb911-17"><a href="extrasitzung.html#cb911-17"></a>?Paren       <span class="co"># Help on parentheses</span></span>
+<span id="cb911-18"><a href="extrasitzung.html#cb911-18"></a>?regex       <span class="co"># Help on regular expressions used in R</span></span>
+<span id="cb911-19"><a href="extrasitzung.html#cb911-19"></a>?Syntax      <span class="co"># Help on R syntax and giving the precedence of operators</span></span>
+<span id="cb911-20"><a href="extrasitzung.html#cb911-20"></a>?Special     <span class="co"># Help on special functions related to beta and gamma functions</span></span></code></pre></div>
 </div>
 <div id="statistik" class="section level3">
 <h3>Statistik</h3>
 <p>Hier geklaut: <a href="http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html" class="uri">http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html</a></p>
-<div class="sourceCode" id="cb896"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb896-1"><a href="extrasitzung.html#cb896-1"></a><span class="kw">help</span>(<span class="dt">package=</span>stats)   <span class="co"># List all stats functions</span></span>
-<span id="cb896-2"><a href="extrasitzung.html#cb896-2"></a></span>
-<span id="cb896-3"><a href="extrasitzung.html#cb896-3"></a>?Chisquare            <span class="co"># Help on chi-squared distribution functions</span></span>
-<span id="cb896-4"><a href="extrasitzung.html#cb896-4"></a>?Poisson              <span class="co"># Help on Poisson distribution functions</span></span>
-<span id="cb896-5"><a href="extrasitzung.html#cb896-5"></a><span class="kw">help</span>(<span class="dt">package=</span>survival) <span class="co"># Survival analysis</span></span>
-<span id="cb896-6"><a href="extrasitzung.html#cb896-6"></a></span>
-<span id="cb896-7"><a href="extrasitzung.html#cb896-7"></a><span class="kw">cor.test</span>()            <span class="co"># Perform correlation test</span></span>
-<span id="cb896-8"><a href="extrasitzung.html#cb896-8"></a><span class="kw">cumsum</span>(); <span class="kw">cumprod</span>(); <span class="kw">cummin</span>(); <span class="kw">cummax</span>()   <span class="co"># Cumuluative functions for vectors</span></span>
-<span id="cb896-9"><a href="extrasitzung.html#cb896-9"></a><span class="kw">density</span>(x)            <span class="co"># Compute kernel density estimates</span></span>
-<span id="cb896-10"><a href="extrasitzung.html#cb896-10"></a><span class="kw">ks.test</span>()             <span class="co"># Performs one or two sample Kolmogorov-Smirnov tests</span></span>
-<span id="cb896-11"><a href="extrasitzung.html#cb896-11"></a><span class="kw">loess</span>(), <span class="kw">lowess</span>()     <span class="co"># Scatter plot smoothing</span></span>
-<span id="cb896-12"><a href="extrasitzung.html#cb896-12"></a><span class="kw">mad</span>()                 <span class="co"># Calculate median absolute deviation</span></span>
-<span id="cb896-13"><a href="extrasitzung.html#cb896-13"></a><span class="kw">mean</span>(x), <span class="kw">weighted.mean</span>(x), <span class="kw">median</span>(x), <span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="kw">quantile</span>(x)</span>
-<span id="cb896-14"><a href="extrasitzung.html#cb896-14"></a><span class="kw">rnorm</span>(), <span class="kw">runif</span>()  <span class="co"># Generate random data with Gaussian/uniform distribution</span></span>
-<span id="cb896-15"><a href="extrasitzung.html#cb896-15"></a><span class="kw">splinefun</span>()           <span class="co"># Perform spline interpolation</span></span>
-<span id="cb896-16"><a href="extrasitzung.html#cb896-16"></a><span class="kw">smooth.spline</span>()       <span class="co"># Fits a cubic smoothing spline</span></span>
-<span id="cb896-17"><a href="extrasitzung.html#cb896-17"></a><span class="kw">sd</span>()                  <span class="co"># Calculate standard deviation</span></span>
-<span id="cb896-18"><a href="extrasitzung.html#cb896-18"></a><span class="kw">summary</span>(x)            <span class="co"># Returns a summary of x: mean, min, max etc.</span></span>
-<span id="cb896-19"><a href="extrasitzung.html#cb896-19"></a><span class="kw">t.test</span>()              <span class="co"># Student&#39;s t-test</span></span>
-<span id="cb896-20"><a href="extrasitzung.html#cb896-20"></a><span class="kw">var</span>()                 <span class="co"># Calculate variance</span></span>
-<span id="cb896-21"><a href="extrasitzung.html#cb896-21"></a><span class="kw">sample</span>()              <span class="co"># Random samples &amp; permutations</span></span>
-<span id="cb896-22"><a href="extrasitzung.html#cb896-22"></a><span class="kw">ecdf</span>()                <span class="co"># Empirical Cumulative Distribution Function</span></span>
-<span id="cb896-23"><a href="extrasitzung.html#cb896-23"></a><span class="kw">qqplot</span>()              <span class="co"># quantile-quantile plot</span></span></code></pre></div>
+<div class="sourceCode" id="cb912"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb912-1"><a href="extrasitzung.html#cb912-1"></a><span class="kw">help</span>(<span class="dt">package=</span>stats)   <span class="co"># List all stats functions</span></span>
+<span id="cb912-2"><a href="extrasitzung.html#cb912-2"></a></span>
+<span id="cb912-3"><a href="extrasitzung.html#cb912-3"></a>?Chisquare            <span class="co"># Help on chi-squared distribution functions</span></span>
+<span id="cb912-4"><a href="extrasitzung.html#cb912-4"></a>?Poisson              <span class="co"># Help on Poisson distribution functions</span></span>
+<span id="cb912-5"><a href="extrasitzung.html#cb912-5"></a><span class="kw">help</span>(<span class="dt">package=</span>survival) <span class="co"># Survival analysis</span></span>
+<span id="cb912-6"><a href="extrasitzung.html#cb912-6"></a></span>
+<span id="cb912-7"><a href="extrasitzung.html#cb912-7"></a><span class="kw">cor.test</span>()            <span class="co"># Perform correlation test</span></span>
+<span id="cb912-8"><a href="extrasitzung.html#cb912-8"></a><span class="kw">cumsum</span>(); <span class="kw">cumprod</span>(); <span class="kw">cummin</span>(); <span class="kw">cummax</span>()   <span class="co"># Cumuluative functions for vectors</span></span>
+<span id="cb912-9"><a href="extrasitzung.html#cb912-9"></a><span class="kw">density</span>(x)            <span class="co"># Compute kernel density estimates</span></span>
+<span id="cb912-10"><a href="extrasitzung.html#cb912-10"></a><span class="kw">ks.test</span>()             <span class="co"># Performs one or two sample Kolmogorov-Smirnov tests</span></span>
+<span id="cb912-11"><a href="extrasitzung.html#cb912-11"></a><span class="kw">loess</span>(), <span class="kw">lowess</span>()     <span class="co"># Scatter plot smoothing</span></span>
+<span id="cb912-12"><a href="extrasitzung.html#cb912-12"></a><span class="kw">mad</span>()                 <span class="co"># Calculate median absolute deviation</span></span>
+<span id="cb912-13"><a href="extrasitzung.html#cb912-13"></a><span class="kw">mean</span>(x), <span class="kw">weighted.mean</span>(x), <span class="kw">median</span>(x), <span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="kw">quantile</span>(x)</span>
+<span id="cb912-14"><a href="extrasitzung.html#cb912-14"></a><span class="kw">rnorm</span>(), <span class="kw">runif</span>()  <span class="co"># Generate random data with Gaussian/uniform distribution</span></span>
+<span id="cb912-15"><a href="extrasitzung.html#cb912-15"></a><span class="kw">splinefun</span>()           <span class="co"># Perform spline interpolation</span></span>
+<span id="cb912-16"><a href="extrasitzung.html#cb912-16"></a><span class="kw">smooth.spline</span>()       <span class="co"># Fits a cubic smoothing spline</span></span>
+<span id="cb912-17"><a href="extrasitzung.html#cb912-17"></a><span class="kw">sd</span>()                  <span class="co"># Calculate standard deviation</span></span>
+<span id="cb912-18"><a href="extrasitzung.html#cb912-18"></a><span class="kw">summary</span>(x)            <span class="co"># Returns a summary of x: mean, min, max etc.</span></span>
+<span id="cb912-19"><a href="extrasitzung.html#cb912-19"></a><span class="kw">t.test</span>()              <span class="co"># Student&#39;s t-test</span></span>
+<span id="cb912-20"><a href="extrasitzung.html#cb912-20"></a><span class="kw">var</span>()                 <span class="co"># Calculate variance</span></span>
+<span id="cb912-21"><a href="extrasitzung.html#cb912-21"></a><span class="kw">sample</span>()              <span class="co"># Random samples &amp; permutations</span></span>
+<span id="cb912-22"><a href="extrasitzung.html#cb912-22"></a><span class="kw">ecdf</span>()                <span class="co"># Empirical Cumulative Distribution Function</span></span>
+<span id="cb912-23"><a href="extrasitzung.html#cb912-23"></a><span class="kw">qqplot</span>()              <span class="co"># quantile-quantile plot</span></span></code></pre></div>
 
 </div>
 </div>
