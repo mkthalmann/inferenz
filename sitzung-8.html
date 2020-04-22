@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Sitzung 8 | Tutorium zur Inferenzstatistik</title>
   <meta name="description" content="This book introduces inferential statistics using R (in German) and is based on a class I taught at Georg-August-University Göttingen." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Sitzung 8 | Tutorium zur Inferenzstatistik" />
   <meta property="og:type" content="book" />
@@ -31,6 +31,7 @@
   
 <link rel="prev" href="sitzung-7.html"/>
 <link rel="next" href="sitzung-9.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,12 +50,12 @@
 
 
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -630,6 +631,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#scico"><i class="fa fa-check"></i>scico</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#palettenvorschau"><i class="fa fa-check"></i>Palettenvorschau</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#scico-in-action"><i class="fa fa-check"></i>scico in action</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#farbenblindheitschecks"><i class="fa fa-check"></i>Farbenblindheitschecks:</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plot-speichern"><i class="fa fa-check"></i>Plot speichern</a>
 <ul>
@@ -1267,10 +1269,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Anova Table (Type 3 tests)
 ## 
 ## Response: judgement
-##     Effect    df  MSE       F ges p.value
-## 1      gen 1, 31 0.30 9.07 ** .02    .005
-## 2     prep 1, 31 0.37  4.64 * .01     .04
-## 3 gen:prep 1, 31 0.52  4.85 * .02     .04
+##     Effect    df  MSE       F  ges p.value
+## 1      gen 1, 31 0.30 9.07 ** .022    .005
+## 2     prep 1, 31 0.37  4.64 * .014    .039
+## 3 gen:prep 1, 31 0.52  4.85 * .020    .035
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;+&#39; 0.1 &#39; &#39; 1</code></pre>
 <div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="sitzung-8.html#cb586-1"></a><span class="kw">aov_ez</span>(<span class="dt">id =</span> <span class="st">&quot;item&quot;</span>, <span class="dt">dv =</span> <span class="st">&quot;judgement&quot;</span>, <span class="dt">within =</span> <span class="kw">c</span>(<span class="st">&quot;gen&quot;</span>, <span class="st">&quot;prep&quot;</span>),</span>
@@ -1278,10 +1280,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Anova Table (Type 3 tests)
 ## 
 ## Response: judgement
-##     Effect    df  MSE       F ges p.value
-## 1      gen 1, 18 0.52    2.57 .04     .13
-## 2     prep 1, 18 0.34    2.69 .03     .12
-## 3 gen:prep 1, 18 0.19 9.09 ** .05    .007
+##     Effect    df  MSE       F  ges p.value
+## 1      gen 1, 18 0.52    2.57 .042    .126
+## 2     prep 1, 18 0.34    2.69 .029    .118
+## 3 gen:prep 1, 18 0.19 9.09 ** .054    .007
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;+&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
@@ -1316,10 +1318,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb592-7"><a href="sitzung-8.html#cb592-7"></a>    <span class="dt">width =</span> <span class="fl">0.2</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">linetype =</span> <span class="dv">1</span>) <span class="op">+</span></span>
 <span id="cb592-8"><a href="sitzung-8.html#cb592-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Mean Rating [1..7]&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Preposition&quot;</span>,</span>
 <span id="cb592-9"><a href="sitzung-8.html#cb592-9"></a>    <span class="dt">shape =</span> <span class="st">&quot;Reading&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;Reading&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: `fun.y` is deprecated. Use `fun` instead.
+
+## Warning: `fun.y` is deprecated. Use `fun` instead.</code></pre>
 </div>
 <div id="ein-plot-zum-abschluss-10" class="section level3">
 <h3>Ein Plot zum Abschluss</h3>
-<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="sitzung-8.html#cb593-1"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="sitzung-8.html#cb594-1"></a>p</span></code></pre></div>
 <p><img src="inference_files/figure-html/eightlineplot2-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="zum-nachdenken" class="section level3">

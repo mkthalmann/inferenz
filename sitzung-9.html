@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Sitzung 9 | Tutorium zur Inferenzstatistik</title>
   <meta name="description" content="This book introduces inferential statistics using R (in German) and is based on a class I taught at Georg-August-University Göttingen." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Sitzung 9 | Tutorium zur Inferenzstatistik" />
   <meta property="og:type" content="book" />
@@ -31,6 +31,7 @@
   
 <link rel="prev" href="sitzung-8.html"/>
 <link rel="next" href="ggplot2.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,12 +50,12 @@
 
 
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -630,6 +631,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#scico"><i class="fa fa-check"></i>scico</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#palettenvorschau"><i class="fa fa-check"></i>Palettenvorschau</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#scico-in-action"><i class="fa fa-check"></i>scico in action</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#farbenblindheitschecks"><i class="fa fa-check"></i>Farbenblindheitschecks:</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#plot-speichern"><i class="fa fa-check"></i>Plot speichern</a>
 <ul>
@@ -881,8 +883,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Daten einlesen und aufbereiten</h2>
 <div id="daten-einlesen-und-überblick-verschaffen" class="section level3">
 <h3>Daten einlesen und Überblick verschaffen</h3>
-<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="sitzung-9.html#cb594-1"></a>d &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;docs/data/tut9/datapre.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb594-2"><a href="sitzung-9.html#cb594-2"></a><span class="kw">head</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="sitzung-9.html#cb595-1"></a>d &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;docs/data/tut9/datapre.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb595-2"><a href="sitzung-9.html#cb595-2"></a><span class="kw">head</span>(d)</span></code></pre></div>
 <pre><code>##   V1                               V2 V3  V4      V5              V6   V7
 ## 1 id 3536fed0235c7b34a33ddf06fb91b390 ip ::1 time(s)  1558796407.625 data
 ## 2 id 3536fed0235c7b34a33ddf06fb91b390 ip ::1 time(s) 1558796437.5646 data
@@ -900,7 +902,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="überblick-ii" class="section level3">
 <h3>Überblick II</h3>
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="sitzung-9.html#cb596-1"></a><span class="kw">summary</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="sitzung-9.html#cb597-1"></a><span class="kw">summary</span>(d)</span></code></pre></div>
 <pre><code>##   V1                                      V2        V3         V4      
 ##  id:1181   0up71acsusa12ruvaf3llod4h6      :  30   ip:1181   ::1:1181  
 ##            28af308e70043f33346261c3fe3a79b8:  30                       
@@ -960,13 +962,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="leere-und-überflüssige-spalten-entfernen" class="section level3">
 <h3>Leere und überflüssige Spalten entfernen</h3>
 <p>Spalten auswählen, die wir behalten wollen:</p>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="sitzung-9.html#cb598-1"></a>(<span class="kw">apply</span>(<span class="kw">is.na</span>(d), <span class="dv">2</span>, sum) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(d[, <span class="dv">1</span>])) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="sitzung-9.html#cb599-1"></a>(<span class="kw">apply</span>(<span class="kw">is.na</span>(d), <span class="dv">2</span>, sum) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(d[, <span class="dv">1</span>])) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##     V1     V2     V3     V4     V5     V6     V7     V8     V9    V10    V11 
 ##      0      0      0      0      0      0      0      0      0    100      0 
 ##    V12    V13    V14    V15    V16    V17    age months gender 
 ##      0    100    100      0      0    100      0      0      0</code></pre>
-<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="sitzung-9.html#cb600-1"></a>d &lt;-<span class="st"> </span>d[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">16</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>)]</span>
-<span id="cb600-2"><a href="sitzung-9.html#cb600-2"></a><span class="kw">head</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="sitzung-9.html#cb601-1"></a>d &lt;-<span class="st"> </span>d[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">16</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>)]</span>
+<span id="cb601-2"><a href="sitzung-9.html#cb601-2"></a><span class="kw">head</span>(d)</span></code></pre></div>
 <pre><code>##                                 V2            V8 V9    V16 age months gender
 ## 1 3536fed0235c7b34a33ddf06fb91b390  schaffen4_at  5 mailin   5      1      w
 ## 2 3536fed0235c7b34a33ddf06fb91b390 schaffen1_non  5 mailin   5      1      w
@@ -978,19 +980,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="leere-und-überflüssige-spalten-entfernen-1" class="section level3">
 <h3>Leere und überflüssige Spalten entfernen</h3>
 <p>Alternative mit <code>subset</code>-Fuktion:</p>
-<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="sitzung-9.html#cb602-1"></a>d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, <span class="dt">select =</span> <span class="kw">c</span>(V2, V8, V9, V16, age, months, gender))</span></code></pre></div>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="sitzung-9.html#cb603-1"></a>d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, <span class="dt">select =</span> <span class="kw">c</span>(V2, V8, V9, V16, age, months, gender))</span></code></pre></div>
 </div>
 <div id="faktor" class="section level3">
 <h3>Faktor </h3>
 <p>Was wir machen müssen, ist nach Mustern in der Itembenennung zu schauen, die wir verwenden können. Dazu bieten sich “_at” und “_non” an.
 Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” enthalten.</p>
-<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="sitzung-9.html#cb603-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)</span>
-<span id="cb603-2"><a href="sitzung-9.html#cb603-2"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="sitzung-9.html#cb604-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)</span>
+<span id="cb604-2"><a href="sitzung-9.html#cb604-2"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
 <p>Sie heißt <code>str_detect</code> und funktioniert so:</p>
-<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="sitzung-9.html#cb604-1"></a><span class="kw">str_detect</span>(String, Muster)</span></code></pre></div>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="sitzung-9.html#cb605-1"></a><span class="kw">str_detect</span>(String, Muster)</span></code></pre></div>
 <p>Ein Beispiel:</p>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="sitzung-9.html#cb605-1"></a>fruit &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;pineapple&quot;</span>)</span>
-<span id="cb605-2"><a href="sitzung-9.html#cb605-2"></a><span class="kw">str_detect</span>(fruit, <span class="st">&quot;na&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="sitzung-9.html#cb606-1"></a>fruit &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;pineapple&quot;</span>)</span>
+<span id="cb606-2"><a href="sitzung-9.html#cb606-2"></a><span class="kw">str_detect</span>(fruit, <span class="st">&quot;na&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE  TRUE FALSE FALSE</code></pre>
 </div>
 <div id="übung-5" class="section level3">
@@ -1004,9 +1006,9 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 <ol style="list-style-type: decimal">
 <li>Benutzt <code>str_detect</code> um eine neue Spalte “issueness” anzulegen, die “at-issue” enthält, wenn das Item den String “_at” enthält, und “non-at-issue” bei “_non”</li>
 </ol>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="sitzung-9.html#cb607-1"></a>d<span class="op">$</span>issueness[<span class="kw">str_detect</span>(d<span class="op">$</span>V8, <span class="st">&quot;_at&quot;</span>)] &lt;-<span class="st"> &quot;at-issue&quot;</span></span>
-<span id="cb607-2"><a href="sitzung-9.html#cb607-2"></a>d<span class="op">$</span>issueness[<span class="kw">str_detect</span>(d<span class="op">$</span>V8, <span class="st">&quot;_non&quot;</span>)] &lt;-<span class="st"> &quot;non-at-issue&quot;</span></span>
-<span id="cb607-3"><a href="sitzung-9.html#cb607-3"></a><span class="kw">head</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="sitzung-9.html#cb608-1"></a>d<span class="op">$</span>issueness[<span class="kw">str_detect</span>(d<span class="op">$</span>V8, <span class="st">&quot;_at&quot;</span>)] &lt;-<span class="st"> &quot;at-issue&quot;</span></span>
+<span id="cb608-2"><a href="sitzung-9.html#cb608-2"></a>d<span class="op">$</span>issueness[<span class="kw">str_detect</span>(d<span class="op">$</span>V8, <span class="st">&quot;_non&quot;</span>)] &lt;-<span class="st"> &quot;non-at-issue&quot;</span></span>
+<span id="cb608-3"><a href="sitzung-9.html#cb608-3"></a><span class="kw">head</span>(d)</span></code></pre></div>
 <pre><code>##                                 V2            V8 V9    V16 age months gender
 ## 1 3536fed0235c7b34a33ddf06fb91b390  schaffen4_at  5 mailin   5      1      w
 ## 2 3536fed0235c7b34a33ddf06fb91b390 schaffen1_non  5 mailin   5      1      w
@@ -1037,10 +1039,10 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 <li>Benutzt dieselbe Methode, um den Faktor  zu codieren.</li>
 </ol>
 <p>Tipp: <code>str_detect</code> erlaubt auch Listen von Mustern, deren Elemente durch “|” (read: oder) innerhalb eines Strings getrennt sind:</p>
-<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="sitzung-9.html#cb609-1"></a>fruit &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;pineapple&quot;</span>)</span>
-<span id="cb609-2"><a href="sitzung-9.html#cb609-2"></a><span class="kw">str_detect</span>(fruit, <span class="st">&quot;na|ar&quot;</span>) <span class="co"># TRUE bei &quot;na&quot; und &quot;ar&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="sitzung-9.html#cb610-1"></a>fruit &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;pineapple&quot;</span>)</span>
+<span id="cb610-2"><a href="sitzung-9.html#cb610-2"></a><span class="kw">str_detect</span>(fruit, <span class="st">&quot;na|ar&quot;</span>) <span class="co"># TRUE bei &quot;na&quot; und &quot;ar&quot;</span></span></code></pre></div>
 <pre><code>## [1] FALSE  TRUE  TRUE FALSE</code></pre>
-<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="sitzung-9.html#cb611-1"></a>fruit[<span class="kw">str_detect</span>(fruit, <span class="st">&quot;na|ar&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="sitzung-9.html#cb612-1"></a>fruit[<span class="kw">str_detect</span>(fruit, <span class="st">&quot;na|ar&quot;</span>)]</span></code></pre></div>
 <pre><code>## [1] &quot;banana&quot; &quot;pear&quot;</code></pre>
 </div>
 <div id="lösung-ii" class="section level3">
@@ -1048,10 +1050,10 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 <ol style="list-style-type: decimal">
 <li>Benutzt dieselbe Methode, um den Faktor  zu codieren</li>
 </ol>
-<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="sitzung-9.html#cb613-1"></a>d<span class="op">$</span>trigger[<span class="kw">str_detect</span>(d<span class="op">$</span>V8, <span class="st">&quot;schaffen|entdecken|gewinnen&quot;</span>)] &lt;-<span class="st"> &quot;soft&quot;</span></span>
-<span id="cb613-2"><a href="sitzung-9.html#cb613-2"></a>d<span class="op">$</span>trigger[<span class="kw">str_detect</span>(d<span class="op">$</span>V8, <span class="st">&quot;cleft|auch|wieder&quot;</span>)] &lt;-<span class="st"> &quot;hard&quot;</span></span>
-<span id="cb613-3"><a href="sitzung-9.html#cb613-3"></a>d<span class="op">$</span>trigger[<span class="kw">str_detect</span>(d<span class="op">$</span>V8, <span class="st">&quot;appRel&quot;</span>)] &lt;-<span class="st"> &quot;appRel&quot;</span></span>
-<span id="cb613-4"><a href="sitzung-9.html#cb613-4"></a><span class="kw">head</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="sitzung-9.html#cb614-1"></a>d<span class="op">$</span>trigger[<span class="kw">str_detect</span>(d<span class="op">$</span>V8, <span class="st">&quot;schaffen|entdecken|gewinnen&quot;</span>)] &lt;-<span class="st"> &quot;soft&quot;</span></span>
+<span id="cb614-2"><a href="sitzung-9.html#cb614-2"></a>d<span class="op">$</span>trigger[<span class="kw">str_detect</span>(d<span class="op">$</span>V8, <span class="st">&quot;cleft|auch|wieder&quot;</span>)] &lt;-<span class="st"> &quot;hard&quot;</span></span>
+<span id="cb614-3"><a href="sitzung-9.html#cb614-3"></a>d<span class="op">$</span>trigger[<span class="kw">str_detect</span>(d<span class="op">$</span>V8, <span class="st">&quot;appRel&quot;</span>)] &lt;-<span class="st"> &quot;appRel&quot;</span></span>
+<span id="cb614-4"><a href="sitzung-9.html#cb614-4"></a><span class="kw">head</span>(d)</span></code></pre></div>
 <pre><code>##                                 V2            V8 V9    V16 age months gender
 ## 1 3536fed0235c7b34a33ddf06fb91b390  schaffen4_at  5 mailin   5      1      w
 ## 2 3536fed0235c7b34a33ddf06fb91b390 schaffen1_non  5 mailin   5      1      w
@@ -1077,9 +1079,9 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 </div>
 <div id="lösung-iii" class="section level3">
 <h3>Lösung III</h3>
-<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="sitzung-9.html#cb615-1"></a>d<span class="op">$</span>stage[d<span class="op">$</span>age <span class="op">&gt;=</span><span class="st"> </span><span class="dv">18</span>] &lt;-<span class="st"> &quot;adult&quot;</span></span>
-<span id="cb615-2"><a href="sitzung-9.html#cb615-2"></a>d<span class="op">$</span>stage[d<span class="op">$</span>age <span class="op">&lt;=</span><span class="st"> </span><span class="dv">6</span>] &lt;-<span class="st"> &quot;child&quot;</span></span>
-<span id="cb615-3"><a href="sitzung-9.html#cb615-3"></a><span class="kw">head</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="sitzung-9.html#cb616-1"></a>d<span class="op">$</span>stage[d<span class="op">$</span>age <span class="op">&gt;=</span><span class="st"> </span><span class="dv">18</span>] &lt;-<span class="st"> &quot;adult&quot;</span></span>
+<span id="cb616-2"><a href="sitzung-9.html#cb616-2"></a>d<span class="op">$</span>stage[d<span class="op">$</span>age <span class="op">&lt;=</span><span class="st"> </span><span class="dv">6</span>] &lt;-<span class="st"> &quot;child&quot;</span></span>
+<span id="cb616-3"><a href="sitzung-9.html#cb616-3"></a><span class="kw">head</span>(d)</span></code></pre></div>
 <pre><code>##                                 V2            V8 V9    V16 age months gender
 ## 1 3536fed0235c7b34a33ddf06fb91b390  schaffen4_at  5 mailin   5      1      w
 ## 2 3536fed0235c7b34a33ddf06fb91b390 schaffen1_non  5 mailin   5      1      w
@@ -1109,15 +1111,15 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 <ol style="list-style-type: decimal">
 <li>Benennt die Spalten sinnvoll um</li>
 </ol>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="sitzung-9.html#cb617-1"></a><span class="kw">names</span>(d) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;item&quot;</span>, <span class="st">&quot;judgment&quot;</span>, <span class="st">&quot;tester&quot;</span>, <span class="st">&quot;years&quot;</span>, <span class="st">&quot;months&quot;</span>,</span>
-<span id="cb617-2"><a href="sitzung-9.html#cb617-2"></a>  <span class="st">&quot;gender&quot;</span>, <span class="st">&quot;issueness&quot;</span>, <span class="st">&quot;trigger&quot;</span>, <span class="st">&quot;stage&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="sitzung-9.html#cb618-1"></a><span class="kw">names</span>(d) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;item&quot;</span>, <span class="st">&quot;judgment&quot;</span>, <span class="st">&quot;tester&quot;</span>, <span class="st">&quot;years&quot;</span>, <span class="st">&quot;months&quot;</span>,</span>
+<span id="cb618-2"><a href="sitzung-9.html#cb618-2"></a>  <span class="st">&quot;gender&quot;</span>, <span class="st">&quot;issueness&quot;</span>, <span class="st">&quot;trigger&quot;</span>, <span class="st">&quot;stage&quot;</span>)</span></code></pre></div>
 </div>
 <div id="lösung-iv-2" class="section level3">
 <h3>Lösung IV</h3>
 <ol start="2" style="list-style-type: decimal">
 <li>Überprüft, ob die wichtigen Spalten Faktoren sind und holt das ggf nach</li>
 </ol>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="sitzung-9.html#cb618-1"></a><span class="kw">str</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="sitzung-9.html#cb619-1"></a><span class="kw">str</span>(d)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    1181 obs. of  10 variables:
 ##  $ id       : Factor w/ 41 levels &quot;071362c17b307af0925ac2d94d697527&quot;,..: 6 6 6 6 6 6 6 6 6 6 ...
 ##  $ item     : Factor w/ 59 levels &quot;appRel1_at&quot;,&quot;appRel1_non&quot;,..: 52 47 29 8 20 43 57 23 33 2 ...
@@ -1129,10 +1131,10 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 ##  $ issueness: chr  &quot;at-issue&quot; &quot;non-at-issue&quot; &quot;non-at-issue&quot; &quot;non-at-issue&quot; ...
 ##  $ trigger  : chr  &quot;soft&quot; &quot;soft&quot; &quot;hard&quot; &quot;appRel&quot; ...
 ##  $ stage    : chr  &quot;child&quot; &quot;child&quot; &quot;child&quot; &quot;child&quot; ...</code></pre>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="sitzung-9.html#cb620-1"></a>d<span class="op">$</span>issueness &lt;-<span class="st"> </span><span class="kw">factor</span>(d<span class="op">$</span>issueness)</span>
-<span id="cb620-2"><a href="sitzung-9.html#cb620-2"></a>d<span class="op">$</span>trigger &lt;-<span class="st"> </span><span class="kw">factor</span>(d<span class="op">$</span>trigger)</span>
-<span id="cb620-3"><a href="sitzung-9.html#cb620-3"></a>d<span class="op">$</span>stage &lt;-<span class="st"> </span><span class="kw">factor</span>(d<span class="op">$</span>stage)</span>
-<span id="cb620-4"><a href="sitzung-9.html#cb620-4"></a><span class="kw">str</span>(d[, <span class="dv">8</span><span class="op">:</span><span class="dv">10</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="sitzung-9.html#cb621-1"></a>d<span class="op">$</span>issueness &lt;-<span class="st"> </span><span class="kw">factor</span>(d<span class="op">$</span>issueness)</span>
+<span id="cb621-2"><a href="sitzung-9.html#cb621-2"></a>d<span class="op">$</span>trigger &lt;-<span class="st"> </span><span class="kw">factor</span>(d<span class="op">$</span>trigger)</span>
+<span id="cb621-3"><a href="sitzung-9.html#cb621-3"></a>d<span class="op">$</span>stage &lt;-<span class="st"> </span><span class="kw">factor</span>(d<span class="op">$</span>stage)</span>
+<span id="cb621-4"><a href="sitzung-9.html#cb621-4"></a><span class="kw">str</span>(d[, <span class="dv">8</span><span class="op">:</span><span class="dv">10</span>])</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    1181 obs. of  3 variables:
 ##  $ issueness: Factor w/ 2 levels &quot;at-issue&quot;,&quot;non-at-issue&quot;: 1 2 2 2 2 2 2 1 2 2 ...
 ##  $ trigger  : Factor w/ 3 levels &quot;appRel&quot;,&quot;hard&quot;,..: 3 3 2 1 1 3 2 2 2 1 ...
@@ -1141,14 +1143,14 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 <div id="optionale-kür" class="section level3">
 <h3>(Optionale Kür)</h3>
 <p>Um die spätere Analyse ein bisschen einfacher (und die by-item-Plots aufschlussreicher) zu machen, codieren wir im Folgenden noch die Spalte mit den Itemids (also ohne die At-Issueness-Information) und die lexikalischen Trigger (Wert in der Itemspalte ohne Zahl und ohne At-Issueness)</p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="sitzung-9.html#cb622-1"></a><span class="co"># generate a column that holds the item ids without at-issuess</span></span>
-<span id="cb622-2"><a href="sitzung-9.html#cb622-2"></a><span class="co"># replace strings like &quot;_at&quot; with nothing</span></span>
-<span id="cb622-3"><a href="sitzung-9.html#cb622-3"></a>d<span class="op">$</span>itemid &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">gsub</span>(<span class="st">&quot;_.*$&quot;</span>, <span class="st">&quot;&quot;</span>, d<span class="op">$</span>item))</span>
-<span id="cb622-4"><a href="sitzung-9.html#cb622-4"></a></span>
-<span id="cb622-5"><a href="sitzung-9.html#cb622-5"></a><span class="co"># code lexical triggers</span></span>
-<span id="cb622-6"><a href="sitzung-9.html#cb622-6"></a><span class="co"># replace strings like &quot;5_non&quot; with nothing</span></span>
-<span id="cb622-7"><a href="sitzung-9.html#cb622-7"></a>d<span class="op">$</span>lex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">gsub</span>(<span class="st">&quot;[[:digit:]]_.*$&quot;</span>, <span class="st">&quot;&quot;</span>, d<span class="op">$</span>item))</span>
-<span id="cb622-8"><a href="sitzung-9.html#cb622-8"></a><span class="kw">head</span>(d, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="sitzung-9.html#cb623-1"></a><span class="co"># generate a column that holds the item ids without at-issuess</span></span>
+<span id="cb623-2"><a href="sitzung-9.html#cb623-2"></a><span class="co"># replace strings like &quot;_at&quot; with nothing</span></span>
+<span id="cb623-3"><a href="sitzung-9.html#cb623-3"></a>d<span class="op">$</span>itemid &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">gsub</span>(<span class="st">&quot;_.*$&quot;</span>, <span class="st">&quot;&quot;</span>, d<span class="op">$</span>item))</span>
+<span id="cb623-4"><a href="sitzung-9.html#cb623-4"></a></span>
+<span id="cb623-5"><a href="sitzung-9.html#cb623-5"></a><span class="co"># code lexical triggers</span></span>
+<span id="cb623-6"><a href="sitzung-9.html#cb623-6"></a><span class="co"># replace strings like &quot;5_non&quot; with nothing</span></span>
+<span id="cb623-7"><a href="sitzung-9.html#cb623-7"></a>d<span class="op">$</span>lex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">gsub</span>(<span class="st">&quot;[[:digit:]]_.*$&quot;</span>, <span class="st">&quot;&quot;</span>, d<span class="op">$</span>item))</span>
+<span id="cb623-8"><a href="sitzung-9.html#cb623-8"></a><span class="kw">head</span>(d, <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>##                                 id          item judgment tester years months
 ## 1 3536fed0235c7b34a33ddf06fb91b390  schaffen4_at        5 mailin     5      1
 ## 2 3536fed0235c7b34a33ddf06fb91b390 schaffen1_non        5 mailin     5      1
@@ -1167,15 +1169,15 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 <h3>describe()/describeBy()</h3>
 <p>Für die descriptive Statistik können wir der Einfachheit halber den <code>describeBy</code>-Befehl verwenden</p>
 <p>Paket laden:</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="sitzung-9.html#cb624-1"></a><span class="kw">library</span>(psych)</span></code></pre></div>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="sitzung-9.html#cb625-1"></a><span class="kw">library</span>(psych)</span></code></pre></div>
 <p>Statistik rechnen lassen:</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="sitzung-9.html#cb625-1"></a><span class="kw">describe</span>(...)</span>
-<span id="cb625-2"><a href="sitzung-9.html#cb625-2"></a><span class="kw">describeBy</span>(..., ...)</span></code></pre></div>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="sitzung-9.html#cb626-1"></a><span class="kw">describe</span>(...)</span>
+<span id="cb626-2"><a href="sitzung-9.html#cb626-2"></a><span class="kw">describeBy</span>(..., ...)</span></code></pre></div>
 </div>
 <div id="lösungen-v-3" class="section level3">
 <h3>Lösungen V</h3>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="sitzung-9.html#cb626-1"></a><span class="kw">describeBy</span>(d<span class="op">$</span>judgment, <span class="kw">list</span>(d<span class="op">$</span>stage, d<span class="op">$</span>issueness, d<span class="op">$</span>trigger),</span>
-<span id="cb626-2"><a href="sitzung-9.html#cb626-2"></a>  <span class="dt">mat =</span> T, <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="sitzung-9.html#cb627-1"></a><span class="kw">describeBy</span>(d<span class="op">$</span>judgment, <span class="kw">list</span>(d<span class="op">$</span>stage, d<span class="op">$</span>issueness, d<span class="op">$</span>trigger),</span>
+<span id="cb627-2"><a href="sitzung-9.html#cb627-2"></a>  <span class="dt">mat =</span> T, <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##      item group1       group2 group3 vars   n mean   sd median trimmed  mad min
 ## X11     1  adult     at-issue appRel    1  99 1.85 0.83      2    1.77 1.48   1
 ## X12     2  child     at-issue appRel    1  99 3.36 1.45      4    3.44 1.48   1
@@ -1211,19 +1213,19 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 <p>Im Folgenden zeige ich euch zwei Boxplots der Daten, die dieselben Informationen zeigen. Nämlich wie sich die unterschiedlichen Faktoren (bzw deren Stufen) auf die Bewertungen auswirken</p>
 <p>Zuerst kommt der <code>boxplot</code>-Befehl von R. Der Plot wird wenig übersichtlich sein.</p>
 <p>Danach zeige ich euch einen Plot mit ggplot2, der wesentlich besser verständlich ist. Dazu brauchen wir Folgendens:</p>
-<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="sitzung-9.html#cb628-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb628-2"><a href="sitzung-9.html#cb628-2"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="sitzung-9.html#cb629-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb629-2"><a href="sitzung-9.html#cb629-2"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
 </div>
 <div id="boxplot" class="section level3">
 <h3>Boxplot</h3>
-<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="sitzung-9.html#cb629-1"></a><span class="kw">boxplot</span>(<span class="dt">data =</span> d, judgment <span class="op">~</span><span class="st"> </span>trigger<span class="op">:</span>issueness<span class="op">:</span>stage)</span></code></pre></div>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="sitzung-9.html#cb630-1"></a><span class="kw">boxplot</span>(<span class="dt">data =</span> d, judgment <span class="op">~</span><span class="st"> </span>trigger<span class="op">:</span>issueness<span class="op">:</span>stage)</span></code></pre></div>
 <p><img src="inference_files/figure-html/nineboxplot-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="boxplot-ii" class="section level3">
 <h3>Boxplot II</h3>
-<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="sitzung-9.html#cb630-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> d, <span class="kw">aes</span>(<span class="dt">x =</span> trigger, <span class="dt">y =</span> judgment, <span class="dt">color =</span> issueness)) <span class="op">+</span></span>
-<span id="cb630-2"><a href="sitzung-9.html#cb630-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
-<span id="cb630-3"><a href="sitzung-9.html#cb630-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>stage)</span></code></pre></div>
+<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="sitzung-9.html#cb631-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> d, <span class="kw">aes</span>(<span class="dt">x =</span> trigger, <span class="dt">y =</span> judgment, <span class="dt">color =</span> issueness)) <span class="op">+</span></span>
+<span id="cb631-2"><a href="sitzung-9.html#cb631-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb631-3"><a href="sitzung-9.html#cb631-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>stage)</span></code></pre></div>
 <p><img src="inference_files/figure-html/ggnineboxplot-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -1244,77 +1246,88 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 <h3>Lösung</h3>
 <p>Die Varianzanalyse!</p>
 <p>nächste Übung: schreibt einen Befehl für die Varianzanlyse mit dem <code>afex</code>-Paket. Falls ihr Hilfe braucht, schaut gerne in die vorherigen Folien oder gebt <code>?aov_ez</code> ein, nachdem ihr das Paket geladen habt.</p>
-<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="sitzung-9.html#cb631-1"></a><span class="kw">library</span>(afex)</span></code></pre></div>
-<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="sitzung-9.html#cb632-1"></a><span class="kw">aov_ez</span>(<span class="dt">id =</span> <span class="st">&quot;ID-Variable&quot;</span>,</span>
-<span id="cb632-2"><a href="sitzung-9.html#cb632-2"></a>  <span class="dt">dv =</span> <span class="st">&quot;Abhängige Variable&quot;</span>,</span>
-<span id="cb632-3"><a href="sitzung-9.html#cb632-3"></a>  <span class="dt">data =</span> d,</span>
-<span id="cb632-4"><a href="sitzung-9.html#cb632-4"></a>  <span class="dt">within =</span> <span class="kw">c</span>(<span class="st">&quot;UVwithin1&quot;</span>, <span class="st">&quot;UVwithin2&quot;</span>),</span>
-<span id="cb632-5"><a href="sitzung-9.html#cb632-5"></a>  <span class="dt">between =</span> <span class="kw">c</span>(<span class="st">&quot;UVbetween1&quot;</span>, <span class="st">&quot;UVbetween2&quot;</span>)</span>
-<span id="cb632-6"><a href="sitzung-9.html#cb632-6"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="sitzung-9.html#cb632-1"></a><span class="kw">library</span>(afex)</span></code></pre></div>
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="sitzung-9.html#cb633-1"></a><span class="kw">aov_ez</span>(<span class="dt">id =</span> <span class="st">&quot;ID-Variable&quot;</span>,</span>
+<span id="cb633-2"><a href="sitzung-9.html#cb633-2"></a>  <span class="dt">dv =</span> <span class="st">&quot;Abhängige Variable&quot;</span>,</span>
+<span id="cb633-3"><a href="sitzung-9.html#cb633-3"></a>  <span class="dt">data =</span> d,</span>
+<span id="cb633-4"><a href="sitzung-9.html#cb633-4"></a>  <span class="dt">within =</span> <span class="kw">c</span>(<span class="st">&quot;UVwithin1&quot;</span>, <span class="st">&quot;UVwithin2&quot;</span>),</span>
+<span id="cb633-5"><a href="sitzung-9.html#cb633-5"></a>  <span class="dt">between =</span> <span class="kw">c</span>(<span class="st">&quot;UVbetween1&quot;</span>, <span class="st">&quot;UVbetween2&quot;</span>)</span>
+<span id="cb633-6"><a href="sitzung-9.html#cb633-6"></a>)</span></code></pre></div>
 </div>
 <div id="lösung-13" class="section level3">
 <h3>Lösung</h3>
-<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="sitzung-9.html#cb633-1"></a><span class="co"># subjects</span></span>
-<span id="cb633-2"><a href="sitzung-9.html#cb633-2"></a>anovasub &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;judgment&quot;</span>, d,</span>
-<span id="cb633-3"><a href="sitzung-9.html#cb633-3"></a>  <span class="dt">within =</span> <span class="kw">c</span>(<span class="st">&quot;issueness&quot;</span>, <span class="st">&quot;trigger&quot;</span>),</span>
-<span id="cb633-4"><a href="sitzung-9.html#cb633-4"></a>  <span class="dt">between =</span> <span class="st">&quot;stage&quot;</span>)</span>
-<span id="cb633-5"><a href="sitzung-9.html#cb633-5"></a></span>
-<span id="cb633-6"><a href="sitzung-9.html#cb633-6"></a><span class="co"># items</span></span>
-<span id="cb633-7"><a href="sitzung-9.html#cb633-7"></a>anovaitem &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="st">&quot;itemid&quot;</span>, <span class="st">&quot;judgment&quot;</span>, d,</span>
-<span id="cb633-8"><a href="sitzung-9.html#cb633-8"></a>  <span class="dt">within =</span> <span class="kw">c</span>(<span class="st">&quot;issueness&quot;</span>, <span class="st">&quot;stage&quot;</span>),</span>
-<span id="cb633-9"><a href="sitzung-9.html#cb633-9"></a>  <span class="dt">between =</span> <span class="st">&quot;trigger&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="sitzung-9.html#cb634-1"></a><span class="co"># subjects</span></span>
+<span id="cb634-2"><a href="sitzung-9.html#cb634-2"></a>anovasub &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;judgment&quot;</span>, d,</span>
+<span id="cb634-3"><a href="sitzung-9.html#cb634-3"></a>  <span class="dt">within =</span> <span class="kw">c</span>(<span class="st">&quot;issueness&quot;</span>, <span class="st">&quot;trigger&quot;</span>),</span>
+<span id="cb634-4"><a href="sitzung-9.html#cb634-4"></a>  <span class="dt">between =</span> <span class="st">&quot;stage&quot;</span>)</span>
+<span id="cb634-5"><a href="sitzung-9.html#cb634-5"></a></span>
+<span id="cb634-6"><a href="sitzung-9.html#cb634-6"></a><span class="co"># items</span></span>
+<span id="cb634-7"><a href="sitzung-9.html#cb634-7"></a>anovaitem &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="st">&quot;itemid&quot;</span>, <span class="st">&quot;judgment&quot;</span>, d,</span>
+<span id="cb634-8"><a href="sitzung-9.html#cb634-8"></a>  <span class="dt">within =</span> <span class="kw">c</span>(<span class="st">&quot;issueness&quot;</span>, <span class="st">&quot;stage&quot;</span>),</span>
+<span id="cb634-9"><a href="sitzung-9.html#cb634-9"></a>  <span class="dt">between =</span> <span class="st">&quot;trigger&quot;</span>)</span></code></pre></div>
 </div>
 <div id="lösung-14" class="section level3">
 <h3>Lösung</h3>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="sitzung-9.html#cb634-1"></a><span class="co"># subjects</span></span>
-<span id="cb634-2"><a href="sitzung-9.html#cb634-2"></a>anovasub</span></code></pre></div>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="sitzung-9.html#cb635-1"></a><span class="co"># subjects</span></span>
+<span id="cb635-2"><a href="sitzung-9.html#cb635-2"></a>anovasub</span></code></pre></div>
 <pre><code>## Anova Table (Type 3 tests)
 ## 
 ## Response: judgment
-##                    Effect    df  MSE          F ges p.value
-## 1                   stage 1, 39 1.77     3.56 + .04     .07
-## 2               issueness 1, 39 0.33 190.63 *** .31  &lt;.0001
-## 3         stage:issueness 1, 39 0.33  96.53 *** .19  &lt;.0001
-## 4                 trigger 2, 78 0.39  17.35 *** .09  &lt;.0001
-## 5           stage:trigger 2, 78 0.39    7.36 ** .04    .001
-## 6       issueness:trigger 2, 78 0.34  15.51 *** .07  &lt;.0001
-## 7 stage:issueness:trigger 2, 78 0.34   9.22 *** .04   .0003
+##                    Effect          df  MSE          F  ges p.value
+## 1                   stage       1, 39 1.77     3.56 + .043    .067
+## 2               issueness       1, 39 0.33 190.63 *** .312   &lt;.001
+## 3         stage:issueness       1, 39 0.33  96.53 *** .187   &lt;.001
+## 4                 trigger 1.88, 73.25 0.42  17.35 *** .089   &lt;.001
+## 5           stage:trigger 1.88, 73.25 0.42    7.36 ** .040    .002
+## 6       issueness:trigger 1.85, 72.03 0.37  15.51 *** .071   &lt;.001
+## 7 stage:issueness:trigger 1.85, 72.03 0.37   9.22 *** .043   &lt;.001
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;+&#39; 0.1 &#39; &#39; 1</code></pre>
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;+&#39; 0.1 &#39; &#39; 1
+## 
+## Sphericity correction method: GG</code></pre>
 </div>
 <div id="lösung-15" class="section level3">
 <h3>Lösung</h3>
-<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="sitzung-9.html#cb636-1"></a><span class="co"># items</span></span>
-<span id="cb636-2"><a href="sitzung-9.html#cb636-2"></a>anovaitem</span></code></pre></div>
+<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="sitzung-9.html#cb637-1"></a><span class="co"># items</span></span>
+<span id="cb637-2"><a href="sitzung-9.html#cb637-2"></a>anovaitem</span></code></pre></div>
 <pre><code>## Anova Table (Type 3 tests)
 ## 
 ## Response: judgment
-##                    Effect    df  MSE          F ges p.value
-## 1                 trigger 2, 26 0.22  15.80 *** .30  &lt;.0001
-## 2               issueness 1, 26 0.21 145.05 *** .64  &lt;.0001
-## 3       trigger:issueness 2, 26 0.21  12.64 *** .24   .0001
-## 4                   stage 1, 26 0.05  89.51 *** .21  &lt;.0001
-## 5           trigger:stage 2, 26 0.05  21.52 *** .12  &lt;.0001
-## 6         issueness:stage 1, 26 0.16  84.99 *** .45  &lt;.0001
-## 7 trigger:issueness:stage 2, 26 0.16    7.65 ** .13    .002
+##                    Effect    df  MSE          F  ges p.value
+## 1                 trigger 2, 26 0.22  15.80 *** .298   &lt;.001
+## 2               issueness 1, 26 0.21 145.05 *** .644   &lt;.001
+## 3       trigger:issueness 2, 26 0.21  12.64 *** .240   &lt;.001
+## 4                   stage 1, 26 0.05  89.51 *** .214   &lt;.001
+## 5           trigger:stage 2, 26 0.05  21.52 *** .116   &lt;.001
+## 6         issueness:stage 1, 26 0.16  84.99 *** .446   &lt;.001
+## 7 trigger:issueness:stage 2, 26 0.16    7.65 ** .127    .002
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;+&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
 <div id="für-ausführlichere-wiedergabe-der-anova" class="section level3">
 <h3>Für ausführlichere Wiedergabe der ANOVA</h3>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="sitzung-9.html#cb638-1"></a><span class="kw">summary</span>(anovasub)</span></code></pre></div>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="sitzung-9.html#cb639-1"></a><span class="kw">summary</span>(anovasub)</span></code></pre></div>
 <pre><code>## 
 ## Univariate Type III Repeated-Measures ANOVA Assuming Sphericity
 ## 
-##                          Sum Sq num Df Error SS den Df   F value    Pr(&gt;F)    
-## (Intercept)             2950.73      1   69.078     39 1665.9223 &lt; 2.2e-16 ***
-## stage                      6.31      1   69.078     39    3.5631 0.0665353 .  
-## issueness                 63.03      1   12.896     39  190.6296 &lt; 2.2e-16 ***
-## stage:issueness           31.92      1   12.896     39   96.5296 4.209e-12 ***
-## trigger                   13.53      2   30.407     78   17.3550 5.823e-07 ***
-## stage:trigger              5.74      2   30.407     78    7.3608 0.0011793 ** 
-## issueness:trigger         10.60      2   26.661     78   15.5099 2.133e-06 ***
-## stage:issueness:trigger    6.30      2   26.661     78    9.2192 0.0002546 ***
+##                          Sum Sq num Df Error SS den Df   F value
+## (Intercept)             2950.73      1   69.078     39 1665.9223
+## stage                      6.31      1   69.078     39    3.5631
+## issueness                 63.03      1   12.896     39  190.6296
+## stage:issueness           31.92      1   12.896     39   96.5296
+## trigger                   13.53      2   30.407     78   17.3550
+## stage:trigger              5.74      2   30.407     78    7.3608
+## issueness:trigger         10.60      2   26.661     78   15.5099
+## stage:issueness:trigger    6.30      2   26.661     78    9.2192
+##                                        Pr(&gt;F)    
+## (Intercept)             &lt; 0.00000000000000022 ***
+## stage                               0.0665353 .  
+## issueness               &lt; 0.00000000000000022 ***
+## stage:issueness             0.000000000004209 ***
+## trigger                     0.000000582315820 ***
+## stage:trigger                       0.0011793 ** 
+## issueness:trigger           0.000002132872576 ***
+## stage:issueness:trigger             0.0002546 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -1331,19 +1344,19 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 ## Greenhouse-Geisser and Huynh-Feldt Corrections
 ##  for Departure from Sphericity
 ## 
-##                          GG eps Pr(&gt;F[GG])    
-## trigger                 0.93915  1.154e-06 ***
-## stage:trigger           0.93915  0.0015242 ** 
-## issueness:trigger       0.92351  4.587e-06 ***
-## stage:issueness:trigger 0.92351  0.0003904 ***
+##                          GG eps  Pr(&gt;F[GG])    
+## trigger                 0.93915 0.000001154 ***
+## stage:trigger           0.93915   0.0015242 ** 
+## issueness:trigger       0.92351 0.000004587 ***
+## stage:issueness:trigger 0.92351   0.0003904 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-##                            HF eps   Pr(&gt;F[HF])
-## trigger                 0.9850323 6.888931e-07
-## stage:trigger           0.9850323 1.256089e-03
-## issueness:trigger       0.9673658 2.956515e-06
-## stage:issueness:trigger 0.9673658 3.055378e-04</code></pre>
+##                            HF eps      Pr(&gt;F[HF])
+## trigger                 0.9850323 0.0000006888931
+## stage:trigger           0.9850323 0.0012560891080
+## issueness:trigger       0.9673658 0.0000029565151
+## stage:issueness:trigger 0.9673658 0.0003055377807</code></pre>
 </div>
 <div id="exkurs-sphärizitätskorrekturen" class="section level3">
 <h3>Exkurs: Sphärizitätskorrekturen</h3>
@@ -1352,42 +1365,42 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 <div id="sphärizität-in-der-afex-anova" class="section level3">
 <h3>Sphärizität in der afex-ANOVA</h3>
 <p>Die <code>afex</code>-ANOVA korrigiert automatisch die Freiheitsgrade (und damit den p-Wert) bei Sphärizitätsverletzungen. Dies kann wie folgt ausgestellt werden:</p>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="sitzung-9.html#cb640-1"></a><span class="co"># subjects without sphericity correction</span></span>
-<span id="cb640-2"><a href="sitzung-9.html#cb640-2"></a>anovasub_nosphere &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;judgment&quot;</span>, d,</span>
-<span id="cb640-3"><a href="sitzung-9.html#cb640-3"></a>  <span class="dt">within =</span> <span class="kw">c</span>(<span class="st">&quot;issueness&quot;</span>, <span class="st">&quot;trigger&quot;</span>),</span>
-<span id="cb640-4"><a href="sitzung-9.html#cb640-4"></a>  <span class="dt">between =</span> <span class="st">&quot;stage&quot;</span>,</span>
-<span id="cb640-5"><a href="sitzung-9.html#cb640-5"></a>  <span class="dt">anova_table =</span> <span class="kw">list</span>(<span class="dt">correction =</span> <span class="st">&quot;none&quot;</span>)) <span class="co"># &lt;&lt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="sitzung-9.html#cb641-1"></a><span class="co"># subjects without sphericity correction</span></span>
+<span id="cb641-2"><a href="sitzung-9.html#cb641-2"></a>anovasub_nosphere &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;judgment&quot;</span>, d,</span>
+<span id="cb641-3"><a href="sitzung-9.html#cb641-3"></a>  <span class="dt">within =</span> <span class="kw">c</span>(<span class="st">&quot;issueness&quot;</span>, <span class="st">&quot;trigger&quot;</span>),</span>
+<span id="cb641-4"><a href="sitzung-9.html#cb641-4"></a>  <span class="dt">between =</span> <span class="st">&quot;stage&quot;</span>,</span>
+<span id="cb641-5"><a href="sitzung-9.html#cb641-5"></a>  <span class="dt">anova_table =</span> <span class="kw">list</span>(<span class="dt">correction =</span> <span class="st">&quot;none&quot;</span>)) <span class="co"># &lt;&lt;</span></span></code></pre></div>
 </div>
 <div id="vergleich-beider-ergebnisse" class="section level3">
 <h3>Vergleich beider Ergebnisse</h3>
-<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="sitzung-9.html#cb641-1"></a>anovasub</span></code></pre></div>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="sitzung-9.html#cb642-1"></a>anovasub</span></code></pre></div>
 <pre><code>## Anova Table (Type 3 tests)
 ## 
 ## Response: judgment
-##                    Effect          df  MSE          F ges p.value
-## 1                   stage       1, 39 1.77     3.56 + .04     .07
-## 2               issueness       1, 39 0.33 190.63 *** .31  &lt;.0001
-## 3         stage:issueness       1, 39 0.33  96.53 *** .19  &lt;.0001
-## 4                 trigger 1.88, 73.25 0.42  17.35 *** .09  &lt;.0001
-## 5           stage:trigger 1.88, 73.25 0.42    7.36 ** .04    .002
-## 6       issueness:trigger 1.85, 72.03 0.37  15.51 *** .07  &lt;.0001
-## 7 stage:issueness:trigger 1.85, 72.03 0.37   9.22 *** .04   .0004
+##                    Effect          df  MSE          F  ges p.value
+## 1                   stage       1, 39 1.77     3.56 + .043    .067
+## 2               issueness       1, 39 0.33 190.63 *** .312   &lt;.001
+## 3         stage:issueness       1, 39 0.33  96.53 *** .187   &lt;.001
+## 4                 trigger 1.88, 73.25 0.42  17.35 *** .089   &lt;.001
+## 5           stage:trigger 1.88, 73.25 0.42    7.36 ** .040    .002
+## 6       issueness:trigger 1.85, 72.03 0.37  15.51 *** .071   &lt;.001
+## 7 stage:issueness:trigger 1.85, 72.03 0.37   9.22 *** .043   &lt;.001
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;+&#39; 0.1 &#39; &#39; 1
 ## 
 ## Sphericity correction method: GG</code></pre>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="sitzung-9.html#cb643-1"></a>anovasub_nosphere</span></code></pre></div>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="sitzung-9.html#cb644-1"></a>anovasub_nosphere</span></code></pre></div>
 <pre><code>## Anova Table (Type 3 tests)
 ## 
 ## Response: judgment
-##                    Effect    df  MSE          F ges p.value
-## 1                   stage 1, 39 1.77     3.56 + .04     .07
-## 2               issueness 1, 39 0.33 190.63 *** .31  &lt;.0001
-## 3         stage:issueness 1, 39 0.33  96.53 *** .19  &lt;.0001
-## 4                 trigger 2, 78 0.39  17.35 *** .09  &lt;.0001
-## 5           stage:trigger 2, 78 0.39    7.36 ** .04    .001
-## 6       issueness:trigger 2, 78 0.34  15.51 *** .07  &lt;.0001
-## 7 stage:issueness:trigger 2, 78 0.34   9.22 *** .04   .0003
+##                    Effect    df  MSE          F  ges p.value
+## 1                   stage 1, 39 1.77     3.56 + .043    .067
+## 2               issueness 1, 39 0.33 190.63 *** .312   &lt;.001
+## 3         stage:issueness 1, 39 0.33  96.53 *** .187   &lt;.001
+## 4                 trigger 2, 78 0.39  17.35 *** .089   &lt;.001
+## 5           stage:trigger 2, 78 0.39    7.36 ** .040    .001
+## 6       issueness:trigger 2, 78 0.34  15.51 *** .071   &lt;.001
+## 7 stage:issueness:trigger 2, 78 0.34   9.22 *** .043   &lt;.001
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;+&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
@@ -1396,12 +1409,12 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 <h2>Kontraste</h2>
 <div id="kontraste-kodieren-aber-wie" class="section level3">
 <h3>Kontraste kodieren, aber wie?</h3>
-<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="sitzung-9.html#cb645-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;emmeans&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="sitzung-9.html#cb646-1"></a><span class="kw">library</span>(emmeans)</span>
-<span id="cb646-2"><a href="sitzung-9.html#cb646-2"></a></span>
-<span id="cb646-3"><a href="sitzung-9.html#cb646-3"></a><span class="co"># referenztabelle für kontraste; specs sind die die Faktoren, dessen estimated marginal means (EMM) wir uns angucken wollen</span></span>
-<span id="cb646-4"><a href="sitzung-9.html#cb646-4"></a>(ref_id &lt;-<span class="st"> </span><span class="kw">emmeans</span>(anovasub,</span>
-<span id="cb646-5"><a href="sitzung-9.html#cb646-5"></a>  <span class="dt">specs =</span> <span class="kw">c</span>(<span class="st">&quot;stage&quot;</span>, <span class="st">&quot;trigger&quot;</span>, <span class="st">&quot;issueness&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="sitzung-9.html#cb646-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;emmeans&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="sitzung-9.html#cb647-1"></a><span class="kw">library</span>(emmeans)</span>
+<span id="cb647-2"><a href="sitzung-9.html#cb647-2"></a></span>
+<span id="cb647-3"><a href="sitzung-9.html#cb647-3"></a><span class="co"># referenztabelle für kontraste; specs sind die die Faktoren, dessen estimated marginal means (EMM) wir uns angucken wollen</span></span>
+<span id="cb647-4"><a href="sitzung-9.html#cb647-4"></a>(ref_id &lt;-<span class="st"> </span><span class="kw">emmeans</span>(anovasub,</span>
+<span id="cb647-5"><a href="sitzung-9.html#cb647-5"></a>  <span class="dt">specs =</span> <span class="kw">c</span>(<span class="st">&quot;stage&quot;</span>, <span class="st">&quot;trigger&quot;</span>, <span class="st">&quot;issueness&quot;</span>)))</span></code></pre></div>
 <pre><code>##  stage trigger issueness    emmean    SE  df lower.CL upper.CL
 ##  adult appRel  at.issue       1.85 0.171 133     1.51     2.19
 ##  child appRel  at.issue       3.34 0.169 129     3.01     3.68
@@ -1421,24 +1434,24 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 </div>
 <div id="exkurs-estimated-marginal-means" class="section level3">
 <h3>Exkurs: Estimated Marginal Means</h3>
-<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="sitzung-9.html#cb648-1"></a><span class="co"># let&#39;s generate a table with values</span></span>
-<span id="cb648-2"><a href="sitzung-9.html#cb648-2"></a>d &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb648-3"><a href="sitzung-9.html#cb648-3"></a>  <span class="dt">reads =</span> <span class="kw">c</span>(<span class="st">&quot;reads&quot;</span>, <span class="st">&quot;doesnt_read&quot;</span>),</span>
-<span id="cb648-4"><a href="sitzung-9.html#cb648-4"></a>  <span class="dt">studies =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb648-5"><a href="sitzung-9.html#cb648-5"></a>  <span class="dt">doesnt_study =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)</span>
-<span id="cb648-6"><a href="sitzung-9.html#cb648-6"></a>)</span>
-<span id="cb648-7"><a href="sitzung-9.html#cb648-7"></a>d</span></code></pre></div>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="sitzung-9.html#cb649-1"></a><span class="co"># let&#39;s generate a table with values</span></span>
+<span id="cb649-2"><a href="sitzung-9.html#cb649-2"></a>d_test &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb649-3"><a href="sitzung-9.html#cb649-3"></a>  <span class="dt">reads =</span> <span class="kw">c</span>(<span class="st">&quot;reads&quot;</span>, <span class="st">&quot;doesnt_read&quot;</span>),</span>
+<span id="cb649-4"><a href="sitzung-9.html#cb649-4"></a>  <span class="dt">studies =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb649-5"><a href="sitzung-9.html#cb649-5"></a>  <span class="dt">doesnt_study =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb649-6"><a href="sitzung-9.html#cb649-6"></a>)</span>
+<span id="cb649-7"><a href="sitzung-9.html#cb649-7"></a>d_test</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##   reads       studies doesnt_study
 ##   &lt;chr&gt;         &lt;dbl&gt;        &lt;dbl&gt;
 ## 1 reads             1            3
 ## 2 doesnt_read       2            5</code></pre>
-<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="sitzung-9.html#cb650-1"></a><span class="co"># then lets transform the data into a tidy one (one row = one observation)</span></span>
-<span id="cb650-2"><a href="sitzung-9.html#cb650-2"></a>d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></span>
-<span id="cb650-3"><a href="sitzung-9.html#cb650-3"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(<span class="st">&quot;studies&quot;</span>, <span class="st">&quot;doesnt_study&quot;</span>),</span>
-<span id="cb650-4"><a href="sitzung-9.html#cb650-4"></a>    <span class="dt">names_to =</span> <span class="st">&quot;prepares&quot;</span>,</span>
-<span id="cb650-5"><a href="sitzung-9.html#cb650-5"></a>    <span class="dt">values_to =</span> <span class="st">&quot;grade&quot;</span>)</span>
-<span id="cb650-6"><a href="sitzung-9.html#cb650-6"></a>d</span></code></pre></div>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="sitzung-9.html#cb651-1"></a><span class="co"># then lets transform the data into a tidy one (one row = one observation)</span></span>
+<span id="cb651-2"><a href="sitzung-9.html#cb651-2"></a>d_test &lt;-<span class="st"> </span>d_test <span class="op">%&gt;%</span></span>
+<span id="cb651-3"><a href="sitzung-9.html#cb651-3"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(<span class="st">&quot;studies&quot;</span>, <span class="st">&quot;doesnt_study&quot;</span>),</span>
+<span id="cb651-4"><a href="sitzung-9.html#cb651-4"></a>    <span class="dt">names_to =</span> <span class="st">&quot;prepares&quot;</span>,</span>
+<span id="cb651-5"><a href="sitzung-9.html#cb651-5"></a>    <span class="dt">values_to =</span> <span class="st">&quot;grade&quot;</span>)</span>
+<span id="cb651-6"><a href="sitzung-9.html#cb651-6"></a>d_test</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   reads       prepares     grade
 ##   &lt;chr&gt;       &lt;chr&gt;        &lt;dbl&gt;
@@ -1449,12 +1462,12 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 </div>
 <div id="exkurs-contd" class="section level3">
 <h3>Exkurs cont’d</h3>
-<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="sitzung-9.html#cb652-1"></a><span class="co"># then lets fit a model</span></span>
-<span id="cb652-2"><a href="sitzung-9.html#cb652-2"></a>fit &lt;-<span class="st"> </span><span class="kw">aov</span>(grade <span class="op">~</span><span class="st"> </span>reads <span class="op">*</span><span class="st"> </span>prepares, <span class="dt">data =</span> d)</span>
-<span id="cb652-3"><a href="sitzung-9.html#cb652-3"></a><span class="co"># and compute estimated marginal means</span></span>
-<span id="cb652-4"><a href="sitzung-9.html#cb652-4"></a><span class="co"># in a balanced design, EMMs just represent the cell means (here, because we only have one observation per factor combination, means = observations)</span></span>
-<span id="cb652-5"><a href="sitzung-9.html#cb652-5"></a><span class="co"># in unbalanced design EMMs are adjusted so that all cell means are given equal weight</span></span>
-<span id="cb652-6"><a href="sitzung-9.html#cb652-6"></a>(ref &lt;-<span class="st"> </span><span class="kw">emmeans</span>(fit, <span class="kw">c</span>(<span class="st">&quot;reads&quot;</span>, <span class="st">&quot;prepares&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="sitzung-9.html#cb653-1"></a><span class="co"># then lets fit a model</span></span>
+<span id="cb653-2"><a href="sitzung-9.html#cb653-2"></a>fit &lt;-<span class="st"> </span><span class="kw">aov</span>(grade <span class="op">~</span><span class="st"> </span>reads <span class="op">*</span><span class="st"> </span>prepares, <span class="dt">data =</span> d_test)</span>
+<span id="cb653-3"><a href="sitzung-9.html#cb653-3"></a><span class="co"># and compute estimated marginal means</span></span>
+<span id="cb653-4"><a href="sitzung-9.html#cb653-4"></a><span class="co"># in a balanced design, EMMs just represent the cell means (here, because we only have one observation per factor combination, means = observations)</span></span>
+<span id="cb653-5"><a href="sitzung-9.html#cb653-5"></a><span class="co"># in unbalanced design EMMs are adjusted so that all cell means are given equal weight</span></span>
+<span id="cb653-6"><a href="sitzung-9.html#cb653-6"></a>(ref &lt;-<span class="st"> </span><span class="kw">emmeans</span>(fit, <span class="kw">c</span>(<span class="st">&quot;reads&quot;</span>, <span class="st">&quot;prepares&quot;</span>)))</span></code></pre></div>
 <pre><code>## Warning in qt((1 - level)/adiv, df): NaNs produced</code></pre>
 <pre><code>##  reads       prepares     emmean  SE df lower.CL upper.CL
 ##  doesnt_read doesnt_study      5 NaN  0      NaN      NaN
@@ -1474,8 +1487,8 @@ Eine Funktion, die wir uns zunutze machen können, ist im Paket “stringr” en
 </ul>
 <p>Beispiel: um adult_appRel mit child_appRel (und nichts anderes) zu vergleichen,
 verwenden wir folgende Spezifizierung:</p>
-<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="sitzung-9.html#cb655-1"></a><span class="co"># adult_appRel versus child_appRel</span></span>
-<span id="cb655-2"><a href="sitzung-9.html#cb655-2"></a>RCAvsC &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="sitzung-9.html#cb656-1"></a><span class="co"># adult_appRel versus child_appRel</span></span>
+<span id="cb656-2"><a href="sitzung-9.html#cb656-2"></a>RCAvsC &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div>
 </div>
 <div id="lösung-16" class="section level3">
 <h3>Lösung</h3>
@@ -1485,21 +1498,21 @@ verwenden wir folgende Spezifizierung:</p>
 <li>Soft Trigger (at-issue) vs Hard Trigger (at-issue)</li>
 <li>At-issue, Kinder vs At-issue, Erwachsene</li>
 </ul>
-<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="sitzung-9.html#cb656-1"></a><span class="co"># kontraste spezifizieren</span></span>
-<span id="cb656-2"><a href="sitzung-9.html#cb656-2"></a>test_RCvHTat &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">-1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb656-3"><a href="sitzung-9.html#cb656-3"></a>test_STvHTat &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb656-4"><a href="sitzung-9.html#cb656-4"></a>test_ATcvATa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="sitzung-9.html#cb657-1"></a><span class="co"># kontraste spezifizieren</span></span>
+<span id="cb657-2"><a href="sitzung-9.html#cb657-2"></a>test_RCvHTat &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">-1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb657-3"><a href="sitzung-9.html#cb657-3"></a>test_STvHTat &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb657-4"><a href="sitzung-9.html#cb657-4"></a>test_ATcvATa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div>
 </div>
 <div id="kontraste-berechnen" class="section level3">
 <h3>Kontraste berechnen</h3>
 <p>Bonferronikorrektur nur für <em>post hoc</em> Kontraste absolut nötig. Bei <em>a priori</em> spezifizierten (das heißt von der Hypothese gedeckten) Kontrasten kann diese Korrektur weggelassen werden.</p>
-<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="sitzung-9.html#cb657-1"></a><span class="co"># bonferroni-korrigierte tests berechnen</span></span>
-<span id="cb657-2"><a href="sitzung-9.html#cb657-2"></a><span class="kw">summary</span>(<span class="kw">contrast</span>(ref_id, <span class="kw">list</span>(<span class="dt">RCvHTat =</span> test_RCvHTat,</span>
-<span id="cb657-3"><a href="sitzung-9.html#cb657-3"></a>  <span class="dt">STvHTat =</span> test_STvHTat,</span>
-<span id="cb657-4"><a href="sitzung-9.html#cb657-4"></a>  <span class="dt">ATcvATa =</span> test_ATcvATa),</span>
-<span id="cb657-5"><a href="sitzung-9.html#cb657-5"></a><span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>, <span class="co"># Korrektur für multiple Tests</span></span>
-<span id="cb657-6"><a href="sitzung-9.html#cb657-6"></a><span class="dt">infer =</span> <span class="ot">TRUE</span> <span class="co"># zeigt p-Werte und KonfInt</span></span>
-<span id="cb657-7"><a href="sitzung-9.html#cb657-7"></a>))</span></code></pre></div>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="sitzung-9.html#cb658-1"></a><span class="co"># bonferroni-korrigierte tests berechnen</span></span>
+<span id="cb658-2"><a href="sitzung-9.html#cb658-2"></a><span class="kw">summary</span>(<span class="kw">contrast</span>(ref_id, <span class="kw">list</span>(<span class="dt">RCvHTat =</span> test_RCvHTat,</span>
+<span id="cb658-3"><a href="sitzung-9.html#cb658-3"></a>  <span class="dt">STvHTat =</span> test_STvHTat,</span>
+<span id="cb658-4"><a href="sitzung-9.html#cb658-4"></a>  <span class="dt">ATcvATa =</span> test_ATcvATa),</span>
+<span id="cb658-5"><a href="sitzung-9.html#cb658-5"></a><span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>, <span class="co"># Korrektur für multiple Tests</span></span>
+<span id="cb658-6"><a href="sitzung-9.html#cb658-6"></a><span class="dt">infer =</span> <span class="ot">TRUE</span> <span class="co"># zeigt p-Werte und KonfInt</span></span>
+<span id="cb658-7"><a href="sitzung-9.html#cb658-7"></a>))</span></code></pre></div>
 <pre><code>##  contrast estimate    SE    df lower.CL upper.CL t.ratio p.value
 ##  RCvHTat    -0.259 0.267 155.3   -0.906    0.387 -0.971  0.9997 
 ##  STvHTat     1.680 0.267 155.3    1.034    2.327  6.288  &lt;.0001 
@@ -1512,9 +1525,9 @@ verwenden wir folgende Spezifizierung:</p>
 <div id="zum-selbst-ausprobieren" class="section level3">
 <h3>Zum selbst Ausprobieren</h3>
 <p>Warning von Thomas (pc): “D.h. ich wuerde den Leuten sagen, dass der letzte Code-Schnipsel (wo Du dann <em>alle</em> Vergleiche anschaust) eine Mischung aus <em>prae</em>- und <em>post-hoc</em>-Betrachtung ist. Und dass das natuerlich fuer moralisch sproede bzw. vom publication bias und Befristung weichgeklopfte Gemueter gewisse Verlockungen/Gefahren birgt. You see?”</p>
-<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="sitzung-9.html#cb659-1"></a><span class="co"># alle paarweisen vergleiche für die beiden level von issueness berechnen</span></span>
-<span id="cb659-2"><a href="sitzung-9.html#cb659-2"></a>ref_big &lt;-<span class="st"> </span><span class="kw">emmeans</span>(anovasub, <span class="op">~</span><span class="st"> </span>stage <span class="op">*</span><span class="st"> </span>trigger <span class="op">|</span><span class="st"> </span>issueness)</span>
-<span id="cb659-3"><a href="sitzung-9.html#cb659-3"></a>ref_big</span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="sitzung-9.html#cb660-1"></a><span class="co"># alle paarweisen vergleiche für die beiden level von issueness berechnen</span></span>
+<span id="cb660-2"><a href="sitzung-9.html#cb660-2"></a>ref_big &lt;-<span class="st"> </span><span class="kw">emmeans</span>(anovasub, <span class="op">~</span><span class="st"> </span>stage <span class="op">*</span><span class="st"> </span>trigger <span class="op">|</span><span class="st"> </span>issueness)</span>
+<span id="cb660-3"><a href="sitzung-9.html#cb660-3"></a>ref_big</span></code></pre></div>
 <pre><code>## issueness = at.issue:
 ##  stage trigger emmean    SE  df lower.CL upper.CL
 ##  adult appRel    1.85 0.171 133     1.51     2.19
@@ -1538,10 +1551,10 @@ verwenden wir folgende Spezifizierung:</p>
 </div>
 <div id="ergebnisse-des-großen-paarvergleichs" class="section level3">
 <h3>Ergebnisse des großen Paarvergleichs</h3>
-<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="sitzung-9.html#cb661-1"></a><span class="kw">summary</span>(<span class="kw">contrast</span>(ref_big, <span class="dt">method =</span> <span class="st">&quot;pairwise&quot;</span>,</span>
-<span id="cb661-2"><a href="sitzung-9.html#cb661-2"></a>  <span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
-<span id="cb661-3"><a href="sitzung-9.html#cb661-3"></a>  <span class="dt">infer =</span> <span class="ot">TRUE</span></span>
-<span id="cb661-4"><a href="sitzung-9.html#cb661-4"></a>))</span></code></pre></div>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="sitzung-9.html#cb662-1"></a><span class="kw">summary</span>(<span class="kw">contrast</span>(ref_big, <span class="dt">method =</span> <span class="st">&quot;pairwise&quot;</span>,</span>
+<span id="cb662-2"><a href="sitzung-9.html#cb662-2"></a>  <span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
+<span id="cb662-3"><a href="sitzung-9.html#cb662-3"></a>  <span class="dt">infer =</span> <span class="ot">TRUE</span></span>
+<span id="cb662-4"><a href="sitzung-9.html#cb662-4"></a>))</span></code></pre></div>
 <pre><code>## issueness = at.issue:
 ##  contrast                    estimate    SE  df lower.CL upper.CL t.ratio
 ##  adult,appRel - child,appRel  -1.4980 0.241 131   -2.218  -0.7779 -6.220 
@@ -1619,38 +1632,38 @@ verwenden wir folgende Spezifizierung:</p>
 <h2>Nochmal Plots</h2>
 <div id="by-subject" class="section level3">
 <h3>by subject</h3>
-<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="sitzung-9.html#cb663-1"></a>subs &lt;-<span class="st"> </span><span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">y =</span> judgment, <span class="dt">x =</span> trigger, <span class="dt">color =</span> issueness,</span>
-<span id="cb663-2"><a href="sitzung-9.html#cb663-2"></a>  <span class="dt">shape =</span> issueness, <span class="dt">linetype =</span> issueness,</span>
-<span id="cb663-3"><a href="sitzung-9.html#cb663-3"></a>  <span class="dt">group =</span> issueness)) <span class="op">+</span></span>
-<span id="cb663-4"><a href="sitzung-9.html#cb663-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>) <span class="op">+</span></span>
-<span id="cb663-5"><a href="sitzung-9.html#cb663-5"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span></span>
-<span id="cb663-6"><a href="sitzung-9.html#cb663-6"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">width =</span> <span class="fl">0.25</span>,</span>
-<span id="cb663-7"><a href="sitzung-9.html#cb663-7"></a>    <span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">linetype =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb663-8"><a href="sitzung-9.html#cb663-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Mean Judgments&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Trigger Type&quot;</span>) <span class="op">+</span></span>
-<span id="cb663-9"><a href="sitzung-9.html#cb663-9"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#19278e&quot;</span>, <span class="st">&quot;#BC0D0D&quot;</span>)) <span class="op">+</span></span>
-<span id="cb663-10"><a href="sitzung-9.html#cb663-10"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;appositive RC&#39;</span>, <span class="st">&#39;Hard&#39;</span>, <span class="st">&#39;Soft&#39;</span>)) <span class="op">+</span></span>
-<span id="cb663-11"><a href="sitzung-9.html#cb663-11"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>id) <span class="op">+</span><span class="st"> </span>cleanup</span></code></pre></div>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="sitzung-9.html#cb664-1"></a>subs &lt;-<span class="st"> </span><span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">y =</span> judgment, <span class="dt">x =</span> trigger, <span class="dt">color =</span> issueness,</span>
+<span id="cb664-2"><a href="sitzung-9.html#cb664-2"></a>  <span class="dt">shape =</span> issueness, <span class="dt">linetype =</span> issueness,</span>
+<span id="cb664-3"><a href="sitzung-9.html#cb664-3"></a>  <span class="dt">group =</span> issueness)) <span class="op">+</span></span>
+<span id="cb664-4"><a href="sitzung-9.html#cb664-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>) <span class="op">+</span></span>
+<span id="cb664-5"><a href="sitzung-9.html#cb664-5"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span></span>
+<span id="cb664-6"><a href="sitzung-9.html#cb664-6"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">width =</span> <span class="fl">0.25</span>,</span>
+<span id="cb664-7"><a href="sitzung-9.html#cb664-7"></a>    <span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">linetype =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb664-8"><a href="sitzung-9.html#cb664-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Mean Judgments&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Trigger Type&quot;</span>) <span class="op">+</span></span>
+<span id="cb664-9"><a href="sitzung-9.html#cb664-9"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#19278e&quot;</span>, <span class="st">&quot;#BC0D0D&quot;</span>)) <span class="op">+</span></span>
+<span id="cb664-10"><a href="sitzung-9.html#cb664-10"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;appositive RC&#39;</span>, <span class="st">&#39;Hard&#39;</span>, <span class="st">&#39;Soft&#39;</span>)) <span class="op">+</span></span>
+<span id="cb664-11"><a href="sitzung-9.html#cb664-11"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>id) <span class="op">+</span><span class="st"> </span>cleanup</span></code></pre></div>
 </div>
 <div id="by-subject-1" class="section level3">
 <h3>by subject</h3>
-<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="sitzung-9.html#cb664-1"></a>subs</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="sitzung-9.html#cb665-1"></a>subs</span></code></pre></div>
 <p><img src="inference_files/figure-html/lineplotsubs2-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="by-item" class="section level3">
 <h3>by item</h3>
-<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="sitzung-9.html#cb665-1"></a>items &lt;-<span class="st"> </span><span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">y =</span> judgment, <span class="dt">x =</span> issueness, <span class="dt">color =</span> issueness,</span>
-<span id="cb665-2"><a href="sitzung-9.html#cb665-2"></a>  <span class="dt">shape =</span> issueness)) <span class="op">+</span></span>
-<span id="cb665-3"><a href="sitzung-9.html#cb665-3"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb665-4"><a href="sitzung-9.html#cb665-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb665-5"><a href="sitzung-9.html#cb665-5"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">width =</span> <span class="fl">0.25</span>,</span>
-<span id="cb665-6"><a href="sitzung-9.html#cb665-6"></a>    <span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">linetype =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb665-7"><a href="sitzung-9.html#cb665-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Mean Judgments&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Issueness&quot;</span>) <span class="op">+</span></span>
-<span id="cb665-8"><a href="sitzung-9.html#cb665-8"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#19278e&quot;</span>, <span class="st">&quot;#BC0D0D&quot;</span>)) <span class="op">+</span></span>
-<span id="cb665-9"><a href="sitzung-9.html#cb665-9"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>itemid) <span class="op">+</span><span class="st"> </span>cleanup</span></code></pre></div>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="sitzung-9.html#cb666-1"></a>items &lt;-<span class="st"> </span><span class="kw">ggplot</span>(d, <span class="kw">aes</span>(<span class="dt">y =</span> judgment, <span class="dt">x =</span> issueness, <span class="dt">color =</span> issueness,</span>
+<span id="cb666-2"><a href="sitzung-9.html#cb666-2"></a>  <span class="dt">shape =</span> issueness)) <span class="op">+</span></span>
+<span id="cb666-3"><a href="sitzung-9.html#cb666-3"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb666-4"><a href="sitzung-9.html#cb666-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb666-5"><a href="sitzung-9.html#cb666-5"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">width =</span> <span class="fl">0.25</span>,</span>
+<span id="cb666-6"><a href="sitzung-9.html#cb666-6"></a>    <span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">linetype =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb666-7"><a href="sitzung-9.html#cb666-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Mean Judgments&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Issueness&quot;</span>) <span class="op">+</span></span>
+<span id="cb666-8"><a href="sitzung-9.html#cb666-8"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#19278e&quot;</span>, <span class="st">&quot;#BC0D0D&quot;</span>)) <span class="op">+</span></span>
+<span id="cb666-9"><a href="sitzung-9.html#cb666-9"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>itemid) <span class="op">+</span><span class="st"> </span>cleanup</span></code></pre></div>
 </div>
 <div id="by-item-1" class="section level3">
 <h3>by item</h3>
-<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="sitzung-9.html#cb666-1"></a>items</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="sitzung-9.html#cb667-1"></a>items</span></code></pre></div>
 <p><img src="inference_files/figure-html/lineplotitems2-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="off-to-the-rave" class="section level3">
